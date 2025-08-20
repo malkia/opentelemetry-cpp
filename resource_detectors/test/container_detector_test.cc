@@ -8,7 +8,7 @@
 
 #include "opentelemetry/version.h"
 #include "opentelemetry/nostd/string_view.h"
-#include "opentelemetry/resource_detectors/container_detector_utils.h"
+#include "opentelemetry/resource_detectors/detail/container_detector_utils.h"
 
 TEST(ContainerIdDetectorTest, ExtractValidContainerIdFromLine)
 {
