@@ -17,7 +17,7 @@ namespace resource_detector
  * and sets attributes like process.pid, process.executable.path, and process.command following
  * the OpenTelemetry semantic conventions.
  */
-class ProcessResourceDetector : public opentelemetry::sdk::resource::ResourceDetector
+class OPENTELEMETRY_EXPORT_TYPE ProcessResourceDetector : public opentelemetry::sdk::resource::ResourceDetector
 {
 public:
   /**

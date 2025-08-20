@@ -18,7 +18,7 @@ namespace detail
  * Forms a file path for a process type based on the given PID.
  * for example - /proc/<pid>/cmdline, /proc/<pid>/exe
  */
-std::string FormFilePath(const int32_t &pid, const char *process_type);
+std::string OPENTELEMETRY_EXPORT FormFilePath(const int32_t &pid, const char *process_type);
 
 /**
  * Retrieves the absolute file system path to the executable for a given PID.
@@ -29,7 +29,7 @@ std::string FormFilePath(const int32_t &pid, const char *process_type);
  *
  * @param pid Process ID.
  */
-std::string GetExecutablePath(const int32_t &pid);
+std::string OPENTELEMETRY_EXPORT GetExecutablePath(const int32_t &pid);
 
 /**
  * Retrieves the command used to launch the process for a given PID.
@@ -38,14 +38,14 @@ std::string GetExecutablePath(const int32_t &pid);
  *   - Linux/Unix: Reads the zeroth string of /proc/<pid>/cmdline file.
  *   - TODO: Need to implement for Darwin
  */
-std::string ExtractCommand(const std::string &command_line_path);
+std::string OPENTELEMETRY_EXPORT ExtractCommand(const std::string &command_line_path);
 
 /**
  * Retrieves the command used to launch the process for a given PID.
  * This function is a wrapper around ExtractCommand() and is provided for convenience and
  * testability of ExtractCommand().
  */
-std::string GetCommand(const int32_t &pid);
+std::string OPENTELEMETRY_EXPORT GetCommand(const int32_t &pid);
 
 }  // namespace detail
 }  // namespace resource_detector
