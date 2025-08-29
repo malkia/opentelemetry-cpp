@@ -3,6 +3,9 @@
 
 #pragma once
 
+#include <ctype.h>
+
+#include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/version.h"
 #include "opentelemetry/nostd/string_view.h"
 

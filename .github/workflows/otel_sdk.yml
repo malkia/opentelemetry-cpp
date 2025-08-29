@@ -8,6 +8,11 @@ on:
       - "*"
     branches:
       - main
+env:
+  # D: drive used to be disabled for some time (Jul-Aug 2025)
+  # Though it's back, and d:\ seems to be faster than c:\
+  # Note that we mount the d:\d.vhdx under c:\d but it'll still use d:\
+  VHDX_FILE: d:/d.vhdx
 jobs:
   otel_sdk_build:
     name: build otel_sdk
@@ -103,15 +108,15 @@ jobs:
           }
       - uses: actions/cache/restore@v4
         with:
-          path: c:/d.vhdx
+          path: ${{ env.VHDX_FILE }}
           enableCrossOsArchive: true
           key: ${{ runner.os }}-bazel-${{ hashFiles('.bazelversion', '.bazelrc', 'MODULE.bazel', 'MODULE.bazel.lock') }}
           restore-keys: ${{ runner.os }}-bazel-
       - name: mount cache disk
         run: |
           New-Item -Path c:/d -ItemType "directory" -Force -Verbose
-          If (-not(Test-Path c:/d.vhdx)) {
-            $vhd = New-VHD -Path c:/d.vhdx -SizeBytes 137438953472 -Dynamic -LogicalSectorSizeBytes 4096 -PhysicalSectorSizeBytes 4096 -Verbose
+          If (-not(Test-Path ${{ env.VHDX_FILE }})) {
+            $vhd = New-VHD -Path ${{ env.VHDX_FILE }} -SizeBytes 137438953472 -Dynamic -LogicalSectorSizeBytes 4096 -PhysicalSectorSizeBytes 4096 -Verbose
             $vhd
             $mnt = Mount-VHD -Path $vhd.path -NoDriveLetter -Verbose -PassThru | Out-Host
             $mnt
@@ -122,44 +127,44 @@ jobs:
             $part
             $vol = Format-Volume -FileSystem ReFS -Partition $part -Verbose
             $vol
-            Dismount-VHD -Path c:/d.vhdx -Verbose
+            Dismount-VHD -Path ${{ env.VHDX_FILE }} -Verbose
           }
-          $part = Mount-VHD -Path c:/d.vhdx -NoDriveLetter -Verbose -PassThru | Get-Disk | Get-Partition | Where-Object -Not IsHidden
+          $part = Mount-VHD -Path ${{ env.VHDX_FILE }} -NoDriveLetter -Verbose -PassThru | Get-Disk | Get-Partition | Where-Object -Not IsHidden
           $part
           $part | Add-PartitionAccessPath -AccessPath c:/d -Verbose
-          ls c:/d.vhdx
+          ls ${{ env.VHDX_FILE }}
           echo empty > c:\d\empty.txt
           cmd /c "dir c:\d || echo swallowing errors"
-          refsutil dedup c:\d /s
+          rem refsutil dedup c:\d /s
       - name: build minimal otel_sdk
         # On the CI, the github runner does not have constant vs2022 msvc release, but has the same vs2019 (14.29.30133)
+        # echo "build:windows --action_env=BAZEL_VC_FULL_VERSION=14.29.30133" >> ../top.bazelrc
+        # echo "build:windows --host_action_env=BAZEL_VC_FULL_VERSION=14.42.34438" >> ../top.bazelrc
         run: |
-          echo "build:windows --action_env=BAZEL_VC_FULL_VERSION=14.29.30133" >> ../top.bazelrc
-          echo "build:windows --host_action_env=BAZEL_VC_FULL_VERSION=14.42.34438" >> ../top.bazelrc
           echo "common --remote_download_minimal" >> ../top.bazelrc
           echo "build --disk_cache=c:/d" >> ../top.bazelrc
-          echo "common --repository_cache=c:/r" >> ../top.bazelrc
-          echo "startup --output_user_root=c:/b" >> ../top.bazelrc
+          echo "common --repository_cache=d:/r" >> ../top.bazelrc
+          echo "startup --output_user_root=d:/b" >> ../top.bazelrc
           ./otel_sdk_build.cmd minimal
           ./otel_sdk_build.cmd shutdown
       - run: |
           cmd /c "dir c:\ || echo swallowing errors"
           cmd /c "dir d:\ || echo swallowing errors"
           cmd /c "dir c:\d || echo swallowing errors"
-          Dismount-VHD -Path "c:/d.vhdx" -Verbose
-          ls c:/d.vhdx
-          Resize-VHD -Path "c:/d.vhdx" -ToMinimumSize -Verbose -ErrorAction SilentlyContinue
-          ls c:/d.vhdx
+          Dismount-VHD -Path "${{ env.VHDX_FILE }}" -Verbose
+          ls ${{ env.VHDX_FILE }}
+          Resize-VHD -Path "${{ env.VHDX_FILE }}" -ToMinimumSize -Verbose -ErrorAction SilentlyContinue
+          ls ${{ env.VHDX_FILE }}
       - uses: actions/cache/save@v4
         # Don't update cache on releases
         if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
         env:
           ZSTD_CLEVEL: 1 # 1 (fastest) .. 19 (slowest)
         with:
-          path: c:/d.vhdx
+          path: ${{ env.VHDX_FILE }}
           enableCrossOsArchive: true
           key: ${{ runner.os }}-bazel-${{ hashFiles('.bazelversion', '.bazelrc', 'MODULE.bazel', 'MODULE.bazel.lock') }}
-      - run: Mount-VHD -Path "c:/d.vhdx" -NoDriveLetter -Verbose -PassThru | Out-Host
+      - run: Mount-VHD -Path "${{ env.VHDX_FILE }}" -NoDriveLetter -Verbose -PassThru | Out-Host
       - uses: actions/upload-artifact@v4
         with:
           name: tracing-profiles
@@ -172,7 +177,7 @@ jobs:
       - run: ./otel_sdk_build.cmd shutdown
       - run: cmd /c "dir c:\ || echo swallowing errors"
       - run: cmd /c "dir d:\ || echo swallowing errors"
-      - run: ls c:/d.vhdx
+      - run: ls ${{ env.VHDX_FILE }}
       - uses: actions/upload-artifact@v4
         if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
         with:
