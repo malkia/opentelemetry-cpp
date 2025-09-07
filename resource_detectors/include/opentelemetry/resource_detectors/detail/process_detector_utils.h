@@ -46,7 +46,7 @@ std::string OPENTELEMETRY_EXPORT ExtractCommand(const std::string &command_line_
  * This function is a wrapper around ExtractCommandWithArgs() and is provided for convenience and
  * testability of ExtractCommandWithArgs().
  */
-std::string OPENTELEMETRY_EXPORT GetCommand(const int32_t &pid);
+std::string OPENTELEMETRY_EXPORT GetCommandWithArgs(const int32_t &pid);
 
 }  // namespace detail
 }  // namespace resource_detector
