@@ -14,6 +14,12 @@ otel_cc_library(
         "process_detector_utils.cc",
     ],
     copts = ["-fexceptions"],
+    linkopts = select({
+        "//bazel:windows": [
+            "-DEFAULTLIB:shell32.lib",
+        ],
+        "//conditions:default": [],
+    }),
     deps = [
         "//api",
         "//resource_detectors:headers",
@@ -32,4 +38,3 @@ otel_cc_library(
     hdrs = [":header_files"],
     strip_include_prefix = "include",
 )
-

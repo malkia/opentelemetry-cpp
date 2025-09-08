@@ -31,7 +31,7 @@ namespace detail
 constexpr const char *kExecutableName = "exe";
 constexpr const char *kCmdlineName    = "cmdline";
 
-std::string GetExecutablePath(const int32_t &pid)
+std::string GetExecutablePath(int pid)
 {
 #ifdef _MSC_VER
   HANDLE hProcess =
@@ -86,7 +86,7 @@ std::vector<std::string> ExtractCommandWithArgs(const std::string &command_line_
   return commands;
 }
 
-std::vector<std::string> GetCommandWithArgs(const int32_t &pid)
+std::vector<std::string> GetCommandWithArgs(int pid)
 {
 #ifdef _MSC_VER
   int argc      = 0;
@@ -117,7 +117,7 @@ std::vector<std::string> GetCommandWithArgs(const int32_t &pid)
 #endif
 }
 
-std::string FormFilePath(const int32_t &pid, const char *process_type)
+std::string FormFilePath(int pid, const char *process_type)
 {
   char buff[64];
   int len = std::snprintf(buff, sizeof(buff), "/proc/%d/%s", pid, process_type);

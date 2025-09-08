@@ -19,7 +19,7 @@ namespace detail
  * Forms a file path for a process type based on the given PID.
  * for example - /proc/<pid>/cmdline, /proc/<pid>/exe
  */
-std::string OPENTELEMETRY_EXPORT FormFilePath(const int32_t &pid, const char *process_type);
+std::string OPENTELEMETRY_EXPORT FormFilePath(int pid, const char *process_type);
 
 /**
  * Retrieves the absolute file system path to the executable for a given PID.
@@ -30,7 +30,7 @@ std::string OPENTELEMETRY_EXPORT FormFilePath(const int32_t &pid, const char *pr
  *
  * @param pid Process ID.
  */
-std::string OPENTELEMETRY_EXPORT GetExecutablePath(const int32_t &pid);
+std::string OPENTELEMETRY_EXPORT GetExecutablePath(int pid);
 
 /**
  * Extracts the command-line arguments and the command.
@@ -39,14 +39,14 @@ std::string OPENTELEMETRY_EXPORT GetExecutablePath(const int32_t &pid);
  *   - Linux/Unix: Reads the /proc/<pid>/cmdline file and splits it into command and arguments.
  *   - TODO: Need to implement for Darwin
  */
-std::string OPENTELEMETRY_EXPORT ExtractCommand(const std::string &command_line_path);
+std::vector<std::string> OPENTELEMETRY_EXPORT ExtractCommandWithArgs(const std::string &command_line_path);
 
 /**
  * Retrieves the command-line arguments and the command used to launch the process for a given PID.
  * This function is a wrapper around ExtractCommandWithArgs() and is provided for convenience and
  * testability of ExtractCommandWithArgs().
  */
-std::string OPENTELEMETRY_EXPORT GetCommandWithArgs(const int32_t &pid);
+std::vector<std::string> OPENTELEMETRY_EXPORT GetCommandWithArgs(int pid);
 
 }  // namespace detail
 }  // namespace resource_detector

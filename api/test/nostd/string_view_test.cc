@@ -72,7 +72,11 @@ TEST(StringViewTest, SubstrPortion)
   EXPECT_EQ("12", s.substr(3, 2));
 }
 
+#if defined(_MSC_VER)
+static void StringViewTest_SubstrOutOfRange_NoSanatize()
+#else
 static void __attribute__((no_sanitize("address"))) StringViewTest_SubstrOutOfRange_NoSanatize()
+#endif
 {
   string_view s = "abc123";
 #if __EXCEPTIONS || (defined(OPENTELEMETRY_STL_VERSION) && (OPENTELEMETRY_STL_VERSION >= 2017))

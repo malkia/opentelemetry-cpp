@@ -5,21 +5,14 @@ load("//:dll_deps.bzl", "dll_deps")
 load("//bazel:otel_cc.bzl", "otel_cc_test")
 
 otel_cc_test(
-    name = "resource_detector_test",
+    name = "yaml_test",
     srcs = [
-        "container_detector_test.cc",
-        "process_detector_test.cc",
+        "yaml_test.cc",
     ],
     tags = ["test"],
-    linkopts = select({
-        "//bazel:windows": [
-            "-DEFAULTLIB:shell32.lib",
-        ],
-        "//conditions:default": [],
-    }),
     deps = dll_deps([
         "//api",
-        "//resource_detectors",
+        "//sdk/src/resource",
         "@googletest//:gtest_main",
     ]),
 )

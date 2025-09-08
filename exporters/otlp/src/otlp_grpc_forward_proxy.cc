@@ -146,7 +146,7 @@ OtlpGrpcForwardProxy::Impl::Impl(const OtlpGrpcClientOptions& options)
     uint64_t p0 = (uint64_t(rd())<<32) | uint64_t(rd());
     uint64_t p1 = (uint64_t(rd())<<32) | uint64_t(rd());
 #if defined(_MSC_VER)
-    sprintf_s(buf, "%8.8lx%8.8lx", p0, p1);
+    sprintf_s(buf, "%8.8zu%8.8zu", p0, p1);
 #else
     snprintf(buf, sizeof(buf), "%8.8lx%8.8lx", p0, p1);
 #endif
