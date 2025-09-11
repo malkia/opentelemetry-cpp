@@ -42,16 +42,25 @@ test --test_tag_filters=-jaeger,-opentracing,-opentracing_shim,-etw,-es,-prometh
 
 build --experimental_convenience_symlinks=clean
 
-build:windows      --copt="/Brepro"      --copt="/guard:cf"      --copt="/guard:ehcont"      --copt="/Z7"      --copt="/JMC-"      --copt="/sdl" 
-build:windows --host_copt="/Brepro"      --copt="/guard:cf"      --copt="/guard:ehcont"      --copt="/Z7"      --copt="/JMC-"      --copt="/sdl"
-build:windows      --linkopt="/Brepro"      --linkopt="/guard:cf"      --linkopt="/guard:ehcont" --linkopt="/DEBUG:FULL" --linkopt="/CETCOMPAT" --linkopt="/SWAPRUN:NET,CD" --linkopt="/OPT:REF,NOICF" --linkopt="/RELEASE" --linkopt="/DEBUGTYPE:CV,PDATA,FIXUP" 
-build:windows --host_linkopt="/Brepro"      --linkopt="/guard:cf"      --linkopt="/guard:ehcont" --linkopt="/DEBUG:FULL" --linkopt="/CETCOMPAT" --linkopt="/SWAPRUN:NET,CD" --linkopt="/OPT:REF,NOICF" --linkopt="/RELEASE" --linkopt="/DEBUGTYPE:CV,PDATA,FIXUP" 
+build:windows      --copt="/Brepro"      --copt="/guard:cf"      --copt="/guard:ehcont"      --copt="/Z7"      --copt="/JMC-"       --copt="/sdl" 
+build:windows --host_copt="/Brepro" --host_copt="/guard:cf" --host_copt="/guard:ehcont" --host_copt="/Z7" --host_copt="/JMC-"  --host_copt="/sdl"
+build:windows      --linkopt="/Brepro"      --linkopt="/guard:cf"      --linkopt="/guard:ehcont"      --linkopt="/DEBUG:FULL"      --linkopt="/CETCOMPAT"      --linkopt="/SWAPRUN:NET,CD"      --linkopt="/OPT:REF,NOICF"      --linkopt="/RELEASE"      --linkopt="/DEBUGTYPE:CV,PDATA,FIXUP" 
+build:windows --host_linkopt="/Brepro" --host_linkopt="/guard:cf" --host_linkopt="/guard:ehcont" --host_linkopt="/DEBUG:FULL" --host_linkopt="/CETCOMPAT" --host_linkopt="/SWAPRUN:NET,CD" --host_linkopt="/OPT:REF,NOICF" --host_linkopt="/RELEASE" --host_linkopt="/DEBUGTYPE:CV,PDATA,FIXUP" 
 build:windows      --copt="/Zc:strictStrings"      --copt="/Gy"      --copt="-DGPR_DISABLE_ABSEIL_SYNC"
 build:windows --host_copt="/Zc:strictStrings" --host_copt="/Gy" --host_copt="-DGPR_DISABLE_ABSEIL_SYNC"
+build:windows      --linkopt="shell32.lib" 
 build:windows --host_linkopt="shell32.lib" 
+
 # Requires Visual Studio 2019 Build Tools installed in default location with the latest compiler (14.29.30133) for x64
+
 build:windows      --action_env=BAZEL_VC_FULL_VERSION=14.29.30133      --action_env=BAZEL_WINSDK_FULL_VERSION=10.0.26100.0
 build:windows --host_action_env=BAZEL_VC_FULL_VERSION=14.29.30133 --host_action_env=BAZEL_WINSDK_FULL_VERSION=10.0.26100.0
+
+# build:windows      --action_env=BAZEL_VC_FULL_VERSION=14.50.35503       --action_env=BAZEL_WINSDK_FULL_VERSION=10.0.26100.0
+# build:windows --host_action_env=BAZEL_VC_FULL_VERSION=14.50.35503  --host_action_env=BAZEL_WINSDK_FULL_VERSION=10.0.26100.0
+# build:windows      --action_env=BAZEL_VC="C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC"
+# build:windows --host_action_env=BAZEL_VC="C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC"
+
 build:windows --features=shorten_virtual_includes
 
 # grpc+\src/core/util/useful.h(193): error C4146: unary minus operator applied to unsigned type, result still unsigned
@@ -221,7 +230,7 @@ common --skip_incompatible_explicit_targets
 mod --lockfile_mode=refresh
 
 # Select clang-cl to be the default compiler on Windows
-#build:windows --config=clang-cl
+build:windows --config=clang-cl
 
 # See MODULE.bazel where we've disabled the platform/toolchain setup, but made it back here
 build:clang-cl --host_copt=-Wno-dynamic-class-memaccess --copt=-Wno-dynamic-class-memaccess
