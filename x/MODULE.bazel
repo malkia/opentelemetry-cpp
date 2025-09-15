@@ -67,4 +67,4 @@ use_repo(
 #        '@com_google_protobuf_javalite//:protobuf_javalite' in attribute 'target' of tag 'override'.
 #      Is the module 'grpc-java' missing a bazel_dep or use_repo(..., "com_google_protobuf_javalite")?.
 #
-bazel_dep(name = "grpc-java", version = "1.72.0")
+bazel_dep(name = "grpc-java", version = "1.73.0")
