@@ -138,41 +138,41 @@
     "binaries": [
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.134.1/otelcol-contrib_0.134.1_linux_arm64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.136.0/otelcol-contrib_0.136.0_linux_arm64.tar.gz",
         "file": "otelcol-contrib",
-        "sha256": "dfa94f4c0af37f8629333513e2aead8b6247e0c419550232f3c811a73d8cdbc8",
+        "sha256": "f768015766c8ace50caf9130ad0f38e4781f76b9abe4380b26c875108bb51899",
         "os": "linux",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.134.1/otelcol-contrib_0.134.1_linux_amd64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.136.0/otelcol-contrib_0.136.0_linux_amd64.tar.gz",
         "file": "otelcol-contrib",
-        "sha256": "c54842030d755ea5f3fd4ad7ab6b3b4be9a0a7d8856ce9b6e15dd12e8c2d38cf",
+        "sha256": "e642146998b9559929c34f5b85525e27ca6430585e2951fa88a403ff5ebf9f47",
         "os": "linux",
         "cpu": "x86_64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.134.1/otelcol-contrib_0.134.1_darwin_arm64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.136.0/otelcol-contrib_0.136.0_darwin_arm64.tar.gz",
         "file": "otelcol-contrib",
-        "sha256": "295240c82709dba37dc874adce44496193dea15f8d9ee401e8aa281feed6b664",
+        "sha256": "1174f369679aa620dddd7612885268f3a3edf6d1544e10d79f334df5aa413f3f",
         "os": "macos",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.134.1/otelcol-contrib_0.134.1_darwin_amd64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.136.0/otelcol-contrib_0.136.0_darwin_amd64.tar.gz",
         "file": "otelcol-contrib",
-        "sha256": "a7eaef5d0139f6b929a01f31abdda0f6d107cafe4bf5b4d86b26af93762fe70e",
+        "sha256": "e4d100924aa93a5050171b9db99e17dcce8fea17898c385147b802b781489759",
         "os": "macos",
         "cpu": "x86_64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.134.1/otelcol-contrib_0.134.1_windows_amd64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.136.0/otelcol-contrib_0.136.0_windows_amd64.tar.gz",
         "file": "otelcol-contrib.exe",
-        "sha256": "007540fc7466626839fc94ab0c6b9baf3d0854fe4ab05209ecd25bb501c8303d",
+        "sha256": "0e7eb38206f09d6a3239b975704a6b458f430d502115df46bff56326e6c97341",
         "os": "windows",
         "cpu": "x86_64"
       }
@@ -182,33 +182,33 @@
     "binaries": [
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.51.1/perses_0.51.1_linux_amd64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.52.0/perses_0.52.0_linux_amd64.tar.gz",
         "file": "percli",
-        "sha256": "48a1909193e60114482b244c916694a5c5e55aa5fde4f5c224a2cecc502c3205",
+        "sha256": "cbfd4c12069762b9e1d66d5658339cac09ae0856f5d1683603e59a90f605078e",
         "os": "linux",
         "cpu": "x86_64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.51.1/perses_0.51.1_darwin_arm64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.52.0/perses_0.52.0_darwin_arm64.tar.gz",
         "file": "percli",
-        "sha256": "abac4d5ec09ac01186c0614dbef9566936464fca20f6f25529086f8c1b659536",
+        "sha256": "206faf009bd419955d9bc633226cd0f24807408d45eae10c40a148c78ee17f26",
         "os": "macos",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.51.1/perses_0.51.1_darwin_amd64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.52.0/perses_0.52.0_darwin_amd64.tar.gz",
         "file": "percli",
-        "sha256": "05bb9060f02345d32075b8cfc778eb8e7b54bf08754a12fd89669ed0ed847a3d",
+        "sha256": "afb68bc8d99c6d31ae7367f5b452c7ef9334cb73ea919335a3243eaac4c3804b",
         "os": "macos",
         "cpu": "x86_64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.51.1/perses_0.51.1_windows_amd64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.52.0/perses_0.52.0_windows_amd64.tar.gz",
         "file": "percli.exe",
-        "sha256": "cde2764669f72c2c5737adba87afcdf12d5a08cec969fba0f6b73e190cc70dac",
+        "sha256": "94077d3d88881af9f380a2b252474f09a0f55537d3ac8573017a9d1f5432d21a",
         "os": "windows",
         "cpu": "x86_64"
       }
@@ -218,33 +218,33 @@
     "binaries": [
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.51.1/perses_0.51.1_linux_amd64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.52.0/perses_0.52.0_linux_amd64.tar.gz",
         "file": "perses",
-        "sha256": "48a1909193e60114482b244c916694a5c5e55aa5fde4f5c224a2cecc502c3205",
+        "sha256": "cbfd4c12069762b9e1d66d5658339cac09ae0856f5d1683603e59a90f605078e",
         "os": "linux",
         "cpu": "x86_64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.51.1/perses_0.51.1_darwin_arm64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.52.0/perses_0.52.0_darwin_arm64.tar.gz",
         "file": "perses",
-        "sha256": "abac4d5ec09ac01186c0614dbef9566936464fca20f6f25529086f8c1b659536",
+        "sha256": "206faf009bd419955d9bc633226cd0f24807408d45eae10c40a148c78ee17f26",
         "os": "macos",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.51.1/perses_0.51.1_darwin_amd64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.52.0/perses_0.52.0_darwin_amd64.tar.gz",
         "file": "perses",
-        "sha256": "05bb9060f02345d32075b8cfc778eb8e7b54bf08754a12fd89669ed0ed847a3d",
+        "sha256": "afb68bc8d99c6d31ae7367f5b452c7ef9334cb73ea919335a3243eaac4c3804b",
         "os": "macos",
         "cpu": "x86_64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.51.1/perses_0.51.1_windows_amd64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.52.0/perses_0.52.0_windows_amd64.tar.gz",
         "file": "perses.exe",
-        "sha256": "cde2764669f72c2c5737adba87afcdf12d5a08cec969fba0f6b73e190cc70dac",
+        "sha256": "94077d3d88881af9f380a2b252474f09a0f55537d3ac8573017a9d1f5432d21a",
         "os": "windows",
         "cpu": "x86_64"
       }
@@ -254,36 +254,36 @@
     "binaries": [
       {
         "kind": "file",
-        "url": "https://github.com/getsentry/sentry-cli/releases/download/2.53.0/sentry-cli-Linux-aarch64",
-        "sha256": "a895f1f4adf3641d43ea98f869e46216159e26992dc3a9d2f60728eede143e02",
+        "url": "https://github.com/getsentry/sentry-cli/releases/download/2.55.0/sentry-cli-Linux-aarch64",
+        "sha256": "ad6f0669617b82ff78ebe90dac53ea92231d4dda3447f4db9b066424ff3de665",
         "os": "linux",
         "cpu": "arm64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/getsentry/sentry-cli/releases/download/2.53.0/sentry-cli-Linux-x86_64",
-        "sha256": "2fe957bc8f2eccdfde5fd78ebf86ddf66b589e92b9dd40b54ec99cce3fd469e4",
+        "url": "https://github.com/getsentry/sentry-cli/releases/download/2.55.0/sentry-cli-Linux-x86_64",
+        "sha256": "28bacd307c8a7b19d54a38e1a8d9808efff7e7382941c68ea6305d1c3385caef",
         "os": "linux",
         "cpu": "x86_64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/getsentry/sentry-cli/releases/download/2.53.0/sentry-cli-Darwin-arm64",
-        "sha256": "75305e4f59e4ca561a4f42a53250cf9b3fa342154d125ab7ef85586d0aed8621",
+        "url": "https://github.com/getsentry/sentry-cli/releases/download/2.55.0/sentry-cli-Darwin-arm64",
+        "sha256": "93ec099679e6f277710b9b1bf0320df14985693b6ddbfd7fc37500084184bf00",
         "os": "macos",
         "cpu": "arm64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/getsentry/sentry-cli/releases/download/2.53.0/sentry-cli-Darwin-x86_64",
-        "sha256": "e9f3b2f4507ca8853f7b3c13315f0721e8108a202147b0dc48fd90f3f96cd02b",
+        "url": "https://github.com/getsentry/sentry-cli/releases/download/2.55.0/sentry-cli-Darwin-x86_64",
+        "sha256": "caec00a88edb88b5fb8d860e4d2870a645fc6c9124be858b4e046ce04aa1a5b8",
         "os": "macos",
         "cpu": "x86_64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/getsentry/sentry-cli/releases/download/2.53.0/sentry-cli-Windows-x86_64.exe",
-        "sha256": "b5d60034ad23d03046b9904659d1dd90bd7ca8ac036a5ff6b10547e7869009b4",
+        "url": "https://github.com/getsentry/sentry-cli/releases/download/2.55.0/sentry-cli-Windows-x86_64.exe",
+        "sha256": "5f9666720a4d9d018220b46c0ce5e99e2e0377fa0515eda9c5f58113504ca7b3",
         "os": "windows",
         "cpu": "x86_64"
       }
