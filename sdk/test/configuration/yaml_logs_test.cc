@@ -31,7 +31,7 @@ static std::unique_ptr<opentelemetry::sdk::configuration::Configuration> DoParse
 TEST(YamlLogs, no_processors)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
 )";
 
@@ -42,7 +42,7 @@ logger_provider:
 TEST(YamlLogs, empty_processors)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
   processors:
 )";
@@ -54,7 +54,7 @@ logger_provider:
 TEST(YamlLogs, many_processors)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
   processors:
     - simple:
@@ -74,7 +74,7 @@ logger_provider:
 TEST(YamlLogs, simple_processor)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
   processors:
     - simple:
@@ -99,7 +99,7 @@ logger_provider:
 TEST(YamlLogs, default_batch_processor)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
   processors:
     - batch:
@@ -128,7 +128,7 @@ logger_provider:
 TEST(YamlLogs, batch_processor)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
   processors:
     - batch:
@@ -161,7 +161,7 @@ logger_provider:
 TEST(YamlLogs, default_otlp_http)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
   processors:
     - simple:
@@ -199,7 +199,7 @@ logger_provider:
 TEST(YamlLogs, otlp_http)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
   processors:
     - simple:
@@ -252,7 +252,7 @@ logger_provider:
 TEST(YamlLogs, default_otlp_grpc)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
   processors:
     - simple:
@@ -290,7 +290,7 @@ logger_provider:
 TEST(YamlLogs, otlp_grpc)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
   processors:
     - simple:
@@ -343,7 +343,7 @@ logger_provider:
 TEST(YamlLogs, default_otlp_file)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
   processors:
     - simple:
@@ -372,7 +372,7 @@ logger_provider:
 TEST(YamlLogs, otlp_file)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
   processors:
     - simple:
@@ -402,7 +402,7 @@ logger_provider:
 TEST(YamlLogs, otlp_console)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
   processors:
     - simple:
@@ -427,7 +427,7 @@ logger_provider:
 TEST(YamlLogs, no_limits)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
   processors:
     - simple:
@@ -444,7 +444,7 @@ logger_provider:
 TEST(YamlLogs, default_limits)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
   processors:
     - simple:
@@ -464,7 +464,7 @@ logger_provider:
 TEST(YamlLogs, limits)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-logs"
 logger_provider:
   processors:
     - simple:

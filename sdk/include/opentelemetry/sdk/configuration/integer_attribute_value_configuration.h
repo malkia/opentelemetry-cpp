@@ -3,8 +3,6 @@
 
 #pragma once
 
-#include <cstddef>
-
 #include "opentelemetry/version.h"
 #include "opentelemetry/sdk/configuration/attribute_value_configuration.h"
 #include "opentelemetry/sdk/configuration/attribute_value_configuration_visitor.h"
@@ -25,7 +23,7 @@ public:
     visitor->VisitInteger(this);
   }
 
-  std::size_t value;
+  long long value;
 };
 
 }  // namespace configuration

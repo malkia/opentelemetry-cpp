@@ -41,7 +41,7 @@ static std::unique_ptr<opentelemetry::sdk::configuration::Configuration> DoParse
 TEST(YamlMetrics, no_readers)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
 )";
 
@@ -52,7 +52,7 @@ meter_provider:
 TEST(YamlMetrics, empty_readers)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
 )";
@@ -64,7 +64,7 @@ meter_provider:
 TEST(YamlMetrics, many_readers)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -84,7 +84,7 @@ meter_provider:
 TEST(YamlMetrics, default_periodic_reader)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -111,7 +111,7 @@ meter_provider:
 TEST(YamlMetrics, periodic_reader)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -140,7 +140,7 @@ meter_provider:
 TEST(YamlMetrics, pull_reader)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - pull:
@@ -164,7 +164,7 @@ meter_provider:
 TEST(YamlMetrics, default_otlp_http)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -206,7 +206,7 @@ meter_provider:
 TEST(YamlMetrics, otlp_http)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -265,7 +265,7 @@ meter_provider:
 TEST(YamlMetrics, default_otlp_grpc)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -307,7 +307,7 @@ meter_provider:
 TEST(YamlMetrics, otlp_grpc)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -366,7 +366,7 @@ meter_provider:
 TEST(YamlMetrics, default_otlp_file)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -399,7 +399,7 @@ meter_provider:
 TEST(YamlMetrics, otlp_file)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -435,7 +435,7 @@ meter_provider:
 TEST(YamlMetrics, default_console)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -474,7 +474,7 @@ meter_provider:
 TEST(YamlMetrics, console)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -515,7 +515,7 @@ meter_provider:
 TEST(YamlMetrics, default_prometheus)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - pull:
@@ -546,7 +546,7 @@ meter_provider:
 TEST(YamlMetrics, prometheus)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - pull:
@@ -582,7 +582,7 @@ meter_provider:
 TEST(YamlMetrics, empty_views)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -600,7 +600,7 @@ meter_provider:
 TEST(YamlMetrics, default_views)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -636,7 +636,7 @@ meter_provider:
 TEST(YamlMetrics, selector)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -678,7 +678,7 @@ meter_provider:
 TEST(YamlMetrics, stream)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -717,7 +717,7 @@ meter_provider:
 TEST(YamlMetrics, stream_aggregation_default)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -745,7 +745,7 @@ meter_provider:
 TEST(YamlMetrics, stream_aggregation_drop)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -773,7 +773,7 @@ meter_provider:
 TEST(YamlMetrics, stream_aggregation_explicit_bucket_histogram)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -815,7 +815,7 @@ meter_provider:
 TEST(YamlMetrics, stream_aggregation_base2_exponential_bucket_histogram)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -853,7 +853,7 @@ meter_provider:
 TEST(YamlMetrics, stream_aggregation_last_value)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -881,7 +881,7 @@ meter_provider:
 TEST(YamlMetrics, stream_aggregation_sum)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
@@ -909,7 +909,7 @@ meter_provider:
 TEST(YamlMetrics, stream_attribute_keys)
 {
   std::string yaml = R"(
-file_format: xx.yy
+file_format: "1.0-metrics"
 meter_provider:
   readers:
     - periodic:
