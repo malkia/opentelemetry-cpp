@@ -12,10 +12,10 @@
 #include "opentelemetry/plugin/factory.h"
 #include "opentelemetry/plugin/hook.h"
 
-#include <Windows.h>
+#include <windows.h>
 
-#include <WinBase.h>
 #include <errhandlingapi.h>
+#include <winbase.h>
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace plugin
