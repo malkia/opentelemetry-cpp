@@ -1,6 +1,7 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 
+load("//:dll_deps.bzl", "dll_deps")
 load("//bazel:otel_cc.bzl", "otel_cc_binary")
 
 otel_cc_binary(
@@ -40,6 +41,6 @@ otel_cc_binary(
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
-        "@com_google_googletest//:gtest_main",
+        "@googletest//:gtest_main",
     ]),
 )

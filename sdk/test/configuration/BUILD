@@ -20,7 +20,7 @@ otel_cc_test(
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
-        "@com_google_googletest//:gtest_main",
+        "@googletest//:gtest_main",
     ]),
 )
 
@@ -40,7 +40,7 @@ otel_cc_test(
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
-        "@com_google_googletest//:gtest_main",
+        "@googletest//:gtest_main",
     ]),
 )
 
@@ -60,7 +60,7 @@ otel_cc_test(
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
-        "@com_google_googletest//:gtest_main",
+        "@googletest//:gtest_main",
     ]),
 )
 
@@ -80,7 +80,7 @@ otel_cc_test(
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
-        "@com_google_googletest//:gtest_main",
+        "@googletest//:gtest_main",
     ]),
 )
 
@@ -96,7 +96,7 @@ otel_cc_test(
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
-        "@com_google_googletest//:gtest_main",
+        "@googletest//:gtest_main",
     ]),
     tags = [
         "test",
@@ -120,6 +120,6 @@ otel_cc_test(
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
-        "@com_google_googletest//:gtest_main",
+        "@googletest//:gtest_main",
     ]),
 )

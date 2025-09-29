@@ -232,6 +232,9 @@ mod --lockfile_mode=refresh
 # Select clang-cl to be the default compiler on Windows
 build:windows --config=clang-cl
 
+# rapidyml uses c4core, and it seems to misdetects "MSVC" from clang-cl standpoint
+build:clang-cl --copt=-DC4_MSVC --host_copt=-DC4_MSVC
+
 # See MODULE.bazel where we've disabled the platform/toolchain setup, but made it back here
 build:clang-cl --host_copt=-Wno-dynamic-class-memaccess --copt=-Wno-dynamic-class-memaccess
 build:clang-cl --host_copt=-Wno-microsoft-cast --copt=-Wno-microsoft-cast
