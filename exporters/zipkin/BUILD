@@ -45,6 +45,21 @@ otel_cc_library(
     ],
 )
 
+otel_cc_library(
+    name = "zipkin_exporter_builder",
+    srcs = [
+        "src/zipkin_builder.cc",
+    ],
+    hdrs = [
+        "include/opentelemetry/exporters/zipkin/zipkin_builder.h",
+    ],
+    strip_include_prefix = "include",
+    tags = ["zipkin"],
+    deps = [
+        ":zipkin_exporter",
+    ],
+)
+
 otel_cc_test(
     name = "zipkin_recordable_test",
     srcs = ["test/zipkin_recordable_test.cc"],

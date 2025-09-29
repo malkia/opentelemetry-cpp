@@ -24,6 +24,21 @@ otel_cc_library(
     ],
 )
 
+otel_cc_library(
+    name = "ostream_log_record_exporter_builder",
+    srcs = [
+        "src/console_log_record_builder.cc",
+    ],
+    hdrs = [
+        "include/opentelemetry/exporters/ostream/console_log_record_builder.h",
+    ],
+    strip_include_prefix = "include",
+    tags = ["ostream"],
+    deps = [
+        ":ostream_log_record_exporter",
+    ],
+)
+
 otel_cc_test(
     name = "ostream_log_test",
     srcs = ["test/ostream_log_test.cc"],
@@ -58,6 +73,24 @@ otel_cc_library(
     ],
 )
 
+otel_cc_library(
+    name = "ostream_metric_exporter_builder",
+    srcs = [
+        "src/console_push_metric_builder.cc",
+    ],
+    hdrs = [
+        "include/opentelemetry/exporters/ostream/console_push_metric_builder.h",
+    ],
+    strip_include_prefix = "include",
+    tags = [
+        "metrics",
+        "ostream",
+    ],
+    deps = [
+        ":ostream_metric_exporter",
+    ],
+)
+
 otel_cc_test(
     name = "ostream_metric_test",
     srcs = ["test/ostream_metric_test.cc"],
@@ -89,7 +122,22 @@ otel_cc_library(
     ],
 )
 
-otel_cc_test_library(
+otel_cc_library(
+    name = "ostream_span_exporter_builder",
+    srcs = [
+        "src/console_span_builder.cc",
+    ],
+    hdrs = [
+        "include/opentelemetry/exporters/ostream/console_span_builder.h",
+    ],
+    strip_include_prefix = "include",
+    tags = ["ostream"],
+    deps = [
+        ":ostream_span_exporter",
+    ],
+)
+
+otel_cc_library(
     name = "ostream_capture",
     hdrs = [
         "test/ostream_capture.h",

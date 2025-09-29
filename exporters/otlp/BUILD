@@ -69,6 +69,22 @@ otel_cc_library(
 )
 
 otel_cc_library(
+    name = "otlp_builder_utils",
+    srcs = [
+        "src/otlp_builder_utils.cc",
+    ],
+    hdrs = [
+        "include/opentelemetry/exporters/otlp/otlp_builder_utils.h",
+    ],
+    strip_include_prefix = "include",
+    tags = ["otlp"],
+    deps = [
+        ":otlp_http_client",
+        ":otlp_recordable",
+    ],
+)
+
+otel_cc_library(
     name = "otlp_grpc_client",
     srcs = [
         "src/otlp_grpc_client.cc",
@@ -150,6 +166,25 @@ otel_cc_library(
 )
 
 otel_cc_library(
+    name = "otlp_grpc_span_exporter_builder",
+    srcs = [
+        "src/otlp_grpc_span_builder.cc",
+    ],
+    hdrs = [
+        "include/opentelemetry/exporters/otlp/otlp_grpc_span_builder.h",
+    ],
+    strip_include_prefix = "include",
+    tags = [
+        "otlp",
+        "otlp_grpc",
+    ],
+    deps = [
+        ":otlp_builder_utils",
+        ":otlp_grpc_exporter",
+    ],
+)
+
+otel_cc_library(
     name = "otlp_http_client",
     srcs = [
         "src/otlp_http.cc",
@@ -219,6 +254,25 @@ otel_cc_library(
 )
 
 otel_cc_library(
+    name = "otlp_http_span_exporter_builder",
+    srcs = [
+        "src/otlp_http_span_builder.cc",
+    ],
+    hdrs = [
+        "include/opentelemetry/exporters/otlp/otlp_http_span_builder.h",
+    ],
+    strip_include_prefix = "include",
+    tags = [
+        "otlp",
+        "otlp_http",
+    ],
+    deps = [
+        ":otlp_builder_utils",
+        ":otlp_http_exporter",
+    ],
+)
+
+otel_cc_library(
     name = "otlp_file_client",
     srcs = [
         "src/otlp_file_client.cc",
@@ -276,6 +330,24 @@ otel_cc_library(
 )
 
 otel_cc_library(
+    name = "otlp_file_span_exporter_builder",
+    srcs = [
+        "src/otlp_file_span_builder.cc",
+    ],
+    hdrs = [
+        "include/opentelemetry/exporters/otlp/otlp_file_span_builder.h",
+    ],
+    strip_include_prefix = "include",
+    tags = [
+        "otlp",
+        "otlp_file",
+    ],
+    deps = [
+        ":otlp_file_exporter",
+    ],
+)
+
+otel_cc_library(
     name = "otlp_grpc_metric_exporter",
     srcs = [
         "src/otlp_grpc_metric_exporter.cc",
@@ -304,6 +376,25 @@ otel_cc_library(
 
         # For gRPC
         "@opentelemetry-proto//:metrics_service_grpc_cc",
+    ],
+)
+
+otel_cc_library(
+    name = "otlp_grpc_metric_exporter_builder",
+    srcs = [
+        "src/otlp_grpc_push_metric_builder.cc",
+    ],
+    hdrs = [
+        "include/opentelemetry/exporters/otlp/otlp_grpc_push_metric_builder.h",
+    ],
+    strip_include_prefix = "include",
+    tags = [
+        "otlp",
+        "otlp_grpc_metric",
+    ],
+    deps = [
+        ":otlp_builder_utils",
+        ":otlp_grpc_metric_exporter",
     ],
 )
 
@@ -337,6 +428,25 @@ otel_cc_library(
 )
 
 otel_cc_library(
+    name = "otlp_http_metric_exporter_builder",
+    srcs = [
+        "src/otlp_http_push_metric_builder.cc",
+    ],
+    hdrs = [
+        "include/opentelemetry/exporters/otlp/otlp_http_push_metric_builder.h",
+    ],
+    strip_include_prefix = "include",
+    tags = [
+        "otlp",
+        "otlp_http_metric",
+    ],
+    deps = [
+        ":otlp_builder_utils",
+        ":otlp_http_metric_exporter",
+    ],
+)
+
+otel_cc_library(
     name = "otlp_file_metric_exporter",
     srcs = [
         "src/otlp_file_metric_exporter.cc",
@@ -362,6 +472,25 @@ otel_cc_library(
         ":otlp_recordable",
         "//sdk/src/metrics",
         "@opentelemetry-proto//:metrics_service_proto_cc",
+    ],
+)
+
+otel_cc_library(
+    name = "otlp_file_metric_exporter_builder",
+    srcs = [
+        "src/otlp_file_push_metric_builder.cc",
+    ],
+    hdrs = [
+        "include/opentelemetry/exporters/otlp/otlp_file_push_metric_builder.h",
+    ],
+    strip_include_prefix = "include",
+    tags = [
+        "otlp",
+        "otlp_file_metric",
+    ],
+    deps = [
+        ":otlp_builder_utils",
+        ":otlp_file_metric_exporter",
     ],
 )
 
@@ -395,6 +524,25 @@ otel_cc_library(
 )
 
 otel_cc_library(
+    name = "otlp_http_log_record_exporter_builder",
+    srcs = [
+        "src/otlp_http_log_record_builder.cc",
+    ],
+    hdrs = [
+        "include/opentelemetry/exporters/otlp/otlp_http_log_record_builder.h",
+    ],
+    strip_include_prefix = "include",
+    tags = [
+        "otlp",
+        "otlp_http_log",
+    ],
+    deps = [
+        ":otlp_builder_utils",
+        ":otlp_http_log_record_exporter",
+    ],
+)
+
+otel_cc_library(
     name = "otlp_file_log_record_exporter",
     srcs = [
         "src/otlp_file_log_record_exporter.cc",
@@ -420,6 +568,25 @@ otel_cc_library(
         ":otlp_recordable",
         "//sdk/src/logs",
         "@opentelemetry-proto//:logs_service_proto_cc",
+    ],
+)
+
+otel_cc_library(
+    name = "otlp_file_log_record_exporter_builder",
+    srcs = [
+        "src/otlp_file_log_record_builder.cc",
+    ],
+    hdrs = [
+        "include/opentelemetry/exporters/otlp/otlp_file_log_record_builder.h",
+    ],
+    strip_include_prefix = "include",
+    tags = [
+        "otlp",
+        "otlp_file_log",
+    ],
+    deps = [
+        ":otlp_builder_utils",
+        ":otlp_file_log_record_exporter",
     ],
 )
 
@@ -451,6 +618,25 @@ otel_cc_library(
         "//sdk/src/logs",
         # For gRPC
         "@opentelemetry-proto//:logs_service_grpc_cc",
+    ],
+)
+
+otel_cc_library(
+    name = "otlp_grpc_log_record_exporter_builder",
+    srcs = [
+        "src/otlp_grpc_log_record_builder.cc",
+    ],
+    hdrs = [
+        "include/opentelemetry/exporters/otlp/otlp_grpc_log_record_builder.h",
+    ],
+    strip_include_prefix = "include",
+    tags = [
+        "otlp",
+        "otlp_grpc_log",
+    ],
+    deps = [
+        ":otlp_builder_utils",
+        ":otlp_grpc_log_record_exporter",
     ],
 )
 
