@@ -15,7 +15,7 @@ namespace otlp
 /**
  * Struct to hold OTLP File traces exporter runtime options.
  */
-struct OPENTELEMETRY_EXPORT OtlpFileExporterRuntimeOptions : public OtlpFileClientRuntimeOptions
+struct OPENTELEMETRY_EXPORT_TYPE OtlpFileExporterRuntimeOptions : public OtlpFileClientRuntimeOptions
 {
   OtlpFileExporterRuntimeOptions() = default;
 };

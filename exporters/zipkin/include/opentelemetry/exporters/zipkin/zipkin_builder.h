@@ -17,7 +17,7 @@ namespace exporter
 namespace zipkin
 {
 
-class OPENTELEMETRY_EXPORT ZipkinBuilder
+class OPENTELEMETRY_EXPORT_TYPE ZipkinBuilder
     : public opentelemetry::sdk::configuration::ZipkinSpanExporterBuilder
 {
 public:

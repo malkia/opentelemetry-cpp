@@ -31,7 +31,7 @@ namespace otlp
  * See
  * https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/exporter.md
  */
-struct OPENTELEMETRY_EXPORT OtlpHttpMetricExporterOptions
+struct OPENTELEMETRY_EXPORT_TYPE OtlpHttpMetricExporterOptions
 {
   /** Lookup environment variables. */
   OtlpHttpMetricExporterOptions();

@@ -21,7 +21,7 @@ class OtlpGrpcClientReferenceGuard;  // IWYU pragma: keep
 /**
  * Factory class for OtlpGrpcClient.
  */
-class OPENTELEMETRY_EXPORT OtlpGrpcClientFactory
+class OPENTELEMETRY_EXPORT_TYPE OtlpGrpcClientFactory
 {
 public:
   /**

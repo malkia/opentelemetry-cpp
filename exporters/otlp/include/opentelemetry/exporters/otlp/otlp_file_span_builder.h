@@ -17,7 +17,7 @@ namespace exporter
 namespace otlp
 {
 
-class OPENTELEMETRY_EXPORT OtlpFileSpanBuilder
+class OPENTELEMETRY_EXPORT_TYPE OtlpFileSpanBuilder
     : public opentelemetry::sdk::configuration::OtlpFileSpanExporterBuilder
 {
 public:

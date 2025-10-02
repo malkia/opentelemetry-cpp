@@ -17,7 +17,7 @@ namespace exporter
 namespace trace
 {
 
-class OPENTELEMETRY_EXPORT ConsoleSpanBuilder
+class OPENTELEMETRY_EXPORT_TYPE ConsoleSpanBuilder
     : public opentelemetry::sdk::configuration::ConsoleSpanExporterBuilder
 {
 public:

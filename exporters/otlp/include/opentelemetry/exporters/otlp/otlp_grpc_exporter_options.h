@@ -21,7 +21,7 @@ namespace otlp
  * See
  * https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/exporter.md
  */
-struct OPENTELEMETRY_EXPORT OtlpGrpcExporterOptions : public OtlpGrpcClientOptions
+struct OPENTELEMETRY_EXPORT_TYPE OtlpGrpcExporterOptions : public OtlpGrpcClientOptions
 {
   /** Lookup environment variables. */
   OtlpGrpcExporterOptions();

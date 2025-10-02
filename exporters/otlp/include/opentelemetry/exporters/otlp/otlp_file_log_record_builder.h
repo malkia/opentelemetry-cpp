@@ -17,7 +17,7 @@ namespace exporter
 namespace otlp
 {
 
-class OPENTELEMETRY_EXPORT OtlpFileLogRecordBuilder
+class OPENTELEMETRY_EXPORT_TYPE OtlpFileLogRecordBuilder
     : public opentelemetry::sdk::configuration::OtlpFileLogRecordExporterBuilder
 {
 public:

@@ -16,7 +16,7 @@ namespace metrics
 /**
  * Struct to hold Prometheus exporter options.
  */
-struct OPENTELEMETRY_EXPORT PrometheusExporterOptions
+struct OPENTELEMETRY_EXPORT_TYPE PrometheusExporterOptions
 {
   // Lookup environment variables
   PrometheusExporterOptions();

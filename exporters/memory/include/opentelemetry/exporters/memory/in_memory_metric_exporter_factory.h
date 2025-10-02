@@ -18,7 +18,7 @@ namespace memory
 {
 
 /// A factory for InMemoryMetricExporter
-class OPENTELEMETRY_EXPORT InMemoryMetricExporterFactory
+class OPENTELEMETRY_EXPORT_TYPE InMemoryMetricExporterFactory
 {
 public:
   /// Create a InMemoryMetricExporter with a default buffer size and aggregation

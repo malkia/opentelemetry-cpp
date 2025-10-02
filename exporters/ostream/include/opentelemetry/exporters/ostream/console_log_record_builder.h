@@ -17,7 +17,7 @@ namespace exporter
 namespace logs
 {
 
-class OPENTELEMETRY_EXPORT ConsoleLogRecordBuilder
+class OPENTELEMETRY_EXPORT_TYPE ConsoleLogRecordBuilder
     : public opentelemetry::sdk::configuration::ConsoleLogRecordExporterBuilder
 {
 public:

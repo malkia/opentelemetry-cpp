@@ -39,7 +39,7 @@ public:
 /// An implementation of InMemoryMetricData that stores full-fidelity data points in a circular
 /// buffer. This allows tests to inspect every aspect of exported data, in exchange for a somewhat
 /// cumbersome API.
-class OPENTELEMETRY_EXPORT CircularBufferInMemoryMetricData final : public InMemoryMetricData,
+class OPENTELEMETRY_EXPORT_TYPE CircularBufferInMemoryMetricData final : public InMemoryMetricData,
                                                public InMemoryData<sdk::metrics::ResourceMetrics>
 {
 public:
@@ -49,7 +49,7 @@ public:
 
 /// An implementation of InMemoryMetricData that stores only the most recent data point in each time
 /// series, and allows convenient lookups of time series. This makes simple tests easier to write.
-class OPENTELEMETRY_EXPORT SimpleAggregateInMemoryMetricData final : public InMemoryMetricData
+class OPENTELEMETRY_EXPORT_TYPE SimpleAggregateInMemoryMetricData final : public InMemoryMetricData
 {
 public:
   using AttributeToPoint = std::map<opentelemetry::sdk::metrics::PointAttributes,

@@ -17,7 +17,7 @@ namespace otlp
 /**
  * Struct to hold OTLP HTTP log record exporter runtime options.
  */
-struct OPENTELEMETRY_EXPORT OtlpHttpLogRecordExporterRuntimeOptions
+struct OPENTELEMETRY_EXPORT_TYPE OtlpHttpLogRecordExporterRuntimeOptions
 {
   OtlpHttpLogRecordExporterRuntimeOptions() = default;
 

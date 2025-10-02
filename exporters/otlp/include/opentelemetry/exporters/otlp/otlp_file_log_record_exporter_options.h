@@ -18,7 +18,7 @@ namespace otlp
  * See
  * https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/file-exporter.md
  */
-struct OPENTELEMETRY_EXPORT OtlpFileLogRecordExporterOptions : public OtlpFileClientOptions
+struct OPENTELEMETRY_EXPORT_TYPE OtlpFileLogRecordExporterOptions : public OtlpFileClientOptions
 {
   OtlpFileLogRecordExporterOptions();
   OtlpFileLogRecordExporterOptions(const OtlpFileLogRecordExporterOptions &)            = default;

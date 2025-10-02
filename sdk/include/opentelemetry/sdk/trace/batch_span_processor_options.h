@@ -17,7 +17,7 @@ namespace trace
 /**
  * Struct to hold batch SpanProcessor options.
  */
-struct OPENTELEMETRY_EXPORT BatchSpanProcessorOptions
+struct OPENTELEMETRY_EXPORT_TYPE BatchSpanProcessorOptions
 {
   BatchSpanProcessorOptions();
   /**

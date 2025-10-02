@@ -17,7 +17,7 @@ namespace exporter
 namespace metrics
 {
 
-class OPENTELEMETRY_EXPORT ConsolePushMetricBuilder
+class OPENTELEMETRY_EXPORT_TYPE ConsolePushMetricBuilder
     : public opentelemetry::sdk::configuration::ConsolePushMetricExporterBuilder
 {
 public:

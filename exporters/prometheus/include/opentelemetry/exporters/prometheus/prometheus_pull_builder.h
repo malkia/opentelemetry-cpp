@@ -17,7 +17,7 @@ namespace exporter
 namespace metrics
 {
 
-class OPENTELEMETRY_EXPORT PrometheusPullBuilder
+class OPENTELEMETRY_EXPORT_TYPE PrometheusPullBuilder
     : public opentelemetry::sdk::configuration::PrometheusPullMetricExporterBuilder
 {
 public:

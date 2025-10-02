@@ -17,7 +17,7 @@ namespace exporter
 namespace otlp
 {
 
-class OPENTELEMETRY_EXPORT OtlpGrpcPushMetricBuilder
+class OPENTELEMETRY_EXPORT_TYPE OtlpGrpcPushMetricBuilder
     : public opentelemetry::sdk::configuration::OtlpGrpcPushMetricExporterBuilder
 {
 public:
