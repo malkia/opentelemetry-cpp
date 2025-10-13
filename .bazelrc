@@ -51,8 +51,8 @@ build:windows --host_copt="/Zc:strictStrings" --host_copt="/Gy" --host_copt="-DG
 build:windows      --linkopt="shell32.lib" 
 build:windows --host_linkopt="shell32.lib" 
 
-build:windows      --linkopt=-MANIFEST      --linkopt="-MANIFESTUAC:\"level='asInvoker' uiAccess='false'\""
-build:windows --host_linkopt=-MANIFEST --host_linkopt="-MANIFESTUAC:\"level='asInvoker' uiAccess='false'\""
+build:windows      --linkopt=-MANIFEST:EMBED
+build:windows --host_linkopt=-MANIFEST:EMBED
 
 # Requires Visual Studio 2019 Build Tools installed in default location with the latest compiler (14.29.30133) for x64
 
