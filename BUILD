@@ -173,11 +173,7 @@ otel_cc_library(
         "api_sdk_includes",
         "otel_sdk_deps",
     ],
-) for (otel_sdk_binary, otel_sdk_config_name) in [
-    ("otel_sdk_r", ":release"),
-    ("otel_sdk_d", ":debug"),
-    ("otel_sdk_rd", ":reldeb"),
-]]
+) for otel_sdk_binary in ["otel_sdk_r", "otel_sdk_d", "otel_sdk_rd"]]
 
 # Convenient alias that selects the appropriate otel_sdk from above
 alias(
