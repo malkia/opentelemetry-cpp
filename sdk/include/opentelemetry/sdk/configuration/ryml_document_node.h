@@ -20,12 +20,16 @@ namespace configuration
 class OPENTELEMETRY_EXPORT_TYPE RymlDocumentNode : public DocumentNode
 {
 public:
-  RymlDocumentNode(ryml::ConstNodeRef node, std::size_t depth) : node_(node), depth_(depth) {}
+  RymlDocumentNode(const RymlDocument *doc, ryml::ConstNodeRef node, std::size_t depth)
+      : doc_(doc), node_(node), depth_(depth)
+  {}
   RymlDocumentNode(RymlDocumentNode &&)                      = delete;
   RymlDocumentNode(const RymlDocumentNode &)                 = delete;
   RymlDocumentNode &operator=(RymlDocumentNode &&)           = delete;
   RymlDocumentNode &operator=(const RymlDocumentNode &other) = delete;
   ~RymlDocumentNode() override                               = default;
+
+  DocumentNodeLocation Location() const override;
 
   std::string Key() const override;
 
@@ -62,6 +66,7 @@ private:
   ryml::ConstNodeRef GetRequiredRymlChildNode(const std::string &name) const;
   ryml::ConstNodeRef GetRymlChildNode(const std::string &name) const;
 
+  const RymlDocument *doc_;
   ryml::ConstNodeRef node_;
   std::size_t depth_;
 };
@@ -69,7 +74,8 @@ private:
 class OPENTELEMETRY_EXPORT_TYPE RymlDocumentNodeConstIteratorImpl : public DocumentNodeConstIteratorImpl
 {
 public:
-  RymlDocumentNodeConstIteratorImpl(ryml::ConstNodeRef parent,
+  RymlDocumentNodeConstIteratorImpl(const RymlDocument *doc,
+                                    ryml::ConstNodeRef parent,
                                     std::size_t index,
                                     std::size_t depth);
   RymlDocumentNodeConstIteratorImpl(RymlDocumentNodeConstIteratorImpl &&)            = delete;
@@ -84,6 +90,7 @@ public:
   bool Equal(const DocumentNodeConstIteratorImpl *rhs) const override;
 
 private:
+  const RymlDocument *doc_;
   ryml::ConstNodeRef parent_;
   std::size_t index_;
   std::size_t depth_;
@@ -92,7 +99,8 @@ private:
 class OPENTELEMETRY_EXPORT_TYPE RymlPropertiesNodeConstIteratorImpl : public PropertiesNodeConstIteratorImpl
 {
 public:
-  RymlPropertiesNodeConstIteratorImpl(ryml::ConstNodeRef parent,
+  RymlPropertiesNodeConstIteratorImpl(const RymlDocument *doc,
+                                      ryml::ConstNodeRef parent,
                                       std::size_t index,
                                       std::size_t depth);
   RymlPropertiesNodeConstIteratorImpl(RymlPropertiesNodeConstIteratorImpl &&)            = delete;
@@ -108,6 +116,7 @@ public:
   bool Equal(const PropertiesNodeConstIteratorImpl *rhs) const override;
 
 private:
+  const RymlDocument *doc_;
   ryml::ConstNodeRef parent_;
   std::size_t index_;
   std::size_t depth_;
