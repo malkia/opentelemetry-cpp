@@ -4,6 +4,7 @@
 #pragma once
 
 #include <chrono>
+#include <atomic>
 
 #include "opentelemetry/version.h"
 #include "opentelemetry/context/context.h"
@@ -172,7 +173,7 @@ public:
    *
    * @since ABI_VERSION 2
    */
-  bool Enabled() const noexcept { return OPENTELEMETRY_ATOMIC_READ_8(&this->enabled_) != 0; }
+  bool Enabled() const noexcept { return enabled_ != 0; }
 #endif
 
 #if OPENTELEMETRY_ABI_VERSION_NO == 1
@@ -227,7 +228,7 @@ protected:
    */
   void UpdateEnabled(const bool enabled) noexcept
   {
-    OPENTELEMETRY_ATOMIC_WRITE_8(&this->enabled_, enabled);
+    enabled_ = enabled;
   }
 #endif
 
@@ -235,9 +236,7 @@ private:
 #if OPENTELEMETRY_ABI_VERSION_NO >= 2
   // Variable to support implementation of Enabled method introduced in ABI V2.
   // Mutable allows enabled_ to be used as 'bool *' (instead of 'const bool *'), with the
-  // OPENTELEMETRY_ATOMIC_READ_8 macro's internal casts when used from a const function.
-  // std::atomic can not be used here because it is not ABI compatible for OpenTelemetry C++ API.
-  mutable bool enabled_ = true;
+  mutable std::atomic<bool> enabled_ = true;
 #endif
 };
 }  // namespace trace

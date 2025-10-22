@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <atomic>
+
 #include "opentelemetry/version.h"
 #include "opentelemetry/logs/logger_type_traits.h"
 #include "opentelemetry/logs/severity.h"
@@ -286,7 +288,7 @@ public:
 
   inline bool Enabled(Severity severity) const noexcept
   {
-    return static_cast<uint8_t>(severity) >= OPENTELEMETRY_ATOMIC_READ_8(&minimum_severity_);
+    return static_cast<uint8_t>(severity) >= minimum_severity_;
   }
 
   /**
@@ -473,7 +475,7 @@ protected:
 
   void SetMinimumSeverity(uint8_t severity_or_max) noexcept
   {
-    OPENTELEMETRY_ATOMIC_WRITE_8(&minimum_severity_, severity_or_max);
+    minimum_severity_ = severity_or_max;
   }
 
 private:
@@ -486,7 +488,7 @@ private:
   // read/write should be handled. And std::atomic can not be used here because it is not ABI
   // compatible for OpenTelemetry C++ API.
   //
-  mutable uint8_t minimum_severity_{kMaxSeverity};
+  mutable std::atomic<uint8_t> minimum_severity_{kMaxSeverity};
 };
 }  // namespace logs
 OPENTELEMETRY_END_NAMESPACE
