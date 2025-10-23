@@ -1,0 +1,12 @@
+diff --git a/lib/libcurl.vers.in b/lib/libcurl.vers.in
+index 821966999..00c432c5d 100644
+--- a/lib/libcurl.vers.in
++++ b/lib/libcurl.vers.in
+@@ -1,5 +1,7 @@
++/*
+ CURL_@CURL_LIBCURL_VERSIONED_SYMBOLS_PREFIX@@CURL_LIBCURL_VERSIONED_SYMBOLS_SONAME@
+ {
+   global: curl_*;
+   local: *;
+ };
++*/
