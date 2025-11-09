@@ -89,7 +89,6 @@ jobs:
           MongoDB.Server `
           MongoDB.Shell `
           Mozilla.Firefox `
-          OpenJS.NodeJS.LTS `
           PostgreSQL.PostgreSQL.17 `
           ShiningLight.OpenSSL.Dev `
           Unity.UnityHub
