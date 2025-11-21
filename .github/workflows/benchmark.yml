@@ -67,7 +67,7 @@ jobs:
       - uses: actions/download-artifact@f093f21ca4cfa7c75ccbbc2be54da76a0c7e1f05 # main March 2025
 >>>>>>> 4d8c260423fe1383467a82281e24c84444da75b7
 =======
-      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # main March 2025
+      - uses: actions/download-artifact@f093f21ca4cfa7c75ccbbc2be54da76a0c7e1f05 # main March 2025
 >>>>>>> a7b100834dce58c949ab9bdfccdf1613db460d1c
         with:
           name: benchmark_results
