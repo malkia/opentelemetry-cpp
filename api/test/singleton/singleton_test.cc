@@ -58,7 +58,7 @@ void do_something()
 #  elif defined(__APPLE__)
   void *component_g = dlopen("libcomponent_g.dylib", RTLD_NOW);
 #  else
-  void *component_g = dlopen("libcomponent_g.so", RTLD_NOW);
+  void *component_g = dlopen("api/test/singleton/libcomponent_g.so", RTLD_NOW);
 #  endif
 
   EXPECT_NE(component_g, nullptr);
@@ -86,7 +86,7 @@ void do_something()
 #  elif defined(__APPLE__)
   void *component_h = dlopen("libcomponent_h.dylib", RTLD_NOW);
 #  else
-  void *component_h = dlopen("libcomponent_h.so", RTLD_NOW);
+  void *component_h = dlopen("api/test/singleton/libcomponent_h.so", RTLD_NOW);
 #  endif
 
   EXPECT_NE(component_h, nullptr);
