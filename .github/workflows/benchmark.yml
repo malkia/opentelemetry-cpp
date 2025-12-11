@@ -39,7 +39,7 @@ jobs:
           mv api-benchmark_result.json benchmarks
           mv sdk-benchmark_result.json benchmarks
           mv exporters-benchmark_result.json benchmarks
-      - uses: actions/upload-artifact@6027e3dd177782cd8ab9af838c04fd81a07f1d47 # main March 2025
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # main March 2025
         with:
           name: benchmark_results
           path: benchmarks
