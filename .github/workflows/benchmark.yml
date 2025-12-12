@@ -21,7 +21,7 @@ jobs:
         with:
           submodules: 'recursive'
       - name: Mount Bazel Cache
-        uses: actions/cache@a7833574556fa59680c1b7cb190c1735db73ebf0 # v5.0.0
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
         env:
           cache-name: bazel_cache
         with:
@@ -39,7 +39,7 @@ jobs:
           mv api-benchmark_result.json benchmarks
           mv sdk-benchmark_result.json benchmarks
           mv exporters-benchmark_result.json benchmarks
-      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # main March 2025
+      - uses: actions/upload-artifact@017748b48f8610ca8e6af1222f4a618e84a9c703 # main March 2025
         with:
           name: benchmark_results
           path: benchmarks
@@ -60,7 +60,7 @@ jobs:
           egress-policy: audit
 
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-      - uses: actions/download-artifact@f093f21ca4cfa7c75ccbbc2be54da76a0c7e1f05 # main March 2025
+      - uses: actions/download-artifact@fd7ae8fda6dc16277a9ffbc91cdb0eedf156e912 # main March 2025
         with:
           name: benchmark_results
           path: benchmarks

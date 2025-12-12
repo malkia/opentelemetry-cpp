@@ -105,7 +105,7 @@ jobs:
             Write-Host "Winget install failed or not needed (already installed)"
             exit 0
           }
-      - uses: actions/cache/restore@v4
+      - uses: actions/cache/restore@v5
         with:
           path: ${{ env.VHDX_FILE }}
           enableCrossOsArchive: true
@@ -154,7 +154,7 @@ jobs:
           ls ${{ env.VHDX_FILE }}
           Resize-VHD -Path "${{ env.VHDX_FILE }}" -ToMinimumSize -Verbose -ErrorAction SilentlyContinue
           ls ${{ env.VHDX_FILE }}
-      - uses: actions/cache/save@v4
+      - uses: actions/cache/save@v5
         # Don't update cache on releases
         if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
         env:
