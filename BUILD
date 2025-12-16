@@ -1,7 +1,7 @@
 # NOTE: This below code is Windows specific
 
-#load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
-load("@aspect_bazel_lib//lib:write_source_files.bzl", "write_source_file")
+#load("@bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+load("@bazel_lib//lib:write_source_files.bzl", "write_source_file")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
 
 #load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
@@ -73,7 +73,7 @@ otel_cc_library(
     visibility = ["//visibility:private"],
     deps = [
         "@otel_sdk//exporters/elasticsearch:es_log_record_exporter",
-#        "@otel_sdk//exporters/etw:etw_exporter",
+        #"@otel_sdk//exporters/etw:etw_exporter",
         "@otel_sdk//exporters/memory:in_memory_data",
         "@otel_sdk//exporters/memory:in_memory_metric_data",
         "@otel_sdk//exporters/memory:in_memory_metric_exporter_factory",
@@ -173,7 +173,11 @@ otel_cc_library(
         "api_sdk_includes",
         "otel_sdk_deps",
     ],
-) for otel_sdk_binary in ["otel_sdk_r", "otel_sdk_d", "otel_sdk_rd"]]
+) for otel_sdk_binary in [
+    "otel_sdk_r",
+    "otel_sdk_d",
+    "otel_sdk_rd",
+]]
 
 # Convenient alias that selects the appropriate otel_sdk from above
 alias(
@@ -241,8 +245,8 @@ alias(
         "//exporters/prometheus:headers",
         "//exporters/zipkin:headers",
         "//ext:headers",
-        "//sdk:headers",
         "//resource_detectors:headers",
+        "//sdk:headers",
     ] + select({
         "@platforms//os:windows": [
             "//exporters/etw:headers",
@@ -365,12 +369,14 @@ pkg_files(
     args = [
         "debug-files",
         "bundle-sources",
+        "--log-level=trace",
     ] + select({
         "@platforms//os:macos": ["$(execpath " + otel_sdk_binary + "_dsym_file" + ")"],
         "//conditions:default": ["$(execpath " + otel_sdk_binary + ")"],
     }),
     tags = ["no-sandbox"],
     target_compatible_with = select({
+        "@platforms//os:macos": ["@platforms//:incompatible"],
         "@platforms//os:windows": ["@platforms//:incompatible"],
         "//conditions:default": None,
     }),
@@ -395,7 +401,7 @@ pkg_files(
 
 [pkg_files(
     name = otel_sdk_binary + "_src_bundle",
-    srcs = [otel_sdk_binary + "_src_bundle_force"],
+    srcs = [otel_sdk_binary],  # + "_src_bundle_force"],
     prefix = otel_sdk_prefix,
     strip_prefix = pkg_strip_prefix.from_pkg(),
 ) for otel_sdk_binary in [
@@ -432,14 +438,18 @@ pkg_files(
 pkg_filegroup(
     name = "otel_sdk_files",
     srcs = [
-        "otel_sdk_d_lib_files",
-        "otel_sdk_d_src_bundle",
         "otel_sdk_header_files",
+        "otel_sdk_d_lib_files",
         "otel_sdk_r_lib_files",
-        "otel_sdk_r_src_bundle",
         "otel_sdk_rd_lib_files",
-        "otel_sdk_rd_src_bundle",
-    ],
+    ] + select({
+        "@platforms//os:macos": [],
+        "//conditions:default": [
+            "otel_sdk_d_src_bundle",
+            "otel_sdk_r_src_bundle",
+            "otel_sdk_rd_src_bundle",
+        ],
+    }),
 )
 
 # On windows we have .dll files in bin/, and import .lib files in lib/
