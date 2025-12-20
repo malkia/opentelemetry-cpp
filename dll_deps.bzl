@@ -1,14 +1,12 @@
-load("@otel_sdk//:dll_deps_generated_windows.bzl", dll_deps_windows = "DLL_DEPS")
+load("@otel_sdk//:dll_deps_generated.bzl", "DLL_DEPS")
 
 # Filter libs that were compiled into the the otel_sdk.dll already
 def _filter_libs(deps):
     """ Removes references to the api/sdk/exporters/ext static libraries """
     filtered_dll_deps = []
-
-    #dll_deps = dll_deps_windows
     for dep in deps:
         label = native.package_relative_label(dep)
-        if not label in dll_deps_windows:
+        if not label in DLL_DEPS:
             filtered_dll_deps.append(dep)
     return filtered_dll_deps
 

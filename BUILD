@@ -73,7 +73,6 @@ otel_cc_library(
     visibility = ["//visibility:private"],
     deps = [
         "@otel_sdk//exporters/elasticsearch:es_log_record_exporter",
-        #"@otel_sdk//exporters/etw:etw_exporter",
         "@otel_sdk//exporters/memory:in_memory_data",
         "@otel_sdk//exporters/memory:in_memory_metric_data",
         "@otel_sdk//exporters/memory:in_memory_metric_exporter_factory",
@@ -117,17 +116,14 @@ otel_cc_library(
 )
 
 # Expands to all transitive project dependencies, excluding external projects (repos)
-[genquery(
-    name = "otel_sdk_all_deps_" + os,
+genquery(
+    name = "otel_sdk_all_deps",
     # The crude '^(@+otel_sdk[+~]?)?//' ignores external to otel_sdk repositories (e.g. @curl//, etc.) for which it's assumed we don't export dll symbols
     # In addition we exclude some internal libraries, that may have to be relinked by tests (like //sdk/src/common:random and //sdk/src/common/platform:fork)
-    expression = "kind('cc_library',filter('^(@+otel_sdk[+~]?)?//',deps(@otel_sdk//:otel_sdk_deps) except set(@otel_sdk//:otel_sdk_deps @otel_sdk//sdk/src/common:random @otel_sdk//sdk/src/common/platform:fork " + exceptions + ")))",
+    expression = "kind('cc_library',filter('^(@+otel_sdk[+~]?)?//',deps(@otel_sdk//:otel_sdk_deps) except set(@otel_sdk//:otel_sdk_deps @otel_sdk//sdk/src/common:random @otel_sdk//sdk/src/common/platform:fork)))",
     scope = ["@otel_sdk//:otel_sdk_deps"],
     strict = True,
-) for (os, exceptions) in [
-    ("non_windows", ""),  #"@otel_sdk//exporters/etw:etw_exporter"),
-    ("windows", ""),
-]]
+)
 
 [otel_cc_library(
     name = otel_sdk_binary + "_restrict_compilation_mode",
@@ -340,59 +336,31 @@ pkg_files(
 ]]
 
 [run_binary(
-    name = otel_sdk_binary + "_make_src_bundle" + "_windows",
-    srcs = [otel_sdk_binary + "_pdb_file"],
-    outs = [otel_sdk_binary + ".src.zip"],
-    args = [
-        "debug-files",
-        "bundle-sources",
-        "$(execpath " + otel_sdk_binary + "_pdb_file" + ")",
-    ],
-    target_compatible_with = select({
-        "@platforms//os:windows": None,
-        "//conditions:default": ["@platforms//:incompatible"],
-    }),
-    tool = "@multitool//tools/sentry-cli",
-) for otel_sdk_binary in [
-    "otel_sdk_r",
-    "otel_sdk_d",
-    "otel_sdk_rd",
-]]
-
-[run_binary(
-    name = otel_sdk_binary + "_make_src_bundle" + "_non_windows",
+    name = otel_sdk_binary + "_make_src_bundle",
     srcs = select({
+        "@platforms//os:windows": [otel_sdk_binary + "_pdb_file"],
         "@platforms//os:macos": [otel_sdk_binary + "_dsym_file"],
         "//conditions:default": [otel_sdk_binary],
     }),
-    outs = ["lib" + otel_sdk_binary + ".src.zip"],
+    outs = [otel_sdk_binary + ".src.zip"],
     args = [
         "debug-files",
         "bundle-sources",
         "--log-level=trace",
     ] + select({
+        "@platforms//os:windows": ["$(execpath " + otel_sdk_binary + "_pdb_file" + ")"],
         "@platforms//os:macos": ["$(execpath " + otel_sdk_binary + "_dsym_file" + ")"],
         "//conditions:default": ["$(execpath " + otel_sdk_binary + ")"],
     }),
-    tags = ["no-sandbox"],
     target_compatible_with = select({
+        "@platforms//os:windows": None,
+        "@platforms//os:linux": None,
+#        "@platforms//os:macos": None,
         "@platforms//os:macos": ["@platforms//:incompatible"],
-        "@platforms//os:windows": ["@platforms//:incompatible"],
-        "//conditions:default": None,
+        "//conditions:default": ["@platforms//:incompatible"],
     }),
+    tags = ["no-sandbox"],
     tool = "@multitool//tools/sentry-cli",
-) for otel_sdk_binary in [
-    "otel_sdk_r",
-    "otel_sdk_d",
-    "otel_sdk_rd",
-]]
-
-[alias(
-    name = otel_sdk_binary + "_make_src_bundle",
-    actual = select({
-        "@platforms//os:windows": otel_sdk_binary + "_make_src_bundle" + "_windows",
-        "//conditions:default": otel_sdk_binary + "_make_src_bundle" + "_non_windows",
-    }),
 ) for otel_sdk_binary in [
     "otel_sdk_r",
     "otel_sdk_d",
@@ -401,7 +369,7 @@ pkg_files(
 
 [pkg_files(
     name = otel_sdk_binary + "_src_bundle",
-    srcs = [otel_sdk_binary],  # + "_src_bundle_force"],
+    srcs = [otel_sdk_binary + "_src_bundle_force"],
     prefix = otel_sdk_prefix,
     strip_prefix = pkg_strip_prefix.from_pkg(),
 ) for otel_sdk_binary in [
@@ -434,41 +402,36 @@ pkg_files(
     ("otel_sdk_rd", "reldeb/"),
 ]]
 
-# Group all files into one group
+# Declare all package files to be zipped
 pkg_filegroup(
-    name = "otel_sdk_files",
+    name = "otel_sdk_pkg_files",
     srcs = [
         "otel_sdk_header_files",
         "otel_sdk_d_lib_files",
         "otel_sdk_r_lib_files",
         "otel_sdk_rd_lib_files",
     ] + select({
+        # TODO: Get src_bundle working on MacOS!
         "@platforms//os:macos": [],
         "//conditions:default": [
             "otel_sdk_d_src_bundle",
             "otel_sdk_r_src_bundle",
             "otel_sdk_rd_src_bundle",
         ],
+    }) + select({
+        # On Windows, the shared files are in the "bin" folder.
+        "@platforms//os:windows": [
+            "otel_sdk_d_bin_files",
+            "otel_sdk_r_bin_files",
+            "otel_sdk_rd_bin_files",
+        ],
+        "//conditions:default": [],
     }),
-)
-
-# On windows we have .dll files in bin/, and import .lib files in lib/
-# On linux/mac we have only .so/.dylib files in lib/ only.
-pkg_filegroup(
-    name = "otel_sdk_files_windows",
-    srcs = [
-        "otel_sdk_d_bin_files",
-        "otel_sdk_r_bin_files",
-        "otel_sdk_rd_bin_files",
-    ],
 )
 
 pkg_zip(
     name = "otel_sdk_zip",
-    srcs = ["otel_sdk_files"] + select({
-        "@platforms//os:windows": ["otel_sdk_files_windows"],
-        "//conditions:default": [],
-    }),
+    srcs = ["otel_sdk_pkg_files"],
     out = "otel_sdk.zip",
     tags = ["manual"],
 )
@@ -481,42 +444,32 @@ write_source_file(
     tags = ["manual"],
 )
 
-[otel_cc_binary(
-    name = "dll_deps_update_binary_" + os,
+otel_cc_binary(
+    name = "dll_deps_update_binary",
     srcs = ["dll_deps_update.cc"],
-    data = ["otel_sdk_all_deps_" + os],
-    local_defines = ['DEPS_FILE=\\"$(rlocationpath otel_sdk_all_deps_' + os + ')\\"'],
+    data = ["otel_sdk_all_deps"],
+    local_defines = ['DEPS_FILE=\\"$(rlocationpath otel_sdk_all_deps)\\"'],
     deps = ["@bazel_tools//tools/cpp/runfiles"],
-) for os in [
-    "non_windows",
-    "windows",
-]]
+)
 
-[run_binary(
-    name = "dll_deps_update_run_" + os,
-    srcs = [":otel_sdk_all_deps_" + os],
-    outs = ["dll_deps_generated_internally_" + os + ".bzl"],
-    args = ["$(execpath dll_deps_generated_internally_" + os + ".bzl)"],
-    tool = "dll_deps_update_binary_" + os,
-) for os in [
-    "non_windows",
-    "windows",
-]]
+run_binary(
+    name = "dll_deps_update_run",
+    srcs = [":otel_sdk_all_deps"],
+    outs = ["dll_deps_generated_internally.bzl"],
+    args = ["$(execpath dll_deps_generated_internally.bzl)"],
+    tool = "dll_deps_update_binary",
+)
 
 # To update the dll_deps_generated.bzl files, do this:
-#    bazel run dll_deps_update_windows
-#    bazel run dll_deps_update_non_windows
-[write_source_file(
-    name = "dll_deps_update_" + os,
-    in_file = "dll_deps_generated_internally_" + os + ".bzl",
+#    bazel run dll_deps_update
+write_source_file(
+    name = "dll_deps_update",
+    in_file = "dll_deps_generated_internally.bzl",
     # KLUDGE: Append repo.name() when this rule is ran outside of this repo, then it would be `otel_sdk+`
     # Having it this way, it'll allow dll_deps_generated_windows.bzl to be visible again.
     # When this target is used from another repo, then the "dll_deps_generated_windows.bzl" file can't be found
-    out_file = repo_name().replace("+", "_") + "dll_deps_generated_" + os + ".bzl",
-) for os in [
-    "non_windows",
-    "windows",
-]]
+    out_file = repo_name().replace("+", "_") + "dll_deps_generated.bzl",
+)
 
 native_binary(
     name = "perses",
@@ -539,30 +492,6 @@ native_binary(
 )
 
 exports_files(["asan_ignorelist.txt"])
-
-#exports_files("multitool.lock.json")
-
-# copy_file(
-#     name = "copy_multitool_json",
-#     src = "multitool.json",
-#     out = "multitool.lock.json",
-# )
-
-# copy_to_bin(
-#     name = "copy_to_bin",
-#     srcs = ["multitool.lock.json"],
-# )
-
-# run_binary(
-#     name = "multitool-update",
-#     outs = ["multitool.lock.json"],
-#     args = [
-#         # "--lockfile",
-#         # "$(execpath multitool.lock.json)",
-#         "update",
-#     ],
-#     tool = "@multitool//tools/multitool",
-# )
 
 platform(
     name = "x64_windows-clang-cl",
