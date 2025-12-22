@@ -33,66 +33,66 @@ jobs:
       - run: cmd /c "dir c:\ || echo swallowing errors"
       - run: cmd /c "dir d:\ || echo swallowing errors"
       - run: choco list
-      - run: |
-          choco uninstall --yes `
-          7zip.install `
-          ant `
-          apache-httpd `
-          aria2 `
-          awscli `
-          azcopy10 `
-          bazel `
-          bicep `
-          cmake.install `
-          composer `
-          gradle `
-          imagemagick `
-          imagemagick.app `
-          jq `
-          julia `
-          kubernetes-cli `
-          kubernetes-helm `
-          llvm `
-          maven `
-          Minikube `
-          nginx `
-          ninja `
-          nssm `
-          nuget.commandline `
-          packer `
-          php `
-          pulumi `
-          R.Project `
-          rtools `
-          sbt `
-          strawberryperl `
-          swig `
-          wixtoolset 
+      - run: choco uninstall --yes bazel
+      # - run: |
+      #     choco uninstall --yes `
+      #     7zip.install `
+      #     ant `
+      #     apache-httpd `
+      #     aria2 `
+      #     awscli `
+      #     azcopy10 `
+      #     bicep `
+      #     cmake.install `
+      #     composer `
+      #     gradle `
+      #     imagemagick `
+      #     imagemagick.app `
+      #     jq `
+      #     julia `
+      #     kubernetes-cli `
+      #     kubernetes-helm `
+      #     llvm `
+      #     maven `
+      #     Minikube `
+      #     nginx `
+      #     ninja `
+      #     nssm `
+      #     nuget.commandline `
+      #     packer `
+      #     php `
+      #     pulumi `
+      #     R.Project `
+      #     rtools `
+      #     sbt `
+      #     strawberryperl `
+      #     swig `
+      #     wixtoolset 
       - run: cmd /c "dir c:\ || echo swallowing errors"
       - run: cmd /c "dir d:\ || echo swallowing errors"
       - run: cmd /c "copy .github\workflows\winget_settings.json %LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json || echo swallowing errors"
       - run: winget list --accept-source-agreements --disable-interactivity 
       - run: cmd /c "winget --info || echo swallowing errors"
-      - run: |
-          winget remove --all --verbose --force --purge --disable-interactivity `
-          Amazon.SAM-CLI `
-          Amazon.SessionManagerPlugin `
-          Anaconda.Miniconda3 `
-          Google.Chrome `
-          Microsoft.Azure.CosmosEmulator `
-          Microsoft.AzureCLI `
-          Microsoft.msodbcsql.17 `
-          Microsoft.ServiceFabricSDK `
-          Microsoft.WebDeploy `
-          Microsoft.webpicmd `
-          Microsoft.WindowsApplicationDriver `
-          MongoDB.Server `
-          MongoDB.Shell `
-          Mozilla.Firefox `
-          PostgreSQL.PostgreSQL.17 `
-          ShiningLight.OpenSSL.Dev `
-          Unity.UnityHub
-          echo Done! LASTEXITCODE=$LASTEXITCODE
+      # - run: |
+      #     winget remove --all --verbose --force --purge --disable-interactivity `
+      #     Amazon.SAM-CLI `
+      #     Amazon.SessionManagerPlugin `
+      #     Anaconda.Miniconda3 `
+      #     Google.Chrome `
+      #     Microsoft.Azure.CosmosEmulator `
+      #     Microsoft.AzureCLI `
+      #     Microsoft.msodbcsql.17 `
+      #     Microsoft.ServiceFabricSDK `
+      #     Microsoft.WebDeploy `
+      #     Microsoft.webpicmd `
+      #     Microsoft.WindowsApplicationDriver `
+      #     MongoDB.Server `
+      #     MongoDB.Shell `
+      #     Mozilla.Firefox `
+      #     PostgreSQL.PostgreSQL.17 `
+      #     ShiningLight.OpenSSL.Dev `
+      #     Unity.UnityHub
+      #     echo Done! LASTEXITCODE=$LASTEXITCODE
       - run: winget list --accept-source-agreements --disable-interactivity 
       - run: cmd /c "dir c:\ || echo swallowing errors"
       - run: cmd /c "dir d:\ || echo swallowing errors"
