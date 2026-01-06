@@ -9,9 +9,9 @@ otel_cc_test(
     srcs = [
         "curl_http_test.cc",
     ],
-    tags = ["test"],
     # It hits the CI sometimes, so mark it as flaky
     flaky = True,
+    tags = ["test"],
     deps = dll_deps([
         "//ext:headers",
         "//ext/src/http/client/curl:http_client_curl",

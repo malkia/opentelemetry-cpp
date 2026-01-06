@@ -101,4 +101,3 @@ otel_cc_library(
         "//sdk:headers",
     ],
 )
-

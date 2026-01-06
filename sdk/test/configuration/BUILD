@@ -89,6 +89,10 @@ otel_cc_test(
     srcs = [
         "yaml_test.cc",
     ],
+    tags = [
+        "test",
+        "yaml",
+    ],
     deps = dll_deps([
         "//api",
         "//sdk:headers",
@@ -98,10 +102,6 @@ otel_cc_test(
         "//sdk/src/trace",
         "@googletest//:gtest_main",
     ]),
-    tags = [
-        "test",
-        "yaml",
-    ],
 )
 
 otel_cc_test(

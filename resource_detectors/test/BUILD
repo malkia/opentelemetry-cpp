@@ -10,13 +10,13 @@ otel_cc_test(
         "container_detector_test.cc",
         "process_detector_test.cc",
     ],
-    tags = ["test"],
     linkopts = select({
         "//bazel:windows": [
             "-DEFAULTLIB:shell32.lib",
         ],
         "//conditions:default": [],
     }),
+    tags = ["test"],
     deps = dll_deps([
         "//api",
         "//resource_detectors",

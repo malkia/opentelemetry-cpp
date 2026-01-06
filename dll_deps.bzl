@@ -16,7 +16,7 @@ def dll_deps(deps):
         "@otel_sdk//:with_dll_enabled": ["@otel_sdk//:dll"] + _filter_libs(deps),
         "//conditions:default": deps,
     })
-    return p;
+    return p
 
 force_compilation_mode = rule(
     implementation = lambda ctx: DefaultInfo(files = depset(

@@ -15,4 +15,3 @@ otel_cc_library(
     hdrs = [":header_files"],
     strip_include_prefix = "include",
 )
-
