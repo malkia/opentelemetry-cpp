@@ -10,6 +10,7 @@ otel_cc_library(
     srcs = [
         "container_detector.cc",
         "container_detector_utils.cc",
+        "env_entity_detector.cc",
         "process_detector.cc",
         "process_detector_utils.cc",
     ],

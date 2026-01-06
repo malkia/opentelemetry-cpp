@@ -8,6 +8,7 @@ otel_cc_test(
     name = "resource_detector_test",
     srcs = [
         "container_detector_test.cc",
+        "env_entity_detector_test.cc",
         "process_detector_test.cc",
     ],
     linkopts = select({
@@ -20,6 +21,7 @@ otel_cc_test(
     deps = dll_deps([
         "//api",
         "//resource_detectors",
+        "//sdk/src/resource",
         "@googletest//:gtest_main",
     ]),
 )
