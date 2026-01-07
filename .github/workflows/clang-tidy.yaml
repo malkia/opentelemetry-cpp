@@ -87,12 +87,8 @@ jobs:
           echo "report_path=$REPORT_PATH" >> "$GITHUB_OUTPUT"
           cat $REPORT_PATH >> $GITHUB_STEP_SUMMARY
 
-<<<<<<< HEAD
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
-=======
       - name: Upload build log
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
->>>>>>> 5fc4707a8b7820f6bdbc782ccdffac7ccafbe80d
         with:
           name: Logs-clang-tidy-${{ matrix.cmake_options }}
           path: ${{ steps.build.outputs.build_log }}
