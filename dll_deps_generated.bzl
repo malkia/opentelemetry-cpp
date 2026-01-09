@@ -48,7 +48,6 @@ DLL_DEPS = set([
     Label("@otel_sdk//exporters/prometheus:prometheus_exporter_utils"),
     Label("@otel_sdk//exporters/prometheus:prometheus_push_exporter"),
     Label("@otel_sdk//exporters/zipkin:zipkin_exporter"),
-    Label("@otel_sdk//exporters/zipkin:zipkin_exporter_builder"),
     Label("@otel_sdk//exporters/zipkin:zipkin_recordable"),
     Label("@otel_sdk//ext:headers"),
     Label("@otel_sdk//ext/src/http/client/curl:http_client_curl"),
