@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-for /F "usebackq delims=" %%i in (`where bazelisk1.exe bazel1.exe`) do set __BAZEL__=%%i
+rem for /F "usebackq delims=" %%i in (`where bazelisk.exe bazel.exe`) do set __BAZEL__=%%i
 if "%__BAZEL__%"=="" IF EXIST "%LOCALAPPDATA%\Microsoft\WinGet\Links\bazelisk.exe" set __BAZEL__=%LOCALAPPDATA%\Microsoft\WinGet\Links\bazelisk.exe
 if "%__BAZEL__%"=="" IF EXIST "%LOCALAPPDATA%\Microsoft\WinGet\Links\bazel.exe" set __BAZEL__=%LOCALAPPDATA%\Microsoft\WinGet\Links\bazel.exe
 if "%__BAZEL__%"=="" goto:no-bazel
@@ -42,7 +42,7 @@ goto:eof
 goto:eof
 
 :minimal
-"%__BAZEL__%" build --profile=min.dll.tracing.json --//:with_dll=true otel_sdk_files || goto:error
+"%__BAZEL__%" build --profile=min.dll.tracing.json --//:with_dll=true otel_sdk_d otel_sdk_rd otel_sdk_r || goto:error
 goto:eof
 
 :zip
