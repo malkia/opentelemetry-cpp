@@ -217,7 +217,7 @@ common --incompatible_disable_target_provider_fields
 common --incompatible_disallow_struct_provider_syntax
 #common --incompatible_enable_proto_toolchain_resolution
 common --incompatible_fail_on_unknown_attributes
-common --incompatible_merge_fixed_and_default_shell_env
+#common --incompatible_merge_fixed_and_default_shell_env
 common --incompatible_no_implicit_file_export
 common --incompatible_strict_action_env
 common --incompatible_top_level_aspects_require_providers
