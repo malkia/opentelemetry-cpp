@@ -215,7 +215,7 @@ common --incompatible_disable_native_repo_rules
 common --incompatible_disable_non_executable_java_binary
 common --incompatible_disable_target_provider_fields
 common --incompatible_disallow_struct_provider_syntax
-#common --incompatible_enable_proto_toolchain_resolution
+common --incompatible_enable_proto_toolchain_resolution=false
 common --incompatible_fail_on_unknown_attributes
 #common --incompatible_merge_fixed_and_default_shell_env
 common --incompatible_no_implicit_file_export
@@ -270,6 +270,8 @@ build --host_copt="-DGRPC_NO_ABSL_SYNC"
 # build --define=grpc_experiments_are_final=true
 
 common:devenv --run_under='"c:/windows/system32/cmd.exe" /C start "bazel debug exe" /wait devenv /debugexe '
+
+common --incompatible_autoload_externally=+cc_library,+cc_binary,+cc_test
 
 ## This is what my ../top.bazelrc contains (not in the repo as local to my machine)
 # build --disk_cache=f:/b/d
