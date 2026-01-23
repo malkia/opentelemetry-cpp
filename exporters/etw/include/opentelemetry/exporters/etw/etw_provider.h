@@ -210,6 +210,11 @@ public:
         auto &data           = it->second;
         unsigned long result = STATUS_OK;
 
+        if (data.refCount == 0)
+        {
+          return STATUS_ERROR;
+        }
+
         data.refCount--;
         if (data.refCount == 0)
         {
@@ -232,7 +237,7 @@ public:
         }
         return result;
       }
-      it++;
+      ++it;
     }
     return STATUS_ERROR;
   }
