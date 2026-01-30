@@ -12,6 +12,7 @@
 #include "opentelemetry/sdk/configuration/cardinality_limits_configuration.h"
 #include "opentelemetry/sdk/configuration/configuration.h"
 #include "opentelemetry/sdk/configuration/default_histogram_aggregation.h"
+#include "opentelemetry/sdk/configuration/exemplar_filter.h"
 #include "opentelemetry/sdk/configuration/explicit_bucket_histogram_aggregation_configuration.h"
 #include "opentelemetry/sdk/configuration/grpc_tls_configuration.h"
 #include "opentelemetry/sdk/configuration/headers_configuration.h"
@@ -99,6 +100,8 @@ meter_provider:
   auto config = DoParse(yaml);
   ASSERT_NE(config, nullptr);
   ASSERT_NE(config->meter_provider, nullptr);
+  ASSERT_EQ(config->meter_provider->exemplar_filter,
+            opentelemetry::sdk::configuration::ExemplarFilter::trace_based);
   ASSERT_EQ(config->meter_provider->readers.size(), 1);
   auto *reader = config->meter_provider->readers[0].get();
   ASSERT_NE(reader, nullptr);
@@ -134,11 +137,14 @@ meter_provider:
           observable_gauge: 600
           observable_up_down_counter: 700
           up_down_counter: 800
+  exemplar_filter: always_on
 )";
 
   auto config = DoParse(yaml);
   ASSERT_NE(config, nullptr);
   ASSERT_NE(config->meter_provider, nullptr);
+  ASSERT_EQ(config->meter_provider->exemplar_filter,
+            opentelemetry::sdk::configuration::ExemplarFilter::always_on);
   ASSERT_EQ(config->meter_provider->readers.size(), 1);
   auto *reader = config->meter_provider->readers[0].get();
   ASSERT_NE(reader, nullptr);
@@ -171,11 +177,14 @@ meter_provider:
     - pull:
         exporter:
           prometheus/development:
+  exemplar_filter: always_off
 )";
 
   auto config = DoParse(yaml);
   ASSERT_NE(config, nullptr);
   ASSERT_NE(config->meter_provider, nullptr);
+  ASSERT_EQ(config->meter_provider->exemplar_filter,
+            opentelemetry::sdk::configuration::ExemplarFilter::always_off);
   ASSERT_EQ(config->meter_provider->readers.size(), 1);
   auto *reader = config->meter_provider->readers[0].get();
   ASSERT_NE(reader, nullptr);
@@ -206,11 +215,14 @@ meter_provider:
           observable_gauge: 600
           observable_up_down_counter: 700
           up_down_counter: 800
+  exemplar_filter: trace_based
 )";
 
   auto config = DoParse(yaml);
   ASSERT_NE(config, nullptr);
   ASSERT_NE(config->meter_provider, nullptr);
+  ASSERT_EQ(config->meter_provider->exemplar_filter,
+            opentelemetry::sdk::configuration::ExemplarFilter::trace_based);
   ASSERT_EQ(config->meter_provider->readers.size(), 1);
   auto *reader = config->meter_provider->readers[0].get();
   ASSERT_NE(reader, nullptr);

@@ -123,3 +123,23 @@ otel_cc_test(
         "@googletest//:gtest_main",
     ]),
 )
+
+otel_cc_test(
+    name = "yaml_distribution_test",
+    srcs = [
+        "yaml_distribution_test.cc",
+    ],
+    tags = [
+        "test",
+        "yaml",
+    ],
+    deps = dll_deps([
+        "//api",
+        "//sdk:headers",
+        "//sdk/src/configuration",
+        "//sdk/src/logs",
+        "//sdk/src/metrics",
+        "//sdk/src/trace",
+        "@googletest//:gtest_main",
+    ]),
+)
