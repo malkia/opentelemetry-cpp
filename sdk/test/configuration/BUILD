@@ -133,7 +133,7 @@ otel_cc_test(
         "test",
         "yaml",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "//sdk/src/configuration",
@@ -141,5 +141,5 @@ otel_cc_test(
         "//sdk/src/metrics",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
