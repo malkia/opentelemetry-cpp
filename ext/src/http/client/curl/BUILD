@@ -25,6 +25,7 @@ otel_cc_library(
     local_defines = [
         "ENABLE_CURL_LOGGING",
     ],
+    linkstatic = True,
     deps = [
         "//api",
         "//ext:headers",
