@@ -42,8 +42,7 @@ PeriodicExportingMetricReader::PeriodicExportingMetricReader(
     : exporter_{std::move(exporter)},
       export_interval_millis_{options.export_interval_millis},
       export_timeout_millis_{options.export_timeout_millis},
-      worker_thread_instrumentation_(nullptr),
-      collect_thread_instrumentation_(nullptr)
+      worker_thread_instrumentation_(nullptr)
 {
   if (export_interval_millis_ <= export_timeout_millis_)
   {
@@ -62,8 +61,7 @@ PeriodicExportingMetricReader::PeriodicExportingMetricReader(
     : exporter_{std::move(exporter)},
       export_interval_millis_{options.export_interval_millis},
       export_timeout_millis_{options.export_timeout_millis},
-      worker_thread_instrumentation_(runtime_options.periodic_thread_instrumentation),
-      collect_thread_instrumentation_(runtime_options.collect_thread_instrumentation)
+      worker_thread_instrumentation_(runtime_options.periodic_thread_instrumentation)
 {
   if (export_interval_millis_ <= export_timeout_millis_)
   {
@@ -160,13 +158,6 @@ bool PeriodicExportingMetricReader::CollectAndExportOnce()
   try
   {
 #endif
-#ifdef ENABLE_THREAD_INSTRUMENTATION_PREVIEW
-    if (collect_thread_instrumentation_ != nullptr)
-    {
-      collect_thread_instrumentation_->OnStart();
-      collect_thread_instrumentation_->BeforeLoad();
-    }
-#endif /* ENABLE_THREAD_INSTRUMENTATION_PREVIEW */
     auto start = std::chrono::steady_clock::now();
     this->Collect([this, &start](ResourceMetrics &metric_data) {
       auto end = std::chrono::steady_clock::now();
@@ -181,13 +172,6 @@ bool PeriodicExportingMetricReader::CollectAndExportOnce()
       return true;
     });
 
-#ifdef ENABLE_THREAD_INSTRUMENTATION_PREVIEW
-    if (collect_thread_instrumentation_ != nullptr)
-    {
-      collect_thread_instrumentation_->AfterLoad();
-      collect_thread_instrumentation_->OnEnd();
-    }
-#endif /* ENABLE_THREAD_INSTRUMENTATION_PREVIEW */
 #if OPENTELEMETRY_HAVE_EXCEPTIONS
   }
   catch (std::exception &e)
