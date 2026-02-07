@@ -1,0 +1,13 @@
+diff --git a/MODULE.bazel b/MODULE.bazel
+index 2a1c5aec1e..50e4b674bc 100644
+--- a/MODULE.bazel
++++ b/MODULE.bazel
+@@ -68,7 +68,7 @@ PYTHON_VERSIONS = [
+     "3.11",
+     "3.12",
+     "3.13",
+-    "3.14.0b2",
++#    "3.14.0b2",
+ ]
+ 
+ python = use_extension("@rules_python//python/extensions:python.bzl", "python")
