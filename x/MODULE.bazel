@@ -9,7 +9,7 @@ local_path_override(
     path = "..",
 )
 
-bazel_dep(name = "abseil-cpp", version = "20250814.1")
+bazel_dep(name = "abseil-cpp", version = "20250814.2")
 bazel_dep(name = "bazel_lib", version = "3.2.0")
 bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "boringssl", version = "0.20260204.0")
