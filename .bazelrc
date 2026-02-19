@@ -274,6 +274,8 @@ common:devenv --run_under='"c:/windows/system32/cmd.exe" /C start "bazel debug e
 
 common --incompatible_autoload_externally=+cc_library,+cc_binary,+cc_test
 
+common --nocheck_bzl_visibility
+
 ## This is what my ../top.bazelrc contains (not in the repo as local to my machine)
 # build --disk_cache=f:/b/d
 # common --repository_cache=f:/b/r

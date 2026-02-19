@@ -1,5 +1,5 @@
 diff --git a/MODULE.bazel b/MODULE.bazel
-index 2a1c5aec1e..50e4b674bc 100644
+index 2a1c5aec1e..4c0eb62a99 100644
 --- a/MODULE.bazel
 +++ b/MODULE.bazel
 @@ -68,7 +68,7 @@ PYTHON_VERSIONS = [
@@ -7,7 +7,90 @@ index 2a1c5aec1e..50e4b674bc 100644
      "3.12",
      "3.13",
 -    "3.14.0b2",
-+#    "3.14.0b2",
++    "3.14",
  ]
  
  python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+diff --git a/src/core/lib/event_engine/ares_resolver.cc b/src/core/lib/event_engine/ares_resolver.cc
+index 2d80ce22a4..3173e7e017 100644
+--- a/src/core/lib/event_engine/ares_resolver.cc
++++ b/src/core/lib/event_engine/ares_resolver.cc
+@@ -648,7 +648,7 @@ void AresResolver::OnAresBackupPollAlarm() {
+ 
+ void AresResolver::OnHostbynameDoneLocked(void* arg, int status,
+                                           int /*timeouts*/,
+-                                          struct hostent* hostent) {
++                                          const struct hostent* hostent) {
+   auto* hostname_qa = static_cast<HostnameQueryArg*>(arg);
+   GRPC_CHECK_GT(hostname_qa->pending_requests--, 0);
+   auto* ares_resolver = hostname_qa->ares_resolver;
+@@ -744,7 +744,7 @@ void AresResolver::OnHostbynameDoneLocked(void* arg, int status,
+ }
+ 
+ void AresResolver::OnSRVQueryDoneLocked(void* arg, int status, int /*timeouts*/,
+-                                        unsigned char* abuf, int alen) {
++                                        const unsigned char* abuf, int alen) {
+   std::unique_ptr<QueryArg> qa(static_cast<QueryArg*>(arg));
+   auto* ares_resolver = qa->ares_resolver;
+   auto nh = ares_resolver->callback_map_.extract(qa->callback_map_id);
+@@ -808,7 +808,7 @@ void AresResolver::OnSRVQueryDoneLocked(void* arg, int status, int /*timeouts*/,
+ }
+ 
+ void AresResolver::OnTXTDoneLocked(void* arg, int status, int /*timeouts*/,
+-                                   unsigned char* buf, int len) {
++                                   const unsigned char* buf, int len) {
+   std::unique_ptr<QueryArg> qa(static_cast<QueryArg*>(arg));
+   auto* ares_resolver = qa->ares_resolver;
+   auto nh = ares_resolver->callback_map_.extract(qa->callback_map_id);
+diff --git a/src/core/lib/event_engine/ares_resolver.h b/src/core/lib/event_engine/ares_resolver.h
+index ce258dade9..66f078cee9 100644
+--- a/src/core/lib/event_engine/ares_resolver.h
++++ b/src/core/lib/event_engine/ares_resolver.h
+@@ -132,13 +132,13 @@ class AresResolver : public RefCountedDNSResolverInterface {
+   // These callbacks are invoked from the c-ares library, so disable thread
+   // safety analysis. We are guaranteed to be holding mutex_.
+   static void OnHostbynameDoneLocked(void* arg, int status, int /*timeouts*/,
+-                                     struct hostent* hostent)
++                                     const struct hostent* hostent)
+       ABSL_NO_THREAD_SAFETY_ANALYSIS;
+   static void OnSRVQueryDoneLocked(void* arg, int status, int /*timeouts*/,
+-                                   unsigned char* abuf,
++                                   const unsigned char* abuf,
+                                    int alen) ABSL_NO_THREAD_SAFETY_ANALYSIS;
+   static void OnTXTDoneLocked(void* arg, int status, int /*timeouts*/,
+-                              unsigned char* buf,
++                              const unsigned char* buf,
+                               int len) ABSL_NO_THREAD_SAFETY_ANALYSIS;
+ #ifdef GRPC_ENABLE_FORK_SUPPORT
+   // Is executed on fork before the poller is restarted. Cleans up the resources
+diff --git a/src/core/resolver/dns/c_ares/grpc_ares_wrapper.cc b/src/core/resolver/dns/c_ares/grpc_ares_wrapper.cc
+index 7fda1eb2b6..b2f3c4a4ba 100644
+--- a/src/core/resolver/dns/c_ares/grpc_ares_wrapper.cc
++++ b/src/core/resolver/dns/c_ares/grpc_ares_wrapper.cc
+@@ -676,7 +676,7 @@ static void destroy_hostbyname_request_locked(grpc_ares_hostbyname_request* hr)
+ }
+ 
+ static void on_hostbyname_done_locked(void* arg, int status, int /*timeouts*/,
+-                                      struct hostent* hostent)
++                                      const struct hostent* hostent)
+     ABSL_NO_THREAD_SAFETY_ANALYSIS {
+   // This callback is invoked from the c-ares library, so disable thread safety
+   // analysis. Note that we are guaranteed to be holding r->mu, though.
+@@ -750,7 +750,7 @@ static void on_hostbyname_done_locked(void* arg, int status, int /*timeouts*/,
+ }
+ 
+ static void on_srv_query_done_locked(void* arg, int status, int /*timeouts*/,
+-                                     unsigned char* abuf,
++                                     const unsigned char* abuf,
+                                      int alen) ABSL_NO_THREAD_SAFETY_ANALYSIS {
+   // This callback is invoked from the c-ares library, so disable thread safety
+   // analysis. Note that we are guaranteed to be holding r->mu, though.
+@@ -800,7 +800,7 @@ static void on_srv_query_done_locked(void* arg, int status, int /*timeouts*/,
+ static const char g_service_config_attribute_prefix[] = "grpc_config=";
+ 
+ static void on_txt_done_locked(void* arg, int status, int /*timeouts*/,
+-                               unsigned char* buf,
++                               const unsigned char* buf,
+                                int len) ABSL_NO_THREAD_SAFETY_ANALYSIS {
+   // This callback is invoked from the c-ares library, so disable thread safety
+   // analysis. Note that we are guaranteed to be holding r->mu, though.
