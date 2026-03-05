@@ -1,14 +1,10 @@
 @echo off
 setlocal
+cd /d "%~dp0"
 
-rem for /F "usebackq delims=" %%i in (`where bazelisk.exe bazel.exe`) do set __BAZEL__=%%i
 if "%__BAZEL__%"=="" IF EXIST "%LOCALAPPDATA%\Microsoft\WinGet\Links\bazelisk.exe" set __BAZEL__=%LOCALAPPDATA%\Microsoft\WinGet\Links\bazelisk.exe
 if "%__BAZEL__%"=="" IF EXIST "%LOCALAPPDATA%\Microsoft\WinGet\Links\bazel.exe" set __BAZEL__=%LOCALAPPDATA%\Microsoft\WinGet\Links\bazel.exe
-if "%__BAZEL__%"=="" goto:no-bazel
-
-set PATH=
-
-pushd "%~dp0"
+if "%__BAZEL__%"=="" set __BAZEL__=bazel
 
 echo BAZEL="%__BAZEL__%"
 "%__BAZEL__%" version
@@ -19,7 +15,6 @@ if "%1"=="zip" goto:zip
 if "%1"=="minimal" goto:minimal
 if "%1"=="shutdown" goto:shutdown
 
-popd
 endlocal
 goto:eof
 
