@@ -26,9 +26,13 @@ class OPENTELEMETRY_EXPORT_TYPE MultiLogRecordProcessor : public LogRecordProces
 {
 public:
   MultiLogRecordProcessor(std::vector<std::unique_ptr<LogRecordProcessor>> &&processors);
-  ~MultiLogRecordProcessor() override;
 
-  MultiLogRecordProcessor(MultiLogRecordProcessor&&) = default;
+  MultiLogRecordProcessor(const MultiLogRecordProcessor &)            = delete;
+  MultiLogRecordProcessor(MultiLogRecordProcessor &&)                 = delete;
+  MultiLogRecordProcessor &operator=(const MultiLogRecordProcessor &) = delete;
+  MultiLogRecordProcessor &operator=(MultiLogRecordProcessor &&)      = delete;
+
+  ~MultiLogRecordProcessor() override;
 
   void AddProcessor(std::unique_ptr<LogRecordProcessor> &&processor);
 

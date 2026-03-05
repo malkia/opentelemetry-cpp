@@ -38,6 +38,13 @@ class ExemplarData;
 class OPENTELEMETRY_EXPORT_TYPE ExemplarReservoir
 {
 public:
+  ExemplarReservoir() = default;
+
+  ExemplarReservoir(const ExemplarReservoir &)            = delete;
+  ExemplarReservoir(ExemplarReservoir &&)                 = delete;
+  ExemplarReservoir &operator=(const ExemplarReservoir &) = delete;
+  ExemplarReservoir &operator=(ExemplarReservoir &&)      = delete;
+
   virtual ~ExemplarReservoir() = default;
 
   /** Offers a long measurement to be sampled. */

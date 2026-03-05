@@ -31,6 +31,12 @@ class OPENTELEMETRY_EXPORT_TYPE SimpleLogRecordProcessor : public LogRecordProce
 
 public:
   explicit SimpleLogRecordProcessor(std::unique_ptr<LogRecordExporter> &&exporter);
+
+  SimpleLogRecordProcessor(const SimpleLogRecordProcessor &)            = delete;
+  SimpleLogRecordProcessor(SimpleLogRecordProcessor &&)                 = delete;
+  SimpleLogRecordProcessor &operator=(const SimpleLogRecordProcessor &) = delete;
+  SimpleLogRecordProcessor &operator=(SimpleLogRecordProcessor &&)      = delete;
+
   ~SimpleLogRecordProcessor() override;
 
   std::unique_ptr<Recordable> MakeRecordable() noexcept override;

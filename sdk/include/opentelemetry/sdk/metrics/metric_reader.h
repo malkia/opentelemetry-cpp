@@ -24,6 +24,11 @@ class OPENTELEMETRY_EXPORT_TYPE MetricReader
 public:
   MetricReader();
 
+  MetricReader(const MetricReader &)            = delete;
+  MetricReader(MetricReader &&)                 = delete;
+  MetricReader &operator=(const MetricReader &) = delete;
+  MetricReader &operator=(MetricReader &&)      = delete;
+
   void SetMetricProducer(MetricProducer *metric_producer);
 
   /**
