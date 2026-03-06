@@ -58,7 +58,7 @@ archive_override(
     urls = ["https://github.com/malkia/c-ares/archive/f8a49e8a0ac0cbf3a52531adedcfdadd507f539c.zip"]
 )
 
-bazel_dep(name = "protobuf", version = "34.0")
+bazel_dep(name = "protobuf", version = "34.0.bcr.1")
 single_version_override(
     module_name = "protobuf",
     patch_strip = 1,
