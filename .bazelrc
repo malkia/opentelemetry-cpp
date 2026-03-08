@@ -23,6 +23,8 @@ common --test_env=ANDROID_HOME=
 
 common:windows --repo_env=BAZEL_SH="c:\\program files\\git\\usr\\bin\\bash.exe"
 
+common:windows --features=-parse_showincludes --host_features=-parse_showincludes
+
 #build --features=parse_headers
 #build --features=layering_check
 
