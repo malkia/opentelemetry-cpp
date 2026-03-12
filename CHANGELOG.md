@@ -15,6 +15,9 @@ Increment the:
 
 ## [Unreleased]
 
+* [BUILD] Fix benchmark genrule capturing stderr into JSON output
+  [#3925](https://github.com/open-telemetry/opentelemetry-cpp/pull/3925)
+
 * [TEST] Add multi-threaded metrics benchmarks for shared vs per-thread counter
   [#3865](https://github.com/open-telemetry/opentelemetry-cpp/pull/3865)
 
@@ -38,6 +41,15 @@ Increment the:
 
 * [EXAMPLES] Deprecated semantic conventions used
   [#3905](https://github.com/open-telemetry/opentelemetry-cpp/pull/3905)
+
+* [CODE HEALTH] Fix clang-tidy misc-use-internal-linkage warnings
+  [#3600](https://github.com/open-telemetry/opentelemetry-cpp/pull/3600)
+
+* [CODE HEALTH] Fix clang-tidy macro to enum warnings
+  [#3922](https://github.com/open-telemetry/opentelemetry-cpp/pull/3922)
+
+* [CODE HEALTH] Fix clang-tidy performance enum size warnings
+  [#3923](https://github.com/open-telemetry/opentelemetry-cpp/pull/3923)
 
 Important changes:
 
