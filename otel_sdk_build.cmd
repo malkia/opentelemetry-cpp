@@ -38,7 +38,8 @@ goto:eof
 
 :minimal
 "%__BAZEL__%" build --profile=min.dll.tracing.json --//:with_dll=true otel_sdk_d otel_sdk_rd otel_sdk_r || goto:error
-"%__BAZEL__%" build --profile=min.nodll.tracing.json --//:with_dll=false //functional/otlp/... || goto:error
+"%__BAZEL__%" test --profile=min.nodll.tracing.json --//:with_dll=true //install/... || goto:error
+"%__BAZEL__%" test --profile=min.nodll.tracing.json --//:with_dll=false //install/... || goto:error
 goto:eof
 
 :zip
