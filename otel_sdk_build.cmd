@@ -19,7 +19,7 @@ endlocal
 goto:eof
 
 :all
-"%__BAZEL__%" test --profile=0.nodllk.tracing.json -k --//:with_dll=false -- ... || goto:error
+"%__BAZEL__%" test --profile=0.nodll.tracing.json -k --//:with_dll=false -- ... || goto:error
 call:test
 call:zip
 call:shutdown
@@ -38,6 +38,7 @@ goto:eof
 
 :minimal
 "%__BAZEL__%" build --profile=min.dll.tracing.json --//:with_dll=true otel_sdk_d otel_sdk_rd otel_sdk_r || goto:error
+"%__BAZEL__%" build --profile=min.nodll.tracing.json --//:with_dll=false //functional/otlp/... || goto:error
 goto:eof
 
 :zip
