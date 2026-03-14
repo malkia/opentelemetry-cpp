@@ -57,7 +57,7 @@ class OPENTELEMETRY_EXPORT_TYPE SyncMetricStorage : public MetricStorage, public
 #endif  // ENABLE_METRICS_EXEMPLAR_PREVIEW
 
 public:
-  SyncMetricStorage(InstrumentDescriptor instrument_descriptor,
+  SyncMetricStorage(const InstrumentDescriptor &instrument_descriptor,
                     const AggregationType aggregation_type,
                     std::shared_ptr<const AttributesProcessor> attributes_processor,
 #ifdef ENABLE_METRICS_EXEMPLAR_PREVIEW
