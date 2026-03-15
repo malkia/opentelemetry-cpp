@@ -18,11 +18,6 @@
 #  include "opentelemetry/sdk/metrics/exemplar/reservoir_cell_selector.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
-namespace common
-{
-class OrderedAttributeMap;
-}  // namespace common
-
 namespace context
 {
 class Context;
