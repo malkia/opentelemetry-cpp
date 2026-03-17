@@ -28,7 +28,13 @@ namespace trace
 class Tracer
 {
 public:
-  virtual ~Tracer() = default;
+  Tracer()                          = default;
+  virtual ~Tracer()                 = default;
+  Tracer(const Tracer &)            = default;
+  Tracer &operator=(const Tracer &) = default;
+  Tracer(Tracer &&)                 = default;
+  Tracer &operator=(Tracer &&)      = default;
+
   /**
    * Starts a span.
    *
