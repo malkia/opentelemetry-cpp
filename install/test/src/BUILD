@@ -50,6 +50,7 @@ otel_cc_test(
         "//sdk/src/resource",
         "//sdk/src/trace",
         "//sdk/src/version",
+        "//resource_detectors",
         "@googletest//:gtest_main",
         "@nlohmann_json//:json",
         "@opentelemetry-proto//:logs_service_grpc_cc",
