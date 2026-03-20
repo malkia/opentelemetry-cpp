@@ -6,6 +6,18 @@ load("//bazel:otel_cc.bzl", "otel_cc_library")
 package(default_visibility = ["//visibility:public"])
 
 otel_cc_library(
+    name = "wildcard_match",
+    hdrs = [
+        "wildcard_match.h",
+    ],
+    include_prefix = "src/common",
+    deps = [
+        "//api",
+        "//sdk:headers",
+    ],
+)
+
+otel_cc_library(
     name = "random",
     srcs = [
         "random.cc",

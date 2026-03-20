@@ -6,6 +6,18 @@ load("//bazel:otel_cc.bzl", "otel_cc_test", "otel_cc_test_library")
 load("//bazel:otel_cc_benchmark.bzl", "otel_cc_benchmark")
 
 otel_cc_test(
+    name = "wildcard_match_test",
+    srcs = [
+        "wildcard_match_test.cc",
+    ],
+    tags = ["test"],
+    deps = dll_deps([
+        "//sdk/src/common:wildcard_match",
+        "@googletest//:gtest_main",
+    ]),
+)
+
+otel_cc_test(
     name = "random_test",
     srcs = [
         "random_test.cc",

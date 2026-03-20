@@ -11,7 +11,7 @@ otel_cc_library(
     deps = [
         "//api",
         "//sdk:headers",
-        "//sdk/src/common:env_variables",
+        "//sdk/src/common:wildcard_match",
         "@rapidyaml",
     ],
 )
