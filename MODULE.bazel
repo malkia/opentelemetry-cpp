@@ -1,6 +1,6 @@
 module(
-    name = "otel_sdk",
-    version = "1.26.0-dev",
+    name = "otel_sdk_dev",
+    version = "1.27.0-dev",
     compatibility_level = 0,
 )
 
@@ -86,10 +86,10 @@ new_local_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:local.
 
 new_local_repository(
     name = "llvm_windows_install",
-    build_file = "@otel_sdk//bazel:llvm_windows_install.BUILD",
+    build_file = "@otel_sdk_dev//bazel:llvm_windows_install.BUILD",
     path = "C:/Program Files/LLVM",
 )
 
 multitool = use_extension("@rules_multitool//multitool:extension.bzl", "multitool")
-multitool.hub(lockfile = "@otel_sdk//:multitool.lock.json")
+multitool.hub(lockfile = "@otel_sdk_dev//:multitool.lock.json")
 use_repo(multitool, "multitool")

@@ -3,9 +3,9 @@ module(
     version = "0.1",
 )
 
-bazel_dep(name = "otel_sdk")
+bazel_dep(name = "otel_sdk_dev")
 local_path_override(
-    module_name = "otel_sdk",
+    module_name = "otel_sdk_dev",
     path = "..",
 )
 

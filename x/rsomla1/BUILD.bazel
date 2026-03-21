@@ -7,7 +7,7 @@ load("@rules_cc//cc:cc_test.bzl", "cc_test")
 cc_library(
     name = "lib_plain",
     srcs = ["lib.cc"],
-    deps = ["@otel_sdk//:dll"],
+    deps = ["@otel_sdk_dev//:dll"],
 )
 
 # Make shared library from it (.dll/.so/.dylib)
@@ -35,6 +35,6 @@ cc_test(
     srcs = ["try.cc"],
     deps = [
         ":lib",
-        "@otel_sdk//:dll",
+        "@otel_sdk_dev//:dll",
     ],
 )

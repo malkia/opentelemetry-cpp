@@ -3,5 +3,5 @@ load("@rules_cc//cc:cc_test.bzl", "cc_test")
 cc_test(
     name = "hang",
     srcs = ["hang.cc"],
-    deps = ["@otel_sdk//:dll"],
+    deps = ["@otel_sdk_dev//:dll"],
 )

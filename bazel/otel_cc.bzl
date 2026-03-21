@@ -12,7 +12,7 @@ load(
 
 def if_asanwin(a):
     return select({
-        "@otel_sdk//:asanwin_enabled": a,
+        "@otel_sdk_dev//:asanwin_enabled": a,
         "//conditions:default": [],
     })
 

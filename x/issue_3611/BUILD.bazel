@@ -1,11 +1,11 @@
-load("@otel_sdk//:dll_deps.bzl", "dll_deps")
+load("@otel_sdk_dev//:dll_deps.bzl", "dll_deps")
 load("@rules_cc//cc:cc_test.bzl", "cc_test")
 
 cc_test(
     name = "test",
     srcs = ["test.cpp"],
     deps = dll_deps([
-        "@otel_sdk//sdk/src/metrics",
-        "@otel_sdk//exporters/ostream:ostream_metric_exporter",
+        "@otel_sdk_dev//sdk/src/metrics",
+        "@otel_sdk_dev//exporters/ostream:ostream_metric_exporter",
     ]),
 )

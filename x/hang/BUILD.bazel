@@ -1,4 +1,4 @@
-load("@otel_sdk//:dll_deps.bzl", "dll_deps")
+load("@otel_sdk_dev//:dll_deps.bzl", "dll_deps")
 load("@rules_cc//cc:cc_test.bzl", "cc_test")
 
 cc_test(
@@ -7,7 +7,7 @@ cc_test(
     timeout = "eternal",
     srcs = ["hang.cpp"],
     deps = dll_deps([
-        "@otel_sdk//exporters/otlp:otlp_grpc_log_record_exporter",
-        "@otel_sdk//exporters/otlp:otlp_grpc_metric_exporter",
+        "@otel_sdk_dev//exporters/otlp:otlp_grpc_log_record_exporter",
+        "@otel_sdk_dev//exporters/otlp:otlp_grpc_metric_exporter",
     ]),
 )

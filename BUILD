@@ -7,7 +7,7 @@ load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
 #load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 load("@bazel_skylib//rules:native_binary.bzl", "native_binary")
 load("@bazel_skylib//rules:run_binary.bzl", "run_binary")
-load("@otel_sdk//bazel:otel_cc.bzl", "otel_cc_binary", "otel_cc_import", "otel_cc_library", "otel_cc_shared_library", "otel_cc_test")
+load("@otel_sdk_dev//bazel:otel_cc.bzl", "otel_cc_binary", "otel_cc_import", "otel_cc_library", "otel_cc_shared_library", "otel_cc_test")
 load("@rules_pkg//pkg:mappings.bzl", "pkg_filegroup", "pkg_files", pkg_strip_prefix = "strip_prefix")
 load("@rules_pkg//pkg:zip.bzl", "pkg_zip")
 load("dll_deps.bzl", "force_compilation_mode")
@@ -47,7 +47,7 @@ otel_cc_library(
 )
 
 # TODO: Version needs to be updated better here.
-otel_sdk_prefix = "otel_sdk/" + "1.25.0" + "/"
+otel_sdk_prefix = "otel_sdk/" + "1.27.0" + "/"
 
 # Build configuration settings mimicking MSVC: debug=dbg, release=opt, reldeb=fastbuild
 config_setting(
@@ -72,44 +72,44 @@ otel_cc_library(
     name = "otel_sdk_deps",
     visibility = ["//visibility:private"],
     deps = [
-        "@otel_sdk//exporters/elasticsearch:es_log_record_exporter",
-        "@otel_sdk//exporters/memory:in_memory_data",
-        "@otel_sdk//exporters/memory:in_memory_metric_data",
-        "@otel_sdk//exporters/memory:in_memory_metric_exporter_factory",
-        "@otel_sdk//exporters/memory:in_memory_span_exporter",
-        "@otel_sdk//exporters/ostream:ostream_log_record_exporter",
-        "@otel_sdk//exporters/ostream:ostream_log_record_exporter_builder",
-        "@otel_sdk//exporters/ostream:ostream_metric_exporter",
-        "@otel_sdk//exporters/ostream:ostream_metric_exporter_builder",
-        "@otel_sdk//exporters/ostream:ostream_span_exporter",
-        "@otel_sdk//exporters/ostream:ostream_span_exporter_builder",
-        "@otel_sdk//exporters/otlp:otlp_file_exporter",
-        "@otel_sdk//exporters/otlp:otlp_file_log_record_exporter",
-        "@otel_sdk//exporters/otlp:otlp_file_log_record_exporter_builder",
-        "@otel_sdk//exporters/otlp:otlp_file_metric_exporter",
-        "@otel_sdk//exporters/otlp:otlp_file_metric_exporter_builder",
-        "@otel_sdk//exporters/otlp:otlp_file_span_exporter_builder",
-        "@otel_sdk//exporters/otlp:otlp_grpc_exporter",
-        "@otel_sdk//exporters/otlp:otlp_grpc_forward_proxy",
-        "@otel_sdk//exporters/otlp:otlp_grpc_log_record_exporter",
-        "@otel_sdk//exporters/otlp:otlp_grpc_log_record_exporter_builder",
-        "@otel_sdk//exporters/otlp:otlp_grpc_metric_exporter",
-        "@otel_sdk//exporters/otlp:otlp_grpc_metric_exporter_builder",
-        "@otel_sdk//exporters/otlp:otlp_grpc_span_exporter_builder",
-        "@otel_sdk//exporters/otlp:otlp_http_exporter",
-        "@otel_sdk//exporters/otlp:otlp_http_log_record_exporter",
-        "@otel_sdk//exporters/otlp:otlp_http_log_record_exporter_builder",
-        "@otel_sdk//exporters/otlp:otlp_http_metric_exporter",
-        "@otel_sdk//exporters/otlp:otlp_http_metric_exporter_builder",
-        "@otel_sdk//exporters/otlp:otlp_http_span_exporter_builder",
-        "@otel_sdk//exporters/prometheus:prometheus_exporter",
-        "@otel_sdk//exporters/prometheus:prometheus_exporter_builder",
-        "@otel_sdk//exporters/prometheus:prometheus_push_exporter",
-        "@otel_sdk//exporters/zipkin:zipkin_exporter",
-        "@otel_sdk//resource_detectors",
-        "@otel_sdk//sdk/src/configuration",
+        "@otel_sdk_dev//exporters/elasticsearch:es_log_record_exporter",
+        "@otel_sdk_dev//exporters/memory:in_memory_data",
+        "@otel_sdk_dev//exporters/memory:in_memory_metric_data",
+        "@otel_sdk_dev//exporters/memory:in_memory_metric_exporter_factory",
+        "@otel_sdk_dev//exporters/memory:in_memory_span_exporter",
+        "@otel_sdk_dev//exporters/ostream:ostream_log_record_exporter",
+        "@otel_sdk_dev//exporters/ostream:ostream_log_record_exporter_builder",
+        "@otel_sdk_dev//exporters/ostream:ostream_metric_exporter",
+        "@otel_sdk_dev//exporters/ostream:ostream_metric_exporter_builder",
+        "@otel_sdk_dev//exporters/ostream:ostream_span_exporter",
+        "@otel_sdk_dev//exporters/ostream:ostream_span_exporter_builder",
+        "@otel_sdk_dev//exporters/otlp:otlp_file_exporter",
+        "@otel_sdk_dev//exporters/otlp:otlp_file_log_record_exporter",
+        "@otel_sdk_dev//exporters/otlp:otlp_file_log_record_exporter_builder",
+        "@otel_sdk_dev//exporters/otlp:otlp_file_metric_exporter",
+        "@otel_sdk_dev//exporters/otlp:otlp_file_metric_exporter_builder",
+        "@otel_sdk_dev//exporters/otlp:otlp_file_span_exporter_builder",
+        "@otel_sdk_dev//exporters/otlp:otlp_grpc_exporter",
+        "@otel_sdk_dev//exporters/otlp:otlp_grpc_forward_proxy",
+        "@otel_sdk_dev//exporters/otlp:otlp_grpc_log_record_exporter",
+        "@otel_sdk_dev//exporters/otlp:otlp_grpc_log_record_exporter_builder",
+        "@otel_sdk_dev//exporters/otlp:otlp_grpc_metric_exporter",
+        "@otel_sdk_dev//exporters/otlp:otlp_grpc_metric_exporter_builder",
+        "@otel_sdk_dev//exporters/otlp:otlp_grpc_span_exporter_builder",
+        "@otel_sdk_dev//exporters/otlp:otlp_http_exporter",
+        "@otel_sdk_dev//exporters/otlp:otlp_http_log_record_exporter",
+        "@otel_sdk_dev//exporters/otlp:otlp_http_log_record_exporter_builder",
+        "@otel_sdk_dev//exporters/otlp:otlp_http_metric_exporter",
+        "@otel_sdk_dev//exporters/otlp:otlp_http_metric_exporter_builder",
+        "@otel_sdk_dev//exporters/otlp:otlp_http_span_exporter_builder",
+        "@otel_sdk_dev//exporters/prometheus:prometheus_exporter",
+        "@otel_sdk_dev//exporters/prometheus:prometheus_exporter_builder",
+        "@otel_sdk_dev//exporters/prometheus:prometheus_push_exporter",
+        "@otel_sdk_dev//exporters/zipkin:zipkin_exporter",
+        "@otel_sdk_dev//resource_detectors",
+        "@otel_sdk_dev//sdk/src/configuration",
     ] + select({
-        "@platforms//os:windows": ["@otel_sdk//exporters/etw:etw_exporter"],
+        "@platforms//os:windows": ["@otel_sdk_dev//exporters/etw:etw_exporter"],
         "//conditions:default": [],
     }),
 )
@@ -119,8 +119,8 @@ genquery(
     name = "otel_sdk_all_deps",
     # The crude '^(@+otel_sdk[+~]?)?//' ignores external to otel_sdk repositories (e.g. @curl//, etc.) for which it's assumed we don't export dll symbols
     # In addition we exclude some internal libraries, that may have to be relinked by tests (like //sdk/src/common:random and //sdk/src/common/platform:fork)
-    expression = "kind('cc_library',filter('^(@+otel_sdk[+~]?)?//',deps(@otel_sdk//:otel_sdk_deps) except set(@otel_sdk//:otel_sdk_deps @otel_sdk//sdk/src/common:random @otel_sdk//sdk/src/common/platform:fork)))",
-    scope = ["@otel_sdk//:otel_sdk_deps"],
+    expression = "kind('cc_library',filter('^(@+otel_sdk[+~]?)?//',deps(@otel_sdk_dev//:otel_sdk_deps) except set(@otel_sdk_dev//:otel_sdk_deps @otel_sdk_dev//sdk/src/common:random @otel_sdk_dev//sdk/src/common/platform:fork)))",
+    scope = ["@otel_sdk_dev//:otel_sdk_deps"],
     strict = True,
 )
 

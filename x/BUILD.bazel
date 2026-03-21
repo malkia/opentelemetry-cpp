@@ -5,7 +5,7 @@ package(default_visibility = ["//visibility:public"])
 #cc_test(
 #    name = "x",
 #    srcs = ["x.cpp"],
-#    deps = ["@otel_sdk//:dll"],
+#    deps = ["@otel_sdk_dev//:dll"],
 #    local = True,
 #    tags = ["manual", "external", "no-cache"],
 #
@@ -28,7 +28,7 @@ package(default_visibility = ["//visibility:public"])
             "windir",  # Mandatory
             #"USERPROFILE", # In order to avoid creating %USERPROFILE%
         ],
-        deps = ["@otel_sdk//:dll"],
+        deps = ["@otel_sdk_dev//:dll"],
     )
     for index in [
         "0",
@@ -47,7 +47,7 @@ package(default_visibility = ["//visibility:public"])
 #cc_test(
 #    name = "m",
 #    srcs = ["m.cpp"],
-#    deps = ["@otel_sdk//:dll"],
+#    deps = ["@otel_sdk_dev//:dll"],
 #    local = True,
 #    tags = ["manual", "external", "no-cache"],
 #
@@ -67,20 +67,20 @@ package(default_visibility = ["//visibility:public"])
 
 # native_binary(
 #     name = "percli_binary",
-#     src = "@otel_sdk//:percli",
+#     src = "@otel_sdk_dev//:percli",
 # )
 
 # native_binary(
 #     name = "perses",
-#     src = "@otel_sdk//:perses",
+#     src = "@otel_sdk_dev//:perses",
 #     data = ["dashboards_dir"],
 #     args = ["-config $(rootpath dashboards_dir)/config.yaml"],
 # )
 
 # run_binary(
 #     name = "perses_run",
-#     outs = ["@otel_sdk//:perses"],
-#     tool = "@otel_sdk//:perses",
+#     outs = ["@otel_sdk_dev//:perses"],
+#     tool = "@otel_sdk_dev//:perses",
 #     args = ["--help","2>$(location 1.txt)"],
 # )
 
@@ -90,7 +90,7 @@ package(default_visibility = ["//visibility:public"])
 #     srcs = ["dashboards_dir", "perses_run"],
 # #    args = ["--percliconfig $(location dashboards_dir)/config.yaml"],
 # #    args = ["migrate", "--help"],
-#     tool = "@otel_sdk//:percli",
+#     tool = "@otel_sdk_dev//:percli",
 # )
 
 # cc_binary(

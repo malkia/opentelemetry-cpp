@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-#define REPO_NAME "otel_sdk"
+#define REPO_NAME "otel_sdk_dev"
 
 int main(int argc, const char* argv[])
 {

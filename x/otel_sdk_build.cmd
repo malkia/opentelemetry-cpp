@@ -25,15 +25,15 @@ goto:eof
 
 :test
 REM singleton_test does not work when linked as static under Windows
-"%__BAZEL__%" test -k --profile=0.nodll.tracing.json --@otel_sdk//:with_dll=false -- @otel_sdk//... -@otel_sdk//api/test/singleton:singleton_test || echo a || goto:error
-"%__BAZEL__%" build -k --profile=1.all.tracing.json --@otel_sdk//:with_dll=true -- @otel_sdk//... -@otel_sdk//:otel_sdk_zip ||  echo a || goto:error
-"%__BAZEL__%" test -k --profile=2.dbg.tracing.json --@otel_sdk//:with_dll=true -c dbg -- @otel_sdk//... -@otel_sdk//:otel_sdk_zip ||  echo a || goto:error
-"%__BAZEL__%" test -k --profile=3.fastbuild.tracing.json --@otel_sdk//:with_dll=true -c fastbuild -- @otel_sdk//... -@otel_sdk//:otel_sdk_zip || echo a ||  goto:error
-"%__BAZEL__%" test -k --profile=4.opt.tracing.json --@otel_sdk//:with_dll=true -c opt -- @otel_sdk//... -@otel_sdk//:otel_sdk_zip ||  echo a || goto:error
+"%__BAZEL__%" test -k --profile=0.nodll.tracing.json --@otel_sdk_dev//:with_dll=false -- @otel_sdk_dev//... -@otel_sdk_dev//api/test/singleton:singleton_test || echo a || goto:error
+"%__BAZEL__%" build -k --profile=1.all.tracing.json --@otel_sdk_dev//:with_dll=true -- @otel_sdk_dev//... -@otel_sdk_dev//:otel_sdk_zip ||  echo a || goto:error
+"%__BAZEL__%" test -k --profile=2.dbg.tracing.json --@otel_sdk_dev//:with_dll=true -c dbg -- @otel_sdk_dev//... -@otel_sdk_dev//:otel_sdk_zip ||  echo a || goto:error
+"%__BAZEL__%" test -k --profile=3.fastbuild.tracing.json --@otel_sdk_dev//:with_dll=true -c fastbuild -- @otel_sdk_dev//... -@otel_sdk_dev//:otel_sdk_zip || echo a ||  goto:error
+"%__BAZEL__%" test -k --profile=4.opt.tracing.json --@otel_sdk_dev//:with_dll=true -c opt -- @otel_sdk_dev//... -@otel_sdk_dev//:otel_sdk_zip ||  echo a || goto:error
 goto:eof
 
 :zip
-"%__BAZEL__%" run -k --profile=5.pkg.tracing.json --@otel_sdk//:with_dll=true @otel_sdk//:make_otel_sdk ||  echo a || goto:error
+"%__BAZEL__%" run -k --profile=5.pkg.tracing.json --@otel_sdk_dev//:with_dll=true @otel_sdk_dev//:make_otel_sdk ||  echo a || goto:error
 goto:eof
 
 :shutdown

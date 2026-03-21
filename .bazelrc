@@ -163,7 +163,7 @@ common:asanwin --test_env="ASAN_OPTIONS=report_globals=0:detect_odr_violation=0:
 common:asanwin --test_env="UBSAN_OPTIONS=print_stacktrace=1:report_error_type=1"
 # common:asanwin --test_env="ASAN_OPTIONS=help=1"
 common:asanwin --cc_output_directory_tag=asanwin
-common:asanwin --@otel_sdk//:asanwin=true
+common:asanwin --@otel_sdk_dev//:asanwin=true
 test:asanwin --test_timeout=3600
 # common:asanwin -fno-sanitize-coverage=<value>
 # common:asanwin -fno-sanitize-recover=<value>
@@ -252,7 +252,7 @@ build:clang-cl --host_copt=-Wno-dynamic-class-memaccess --copt=-Wno-dynamic-clas
 build:clang-cl --host_copt=-Wno-microsoft-cast --copt=-Wno-microsoft-cast
 build:clang-cl --host_copt=-Wno-invalid-offsetof --copt=-Wno-invalid-offsetof
 
-build:clang-cl --host_platform=@otel_sdk//:x64_windows-clang-cl
+build:clang-cl --host_platform=@otel_sdk_dev//:x64_windows-clang-cl
 build:clang-cl --extra_toolchains=@local_config_cc//:cc-toolchain-x64_windows-clang-cl
 
 common --experimental_enable_android_migration_apis
@@ -262,7 +262,7 @@ common:macos --force_pic
 
 startup --client_debug
 
-common --flag_alias=dll=@otel_sdk//:with_dll
+common --flag_alias=dll=@otel_sdk_dev//:with_dll
 
 # Compiling GRPC without using ABSL sync primitives, as this causes rare hang on Windows
 # x/hang/hang_callstack.png
