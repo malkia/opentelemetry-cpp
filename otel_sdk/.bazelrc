@@ -1,2 +1,3 @@
 common --enable_platform_specific_config
-build:windows --platforms=//:x64_windows-msvc
+build:windows --platforms=//:x64_windows
+build --experimental_convenience_symlinks=clean
