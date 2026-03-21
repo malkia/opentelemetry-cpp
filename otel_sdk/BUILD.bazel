@@ -48,6 +48,9 @@ alias(
 
 cc_test(
     name = "t",
+    env = {
+        "OTEL_EXPORTER_OTLP_ENDPOINT" : "http://127.0.0.1:43170",
+    },
     deps = ["otel_sdk"],
     srcs = ["t.cpp"],
 )
