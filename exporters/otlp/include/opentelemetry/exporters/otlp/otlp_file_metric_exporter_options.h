@@ -28,7 +28,8 @@ struct OPENTELEMETRY_EXPORT_TYPE OtlpFileMetricExporterOptions : public OtlpFile
   OtlpFileMetricExporterOptions &operator=(OtlpFileMetricExporterOptions &&)      = default;
   ~OtlpFileMetricExporterOptions() override;
 
-  PreferredAggregationTemporality aggregation_temporality;
+  PreferredAggregationTemporality aggregation_temporality{
+      PreferredAggregationTemporality::kCumulative};
 };
 
 }  // namespace otlp
