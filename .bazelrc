@@ -274,7 +274,7 @@ build --host_copt="-DGRPC_NO_ABSL_SYNC"
 
 common:devenv --run_under='"c:/windows/system32/cmd.exe" /C start "bazel debug exe" /wait devenv /debugexe '
 
-common --incompatible_autoload_externally=+cc_library,+cc_binary,+cc_test
+common --incompatible_autoload_externally=+cc_library,+cc_binary,+cc_test,+JavaInfo
 
 common --nocheck_bzl_visibility
 
