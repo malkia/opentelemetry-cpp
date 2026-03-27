@@ -1,18 +1,18 @@
 diff --git a/MODULE.bazel b/MODULE.bazel
-index 2a1c5aec1e..4c0eb62a99 100644
+index 0ee5dc672b..f8e71cbf6c 100644
 --- a/MODULE.bazel
 +++ b/MODULE.bazel
-@@ -68,7 +68,7 @@ PYTHON_VERSIONS = [
-     "3.11",
-     "3.12",
-     "3.13",
--    "3.14.0b2",
-+    "3.14",
- ]
+@@ -24,7 +24,7 @@ module(
  
- python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+ # Upgrade version of rules_swift to avoid an error in BCR CI of not
+ # finding switfc.exe on Windows with bazel 7.
+-bazel_dep(name = "rules_swift", version = "2.5.0")
++bazel_dep(name = "rules_swift", version = "3.5.0")
+ 
+ # -- Abseil library.
+ # Pinning version to be consistent with third_party/abseil-cpp
 diff --git a/bazel/grpc_build_system.bzl b/bazel/grpc_build_system.bzl
-index 6ee535f858..f906103950 100644
+index 00c86b82a0..774950a054 100644
 --- a/bazel/grpc_build_system.bzl
 +++ b/bazel/grpc_build_system.bzl
 @@ -31,7 +31,7 @@ load("@build_bazel_apple_support//rules:universal_binary.bzl", "universal_binary
@@ -21,9 +21,9 @@ index 6ee535f858..f906103950 100644
  load("@com_google_protobuf//bazel:cc_proto_library.bzl", "cc_proto_library")
 -load("@com_google_protobuf//bazel:upb_proto_library.bzl", "upb_proto_library", "upb_proto_reflection_library")
 +load("@com_google_protobuf//upb/bazel:upb_proto_library.bzl", "upb_proto_library", "upb_proto_reflection_library")
- load("@rules_proto//proto:defs.bzl", "proto_library")
- load("@rules_python//python:defs.bzl", "py_binary")
- load("//bazel:cc_grpc_library.bzl", "cc_grpc_library")
+ load("@rules_cc//cc:cc_binary.bzl", "cc_binary")
+ load("@rules_cc//cc:cc_library.bzl", "cc_library")
+ load("@rules_cc//cc:cc_test.bzl", "cc_test")
 diff --git a/src/core/lib/event_engine/ares_resolver.cc b/src/core/lib/event_engine/ares_resolver.cc
 index 2d80ce22a4..3173e7e017 100644
 --- a/src/core/lib/event_engine/ares_resolver.cc
