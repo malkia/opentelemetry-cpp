@@ -1,4 +1,11 @@
 common --enable_platform_specific_config
+
+# This makes sure the x64 dlls are used on Windows ARM64
 build:windows --platforms=//:x64_windows
+
 build --experimental_convenience_symlinks=clean
+
 test --test_output=streamed
+
+# This is needed for multitool tools to run on Windows!
+common --enable_runfiles

@@ -1,4 +1,4 @@
-load("@rules_cc//cc:defs.bzl", "cc_import", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_import", "cc_test", "cc_binary")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -53,4 +53,19 @@ cc_test(
     },
     deps = ["otel_sdk"],
     srcs = ["t.cpp"],
+)
+
+cc_test(
+    name = "s",
+    srcs = ["s.cpp"],
+    data = [
+        "@multitool//tools/otelcol-contrib"
+    ],
+    args = [
+       "$(rootpath @multitool//tools/otelcol-contrib)",
+    ],
+    deps = [
+        "@reproc//:reproc++", 
+        "@bazel_tools//tools/cpp/runfiles"
+    ],
 )

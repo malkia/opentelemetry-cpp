@@ -1,0 +1,107 @@
+{
+  "$schema": "https://raw.githubusercontent.com/theoremlp/rules_multitool/main/lockfile.schema.json",
+  "multitool": {
+    "binaries": [
+      {
+        "kind": "archive",
+        "url": "https://github.com/bazel-contrib/multitool/releases/download/v0.9.0/multitool-aarch64-unknown-linux-gnu.tar.xz",
+        "file": "multitool-aarch64-unknown-linux-gnu/multitool",
+        "sha256": "693b66def2d8dacdfcb5a011b7c32a8e89a13bdc031db8dc40c0759a38253103",
+        "os": "linux",
+        "cpu": "arm64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/bazel-contrib/multitool/releases/download/v0.9.0/multitool-x86_64-unknown-linux-gnu.tar.xz",
+        "file": "multitool-x86_64-unknown-linux-gnu/multitool",
+        "sha256": "34dc5968dad458a4050ebde58e484ebb7c624a119e4031347683eeb80922e6df",
+        "os": "linux",
+        "cpu": "x86_64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/bazel-contrib/multitool/releases/download/v0.9.0/multitool-aarch64-apple-darwin.tar.xz",
+        "file": "multitool-aarch64-apple-darwin/multitool",
+        "sha256": "8f5e0cd033b0fcc128c762f8d527110433523da378619cecf40e91c1df5c0686",
+        "os": "macos",
+        "cpu": "arm64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/bazel-contrib/multitool/releases/download/v0.9.0/multitool-x86_64-apple-darwin.tar.xz",
+        "file": "multitool",
+        "sha256": "abde3bbbd49a09d33048e1f55cc9a8aa5dd61a13493a0b1bd5ffc2c56e5bf837",
+        "os": "macos",
+        "cpu": "x86_64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/bazel-contrib/multitool/releases/download/v0.9.0/multitool-x86_64-pc-windows-msvc.zip",
+        "file": "multitool.exe",
+        "sha256": "df058283b8d23fd56f8accee3ad218faef20d5bd81735c2615626aeca46d2158",
+        "os": "windows",
+        "cpu": "arm64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/bazel-contrib/multitool/releases/download/v0.9.0/multitool-x86_64-pc-windows-msvc.zip",
+        "file": "multitool.exe",
+        "sha256": "df058283b8d23fd56f8accee3ad218faef20d5bd81735c2615626aeca46d2158",
+        "os": "windows",
+        "cpu": "x86_64"
+      }
+    ]
+  },
+  "otelcol-contrib": {
+    "binaries": [
+      {
+        "kind": "archive",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.148.0/otelcol-contrib_0.148.0_linux_arm64.tar.gz",
+        "file": "otelcol-contrib",
+        "sha256": "cdacaa17eba2d7aec7338734669a15de0f3382828ba1f835a35a81fc3e55a9fa",
+        "os": "linux",
+        "cpu": "arm64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.148.0/otelcol-contrib_0.148.0_linux_amd64.tar.gz",
+        "file": "otelcol-contrib",
+        "sha256": "224be33baa9eb534838e3d742d5327eff6a6bb60cdf4a16daf9c4e70d438fe00",
+        "os": "linux",
+        "cpu": "x86_64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.148.0/otelcol-contrib_0.148.0_darwin_arm64.tar.gz",
+        "file": "otelcol-contrib",
+        "sha256": "9fa3074e075f49b3c82cca957cfa367f097b4b56e5583105613beb8ab5a6ffa1",
+        "os": "macos",
+        "cpu": "arm64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.148.0/otelcol-contrib_0.148.0_darwin_amd64.tar.gz",
+        "file": "otelcol-contrib",
+        "sha256": "ebd06dc7f098a5e4d7c705a6228d724c9ea3b040f8435fad77846bc886df0c1f",
+        "os": "macos",
+        "cpu": "x86_64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.148.0/otelcol-contrib_0.148.0_windows_arm64.tar.gz",
+        "file": "otelcol-contrib.exe",
+        "sha256": "sha256:9670d12be908831dfb5cd7b3566aa8c5c11525d032df0e220a253a98bb8e45d7",
+        "os": "windows",
+        "cpu": "arm64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.148.0/otelcol-contrib_0.148.0_windows_amd64.tar.gz",
+        "file": "otelcol-contrib.exe",
+        "sha256": "0c39b085eb29dc09227f2732dd3b26504fbdd54cd18e49a5e639b2699e561ec8",
+        "os": "windows",
+        "cpu": "x86_64"
+      }
+    ]
+  }
+}
