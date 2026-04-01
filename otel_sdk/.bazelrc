@@ -9,3 +9,9 @@ test --test_output=streamed
 
 # This is needed for multitool tools to run on Windows!
 common --enable_runfiles
+
+
+startup --windows_enable_symlinks
+#common --experimental_repository_cache_hardlinks
+
+try-import ../../top.bazelrc

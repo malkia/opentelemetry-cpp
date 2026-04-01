@@ -59,10 +59,33 @@ cc_test(
     name = "s",
     srcs = ["s.cpp"],
     data = [
-        "@multitool//tools/otelcol-contrib"
+        "@multitool//tools/otelcol-contrib",
+        "otelcol.yaml",
+        "t",
     ],
     args = [
        "$(rootpath @multitool//tools/otelcol-contrib)",
+       "$(rootpath otelcol.yaml)",
+       "$(rootpath t)",
+    ],
+    deps = [
+        "@reproc//:reproc++", 
+        "@bazel_tools//tools/cpp/runfiles"
+    ],
+)
+
+cc_test(
+    name = "s2",
+    srcs = ["s.cpp"],
+    data = [
+        "@multitool//tools/otelcol-contrib",
+        "otelcol2.yaml",
+        "t",
+    ],
+    args = [
+       "$(rootpath @multitool//tools/otelcol-contrib)",
+       "$(rootpath otelcol2.yaml)",
+       "5",
     ],
     deps = [
         "@reproc//:reproc++", 

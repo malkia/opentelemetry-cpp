@@ -90,7 +90,7 @@
         "kind": "archive",
         "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.148.0/otelcol-contrib_0.148.0_windows_arm64.tar.gz",
         "file": "otelcol-contrib.exe",
-        "sha256": "sha256:9670d12be908831dfb5cd7b3566aa8c5c11525d032df0e220a253a98bb8e45d7",
+        "sha256": "c358047adb8128a54858608705ee4d6eebfe79fc6d4b8526b99255ee470ebbc4",
         "os": "windows",
         "cpu": "arm64"
       },

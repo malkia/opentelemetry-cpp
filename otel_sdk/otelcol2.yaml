@@ -1,0 +1,28 @@
+receivers:
+  otlpjsonfile:
+    start_at: beginning
+    include_file_name: false
+    include: C:/p/m/opentelemetry-cpp/otel_sdk/all.json
+
+processors:
+  batch:
+    send_batch_size: 128
+  groupbyattrs:
+    keys: [test]
+
+exporters:
+  file:
+    path: C:/p/m/opentelemetry-cpp/otel_sdk/all2.json
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlpjsonfile]
+      exporters: [file]
+    metrics:
+      receivers: [otlpjsonfile]
+      processors: [batch,groupbyattrs] 
+      exporters: [file]
+    logs:
+      receivers: [otlpjsonfile]
+      exporters: [file]

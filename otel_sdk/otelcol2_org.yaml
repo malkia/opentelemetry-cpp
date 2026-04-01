@@ -1,0 +1,21 @@
+receivers:
+  otlpjsonfile:
+    start_at: beginning
+    include_file_name: false
+    include: C:/p/m/opentelemetry-cpp/otel_sdk/all.json
+
+exporters:
+  file:
+    path: C:/p/m/opentelemetry-cpp/otel_sdk/all2.json
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlpjsonfile]
+      exporters: [file]
+    metrics:
+      receivers: [otlpjsonfile]
+      exporters: [file]
+    logs:
+      receivers: [otlpjsonfile]
+      exporters: [file]
