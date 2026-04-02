@@ -25,6 +25,9 @@ namespace logs
 {
 class OPENTELEMETRY_EXPORT_TYPE MultiRecordable final : public Recordable
 {
+  static std::size_t MakeKey(
+      const opentelemetry::sdk::logs::LogRecordProcessor &processor) noexcept;
+
 public:
   MultiRecordable() = default;
   MultiRecordable(MultiRecordable&&) = default;

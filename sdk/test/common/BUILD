@@ -100,6 +100,19 @@ otel_cc_test(
 )
 
 otel_cc_test(
+    name = "circular_buffer_test",
+    srcs = [
+        "circular_buffer_test.cc",
+    ],
+    tags = ["test"],
+    deps = dll_deps([
+        "//api",
+        "//sdk:headers",
+        "@googletest//:gtest_main",
+    ]),
+)
+
+otel_cc_test(
     name = "random_fork_test",
     srcs = [
         "random_fork_test.cc",
@@ -143,6 +156,7 @@ otel_cc_test(
     deps = dll_deps([
         "//api",
         "//sdk:headers",
+        "//sdk/src/common:empty_attributes",
         "@googletest//:gtest_main",
     ]),
 )

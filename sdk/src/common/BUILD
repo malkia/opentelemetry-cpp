@@ -72,6 +72,17 @@ otel_cc_library(
 )
 
 otel_cc_library(
+    name = "empty_attributes",
+    srcs = [
+        "empty_attributes.cc",
+    ],
+    deps = [
+        "//api",
+        "//sdk:headers",
+    ],
+)
+
+otel_cc_library(
     name = "global_log_handler",
     srcs = [
         "global_log_handler.cc",

@@ -121,7 +121,7 @@ cc_test(
     ],
     deps = [
         "//sdk/src/trace",
-        "@com_google_googletest//:gtest_main",
+        "@googletest//:gtest_main",
     ],
     tags = ["test",],
 )
@@ -133,7 +133,7 @@ Integrating Google Tests with bazel is as simple as creating a target with:
 - srcs: The source file containing the tests
 - deps: The dependencies of the build; here, `//sdk/src/trace` refers to the
   directory of the source code being tested, and
-  `@com_google_googletest//:gtest_main` is the Google Test dependency.
+  `@googletest//:gtest_main` is the Google Test dependency.
 
 Building and executing a unit test is also very simple. On terminal, navigate to
 the directory the WORKSPACE file resides in, and execute two commands:

@@ -56,6 +56,7 @@ DLL_DEPS = set([
     Label("@otel_sdk_dev//sdk:headers"),
     Label("@otel_sdk_dev//sdk/src/common:base64"),
     Label("@otel_sdk_dev//sdk/src/common:disabled"),
+    Label("@otel_sdk_dev//sdk/src/common:empty_attributes"),
     Label("@otel_sdk_dev//sdk/src/common:env_variables"),
     Label("@otel_sdk_dev//sdk/src/common:global_log_handler"),
     Label("@otel_sdk_dev//sdk/src/common:wildcard_match"),
