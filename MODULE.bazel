@@ -29,7 +29,7 @@ bazel_dep(name = "gazelle", version = "0.48.0")
 bazel_dep(name = "stardoc", version = "0.8.1")
 bazel_dep(name = "rules_android", version = "0.7.1")
 bazel_dep(name = "grpc", version = "1.80.0")
-bazel_dep(name = "rules_swift", version = "3.5.0")
+bazel_dep(name = "rules_swift", version = "3.6.0")
 single_version_override(
     module_name = "grpc",
     patch_strip = 1,
