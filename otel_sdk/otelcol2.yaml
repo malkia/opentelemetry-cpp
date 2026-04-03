@@ -2,17 +2,17 @@ receivers:
   otlpjsonfile:
     start_at: beginning
     include_file_name: false
-    include: C:/p/m/opentelemetry-cpp/otel_sdk/all.json
+    include: metrics1.json
 
 processors:
   batch:
-    send_batch_size: 128
+    send_batch_size: 8192
   groupbyattrs:
     keys: [test]
 
 exporters:
   file:
-    path: C:/p/m/opentelemetry-cpp/otel_sdk/all2.json
+    path: metrics2.json
 
 service:
   pipelines:

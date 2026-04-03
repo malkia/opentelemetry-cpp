@@ -6,13 +6,33 @@ receivers:
 
 exporters:
   file:
-    path: C:/p/m/opentelemetry-cpp/otel_sdk/all.json
-  # file/metrics:
-  #   path: C:/p/m/opentelemetry-cpp/otel_sdk/file_metrics.json
-  # file/traces:
-  #   path: C:/p/m/opentelemetry-cpp/otel_sdk/file_traces.json
-  # file/logs:
-  #   path: C:/p/m/opentelemetry-cpp/otel_sdk/file_logs.json
+    path: metrics1.json
+
+# {{RULE0}} 
+# {{RULE1}}
+# {{RULE2}}
+# {{RULE3}}
+# {{RULE4}}
+# {{RULE5}}
+# {{RULE6}}
+# {{RULE7}}
+# {{RULE8}}
+
+# {{RULE0}}
+# {{RULE1}} {{bazel-out/x64_windows-fastbuild/bin/otelcol3.yaml}}
+# {{RULE2}} {{bazel-out/x64_windows-fastbuild/bin}}
+# {{RULE3}} {{bazel-out/x64_windows-fastbuild/bin/}}
+# {{RULE4}} {{BUILD.bazel}}
+# {{RULE5}} {{bazel-out/volatile-status.txt}}
+# {{RULE6}} {{bazel-out/stable-status.txt}}
+# {{RULE7}} {{//:otelcol_yaml}}
+# {{RULE8}} {{_main}}
+
+# {{RULE_A}}
+# {{RULE_B}}
+# {{RULE_C}}
+# {{RULE_D}}
+
 
 service:
   pipelines:

@@ -1,3 +1,4 @@
+#load("@bazel_lib//lib:expand_template.bzl", "expand_template")
 load("@rules_cc//cc:defs.bzl", "cc_import", "cc_test", "cc_binary")
 
 package(default_visibility = ["//visibility:public"])
@@ -55,9 +56,26 @@ cc_test(
     srcs = ["t.cpp"],
 )
 
+# expand_template(
+#     name = "otelcol_yaml",
+#     template = "otelcol.yaml",
+#     out = "otelcol3.yaml",
+#     substitutions = {
+# #        "RULE0": "$<",
+#         "RULE1": "$@",
+#         "RULE2": "$(@D)",
+#         "RULE3": "$(RULEDIR)",
+#         "RULE4": "$(BUILD_FILE_PATH)",
+#         "RULE5": "$(VERSION_FILE)",
+#         "RULE6": "$(INFO_FILE)",
+#         "RULE7": "$(TARGET)",
+#         "RULE8": "$(WORKSPACE)",
+#     }
+# )
+
 cc_test(
-    name = "s",
-    srcs = ["s.cpp"],
+    name = "m1",
+    srcs = ["m.cpp"],
     data = [
         "@multitool//tools/otelcol-contrib",
         "otelcol.yaml",
@@ -75,8 +93,8 @@ cc_test(
 )
 
 cc_test(
-    name = "s2",
-    srcs = ["s.cpp"],
+    name = "m2",
+    srcs = ["m.cpp"],
     data = [
         "@multitool//tools/otelcol-contrib",
         "otelcol2.yaml",
