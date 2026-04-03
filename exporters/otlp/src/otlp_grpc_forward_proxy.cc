@@ -228,7 +228,7 @@ grpc::ServerUnaryReactor* OtlpGrpcForwardProxy::Impl::Finish(grpc::CallbackServe
                 OTEL_INTERNAL_LOG_DEBUG("[otlp_grpc_forward_proxy] async " TEXT " export"); \
                 auto arena{ std::make_unique<google::protobuf::Arena>(impl.arenaOptions) }; \
                 auto reqCopy{ *req }; \
-                exportResult = impl.client->DelegateAsyncExport( impl.clientOptions, impl.STUB.get(), std::move(context), std::move(arena), std::move(reqCopy), \
+                exportResult = impl.client->DelegateAsyncExport( impl.clientOptions, impl.STUB.get(), std::move(context), std::move(arena), &reqCopy, \
                     [implPtr = &impl] (sdk::common::ExportResult r, std::unique_ptr<google::protobuf::Arena>&&, const REQUEST&, RESPONSE* ) -> bool {  \
                         return implPtr->HandleExportResult(r); \
                     }); \

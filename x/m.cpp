@@ -35,7 +35,6 @@
 #include <opentelemetry/metrics/provider.h>
 #include <opentelemetry/sdk/common/global_log_handler.h>
 #include <opentelemetry/sdk/common/env_variables.h>
-#include <opentelemetry/sdk/resource/semantic_conventions.h>
 #include <opentelemetry/sdk/metrics/meter_provider_factory.h>
 #include <opentelemetry/sdk/metrics/export/periodic_exporting_metric_reader_factory.h>
 #include <opentelemetry/exporters/otlp/otlp_grpc_metric_exporter_factory.h>
@@ -45,7 +44,6 @@
 #include <opentelemetry/logs/provider.h>
 #include <opentelemetry/sdk/common/global_log_handler.h>
 #include <opentelemetry/sdk/common/env_variables.h>
-#include <opentelemetry/sdk/resource/semantic_conventions.h>
 #include <opentelemetry/sdk/trace/tracer_provider.h>
 #include <opentelemetry/sdk/trace/tracer_provider_factory.h>
 #include <opentelemetry/sdk/trace/batch_span_processor_options.h>
@@ -131,35 +129,35 @@ public:
 };
 double MeasurementFetcher::value_ = 0.0;
 
-// void metrics_counter_example(const std::string &name)
-// {
-//   std::string counter_name = name + "_counter";
-//   auto provider            = opentelemetry::metrics::Provider::GetMeterProvider();
-//   opentelemetry::nostd::shared_ptr<opentelemetry::metrics::Meter> meter =
-//       provider->GetMeter(name, "1.2.0");
-//   auto double_counter = meter->CreateDoubleCounter(counter_name);
+void metrics_counter_example(const std::string &name)
+{
+  std::string counter_name = name + "_counter";
+  auto provider            = opentelemetry::metrics::Provider::GetMeterProvider();
+  opentelemetry::nostd::shared_ptr<opentelemetry::metrics::Meter> meter =
+      provider->GetMeter(name, "1.2.0");
+  auto double_counter = meter->CreateDoubleCounter(counter_name);
 
-//   for (uint32_t i = 0; i < 2000; ++i)
-//   {
-//     double val = (rand() % 700) + 1.1;
-//     double_counter->Add(val);
-//     std::this_thread::sleep_for(std::chrono::milliseconds(10));
-//   }
-// }
+  for (uint32_t i = 0; i < 2000; ++i)
+  {
+    double val = (rand() % 700) + 1.1;
+    double_counter->Add(val);
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+  }
+}
 
-// void metrics_observable_counter_example(const std::string &name)
-// {
-//   std::string counter_name = name + "_observable_counter";
-//   auto provider            = opentelemetry::metrics::Provider::GetMeterProvider();
-//   opentelemetry::nostd::shared_ptr<opentelemetry::metrics::Meter> meter =
-//       provider->GetMeter(name, "1.2.0");
-//   double_observable_counter = meter->CreateDoubleObservableCounter(counter_name);
-//   double_observable_counter->AddCallback(MeasurementFetcher::Fetcher, nullptr);
-//   for (uint32_t i = 0; i < 2000; ++i)
-//   {
-//     std::this_thread::sleep_for(std::chrono::milliseconds(10));
-//   }
-// }
+void metrics_observable_counter_example(const std::string &name)
+{
+  std::string counter_name = name + "_observable_counter";
+  auto provider            = opentelemetry::metrics::Provider::GetMeterProvider();
+  opentelemetry::nostd::shared_ptr<opentelemetry::metrics::Meter> meter =
+      provider->GetMeter(name, "1.2.0");
+  double_observable_counter = meter->CreateDoubleObservableCounter(counter_name);
+  double_observable_counter->AddCallback(MeasurementFetcher::Fetcher, nullptr);
+  for (uint32_t i = 0; i < 2000; ++i)
+  {
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+  }
+}
 
 void metrics_histogram_example(const std::string &name)
 {
@@ -277,7 +275,7 @@ void CleanupLogger()
 
 void InitMetrics(const std::string &name)
 {
-  #if 1
+  #if 0
   auto exporter = opentelemetry::exporter::metrics::OStreamMetricExporterFactory::Create();
   #else
     opentelemetry::exporter::otlp::OtlpGrpcMetricExporterOptions exporterOptions;
@@ -290,8 +288,8 @@ void InitMetrics(const std::string &name)
 
   // Initialize and set the global MeterProvider
   opentelemetry::sdk::metrics::PeriodicExportingMetricReaderOptions options;
-  options.export_interval_millis = std::chrono::milliseconds(1000);
-  options.export_timeout_millis  = std::chrono::milliseconds(500);
+  options.export_interval_millis = std::chrono::milliseconds(100);
+  options.export_timeout_millis  = std::chrono::milliseconds(50);
 
   auto reader = opentelemetry::sdk::metrics::PeriodicExportingMetricReaderFactory::Create(
       std::move(exporter), options);
@@ -341,7 +339,7 @@ void InitMetrics(const std::string &name)
       provider->AddView(
         InstrumentSelectorFactory::Create(InstrumentType::kHistogram, "*", ""), 
         MeterSelectorFactory::Create("", "", ""),
-        ViewFactory::Create( "", "", "", AggregationType::kHistogram, std::move( aggr_conf ) )
+        ViewFactory::Create( "", "", AggregationType::kHistogram, std::move( aggr_conf ) )
       );
   }
 
@@ -382,7 +380,8 @@ struct proxy_thread
       proxy->RegisterMetricExporter();
       proxy->RegisterTraceExporter();
       proxy->RegisterLogRecordExporter();
-      proxy->Start();
+      bool x = proxy->Start2();
+      printf("%d", x);
       {
         std::unique_lock<std::mutex> lock(mu);  
         ready = true;
@@ -418,31 +417,27 @@ int main1()
     //GlobalLogHandler::SetLogLevel(LogLevel::Error);
   }
 
-  // proxy_thread p0("127.0.0.1:4317", "127.0.0.1:43170");
-  // std::vector<std::unique_ptr<proxy_thread>> proxies;
-  // std::string last;
-  // for(int i=0; i<100; i++)
-  // {
-  //   printf("."); fflush(stdout);
-  //   auto one = std::string("127.0.0.1:" + std::to_string(43170 + i));
-  //   auto two = std::string("127.0.0.1:" + std::to_string(43170 + i + 1));
-  //   auto proxy = std::make_unique<proxy_thread>(one,two);
-  //   proxies.emplace_back(std::move(proxy));
-  //   last = two;
-  // }
-  //proxy_thread pA(last, opentelemetry::exporter::otlp::GetOtlpDefaultGrpcEndpoint());
-//  proxy_thread pA(last,"127.0.0.1:4317");
-  //pA.proxy->SetActive( false );
-  
-  printf("starting...\n");
-  proxy_thread proxy("127.0.0.1:43170", opentelemetry::exporter::otlp::GetOtlpDefaultGrpcEndpoint());
-//  proxy.proxy->SetActive(false);
-  printf("started...\n");
-
   {
     using namespace opentelemetry::sdk::common;
-    setenv( "OTEL_EXPORTER_OTLP_ENDPOINT", "http://127.0.0.1:43170", 1 /* override */ );
+    setenv( "OTEL_EXPORTER_OTLP_ENDPOINT", "http://127.0.0.1:43171", 1 /* override */ );
   }
+
+    printf("starting...\n");
+
+  std::vector<std::unique_ptr<proxy_thread>> proxies;
+  std::string last;
+  for(int i=0; i<10; i++)
+  {
+    printf("."); fflush(stdout);
+    auto one = std::string("127.0.0.1:" + std::to_string(43171 + i));
+    auto two = std::string("127.0.0.1:" + std::to_string(43171 + i + 1));
+    auto proxy = std::make_unique<proxy_thread>(one,two);
+    proxies.emplace_back(std::move(proxy));
+    last = two;
+  }
+  
+  proxy_thread proxy(last, "otel.ct.activision.com:4317");
+  printf("started...\n");
 
   std::string metrics_name{"malkia_metrics_test"};
 
@@ -456,11 +451,11 @@ int main1()
 //    traces_foo_library();
 //    if( i % 100 == 0 )
     {
- //     std::thread counter_example{&metrics_counter_example, metrics_name};
- //     std::thread observable_counter_example{&metrics_observable_counter_example, metrics_name};
+     std::thread counter_example{&metrics_counter_example, metrics_name};
+     std::thread observable_counter_example{&metrics_observable_counter_example, metrics_name};
       std::thread histogram_example{&metrics_histogram_example, metrics_name};
-//      counter_example.join();
-//      observable_counter_example.join();
+      counter_example.join();
+      observable_counter_example.join();
       histogram_example.join();
     }
   }

@@ -44,19 +44,18 @@ package(default_visibility = ["//visibility:public"])
     ]
 ]
 
-#cc_test(
-#    name = "m",
-#    srcs = ["m.cpp"],
-#    deps = ["@otel_sdk_dev//:dll"],
-#    local = True,
-#    tags = ["manual", "external", "no-cache"],
-#
+cc_test(
+   name = "m",
+   srcs = ["m.cpp"],
+   deps = ["@otel_sdk_dev//:dll"],
+   local = True,
+   tags = ["manual", "external", "no-cache"],
 #    # Minimal set of env vars for Visual Studio
 #    env_inherit = [
 #        "windir", # Mandatory
 #        #"USERPROFILE", # In order to avoid creating %USERPROFILE%
 #    ],
-#)
+)
 
 # copy_directory(
 #     name = "dashboards_dir",
