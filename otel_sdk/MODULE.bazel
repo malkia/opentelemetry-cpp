@@ -2,8 +2,16 @@ module(name = "otel_sdk")
 bazel_dep(name = "platforms", version = "1.0.0")
 bazel_dep(name = "rules_cc", version = "0.2.17")
 bazel_dep(name = "rules_multitool", version = "1.11.1")
-bazel_dep(name = "reproc", version = "14.2.5")
 bazel_dep(name = "bazel_lib", version = "3.2.2")
+
 multitool = use_extension("@rules_multitool//multitool:extension.bzl", "multitool")
 multitool.hub(lockfile = "@otel_sdk//:multitool.lock.json")
 use_repo(multitool, "multitool")
+
+bazel_dep(name= "tinyproc")
+archive_override(
+    module_name = "tinyproc", 
+    strip_prefix = "tinyproc-0295662ff6ebdc70d809edf84db549d33e49a713",
+    integrity = "sha256-YjM+fByDPdiZ5Z5v9vqlij0nwHV7zYv6K0k2CGdS28g=",
+    url = "https://github.com/malkia/tinyproc/archive/0295662ff6ebdc70d809edf84db549d33e49a713.zip",
+)

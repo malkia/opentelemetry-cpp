@@ -1,12 +1,12 @@
 receivers:
-  otlpjsonfile:
-    start_at: beginning
-    include_file_name: false
-    include: metrics1.json
-  
+  otlp/local:
+    protocols:
+      grpc:
+        endpoint: 127.0.0.1:4317
+
 exporters:
-  file:
-    path: metrics2.json
+  file/metrics1:
+    path: metrics3.json
 
 processors:
   batch:
@@ -28,7 +28,6 @@ processors:
 service:
   pipelines:
     metrics:
-      receivers: [otlpjsonfile]
-#      processors: [batch,cumulativetodelta,transform/aggregate,deltatocumulative,groupbyattrs] 
-      processors: [cumulativetodelta,transform/aggregate,deltatocumulative] #,batch,groupbyattrs] 
-      exporters: [file]
+      receivers: [otlp/local]
+      processors: [cumulativetodelta,transform/aggregate,deltatocumulative,batch,groupbyattrs] 
+      exporters: [file/metrics1]

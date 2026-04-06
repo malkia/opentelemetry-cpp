@@ -5,43 +5,11 @@ receivers:
         endpoint: 127.0.0.1:4317
 
 exporters:
-  file:
+  file/metrics1:
     path: metrics1.json
-
-# {{RULE0}} 
-# {{RULE1}}
-# {{RULE2}}
-# {{RULE3}}
-# {{RULE4}}
-# {{RULE5}}
-# {{RULE6}}
-# {{RULE7}}
-# {{RULE8}}
-
-# {{RULE0}}
-# {{RULE1}} {{bazel-out/x64_windows-fastbuild/bin/otelcol3.yaml}}
-# {{RULE2}} {{bazel-out/x64_windows-fastbuild/bin}}
-# {{RULE3}} {{bazel-out/x64_windows-fastbuild/bin/}}
-# {{RULE4}} {{BUILD.bazel}}
-# {{RULE5}} {{bazel-out/volatile-status.txt}}
-# {{RULE6}} {{bazel-out/stable-status.txt}}
-# {{RULE7}} {{//:otelcol_yaml}}
-# {{RULE8}} {{_main}}
-
-# {{RULE_A}}
-# {{RULE_B}}
-# {{RULE_C}}
-# {{RULE_D}}
-
 
 service:
   pipelines:
-    traces:
-      receivers: [otlp/local]
-      exporters: [file]
     metrics:
       receivers: [otlp/local]
-      exporters: [file]
-    logs:
-      receivers: [otlp/local]
-      exporters: [file]
+      exporters: [file/metrics1]

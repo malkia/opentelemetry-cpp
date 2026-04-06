@@ -56,23 +56,6 @@ cc_test(
     srcs = ["t.cpp"],
 )
 
-# expand_template(
-#     name = "otelcol_yaml",
-#     template = "otelcol.yaml",
-#     out = "otelcol3.yaml",
-#     substitutions = {
-# #        "RULE0": "$<",
-#         "RULE1": "$@",
-#         "RULE2": "$(@D)",
-#         "RULE3": "$(RULEDIR)",
-#         "RULE4": "$(BUILD_FILE_PATH)",
-#         "RULE5": "$(VERSION_FILE)",
-#         "RULE6": "$(INFO_FILE)",
-#         "RULE7": "$(TARGET)",
-#         "RULE8": "$(WORKSPACE)",
-#     }
-# )
-
 cc_test(
     name = "m1",
     srcs = ["m.cpp"],
@@ -87,7 +70,7 @@ cc_test(
        "$(rootpath t)",
     ],
     deps = [
-        "@reproc//:reproc++", 
+        "@tinyproc", 
         "@bazel_tools//tools/cpp/runfiles"
     ],
 )
@@ -103,10 +86,29 @@ cc_test(
     args = [
        "$(rootpath @multitool//tools/otelcol-contrib)",
        "$(rootpath otelcol2.yaml)",
-       "5",
+       "10",
     ],
     deps = [
-        "@reproc//:reproc++", 
+        "@tinyproc", 
+        "@bazel_tools//tools/cpp/runfiles"
+    ],
+)
+
+cc_test(
+    name = "m3",
+    srcs = ["m.cpp"],
+    data = [
+        "@multitool//tools/otelcol-contrib",
+        "otelcol3.yaml",
+        "t",
+    ],
+    args = [
+       "$(rootpath @multitool//tools/otelcol-contrib)",
+       "$(rootpath otelcol3.yaml)",
+       "$(rootpath t)",
+    ],
+    deps = [
+        "@tinyproc", 
         "@bazel_tools//tools/cpp/runfiles"
     ],
 )
