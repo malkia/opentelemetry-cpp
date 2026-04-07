@@ -6,14 +6,13 @@ startup --host_jvm_args=-DBAZEL_TRACK_SOURCE_DIRECTORIES=1
 
 # Disable ANDROID detection, as it breaks with github actions on the Windows image
 # ERROR: D:/a/opentelemetry-cpp/opentelemetry-cpp/BUILD:141:24: While resolving toolchains for target 
-#        //:otel_sdk_r (1512d13): invalid registered toolchain '@androidsdk//:sdk-toolchain': 
-#                                 error loading package '@@rules_android++android_sdk_repository_extension+androidsdk//': 
+#                                 error loading package 'build:dwyu @rules_android++android_sdk_repository_extension+androidsdk//': 
 #        at D:/b/cefevaif/external/rules_android++android_sdk_repository_extension+androidsdk/helper.bzl:16:6: 
-#                                 Unable to find package for @@[unknown repo 'local_config_platform' 
-#        requested from @@rules_android++android_sdk_repository_extension+androidsdk]//:constraints.bzl: 
-#                                 The repository '@@[unknown repo 'local_config_platform' requested from @@rules_android++android_sdk_repository_extension+androidsdk]' 
+#                                 Unable to find package for build:dwyu @[unknown repo 'local_config_platform' 
+#        requested from build:dwyu @rules_android++android_sdk_repository_extension+androidsdk]//:constraints.bzl: 
+#                                 The repository 'build:dwyu @[unknown repo 'local_config_platform' requested from build:dwyu @rules_android++android_sdk_repository_extension+androidsdk]' 
 #                                 could not be resolved: 
-#         No repository visible as '@local_config_platform' from repository '@@rules_android++android_sdk_repository_extension+androidsdk'. 
+#         No repository visible as '@local_config_platform' from repository 'build:dwyu @rules_android++android_sdk_repository_extension+androidsdk'. 
 #         The local_config_platform built-in module is disabled by --incompatible_disable_native_repo_rules. 
 #         Either remove that flag, or replace @local_config_platform with @platforms//host.
 common --repo_env=ANDROID_HOME=
@@ -33,7 +32,6 @@ build:macos --features=-header_modules
 build:macos --features=-layering_check
 build:windows --features=external_include_paths
 
-# Don't try to build .so and .dylib shared libs (instead of static) libs on Linux/OSX
 # For some reason, with clang-cl, it also tried to do on Windows, where dynamic linking just does not support it.
 build --dynamic_mode=off
 
@@ -63,7 +61,6 @@ build:windows --host_linkopt="shell32.lib"
 build:windows      --linkopt=-MANIFEST:EMBED
 build:windows --host_linkopt=-MANIFEST:EMBED
 
-# Requires Visual Studio 2019 Build Tools installed in default location with the latest compiler (14.29.30133) for x64
 
 build:windows      --action_env=BAZEL_VC_FULL_VERSION=14.29.30133      --action_env=BAZEL_WINSDK_FULL_VERSION=10.0.26100.0
 build:windows --host_action_env=BAZEL_VC_FULL_VERSION=14.29.30133 --host_action_env=BAZEL_WINSDK_FULL_VERSION=10.0.26100.0
@@ -75,31 +72,24 @@ build:windows --host_action_env=BAZEL_VC_FULL_VERSION=14.29.30133 --host_action_
 
 build:windows --features=shorten_virtual_includes
 
-# grpc+\src/core/util/useful.h(193): error C4146: unary minus operator applied to unsigned type, result still unsigned
 build:windows      --copt="/wd4146"
 build:windows --host_copt="/wd4146"
 
-# grpc+\src\core\lib\slice\slice.cc(192) : error C4700: uninitialized local variable 'slice' used
 build:windows      --copt="/wd4700"
 build:windows --host_copt="/wd4700"
 
-# grpc+\src\core\server\server.cc(1655) : error C4703: potentially uninitialized local pointer variable 'rm' used
 build:windows      --copt="/wd4703"
 build:windows --host_copt="/wd4703"
 
-# c-ares+/src/lib/str/ares_str.c(395): error C4996: 'strcmpi': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strcmpi. See online help for details
 build:windows      --copt="/wd4996"
 build:windows --host_copt="/wd4996"
 
-# c-ares+/src/lib/record/ares_dns_record.c(1065): warning C4090: '=': different 'const' qualifiers
 build:windows      --copt="/wd4090"
 build:windows --host_copt="/wd4090"
 
-# protobuf+/upb/mem/arena.c(523): warning C4047: 'initializing': 'uintptr_t' differs in levels of indirection from 'void *'
 build:windows      --copt="/wd4047"
 build:windows --host_copt="/wd4047"
 
-# Better C++ :)
 build:windows      --copt="/permissive-"
 build:windows --host_copt="/permissive-"
 
@@ -148,12 +138,10 @@ common:asanwin --copt -fsanitize-recover=all
 
 # Gives:
 #    lld-link: error: duplicate symbol: __cfi_check_fail
-#    >>> defined at runfiles.lib(runfiles.obj)
 # common:asanwin --copt -fsanitize-cfi-cross-dso
 
 # Gives multiple, like
-#   lld-link: error: duplicate symbol: __odr_asan_gen_??_R0?AVios_base@std@@@8
-#   >>> defined at runfiles.lib(runfiles.obj)
+#   lld-link: error: duplicate symbol: __odr_asan_gen_??_R0?AVios_base@stdbuild:dwyu @@8
 # common:asanwin --copt -fsanitize-address-use-odr-indicator
 
 # https://github.com/llvm/llvm-project/blob/main/compiler-rt/lib/asan/asan_flags.inc
@@ -194,7 +182,6 @@ test --test_summary=terse
 mod --charset=ascii
 
 # This doesn't work with 
-# ../com_github_opentelemetry_proto/opentelemetry/proto/collector/metrics/v1/metrics_service.proto: File does not reside within any path specified using --proto_path (or -I).  You must specify a --proto_path which encompasses this file.  Note that the proto_path must be a
 #common --experimental_sibling_repository_layout
 
 common --nobuild_runfile_links
@@ -278,8 +265,162 @@ common --incompatible_autoload_externally=+cc_library,+cc_binary,+cc_test,+JavaI
 
 common --nocheck_bzl_visibility
 
-## This is what my ../top.bazelrc contains (not in the repo as local to my machine)
+build:dwyu --copt=-Wno-incompatible-pointer-types
+build:dwyu --host_copt=-Wno-incompatible-pointer-types
+build:dwyu --aspects=//:dwyu.bzl%dwyu_aspect --output_groups=dwyu
+
 # build --disk_cache=f:/b/d
 # common --repository_cache=f:/b/r
 # startup --output_user_root=f:/b/u
 try-import %workspace%/../top.bazelrc
+
+
+build:dwyu @//api/test/baggage:baggage_benchmark_smoketest
+# build:dwyu @//api/test/common:spinlock_benchmark_smoketest
+# build:dwyu @//api/test/singleton:component_a
+# build:dwyu @//api/test/singleton:component_b
+# build:dwyu @//api/test/singleton:component_c
+# build:dwyu @//api/test/singleton:component_d
+# build:dwyu @//api/test/singleton:component_e
+# build:dwyu @//api/test/singleton:component_f
+# build:dwyu @//api/test/singleton:component_g
+# build:dwyu @//api/test/singleton:component_h
+# build:dwyu @//api/test/trace:span_benchmark_smoketest
+# build:dwyu @//api/test/trace:span_id_benchmark_smoketest
+# build:dwyu @//examples/batch:example_simple
+# build:dwyu @//examples/common/foo_library:common_foo_library
+# build:dwyu @//examples/common/logs_foo_library:common_logs_foo_library
+# build:dwyu @//examples/common/metrics_foo_library:common_metrics_foo_library
+# build:dwyu @//examples/grpc:tracer_common
+# build:dwyu @//examples/http:example_http_client
+# build:dwyu @//examples/http:example_http_server
+# build:dwyu @//examples/logs_simple:example_logs_simple
+# build:dwyu @//examples/metrics_simple:metrics_ostream_example
+# build:dwyu @//examples/multi_processor:example_multi_processor
+# build:dwyu @//examples/multithreaded:example_multithreaded
+# build:dwyu @//examples/otlp:example_otlp_file
+# build:dwyu @//examples/otlp:example_otlp_file_log
+# build:dwyu @//examples/otlp:example_otlp_file_metric
+# build:dwyu @//examples/otlp:example_otlp_grpc
+# build:dwyu @//examples/plugin/load:load_plugin
+# build:dwyu @//examples/plugin/plugin:example_plugin.so
+# build:dwyu @//examples/simple:example_simple
+# build:dwyu @//exporters/memory:in_memory_metric_data
+# build:dwyu @//exporters/memory:in_memory_metric_exporter_factory
+# build:dwyu @//exporters/memory:in_memory_span_data
+# build:dwyu @//exporters/memory:in_memory_span_exporter
+# build:dwyu @//exporters/ostream:ostream_log_record_exporter
+# build:dwyu @//exporters/ostream:ostream_log_record_exporter_builder
+# build:dwyu @//exporters/ostream:ostream_metric_exporter
+# build:dwyu @//exporters/ostream:ostream_metric_exporter_builder
+# build:dwyu @//exporters/ostream:ostream_span_exporter
+# build:dwyu @//exporters/ostream:ostream_span_exporter_builder
+# build:dwyu @//exporters/otlp:otlp_builder_utils
+# build:dwyu @//exporters/otlp:otlp_file_client
+# build:dwyu @//exporters/otlp:otlp_file_exporter
+# build:dwyu @//exporters/otlp:otlp_file_log_record_exporter
+# build:dwyu @//exporters/otlp:otlp_file_log_record_exporter_builder
+# build:dwyu @//exporters/otlp:otlp_file_metric_exporter
+# build:dwyu @//exporters/otlp:otlp_file_metric_exporter_builder
+# build:dwyu @//exporters/otlp:otlp_file_span_exporter_builder
+# build:dwyu @//exporters/otlp:otlp_http_client
+# build:dwyu @//exporters/otlp:otlp_recordable
+# build:dwyu @//ext/src/grpc:grpc_config
+# build:dwyu @//ext/src/http/client/curl:http_client_curl
+# build:dwyu @//ext/test/w3c_tracecontext_http_test_server:w3c_tracecontext_http_test_server
+# build:dwyu @//functional/otlp:func_otlp_grpc
+# build:dwyu @//resource_detectors:resource_detectors
+# build:dwyu @//sdk/src/common/platform:fork
+# build:dwyu @//sdk/src/common:base64
+# build:dwyu @//sdk/src/common:disabled
+# build:dwyu @//sdk/src/common:empty_attributes
+# build:dwyu @//sdk/src/common:env_variables
+# build:dwyu @//sdk/src/common:global_log_handler
+# build:dwyu @//sdk/src/common:random
+# build:dwyu @//sdk/src/common:wildcard_match
+# build:dwyu @//sdk/src/configuration:configuration
+# build:dwyu @//sdk/src/logs:logs
+# build:dwyu @//sdk/src/metrics:metrics
+# build:dwyu @//sdk/src/resource:resource
+# build:dwyu @//sdk/src/trace:trace
+# build:dwyu @//sdk/src/version:version
+# build:dwyu @//sdk/test/common:attributemap_hash_benchmark_smoketest
+# build:dwyu @//sdk/test/common:base64_benchmark_smoketest
+# build:dwyu @//sdk/test/common:baseline_circular_buffer
+# build:dwyu @//sdk/test/common:circular_buffer_benchmark_smoketest
+# build:dwyu @//sdk/test/common:random_fork_test
+# build:dwyu @//sdk/test/metrics:attributes_hashmap_benchmark_smoketest
+# build:dwyu @//sdk/test/metrics:attributes_processor_benchmark_smoketest
+# build:dwyu @//sdk/test/metrics:b2exphist_idx_benchmark_smoketest
+# build:dwyu @//sdk/test/metrics:histogram_aggregation_benchmark_smoketest
+# build:dwyu @//sdk/test/metrics:measurements_benchmark_smoketest
+# build:dwyu @//sdk/test/metrics:metrics_common_test_utils
+# build:dwyu @//sdk/test/metrics:sum_aggregation_benchmark_smoketest
+# build:dwyu @//sdk/test/trace:sampler_benchmark_smoketest
+# build:dwyu @abseil-cpp//absl/base:base
+# build:dwyu @abseil-cpp//absl/base:base_internal
+# build:dwyu @abseil-cpp//absl/base:cycleclock_internal
+# build:dwyu @abseil-cpp//absl/base:malloc_internal
+# build:dwyu @abseil-cpp//absl/base:raw_logging_internal
+# build:dwyu @abseil-cpp//absl/base:spinlock_wait
+# build:dwyu @abseil-cpp//absl/base:strerror
+# build:dwyu @abseil-cpp//absl/base:throw_delegate
+# build:dwyu @abseil-cpp//absl/base:tracing_internal
+# build:dwyu @abseil-cpp//absl/container:hashtablez_sampler
+# build:dwyu @abseil-cpp//absl/container:inlined_vector_internal
+# build:dwyu @abseil-cpp//absl/container:raw_hash_set
+# build:dwyu @abseil-cpp//absl/crc:cpu_detect
+# build:dwyu @abseil-cpp//absl/crc:crc_cord_state
+# build:dwyu @abseil-cpp//absl/crc:crc_internal
+# build:dwyu @abseil-cpp//absl/crc:crc32c
+# build:dwyu @abseil-cpp//absl/debugging:borrowed_fixup_buffer
+# build:dwyu @abseil-cpp//absl/debugging:debugging_internal
+# build:dwyu @abseil-cpp//absl/debugging:decode_rust_punycode
+# build:dwyu @abseil-cpp//absl/debugging:demangle_internal
+# build:dwyu @abseil-cpp//absl/debugging:demangle_rust
+# build:dwyu @abseil-cpp//absl/debugging:examine_stack
+# build:dwyu @abseil-cpp//absl/debugging:leak_check
+# build:dwyu @abseil-cpp//absl/debugging:stacktrace
+# build:dwyu @abseil-cpp//absl/debugging:symbolize
+# build:dwyu @abseil-cpp//absl/flags:config
+# build:dwyu @abseil-cpp//absl/flags:flag_internal
+# build:dwyu @abseil-cpp//absl/flags:marshalling
+# build:dwyu @abseil-cpp//absl/flags:program_name
+# build:dwyu @abseil-cpp//absl/flags:reflection
+# build:dwyu @abseil-cpp//absl/functional:function_ref
+# build:dwyu @abseil-cpp//absl/hash:city
+# build:dwyu @abseil-cpp//absl/hash:hash
+# build:dwyu @abseil-cpp//absl/log/internal:check_op
+# build:dwyu @abseil-cpp//absl/log/internal:conditions
+# build:dwyu @abseil-cpp//absl/log/internal:config
+# build:dwyu @abseil-cpp//absl/log/internal:format
+# build:dwyu @abseil-cpp//absl/log/internal:globals
+# build:dwyu @abseil-cpp//absl/log/internal:log_message
+# build:dwyu @abseil-cpp//absl/log/internal:log_sink_set
+# build:dwyu @abseil-cpp//absl/log/internal:structured_proto
+# build:dwyu @abseil-cpp//absl/log/internal:vlog_config
+# build:dwyu @abseil-cpp//absl/log:globals
+# build:dwyu @abseil-cpp//absl/log:log_entry
+# build:dwyu @abseil-cpp//absl/numeric:int128
+# build:dwyu @abseil-cpp//absl/strings:cord
+# build:dwyu @abseil-cpp//absl/strings:cord_internal
+# build:dwyu @abseil-cpp//absl/strings:cordz_functions
+# build:dwyu @abseil-cpp//absl/strings:cordz_handle
+# build:dwyu @abseil-cpp//absl/strings:cordz_info
+# build:dwyu @abseil-cpp//absl/strings:internal
+# build:dwyu @abseil-cpp//absl/strings:str_format_internal
+# build:dwyu @abseil-cpp//absl/strings:strings
+# build:dwyu @abseil-cpp//absl/synchronization:graphcycles_internal
+# build:dwyu @abseil-cpp//absl/synchronization:kernel_timeout_internal
+# build:dwyu @abseil-cpp//absl/synchronization:synchronization
+# build:dwyu @abseil-cpp//absl/time:time
+# build:dwyu @abseil-cpp//absl/types:span
+# build:dwyu @boringssl//:crypto
+# build:dwyu @boringssl//:ssl
+# build:dwyu @boringssl//:ssl_internal
+# #build:dwyu @c4core//:c4core
+# build:dwyu @curl//:curl
+# build:dwyu @grpc//:config_vars
+# build:dwyu @grpc//:gpr_platform
+# build:dwyu @grpc//:load_config
+# build:dwyu @grpc//src/core:env

@@ -22,6 +22,22 @@ otel_cc_test(
 )
 
 otel_cc_test(
+    name = "context_test",
+    srcs = [
+        "context_test.cc",
+    ],
+    tags = [
+        "api",
+        "test",
+        "trace",
+    ],
+    deps = dll_deps([
+        "//api",
+        "@googletest//:gtest_main",
+    ]),
+)
+
+otel_cc_test(
     name = "noop_test",
     srcs = [
         "noop_test.cc",

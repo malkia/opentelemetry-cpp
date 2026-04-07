@@ -9,26 +9,30 @@ exporters:
     path: metrics2.json
 
 processors:
-  batch:
+  batch/pre:
     send_batch_size: 1000000
-  groupbyattrs:
+  batch/post:
+    send_batch_size: 1000000
+  groupbyattrs/post:
     keys:
       - test1
       - test2
+  transform/sg:
+    error_mode: propagate
+    metric_statements:
+      - convert_sum_to_gauge() where metric.type != METRIC_DATA_TYPE_NONE
+      - convert_gauge_to_sum("cumulative", true) where metric.type != METRIC_DATA_TYPE_NONE
   cumulativetodelta:
   transform/aggregate:
-    error_mode: ignore
+    error_mode: propagate
     metric_statements:
-      - delete_key(resource.attributes, "process.pid")
-      # - aggregate_on_attributes("sum") where metric.type != METRIC_DATA_TYPE_GAUGE
-      # - aggregate_on_attributes("mean") where metric.type == METRIC_DATA_TYPE_GAUGE
-      - aggregate_on_attributes("sum") where metric.type != -1
+      - delete_key(resource.attributes, "process.pid") where metric.is_monotonic == true
+      - aggregate_on_attributes("sum") where metric.is_monotonic == true
   deltatocumulative:
 
 service:
   pipelines:
     metrics:
       receivers: [otlpjsonfile]
-#      processors: [batch,cumulativetodelta,transform/aggregate,deltatocumulative,groupbyattrs] 
-      processors: [cumulativetodelta,transform/aggregate,deltatocumulative] #,batch,groupbyattrs] 
+      processors: [transform/sg,cumulativetodelta] #,transform/aggregate,deltatocumulative,batch/post,groupbyattrs/post] 
       exporters: [file]

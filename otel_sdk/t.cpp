@@ -60,8 +60,8 @@ int main(int argc, const char *argv[])
     auto exporter{exporter::otlp::OtlpGrpcMetricExporterFactory::Create({})};
 
     sdk::metrics::PeriodicExportingMetricReaderOptions options;
-    options.export_interval_millis = std::chrono::milliseconds(100);
-    options.export_timeout_millis = std::chrono::milliseconds(50);
+    options.export_interval_millis = std::chrono::milliseconds(1000);
+    options.export_timeout_millis = std::chrono::milliseconds(500);
 
     auto reader{sdk::metrics::PeriodicExportingMetricReaderFactory::Create(std::move(exporter), options)};
 
@@ -77,11 +77,11 @@ int main(int argc, const char *argv[])
     const auto apiMetricProvider{metrics::Provider::GetMeterProvider()};
     const auto meter{apiMetricProvider->GetMeter("malkia_test_meter", "1.2.3")};
     auto counter{meter->CreateUInt64Counter("malkia_test_monotonic")};
-    auto udcounter{meter->CreateInt64UpDownCounter("malkia_test_up_down")};
+    auto udcounter{meter->CreateDoubleUpDownCounter("malkia_test_up_down")};
     bool flip{false};
     int period{0};
     srand(GetCurrentProcessId());
-    for (size_t i = 0; i < 1000; i++)
+    for (size_t i = 0; i < 100; i++)
     {
       if( i % 100 == 0 )
       {
@@ -89,13 +89,10 @@ int main(int argc, const char *argv[])
       }
       flip = !flip;
       if (flip)
-        period = rand() % 1000;
-      counter->Add(1);//, {{"test1", "one"}, {"test2", "two"}});
-      if( flip )
-        udcounter->Add(3);//, {{"test1", "one"}, {"test2", "two"}});
-      else
-        udcounter->Add(-1);//, {{"test1", "one"}, {"test2", "two"}});
-      std::this_thread::sleep_for(std::chrono::milliseconds(flip ? period : 1000 - period));
+        period = rand() % 100;
+      //counter->Add(1, {{"test1", "one"}, {"test2", "two"}});
+      udcounter->Add( (i%23 < 11) ? +1.2 : -1.2);//, {{"test1", "one"}, {"test2", "two"}});
+      std::this_thread::sleep_for(std::chrono::milliseconds(flip ? period : 100 - period));
     }
   }
 
