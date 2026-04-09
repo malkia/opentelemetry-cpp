@@ -3,13 +3,56 @@ receivers:
     protocols:
       grpc:
         endpoint: 127.0.0.1:4317
+  prometheus/telemetry:
+    config:
+      scrape_configs:
+        - job_name: otelcol
+          scrape_interval: 1s
+          static_configs:
+            - targets: ['127.0.0.1:9999']
+
+processors:
+  batch/telemetry:
+  groupbyattrs/telemetry:
+    # based on
+    # jq < metrics1.telemetry.json | grep key | cut -d: -f2 | sort | uniq -c
+    keys:
+      - prometheus.type
 
 exporters:
   file/metrics1:
     path: metrics1.json
+  file/telemetry:
+    path: metrics1.telemetry.json
 
 service:
   pipelines:
-    metrics:
+    metrics/testing:
       receivers: [otlp/local]
       exporters: [file/metrics1]
+    metrics/telemetry:
+      receivers: [prometheus/telemetry]
+      processors: [batch/telemetry, groupbyattrs/telemetry]
+      exporters: [file/telemetry]
+
+  telemetry:
+    metrics:
+      level: detailed
+      readers:
+        - pull:
+            exporter:
+              prometheus:
+                host: 127.0.0.1
+                port: 9999   # 👈 change this
+    # https://github.com/open-telemetry/opentelemetry-collector/blob/main/service/telemetry/otelconftelemetry/internal/migration/v0.3.0.go#L125
+    logs:
+      level: debug
+      development: false #true
+      disable_caller: true
+      disable_stacktrace: true
+      encoding: json
+      disable_zap_resource: true
+      sampling:
+        enabled: false # log everything, no sampling
+      output_paths: metrics1.stdout.json
+      error_output_paths: metrics1.stderr.json
