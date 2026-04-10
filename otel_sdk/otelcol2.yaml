@@ -1,14 +1,27 @@
 receivers:
-  otlpjsonfile:
+  otlpjsonfile/metrics1:
     start_at: beginning
     include_file_name: false
     include: metrics1.json
+  prometheus/telemetry:
+    config:
+      scrape_configs:
+        - job_name: otelcol
+          scrape_interval: 1s
+          static_configs:
+            - targets: ['127.0.0.1:9999']
   
 exporters:
-  file:
+  file/metrics2:
     path: metrics2.json
+  file/telemetry:
+    path: metrics2.telemetry.json
 
 processors:
+  batch/telemetry:
+  groupbyattrs/telemetry:
+    keys:
+      - prometheus.type
   batch/pre:
     send_batch_size: 1000000
   batch/post:
@@ -32,7 +45,32 @@ processors:
 
 service:
   pipelines:
-    metrics:
-      receivers: [otlpjsonfile]
+    metrics/m2:
+      receivers: [otlpjsonfile/metrics1]
       processors: [transform/sg,cumulativetodelta] #,transform/aggregate,deltatocumulative,batch/post,groupbyattrs/post] 
-      exporters: [file]
+      exporters: [file/metrics2]
+    metrics/telemetry:
+      receivers: [prometheus/telemetry]
+      #processors: [batch/telemetry, groupbyattrs/telemetry]
+      exporters: [file/telemetry]
+  telemetry:
+    metrics:
+      level: detailed
+      readers:
+        - pull:
+            exporter:
+              prometheus:
+                host: 127.0.0.1
+                port: 9999   # 👈 change this
+    # https://github.com/open-telemetry/opentelemetry-collector/blob/main/service/telemetry/otelconftelemetry/internal/migration/v0.3.0.go#L125
+    logs:
+      level: debug
+      development: false #true
+      disable_caller: true
+      disable_stacktrace: true
+      encoding: json
+      disable_zap_resource: true
+      sampling:
+        enabled: false # log everything, no sampling
+      output_paths: metrics2.stdout.json
+      error_output_paths: metrics2.stderr.json

@@ -11,6 +11,12 @@ receivers:
           static_configs:
             - targets: ['127.0.0.1:9999']
 
+exporters:
+  file/metrics1:
+    path: metrics1.json
+  file/telemetry:
+    path: metrics1.telemetry.json
+
 processors:
   batch/telemetry:
   groupbyattrs/telemetry:
@@ -19,22 +25,34 @@ processors:
     keys:
       - prometheus.type
 
-exporters:
-  file/metrics1:
-    path: metrics1.json
-  file/telemetry:
-    path: metrics1.telemetry.json
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 service:
   pipelines:
-    metrics/testing:
+    metrics/m1:
       receivers: [otlp/local]
+
       exporters: [file/metrics1]
     metrics/telemetry:
       receivers: [prometheus/telemetry]
-      processors: [batch/telemetry, groupbyattrs/telemetry]
+      #processors: [batch/telemetry, groupbyattrs/telemetry]
       exporters: [file/telemetry]
-
   telemetry:
     metrics:
       level: detailed
