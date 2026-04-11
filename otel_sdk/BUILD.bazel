@@ -86,7 +86,7 @@ cc_test(
     args = [
        "$(rootpath @multitool//tools/otelcol-contrib)",
        "$(rootpath otelcol2.yaml)",
-       "60",
+       "11",
     ],
     deps = [
         "@tinyproc", 

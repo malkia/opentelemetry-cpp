@@ -21,7 +21,8 @@ processors:
   batch/telemetry:
   groupbyattrs/telemetry:
     keys:
-      - prometheus.type
+      - otel.signal
+      - processor
   batch/pre:
     send_batch_size: 1000000
   batch/post:
