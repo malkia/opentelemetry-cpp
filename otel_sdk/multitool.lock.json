@@ -103,5 +103,29 @@
         "cpu": "x86_64"
       }
     ]
+  },
+  "prometheus": {
+    "binaries": [
+      {
+        "kind": "archive",
+        "url": "https://github.com/prometheus/prometheus/releases/download/v3.11.1/prometheus-3.11.1.windows-arm64.tar.gz",
+        "file": "prometheus-3.11.1.windows-arm64/prometheus.exe",
+        "sha256": "53590c406222de72fbbc685a719c26887ea8e89851c3a63e3a8e13d0be5cf113",
+        "os": "windows",
+        "cpu": "arm64"
+      }
+    ]
+  },
+  "promtool": {
+    "binaries": [
+      {
+        "kind": "archive",
+        "url": "https://github.com/prometheus/prometheus/releases/download/v3.11.1/prometheus-3.11.1.windows-arm64.tar.gz",
+        "file": "prometheus-3.11.1.windows-arm64/promtool.exe",
+        "sha256": "53590c406222de72fbbc685a719c26887ea8e89851c3a63e3a8e13d0be5cf113",
+        "os": "windows",
+        "cpu": "arm64"
+      }
+    ]
   }
 }

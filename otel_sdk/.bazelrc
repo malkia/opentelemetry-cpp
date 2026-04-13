@@ -1,5 +1,7 @@
 common --enable_platform_specific_config
 
+build --dynamic_mode=off
+
 # This makes sure the x64 dlls are used on Windows ARM64
 build:windows --platforms=//:x64_windows
 

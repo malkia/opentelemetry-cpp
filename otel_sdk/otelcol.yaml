@@ -16,6 +16,10 @@ exporters:
     path: metrics1.json
   file/telemetry:
     path: metrics1.telemetry.json
+  # otlp/prometheus:
+  #   endpoint: 'http://127.0.0.1:9090/v1/api/otlp'
+  #   tls:
+  #     insecure: true
 
 processors:
   batch/telemetry:
@@ -25,34 +29,15 @@ processors:
     keys:
       - prometheus.type
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 service:
   pipelines:
     metrics/m1:
       receivers: [otlp/local]
-
-      exporters: [file/metrics1]
+      exporters: [file/metrics1]#, otlp/prometheus]
     metrics/telemetry:
       receivers: [prometheus/telemetry]
       #processors: [batch/telemetry, groupbyattrs/telemetry]
-      exporters: [file/telemetry]
+      exporters: [file/telemetry]#, otlp/prometheus]
   telemetry:
     metrics:
       level: detailed

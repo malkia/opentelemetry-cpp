@@ -61,17 +61,24 @@ cc_test(
     srcs = ["m.cpp"],
     data = [
         "@multitool//tools/otelcol-contrib",
+        "@multitool//tools/prometheus",
         "otelcol.yaml",
+        "prometheus.yaml",
         "t",
     ],
     args = [
-       "$(rootpath @multitool//tools/otelcol-contrib)",
-       "$(rootpath otelcol.yaml)",
-       "$(rootpath t)",
+       "--otelcol_binary=$(rootpath @multitool//tools/otelcol-contrib)",
+       "--otelcol_yaml=$(rootpath otelcol.yaml)",
+       "--prometheus_binary=$(rootpath @multitool//tools/prometheus)",
+       "--prometheus_yaml=$(rootpath prometheus.yaml)",
+       "--test_binary=$(rootpath t)",
+       "--sleep=300",
     ],
     deps = [
         "@tinyproc", 
-        "@bazel_tools//tools/cpp/runfiles"
+        "@abseil-cpp//absl/flags:flag",
+        "@abseil-cpp//absl/flags:parse",
+        "@bazel_tools//tools/cpp/runfiles",
     ],
 )
 
@@ -84,9 +91,9 @@ cc_test(
         "t",
     ],
     args = [
-       "$(rootpath @multitool//tools/otelcol-contrib)",
-       "$(rootpath otelcol2.yaml)",
-       "11",
+       "--otelcol_binary=$(rootpath @multitool//tools/otelcol-contrib)",
+       "--otelcol_yaml=$(rootpath otelcol2.yaml)",
+       "--sleep=8",
     ],
     deps = [
         "@tinyproc", 
@@ -103,9 +110,9 @@ cc_test(
         "t",
     ],
     args = [
-       "$(rootpath @multitool//tools/otelcol-contrib)",
-       "$(rootpath otelcol3.yaml)",
-       "$(rootpath t)",
+       "--otelcol_binary=$(rootpath @multitool//tools/otelcol-contrib)",
+       "--otelcol_yaml=$(rootpath otelcol3.yaml)",
+       "--test_binary=$(rootpath t)",
     ],
     deps = [
         "@tinyproc", 
