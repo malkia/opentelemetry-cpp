@@ -325,7 +325,7 @@ TEST_F(BasicCurlHttpTests, RequestTimeout)
   auto session_manager = http_client::HttpClientFactory::Create();
   EXPECT_TRUE(session_manager != nullptr);
 
-  auto session = session_manager->CreateSession("192.0.2.1:19000");  // Non Existing address
+  auto session = session_manager->CreateSession("192.0.2.0:19000");  // RFC 5737 TEST-NET-1
   auto request = session->CreateRequest();
   request->SetUri("get/");
   auto handler = std::make_shared<GetEventHandler>();
