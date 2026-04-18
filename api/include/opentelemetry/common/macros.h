@@ -533,6 +533,38 @@ point.
 #endif
 #define OPENTELEMETRY_ABI_VERSION_NO 2 // Use the new api
 
+#ifdef ENABLE_METRICS_EXEMPLAR_PREVIEW
+#error ENABLE_METRICS_EXEMPLAR_PREVIEW must be defined only in this file: opentelemetry/common/macros.h
+#endif
+
+#ifdef ENABLE_ASYNC_EXPORT
+#error ENABLE_ASYNC_EXPORT must be defined only in this file: opentelemetry/common/macros.h
+#endif
+
+#ifdef ENABLE_OTLP_GRPC_SSL_MTLS_PREVIEW
+#error ENABLE_OTLP_GRPC_SSL_MTLS_PREVIEW must be defined only in this file: opentelemetry/common/macros.h
+#endif
+
+#ifdef ENABLE_OTLP_COMPRESSION_PREVIEW
+#error ENABLE_OTLP_COMPRESSION_PREVIEW must be defined only in this file: opentelemetry/common/macros.h
+#endif
+
+#ifdef ENABLE_OTLP_RETRY_PREVIEW
+#error ENABLE_OTLP_RETRY_PREVIEW must be defined only in this file: opentelemetry/common/macros.h
+#endif
+
+#ifdef ENABLE_THREAD_INSTRUMENTATION_PREVIEW
+#error ENABLE_THREAD_INSTRUMENTATION_PREVIEW must be defined only in this file: opentelemetry/common/macros.h
+#endif
+
+#ifdef ENABLE_CURL_LOGGING
+#error ENABLE_CURL_LOGGING must be defined only in this file: opentelemetry/common/macros.h
+#endif
+
+#ifdef ENABLE_OTLP_GRPC_CREDENTIAL_PREVIEW
+#error ENABLE_OTLP_GRPC_CREDENTIAL_PREVIEW must be defined only in this file: opentelemetry/common/macros.h
+#endif
+
 // Enable specific library features
 #define ENABLE_METRICS_EXEMPLAR_PREVIEW 1
 #define ENABLE_ASYNC_EXPORT 1

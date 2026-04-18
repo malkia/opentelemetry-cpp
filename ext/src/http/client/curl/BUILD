@@ -22,9 +22,6 @@ otel_cc_library(
         ],
         "//conditions:default": [],
     }),
-    local_defines = [
-        "ENABLE_CURL_LOGGING",
-    ],
     linkstatic = True,
     deps = [
         "//api",

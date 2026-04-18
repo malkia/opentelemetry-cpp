@@ -31,11 +31,13 @@ ABSL_FLAG(bool, generate, false, "Generate metrics");
 
 static void redirect_stdout(const char *bytes, size_t n)
 {
+  fwrite("*** ", 1, 4, stdout);
   fwrite(bytes, 1, n, stdout);
 }
 
 static void redirect_stderr(const char *bytes, size_t n)
 {
+  fwrite("!!! ", 1, 4, stderr);
   fwrite(bytes, 1, n, stderr);
 }
 
@@ -93,7 +95,7 @@ int main(int argc, char *argv[])
     {
       printf("[STARTING] prometheus\n");
       g_prometheus_proc = run_proc(
-          {prometheus_exe, "--web.enable-otlp-receiver", "--config.file", prometheus_yaml}, false);
+          {prometheus_exe, "--web.enable-otlp-receiver", "--config.file", prometheus_yaml}, true);
       prometheusExitCode = g_prometheus_proc->get_exit_status();
       printf("[FINISHED] prometheus, exitCode=%d\n", prometheusExitCode);
     }
@@ -102,7 +104,7 @@ int main(int argc, char *argv[])
   int otelcolExitCode{};
   std::thread otelcol_thread{[&otelcol_exe, &otelcol_yaml, &otelcolExitCode]() {
     printf("[STARTING] otelcol\n");
-    g_otelcol_proc  = run_proc({otelcol_exe, "--config", otelcol_yaml}, false);
+    g_otelcol_proc  = run_proc({otelcol_exe, "--config", otelcol_yaml}, true);
     otelcolExitCode = g_otelcol_proc->get_exit_status();
     printf("[FINISHED] otelcol, exitCode=%d\n", otelcolExitCode);
   }};
