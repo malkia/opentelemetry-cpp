@@ -21,6 +21,13 @@ class OPENTELEMETRY_EXPORT_TYPE ComposableRuleBasedSamplerConfiguration : public
 {
 public:
   ComposableRuleBasedSamplerConfiguration() = default;
+
+  ComposableRuleBasedSamplerConfiguration(ComposableRuleBasedSamplerConfiguration&&) noexcept = default;
+  ComposableRuleBasedSamplerConfiguration& operator=(ComposableRuleBasedSamplerConfiguration&&) noexcept = default;
+
+  ComposableRuleBasedSamplerConfiguration(const ComposableRuleBasedSamplerConfiguration&) = delete;
+  ComposableRuleBasedSamplerConfiguration& operator=(const ComposableRuleBasedSamplerConfiguration&) = delete;
+
   std::vector<std::unique_ptr<ComposableRuleBasedSamplerRuleConfiguration>> rules;
   void Accept(SamplerConfigurationVisitor *visitor) const override;
 };
