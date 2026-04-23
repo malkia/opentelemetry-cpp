@@ -12,6 +12,7 @@
 #include <utility>
 #include <vector>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/attribute_value.h"
 #include "opentelemetry/common/kv_properties.h"
 #include "opentelemetry/context/propagation/composite_propagator.h"
@@ -31,6 +32,11 @@
 #include "opentelemetry/sdk/configuration/batch_span_processor_configuration.h"
 #include "opentelemetry/sdk/configuration/boolean_array_attribute_value_configuration.h"
 #include "opentelemetry/sdk/configuration/boolean_attribute_value_configuration.h"
+#include "opentelemetry/sdk/configuration/composable_always_off_sampler_configuration.h"
+#include "opentelemetry/sdk/configuration/composable_always_on_sampler_configuration.h"
+#include "opentelemetry/sdk/configuration/composable_parent_threshold_sampler_configuration.h"
+#include "opentelemetry/sdk/configuration/composable_probability_sampler_configuration.h"
+#include "opentelemetry/sdk/configuration/composable_rule_based_sampler_configuration.h"
 #include "opentelemetry/sdk/configuration/configuration.h"
 #include "opentelemetry/sdk/configuration/configured_sdk.h"
 #include "opentelemetry/sdk/configuration/console_log_record_exporter_builder.h"
@@ -172,7 +178,6 @@
 #include "opentelemetry/sdk/trace/tracer_config.h"
 #include "opentelemetry/sdk/trace/tracer_provider.h"
 #include "opentelemetry/sdk/trace/tracer_provider_factory.h"
-#include "opentelemetry/version.h"
 #include "src/common/wildcard_match.h"
 
 #ifdef ENABLE_METRICS_EXEMPLAR_PREVIEW
@@ -364,6 +369,45 @@ public:
       const opentelemetry::sdk::configuration::ExtensionSamplerConfiguration *model) override
   {
     sampler = sdk_builder_->CreateExtensionSampler(model);
+  }
+
+  void VisitComposableAlwaysOff(
+      const opentelemetry::sdk::configuration::ComposableAlwaysOffSamplerConfiguration
+          * /* model */) override
+  {
+    sampler = opentelemetry::sdk::trace::AlwaysOffSamplerFactory::Create();
+  }
+
+  void VisitComposableAlwaysOn(
+      const opentelemetry::sdk::configuration::ComposableAlwaysOnSamplerConfiguration * /* model */)
+      override
+  {
+    sampler = opentelemetry::sdk::trace::AlwaysOnSamplerFactory::Create();
+  }
+
+  void VisitComposableProbability(
+      const opentelemetry::sdk::configuration::ComposableProbabilitySamplerConfiguration *model)
+      override
+  {
+    sampler = opentelemetry::sdk::trace::TraceIdRatioBasedSamplerFactory::Create(model->ratio);
+  }
+
+  void VisitComposableParentThreshold(
+      const opentelemetry::sdk::configuration::ComposableParentThresholdSamplerConfiguration
+          * /* model */) override
+  {
+    // FIXME-SDK: https://github.com/open-telemetry/opentelemetry-cpp/issues/4028
+    OTEL_INTERNAL_LOG_WARN("ComposableParentThresholdSampler not yet fully supported by SDK");
+    sampler = opentelemetry::sdk::trace::AlwaysOnSamplerFactory::Create();
+  }
+
+  void VisitComposableRuleBased(
+      const opentelemetry::sdk::configuration::ComposableRuleBasedSamplerConfiguration
+          * /* model */) override
+  {
+    // FIXME-SDK: https://github.com/open-telemetry/opentelemetry-cpp/issues/4028
+    OTEL_INTERNAL_LOG_WARN("ComposableRuleBasedSampler not yet fully supported by SDK");
+    sampler = opentelemetry::sdk::trace::AlwaysOnSamplerFactory::Create();
   }
 
   std::unique_ptr<opentelemetry::sdk::trace::Sampler> sampler;
