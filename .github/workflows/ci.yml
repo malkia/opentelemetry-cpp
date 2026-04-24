@@ -1087,7 +1087,7 @@ jobs:
 
   windows_plugin_test:
     name: Plugin -> CMake Windows
-    runs-on: windows-2022
+    runs-on: windows-2025
     # Deprecated, pending removal
     if: false
     steps:
