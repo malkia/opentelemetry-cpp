@@ -239,9 +239,6 @@ build:clang-cl --host_copt=-Wno-dynamic-class-memaccess --copt=-Wno-dynamic-clas
 build:clang-cl --host_copt=-Wno-microsoft-cast --copt=-Wno-microsoft-cast
 build:clang-cl --host_copt=-Wno-invalid-offsetof --copt=-Wno-invalid-offsetof
 
-build:clang-cl --host_platform=@otel_sdk_dev//:x64_windows-clang-cl
-build:clang-cl --extra_toolchains=@local_config_cc//:cc-toolchain-x64_windows-clang-cl
-
 common --experimental_enable_android_migration_apis
 
 common:linux --force_pic
@@ -268,11 +265,6 @@ common --nocheck_bzl_visibility
 build:dwyu --copt=-Wno-incompatible-pointer-types
 build:dwyu --host_copt=-Wno-incompatible-pointer-types
 build:dwyu --aspects=//:dwyu.bzl%dwyu_aspect --output_groups=dwyu
-
-# build --disk_cache=f:/b/d
-# common --repository_cache=f:/b/r
-# startup --output_user_root=f:/b/u
-try-import %workspace%/../top.bazelrc
 
 
 build:dwyu @//api/test/baggage:baggage_benchmark_smoketest
@@ -424,3 +416,8 @@ build:dwyu @//api/test/baggage:baggage_benchmark_smoketest
 # build:dwyu @grpc//:gpr_platform
 # build:dwyu @grpc//:load_config
 # build:dwyu @grpc//src/core:env
+
+# build --disk_cache=f:/b/d
+# common --repository_cache=f:/b/r
+# startup --output_user_root=f:/b/u
+try-import %workspace%/../top.bazelrc

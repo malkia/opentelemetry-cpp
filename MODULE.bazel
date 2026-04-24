@@ -1,7 +1,6 @@
 module(
     name = "otel_sdk_dev",
     version = "1.27.0-dev",
-    compatibility_level = 0,
 )
 
 bazel_dep(name = "abseil-cpp", version = "20260107.1")
@@ -93,3 +92,11 @@ new_local_repository(
 multitool = use_extension("@rules_multitool//multitool:extension.bzl", "multitool")
 multitool.hub(lockfile = "@otel_sdk_dev//:multitool.lock.json")
 use_repo(multitool, "multitool")
+
+register_toolchains(
+    "@local_config_cc//:cc-toolchain-x64_windows-clang-cl",
+)
+
+register_execution_platforms(
+    "@otel_sdk_dev//:x64_windows-clang-cl",
+)
