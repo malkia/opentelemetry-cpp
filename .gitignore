@@ -87,3 +87,5 @@ _codeql_detected_source_root
 
 /otel_sdk/*/*
 /otel_sdk/*.lock
+# VSCode
+.vscode/

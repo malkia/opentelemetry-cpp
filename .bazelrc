@@ -238,6 +238,8 @@ build:clang-cl --copt=-DC4_MSVC --host_copt=-DC4_MSVC
 build:clang-cl --host_copt=-Wno-dynamic-class-memaccess --copt=-Wno-dynamic-class-memaccess
 build:clang-cl --host_copt=-Wno-microsoft-cast --copt=-Wno-microsoft-cast
 build:clang-cl --host_copt=-Wno-invalid-offsetof --copt=-Wno-invalid-offsetof
+build:clang-cl --host_copt=-Wno-defaulted-function-deleted --copt=-Wno-defaulted-function-deleted
+build:clang-cl --host_copt=-Wunused-result --copt=-Wunused-result
 
 common --experimental_enable_android_migration_apis
 
