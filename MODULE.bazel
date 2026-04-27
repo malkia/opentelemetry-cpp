@@ -9,7 +9,7 @@ bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "platforms", version = "1.0.0")
 bazel_dep(name = "rapidyaml", version = "0.10.0")
 bazel_dep(name = "boringssl", version = "0.20260413.0")
-bazel_dep(name = "curl", version = "8.12.0")
+bazel_dep(name = "curl", version = "8.12.0.bcr.1")
 single_version_override(
     module_name = "curl",
     patch_strip = 1,
