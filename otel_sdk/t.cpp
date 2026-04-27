@@ -39,8 +39,8 @@ int main(int argc, const char *argv[])
     setvbuf(stderr, nullptr, _IONBF,0);
     setvbuf(stdin, nullptr, _IONBF,0);
 
-      // using namespace opentelemetry::sdk::common::internal_log;
-      // GlobalLogHandler::SetLogLevel(LogLevel::Debug);
+      using namespace opentelemetry::sdk::common::internal_log;
+      GlobalLogHandler::SetLogLevel(LogLevel::Debug);
   }
 
   {

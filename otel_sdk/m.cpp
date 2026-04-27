@@ -26,30 +26,25 @@ ABSL_FLAG(std::optional<std::string>, prometheus_binary, std::nullopt, "Promethe
 ABSL_FLAG(std::string, prometheus_yaml, "", "Prometheus yaml file");
 ABSL_FLAG(std::string, test_binary, "", "Test binary file");
 ABSL_FLAG(int, sleep, 10, "Additional sleep time");
-ABSL_FLAG(bool, prometheus, false, "Run Prometheus");
 ABSL_FLAG(bool, generate, false, "Generate metrics");
 
-static void redirect_stdout(const char *bytes, size_t n)
+struct redirect_context
 {
-  fwrite("*** ", 1, 4, stdout);
-  fwrite(bytes, 1, n, stdout);
-}
+  std::string name;
+};
 
-static void redirect_stderr(const char *bytes, size_t n)
+static std::unique_ptr<TinyProcessLib::Process> run_proc(const redirect_context &ctx,
+                                                         const std::vector<std::string> &args)
 {
-  fwrite("!!! ", 1, 4, stderr);
-  fwrite(bytes, 1, n, stderr);
-}
-
-static std::unique_ptr<TinyProcessLib::Process> run_proc(const std::vector<std::string> &args,
-                                                         bool customRedirect)
-{
-  TinyProcessLib::Config config;
-  config.inherit_file_descriptors = true;
-  // config.show_window = TinyProcessLib::Config::ShowWindow::force_minimize;
-  return std::make_unique<TinyProcessLib::Process>(
-      args, g_workDir, customRedirect ? redirect_stdout : nullptr,
-      customRedirect ? redirect_stderr : nullptr, false, config);
+  const auto out_fun = [&ctx](const char *bytes, size_t n) {
+    fprintf(stdout, "  [%s] %.*s", ctx.name.c_str(), static_cast<int>(n), bytes);
+  };
+  const auto err_fun = [&ctx](const char *bytes, size_t n) {
+    fprintf(stderr, "  [[%s]] %.*s", ctx.name.c_str(), static_cast<int>(n), bytes);
+  };
+  return ctx.name.empty()
+             ? std::make_unique<TinyProcessLib::Process>(args, g_workDir, nullptr, nullptr, false)
+             : std::make_unique<TinyProcessLib::Process>(args, g_workDir, out_fun, err_fun, true);
 }
 
 static std::string get_dir(std::string name)
@@ -94,8 +89,10 @@ int main(int argc, char *argv[])
     if (!prometheus_exe.empty())
     {
       printf("[STARTING] prometheus\n");
-      g_prometheus_proc = run_proc(
-          {prometheus_exe, "--web.enable-otlp-receiver", "--config.file", prometheus_yaml}, true);
+      redirect_context ctx{"prom"};
+      g_prometheus_proc =
+          run_proc(ctx, {prometheus_exe, "--log.format=json", "--log.level=debug",
+                         "--web.enable-otlp-receiver", "--config.file", prometheus_yaml});
       prometheusExitCode = g_prometheus_proc->get_exit_status();
       printf("[FINISHED] prometheus, exitCode=%d\n", prometheusExitCode);
     }
@@ -104,7 +101,8 @@ int main(int argc, char *argv[])
   int otelcolExitCode{};
   std::thread otelcol_thread{[&otelcol_exe, &otelcol_yaml, &otelcolExitCode]() {
     printf("[STARTING] otelcol\n");
-    g_otelcol_proc  = run_proc({otelcol_exe, "--config", otelcol_yaml}, true);
+    redirect_context ctx{"otel"};
+    g_otelcol_proc  = run_proc(ctx, {otelcol_exe, "--config", otelcol_yaml});
     otelcolExitCode = g_otelcol_proc->get_exit_status();
     printf("[FINISHED] otelcol, exitCode=%d\n", otelcolExitCode);
   }};
@@ -127,7 +125,8 @@ int main(int argc, char *argv[])
     {
       int testExitCode{};
       threads.emplace_back([&test_exe, &testExitCode, i = i]() {
-        auto p        = run_proc({test_exe}, true);
+        redirect_context ctx{"m" + std::to_string(i)};
+        auto p        = run_proc(ctx, {test_exe});
         auto exitCode = p->get_exit_status();
         printf("[FINISHED] test %d (%d)\n", i, exitCode);
       });

@@ -8,6 +8,7 @@ build:windows --platforms=//:x64_windows
 build --experimental_convenience_symlinks=clean
 
 test --test_output=streamed
+test --nocache_test_results
 
 # This is needed for multitool tools to run on Windows!
 common --enable_runfiles

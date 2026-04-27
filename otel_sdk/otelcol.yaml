@@ -57,5 +57,5 @@ service:
       disable_zap_resource: true
       sampling:
         enabled: false # log everything, no sampling
-      output_paths: metrics1.stdout.json
-      error_output_paths: metrics1.stderr.json
+      # output_paths: metrics1.stdout.json
+      # error_output_paths: metrics1.stderr.json
