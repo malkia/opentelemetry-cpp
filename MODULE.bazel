@@ -16,7 +16,7 @@ single_version_override(
     patches = [
         "bazel/curl.patch",
     ],
-    version = "8.12.0",
+    version = "8.12.0.bcr.1",
 )
 
 bazel_dep(name = "depend_on_what_you_use", version = "0.15.0")
