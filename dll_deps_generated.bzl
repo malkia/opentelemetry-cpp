@@ -42,6 +42,7 @@ DLL_DEPS = set([
     Label("@otel_sdk_dev//exporters/otlp:otlp_http_metric_exporter_builder"),
     Label("@otel_sdk_dev//exporters/otlp:otlp_http_span_exporter_builder"),
     Label("@otel_sdk_dev//exporters/otlp:otlp_recordable"),
+    Label("@otel_sdk_dev//exporters/otlp:otlp_utf8_validity"),
     Label("@otel_sdk_dev//exporters/prometheus:prometheus_collector"),
     Label("@otel_sdk_dev//exporters/prometheus:prometheus_exporter"),
     Label("@otel_sdk_dev//exporters/prometheus:prometheus_exporter_builder"),

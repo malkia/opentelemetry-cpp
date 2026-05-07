@@ -7,6 +7,19 @@ load("//bazel:otel_cc_benchmark.bzl", "otel_cc_benchmark")
 
 package(default_visibility = ["//visibility:public"])
 
+# utf8_range from protobuf source tree for UTF-8 validation in OTLP
+# value conversion. This mirrors the CMake opentelemetry_otlp_utf8_validity
+# target.
+otel_cc_library(
+    name = "otlp_utf8_validity",
+    defines = ["ENABLE_OTLP_UTF8_VALIDITY"],
+    tags = ["otlp"],
+    deps = [
+        "@protobuf//third_party/utf8_range",
+        "@protobuf//third_party/utf8_range:utf8_validity",
+    ],
+)
+
 otel_cc_library(
     name = "otlp_recordable",
     srcs = [
@@ -31,6 +44,7 @@ otel_cc_library(
     strip_include_prefix = "include",
     tags = ["otlp"],
     deps = [
+        ":otlp_utf8_validity",
         "//sdk/src/logs",
         "//sdk/src/resource",
         "//sdk/src/trace",
