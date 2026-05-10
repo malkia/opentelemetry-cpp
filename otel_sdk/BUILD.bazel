@@ -73,6 +73,7 @@ cc_test(
        "--prometheus_yaml=$(rootpath prometheus.yaml)",
        "--test_binary=$(rootpath t)",
        "--sleep=10",
+       "--generate",
     ],
     deps = [
         "@tinyproc", 

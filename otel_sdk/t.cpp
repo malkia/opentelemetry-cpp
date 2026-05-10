@@ -90,7 +90,7 @@ int main(int argc, const char *argv[])
       flip = !flip;
       if (flip)
         period = rand() % 100;
-      //counter->Add(1, {{"test1", "one"}, {"test2", "two"}});
+      counter->Add(1, {{"test1", "one"}, {"test2", "two"}});
       udcounter->Add( (i%23 < 11) ? +1.2 : -1.2);//, {{"test1", "one"}, {"test2", "two"}});
       std::this_thread::sleep_for(std::chrono::milliseconds(flip ? period : 100 - period));
     }
