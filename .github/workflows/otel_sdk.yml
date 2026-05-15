@@ -16,7 +16,7 @@ env:
 jobs:
   otel_sdk_build:
     name: build otel_sdk
-    runs-on: windows-2022
+    runs-on: windows-2025
     permissions:
       contents: write
     steps:
