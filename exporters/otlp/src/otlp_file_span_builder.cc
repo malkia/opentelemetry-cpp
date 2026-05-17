@@ -4,14 +4,13 @@
 #include <memory>
 #include <utility>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/exporters/otlp/otlp_file_exporter_factory.h"
 #include "opentelemetry/exporters/otlp/otlp_file_exporter_options.h"
 #include "opentelemetry/exporters/otlp/otlp_file_span_builder.h"
 #include "opentelemetry/sdk/configuration/otlp_file_span_exporter_builder.h"
-#include "opentelemetry/sdk/configuration/otlp_file_span_exporter_configuration.h"
 #include "opentelemetry/sdk/configuration/registry.h"
 #include "opentelemetry/sdk/trace/exporter.h"
-#include "opentelemetry/version.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace exporter

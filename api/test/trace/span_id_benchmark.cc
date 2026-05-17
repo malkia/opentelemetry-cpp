@@ -3,7 +3,9 @@
 
 #include <benchmark/benchmark.h>
 #include <cstdint>
+#include <string>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/nostd/span.h"
 #include "opentelemetry/trace/span_id.h"
 

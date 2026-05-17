@@ -7,11 +7,13 @@
 #include <functional>
 #include <initializer_list>
 #include <random>
+#include <string>
 #include <thread>
 #include <utility>
 #include <vector>
 #include "common.h"
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/metrics/meter.h"
 #include "opentelemetry/metrics/sync_instruments.h"
 #include "opentelemetry/nostd/function_ref.h"

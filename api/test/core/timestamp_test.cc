@@ -4,8 +4,10 @@
 #include <gtest/gtest.h>
 #include <stdlib.h>
 #include <chrono>
+#include <cstdlib>
 #include <string>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/timestamp.h"
 
 using opentelemetry::common::SteadyTimestamp;

@@ -1,10 +1,10 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/sdk/logs/logger_config.h"
 #include <gtest/gtest.h>
 #include <array>
-#include <memory>
 #include <string>
 #include <utility>
 #include <vector>

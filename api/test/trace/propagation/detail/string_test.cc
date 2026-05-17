@@ -4,8 +4,10 @@
 #include <gtest/gtest.h>
 #include <stddef.h>
 #include <ostream>
+#include <string>
 #include <vector>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/trace/propagation/detail/string.h"
 

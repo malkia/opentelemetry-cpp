@@ -3,7 +3,9 @@
 
 #include <benchmark/benchmark.h>
 #include <random>
+#include <string>
 
+#include "opentelemetry/version.h"
 #include "src/common/random.h"
 
 namespace

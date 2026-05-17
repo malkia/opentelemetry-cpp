@@ -3,9 +3,11 @@
 
 #include <gtest/gtest.h>
 #include <memory>
+#include <string>
 #include <utility>
 #include "common.h"
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/sdk/instrumentationscope/instrumentation_scope.h"
 #include "opentelemetry/sdk/metrics/export/metric_producer.h"
 #include "opentelemetry/sdk/metrics/instruments.h"

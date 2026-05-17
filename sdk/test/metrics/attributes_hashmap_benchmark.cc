@@ -7,10 +7,12 @@
 #include <functional>
 #include <memory>
 #include <mutex>
+#include <string>
 #include <thread>
 #include <utility>
 #include <vector>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/nostd/function_ref.h"
 #include "opentelemetry/sdk/metrics/aggregation/aggregation.h"
 #include "opentelemetry/sdk/metrics/aggregation/drop_aggregation.h"

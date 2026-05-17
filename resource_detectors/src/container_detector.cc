@@ -1,6 +1,7 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/resource_detectors/container_detector.h"
 #include "opentelemetry/nostd/variant.h"
 #include "opentelemetry/resource_detectors/detail/container_detector_utils.h"
@@ -10,7 +11,6 @@
 #include "opentelemetry/version.h"
 
 #include <string>
-#include <unordered_map>
 #include <utility>
 
 OPENTELEMETRY_BEGIN_NAMESPACE

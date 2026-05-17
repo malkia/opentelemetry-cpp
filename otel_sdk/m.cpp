@@ -17,6 +17,7 @@
 static std::atomic<bool> g_started;
 static std::unique_ptr<TinyProcessLib::Process> g_otelcol_proc;
 static std::unique_ptr<TinyProcessLib::Process> g_prometheus_proc;
+static std::unique_ptr<TinyProcessLib::Process> g_dashboard_proc;
 static char g_workDir[1024]{};
 static bool g_runPrometheus;
 
@@ -27,6 +28,7 @@ ABSL_FLAG(std::string, prometheus_yaml, "", "Prometheus yaml file");
 ABSL_FLAG(std::string, test_binary, "", "Test binary file");
 ABSL_FLAG(int, sleep, 10, "Additional sleep time");
 ABSL_FLAG(bool, generate, false, "Generate metrics");
+ABSL_FLAG(bool, dash, false, "Aspire dashboard");
 
 struct redirect_context
 {
@@ -95,6 +97,18 @@ int main(int argc, char *argv[])
                          "--web.enable-otlp-receiver", "--config.file", prometheus_yaml});
       prometheusExitCode = g_prometheus_proc->get_exit_status();
       printf("[FINISHED] prometheus, exitCode=%d\n", prometheusExitCode);
+    }
+  }};
+
+  int dashboardExitCode{};
+  std::thread prometheus_thread{[&dashboardExitCode]() {
+    if (absl::GetFlag(FLAGS_dash))
+    {
+      printf("[STARTING] dashboard\n");
+      redirect_context ctx{"dash"};
+      g_dashboard_proc = run_proc(ctx, {"aspire.exe", "dashboard", "run"});
+      dashboardExitCode = g_dashboard_proc->get_exit_status();
+      printf("[FINISHED] dashboard, exitCode=%d\n", dashboardExitCode );
     }
   }};
 

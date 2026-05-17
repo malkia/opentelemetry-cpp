@@ -13,7 +13,6 @@
 
 #include "opentelemetry/version.h"
 #include "opentelemetry/common/timestamp.h"
-#include "opentelemetry/exporters/otlp/otlp_file_client_options.h"
 #include "opentelemetry/exporters/otlp/otlp_file_metric_exporter.h"
 #include "opentelemetry/exporters/otlp/otlp_file_metric_exporter_factory.h"
 #include "opentelemetry/exporters/otlp/otlp_file_metric_exporter_options.h"

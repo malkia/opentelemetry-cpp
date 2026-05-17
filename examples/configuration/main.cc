@@ -6,11 +6,11 @@
 #include <string.h>
 #include <string>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/exporters/ostream/console_log_record_builder.h"
 #include "opentelemetry/exporters/ostream/console_push_metric_builder.h"
 #include "opentelemetry/exporters/ostream/console_span_builder.h"
 #include "opentelemetry/nostd/shared_ptr.h"
-#include "opentelemetry/sdk/common/attribute_utils.h"
 #include "opentelemetry/sdk/common/global_log_handler.h"
 #include "opentelemetry/sdk/configuration/configuration.h"
 #include "opentelemetry/sdk/configuration/configured_sdk.h"

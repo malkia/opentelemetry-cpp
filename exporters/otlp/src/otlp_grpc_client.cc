@@ -1,6 +1,7 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/exporters/otlp/otlp_grpc_client.h"
 
 #include <grpc/compression.h>
@@ -12,7 +13,6 @@
 #include <chrono>
 #include <fstream>
 #include <iterator>
-#include <map>
 #include <memory>
 #include <string>
 #include <utility>
@@ -36,7 +36,7 @@
 #  include <condition_variable>
 #  include <cstdio>
 #  include <mutex>
-#  include <ratio>
+#  include <new>
 #  include <unordered_set>
 
 #  include "opentelemetry/common/timestamp.h"

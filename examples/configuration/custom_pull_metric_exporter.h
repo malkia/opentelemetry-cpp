@@ -6,7 +6,7 @@
 #include <chrono>
 #include <string>
 
-#include "opentelemetry/sdk/metrics/instruments.h"
+#include "opentelemetry/version.h"
 #include "opentelemetry/sdk/metrics/metric_reader.h"
 
 class CustomPullMetricExporter : public opentelemetry::sdk::metrics::MetricReader

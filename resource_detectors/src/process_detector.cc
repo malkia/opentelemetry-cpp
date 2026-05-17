@@ -1,6 +1,7 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/resource_detectors/process_detector.h"
 #include "opentelemetry/nostd/variant.h"
 #include "opentelemetry/resource_detectors/detail/process_detector_utils.h"
@@ -14,7 +15,6 @@
 #include <exception>
 #include <ostream>
 #include <string>
-#include <unordered_map>
 #include <utility>
 #include <vector>
 

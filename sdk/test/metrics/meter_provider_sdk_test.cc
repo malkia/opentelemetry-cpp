@@ -6,6 +6,7 @@
 #include <utility>
 #include "common.h"
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/macros.h"
 #include "opentelemetry/metrics/meter.h"
 #include "opentelemetry/nostd/shared_ptr.h"
@@ -27,6 +28,7 @@
 #  include <unordered_map>
 
 #  include "opentelemetry/common/attribute_value.h"
+#  include "opentelemetry/nostd/utility.h"
 #  include "opentelemetry/nostd/variant.h"
 #  include "opentelemetry/sdk/instrumentationscope/instrumentation_scope.h"
 #endif /* OPENTELEMETRY_ABI_VERSION_NO >= 2 */

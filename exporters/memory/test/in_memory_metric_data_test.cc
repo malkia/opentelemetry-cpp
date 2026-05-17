@@ -2,11 +2,11 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #include <gtest/gtest.h>
-#include <map>
 #include <string>
 #include <utility>
 #include <vector>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/exporters/memory/in_memory_metric_data.h"
 #include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/nostd/unique_ptr.h"

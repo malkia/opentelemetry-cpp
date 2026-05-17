@@ -8,10 +8,10 @@
 #include <memory>
 #include <mutex>
 #include <ostream>
-#include <ratio>
 #include <thread>
 #include <utility>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/timestamp.h"
 #include "opentelemetry/nostd/function_ref.h"
 #include "opentelemetry/sdk/common/global_log_handler.h"
@@ -19,7 +19,6 @@
 #include "opentelemetry/sdk/metrics/export/periodic_exporting_metric_reader.h"
 #include "opentelemetry/sdk/metrics/export/periodic_exporting_metric_reader_options.h"
 #include "opentelemetry/sdk/metrics/export/periodic_exporting_metric_reader_runtime_options.h"
-#include "opentelemetry/sdk/metrics/instruments.h"
 #include "opentelemetry/sdk/metrics/push_metric_exporter.h"
 
 #ifdef ENABLE_THREAD_INSTRUMENTATION_PREVIEW

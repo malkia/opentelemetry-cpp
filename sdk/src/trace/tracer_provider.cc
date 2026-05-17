@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "opentelemetry/version.h"
-#include "opentelemetry/common/key_value_iterable.h"
+#include "opentelemetry/common/key_value_iterable.h"  // IWYU pragma: keep
 #include "opentelemetry/nostd/shared_ptr.h"
 #include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/sdk/common/global_log_handler.h"
@@ -21,7 +21,6 @@
 #include "opentelemetry/sdk/trace/tracer_config.h"
 #include "opentelemetry/sdk/trace/tracer_context.h"
 #include "opentelemetry/sdk/trace/tracer_provider.h"
-#include "opentelemetry/trace/tracer.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk

@@ -7,9 +7,9 @@
 #include <unordered_map>
 #include <utility>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/timestamp.h"
 #include "opentelemetry/metrics/async_instruments.h"
-#include "opentelemetry/metrics/observer_result.h"
 #include "opentelemetry/nostd/function_ref.h"
 #include "opentelemetry/nostd/variant.h"
 #include "opentelemetry/sdk/common/global_log_handler.h"
@@ -17,7 +17,6 @@
 #include "opentelemetry/sdk/metrics/multi_observer_result.h"
 #include "opentelemetry/sdk/metrics/observer_result.h"
 #include "opentelemetry/sdk/metrics/state/metric_storage.h"
-#include "opentelemetry/version.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk

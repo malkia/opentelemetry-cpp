@@ -1,14 +1,18 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/exporters/elasticsearch/es_log_record_exporter.h"
 #include "opentelemetry/common/timestamp.h"
 #include "opentelemetry/exporters/elasticsearch/es_log_recordable.h"
 #include "opentelemetry/logs/severity.h"
 #include "opentelemetry/nostd/span.h"
 #include "opentelemetry/nostd/string_view.h"
+#include "opentelemetry/nostd/utility.h"
+#include "opentelemetry/sdk/common/exporter_utils.h"
 #include "opentelemetry/sdk/instrumentationscope/instrumentation_scope.h"
 #include "opentelemetry/sdk/logs/exporter.h"
+#include "opentelemetry/sdk/logs/recordable.h"
 #include "opentelemetry/sdk/resource/resource.h"
 
 #include <gtest/gtest.h>

@@ -10,9 +10,6 @@
 
 #include "opentelemetry/version.h"
 #include "opentelemetry/sdk/configuration/batch_span_processor_configuration.h"
-#include "opentelemetry/sdk/configuration/composable_always_off_sampler_configuration.h"
-#include "opentelemetry/sdk/configuration/composable_always_on_sampler_configuration.h"
-#include "opentelemetry/sdk/configuration/composable_parent_threshold_sampler_configuration.h"
 #include "opentelemetry/sdk/configuration/composable_probability_sampler_configuration.h"
 #include "opentelemetry/sdk/configuration/composable_rule_based_sampler_configuration.h"
 #include "opentelemetry/sdk/configuration/composable_rule_based_sampler_rule_attribute_patterns_configuration.h"
@@ -32,7 +29,6 @@
 #include "opentelemetry/sdk/configuration/sampler_configuration_visitor.h"
 #include "opentelemetry/sdk/configuration/simple_span_processor_configuration.h"
 #include "opentelemetry/sdk/configuration/span_limits_configuration.h"
-#include "opentelemetry/sdk/configuration/span_processor_configuration.h"
 #include "opentelemetry/sdk/configuration/trace_id_ratio_based_sampler_configuration.h"
 #include "opentelemetry/sdk/configuration/tracer_config_configuration.h"
 #include "opentelemetry/sdk/configuration/tracer_configurator_configuration.h"

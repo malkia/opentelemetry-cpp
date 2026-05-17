@@ -6,11 +6,8 @@
 #include "opentelemetry/version.h"
 
 #if OPENTELEMETRY_ABI_VERSION_NO < 2
-#  include "opentelemetry/logs/event_logger.h"
 #  include "opentelemetry/logs/event_logger_provider.h"
-#  include "opentelemetry/logs/logger.h"
 #  include "opentelemetry/nostd/shared_ptr.h"
-#  include "opentelemetry/nostd/string_view.h"
 #endif
 
 OPENTELEMETRY_BEGIN_NAMESPACE

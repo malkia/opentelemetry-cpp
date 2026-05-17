@@ -13,7 +13,6 @@
 #include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/sdk/trace/sampler.h"
 #include "opentelemetry/sdk/trace/samplers/trace_id_ratio.h"
-#include "opentelemetry/trace/span_metadata.h"
 #include "opentelemetry/trace/trace_id.h"
 
 namespace trace_api = opentelemetry::trace;

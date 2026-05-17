@@ -4,13 +4,10 @@
 #pragma once
 
 #include <chrono>
-#include <memory>
 #include <string>
 
-#include "opentelemetry/nostd/span.h"
-#include "opentelemetry/sdk/common/exporter_utils.h"
+#include "opentelemetry/version.h"
 #include "opentelemetry/sdk/logs/exporter.h"
-#include "opentelemetry/sdk/logs/recordable.h"
 
 class CustomLogRecordExporter : public opentelemetry::sdk::logs::LogRecordExporter
 {

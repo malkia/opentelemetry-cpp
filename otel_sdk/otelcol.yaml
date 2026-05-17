@@ -3,6 +3,10 @@ receivers:
     protocols:
       grpc:
         endpoint: 127.0.0.1:4317
+  otlp/dashboard:
+    protocols:
+      grpc:
+        endpoint: 127.0.0.1:43110
   prometheus/telemetry:
     config:
       scrape_configs:

@@ -4,6 +4,8 @@
 #include <curl/curl.h>
 #include <curl/curlver.h>
 
+#include "opentelemetry/version.h"
+
 #ifdef ENABLE_OTLP_RETRY_PREVIEW
 #  include <array>
 #endif  // ENABLE_OTLP_RETRY_PREVIEW
@@ -15,17 +17,14 @@
 #include <cstring>
 #include <functional>
 #include <future>
-#include <map>
 #include <memory>
 #include <random>
-#include <ratio>
 #include <sstream>
 #include <string>
 #include <thread>
 #include <utility>
 #include <vector>
 
-#include "opentelemetry/version.h"
 #include "opentelemetry/ext/http/client/curl/http_client_curl.h"
 #include "opentelemetry/ext/http/client/curl/http_operation_curl.h"
 #include "opentelemetry/ext/http/client/http_client.h"

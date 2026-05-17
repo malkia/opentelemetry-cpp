@@ -4,9 +4,10 @@
 #include <benchmark/benchmark.h>
 #include <map>
 #include <string>
-#include <utility>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/key_value_iterable_view.h"
+#include "opentelemetry/nostd/utility.h"
 #include "opentelemetry/sdk/metrics/view/attributes_processor.h"
 
 using namespace opentelemetry::sdk::metrics;

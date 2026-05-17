@@ -5,8 +5,8 @@
 #include <stdint.h>
 #include <map>
 #include <string>
-#include <utility>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/context/context.h"
 #include "opentelemetry/context/context_value.h"
 #include "opentelemetry/nostd/string_view.h"

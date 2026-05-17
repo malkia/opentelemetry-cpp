@@ -4,6 +4,7 @@
 #include <benchmark/benchmark.h>
 #include <atomic>
 #include <cstdint>
+#include <string>
 #include <thread>
 #include <vector>
 
@@ -13,6 +14,7 @@
 #  endif
 #endif
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/macros.h"
 #include "opentelemetry/common/spin_lock_mutex.h"
 

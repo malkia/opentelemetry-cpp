@@ -8,6 +8,7 @@
 #include <utility>
 #include <vector>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/attribute_value.h"
 #include "opentelemetry/common/key_value_iterable.h"
 #include "opentelemetry/common/timestamp.h"
@@ -18,9 +19,7 @@
 #include "opentelemetry/sdk/trace/span_data.h"
 #include "opentelemetry/trace/span_context.h"
 #include "opentelemetry/trace/span_id.h"
-#include "opentelemetry/trace/span_metadata.h"
 #include "opentelemetry/trace/trace_flags.h"
-#include "opentelemetry/version.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk

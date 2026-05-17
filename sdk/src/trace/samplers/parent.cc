@@ -5,12 +5,10 @@
 #include <string>
 
 #include "opentelemetry/version.h"
-#include "opentelemetry/common/key_value_iterable.h"
 #include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/sdk/trace/sampler.h"
 #include "opentelemetry/sdk/trace/samplers/parent.h"
 #include "opentelemetry/trace/span_context.h"
-#include "opentelemetry/trace/span_metadata.h"
 #include "opentelemetry/trace/trace_id.h"
 
 namespace trace_api = opentelemetry::trace;

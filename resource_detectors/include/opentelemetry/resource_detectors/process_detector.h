@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "opentelemetry/sdk/resource/resource.h"
+#include "opentelemetry/version.h"
 #include "opentelemetry/sdk/resource/resource_detector.h"
 #include "opentelemetry/version.h"
 

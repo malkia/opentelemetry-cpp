@@ -5,7 +5,6 @@
 
 #include "opentelemetry/version.h"
 #include "opentelemetry/sdk/configuration/composable_sampler_configuration.h"
-#include "opentelemetry/sdk/configuration/sampler_configuration_visitor.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk

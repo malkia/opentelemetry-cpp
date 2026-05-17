@@ -7,17 +7,19 @@
 #include <cstddef>
 #include <functional>
 #include <mutex>
+#include <string>
 #include <thread>
 #include <utility>
 #include <vector>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/key_value_iterable_view.h"
 #include "opentelemetry/logs/event_id.h"
 #include "opentelemetry/logs/logger.h"
 #include "opentelemetry/logs/logger_provider.h"
 #include "opentelemetry/logs/provider.h"
 #include "opentelemetry/logs/severity.h"
-#include "opentelemetry/nostd/shared_ptr.h"
+#include "opentelemetry/nostd/span.h"
 #include "opentelemetry/nostd/string_view.h"
 
 using opentelemetry::logs::EventId;

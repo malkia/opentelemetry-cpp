@@ -11,7 +11,9 @@
 #include <type_traits>
 #include <vector>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/nostd/span.h"
+#include "opentelemetry/nostd/utility.h"
 
 using opentelemetry::nostd::span;
 

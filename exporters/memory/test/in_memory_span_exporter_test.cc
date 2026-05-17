@@ -3,8 +3,10 @@
 
 #include <gtest/gtest.h>
 #include <memory>
+#include <string>
 #include <vector>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/exporters/memory/in_memory_span_data.h"
 #include "opentelemetry/exporters/memory/in_memory_span_exporter.h"
 #include "opentelemetry/nostd/span.h"

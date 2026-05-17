@@ -6,9 +6,10 @@
 #include <map>
 #include <string>
 #include <unordered_map>
-#include <utility>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/key_value_iterable_view.h"
+#include "opentelemetry/nostd/utility.h"
 #include "opentelemetry/sdk/metrics/observer_result.h"
 #include "opentelemetry/sdk/metrics/state/attributes_hashmap.h"
 #include "opentelemetry/sdk/metrics/view/attributes_processor.h"

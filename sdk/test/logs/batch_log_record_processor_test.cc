@@ -8,16 +8,14 @@
 #include <chrono>
 #include <cstddef>
 #include <memory>
-#include <ratio>
 #include <string>
 #include <thread>
 #include <utility>
 #include <vector>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/attribute_value.h"
 #include "opentelemetry/common/timestamp.h"
-#include "opentelemetry/logs/log_record.h"
-#include "opentelemetry/logs/severity.h"
 #include "opentelemetry/nostd/span.h"
 #include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/nostd/variant.h"

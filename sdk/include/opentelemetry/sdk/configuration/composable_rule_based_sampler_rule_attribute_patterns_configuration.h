@@ -13,7 +13,7 @@ namespace sdk
 {
 namespace configuration
 {
-class OPENTELEMETRY_EXPORT_TYPE ComposableRuleBasedSamplerRuleAttributePatternsConfiguration
+class ComposableRuleBasedSamplerRuleAttributePatternsConfiguration
 {
 public:
   ComposableRuleBasedSamplerRuleAttributePatternsConfiguration() = default;

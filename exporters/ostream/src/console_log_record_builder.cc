@@ -4,10 +4,10 @@
 #include <memory>
 #include <utility>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/exporters/ostream/console_log_record_builder.h"
 #include "opentelemetry/exporters/ostream/log_record_exporter_factory.h"
 #include "opentelemetry/sdk/configuration/console_log_record_exporter_builder.h"
-#include "opentelemetry/sdk/configuration/console_log_record_exporter_configuration.h"
 #include "opentelemetry/sdk/configuration/registry.h"
 #include "opentelemetry/sdk/logs/exporter.h"
 #include "opentelemetry/version.h"

@@ -14,13 +14,13 @@
 #include <fstream>
 #include <functional>
 #include <mutex>
-#include <ratio>
 #include <string>
 #include <thread>
 #include <utility>
 #include <vector>
 
 // IWYU pragma: no_include <features.h>
+#include "opentelemetry/version.h"
 
 #if defined(HAVE_GSL)
 #  include <gsl/gsl>
@@ -105,7 +105,6 @@
 #  define OTLP_FILE_OPEN(f, path, mode) f = fopen(path, mode)
 #endif
 
-#include "opentelemetry/version.h"
 #include "opentelemetry/exporters/otlp/otlp_file_client.h"
 #include "opentelemetry/exporters/otlp/otlp_file_client_options.h"
 #include "opentelemetry/exporters/otlp/otlp_file_client_runtime_options.h"
@@ -115,7 +114,6 @@
 #include "opentelemetry/sdk/common/base64.h"
 #include "opentelemetry/sdk/common/exporter_utils.h"
 #include "opentelemetry/sdk/common/global_log_handler.h"
-#include "opentelemetry/sdk/common/thread_instrumentation.h"
 
 // clang-format off
 #include "opentelemetry/exporters/otlp/protobuf_include_prefix.h" // IWYU pragma: keep
@@ -129,6 +127,10 @@
 #if OPENTELEMETRY_HAVE_EXCEPTIONS
 #  include <exception>
 #endif
+
+#ifdef ENABLE_THREAD_INSTRUMENTATION_PREVIEW
+#  include "opentelemetry/sdk/common/thread_instrumentation.h"
+#endif /* ENABLE_THREAD_INSTRUMENTATION_PREVIEW */
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace exporter

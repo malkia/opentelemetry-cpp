@@ -8,15 +8,15 @@
 #include <functional>
 #include <iostream>
 #include <list>
-#include <map>
 #include <memory>
 #include <mutex>
-#include <ratio>
 #include <sstream>
 #include <string>
 #include <unordered_map>
 #include <utility>
 #include <vector>
+
+#include "opentelemetry/version.h"
 
 #if defined(HAVE_GSL)
 #  include <gsl/gsl>
@@ -26,7 +26,6 @@
 
 #include "nlohmann/json.hpp"
 
-#include "opentelemetry/version.h"
 #include "opentelemetry/common/timestamp.h"
 #include "opentelemetry/exporters/otlp/otlp_http.h"
 #include "opentelemetry/exporters/otlp/otlp_http_client.h"

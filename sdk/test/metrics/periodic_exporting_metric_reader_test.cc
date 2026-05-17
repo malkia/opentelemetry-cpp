@@ -6,11 +6,12 @@
 #include <chrono>
 #include <cstdlib>
 #include <memory>
-#include <ratio>
+#include <string>
 #include <thread>
 #include <utility>
 #include <vector>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/sdk/common/exporter_utils.h"
 #include "opentelemetry/sdk/instrumentationscope/instrumentation_scope.h"
 #include "opentelemetry/sdk/metrics/export/metric_producer.h"

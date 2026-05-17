@@ -3,9 +3,11 @@
 
 #include <gtest/gtest.h>
 #include <memory>
+#include <string>
 #include <utility>
 #include <vector>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/exporters/memory/in_memory_span_data.h"
 #include "opentelemetry/sdk/trace/span_data.h"
 

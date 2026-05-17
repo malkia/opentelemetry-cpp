@@ -7,15 +7,9 @@
 
 #include "opentelemetry/version.h"
 #include "opentelemetry/common/attribute_value.h"
-#include "opentelemetry/common/timestamp.h"
-#include "opentelemetry/logs/severity.h"
-#include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/sdk/instrumentationscope/instrumentation_scope.h"
 #include "opentelemetry/sdk/logs/recordable.h"
 #include "opentelemetry/sdk/resource/resource.h"
-#include "opentelemetry/trace/span_id.h"
-#include "opentelemetry/trace/trace_flags.h"
-#include "opentelemetry/trace/trace_id.h"
 
 // clang-format off
 #include "opentelemetry/exporters/otlp/protobuf_include_prefix.h" // IWYU pragma: keep

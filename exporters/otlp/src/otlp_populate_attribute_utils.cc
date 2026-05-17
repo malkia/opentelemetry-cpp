@@ -1,5 +1,6 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
+#include "opentelemetry/version.h"
 
 #if defined(ENABLE_OTLP_UTF8_VALIDITY)
 #  include <utf8_validity.h>
@@ -7,11 +8,9 @@
 
 #include <stdint.h>
 #include <string>
-#include <unordered_map>
 #include <utility>
 #include <vector>
 
-#include "opentelemetry/version.h"
 #include "opentelemetry/common/attribute_value.h"
 #include "opentelemetry/exporters/otlp/otlp_populate_attribute_utils.h"
 #include "opentelemetry/nostd/span.h"

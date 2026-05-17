@@ -23,7 +23,6 @@
 #include <map>
 #include <memory>
 #include <mutex>
-#include <ratio>
 #include <sstream>
 #include <string>
 #include <thread>

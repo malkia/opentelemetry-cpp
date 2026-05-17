@@ -8,10 +8,12 @@
 #include <string>
 #include <utility>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/context/context.h"
 #include "opentelemetry/metrics/noop.h"
 #include "opentelemetry/metrics/sync_instruments.h"
 #include "opentelemetry/nostd/string_view.h"
+#include "opentelemetry/nostd/utility.h"
 
 TEST(Counter, Add)
 {

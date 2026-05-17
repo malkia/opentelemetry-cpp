@@ -5,7 +5,9 @@
 #include <stdint.h>
 #include <array>
 #include <random>
+#include <string>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/sdk/metrics/aggregation/base2_exponential_histogram_indexer.h"
 
 using namespace opentelemetry::sdk::metrics;

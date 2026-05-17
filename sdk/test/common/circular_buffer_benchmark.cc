@@ -9,11 +9,13 @@
 #include <iostream>
 #include <memory>
 #include <random>
+#include <string>
 #include <thread>
 #include <utility>
 #include <vector>
 #include "benchmark/benchmark.h"
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/sdk/common/atomic_unique_ptr.h"
 #include "opentelemetry/sdk/common/circular_buffer.h"
 #include "opentelemetry/sdk/common/circular_buffer_range.h"

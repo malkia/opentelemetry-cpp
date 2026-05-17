@@ -4,7 +4,6 @@
 #pragma once
 
 #include "opentelemetry/version.h"
-#include "opentelemetry/sdk/resource/resource.h"
 #include "opentelemetry/sdk/resource/resource_detector.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE

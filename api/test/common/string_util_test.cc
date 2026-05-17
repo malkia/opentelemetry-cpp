@@ -3,8 +3,10 @@
 
 #include <gtest/gtest.h>
 #include <string.h>
+#include <string>
 
-#include <opentelemetry/common/string_util.h>
+#include "opentelemetry/version.h"
+#include "opentelemetry/common/string_util.h"
 #include "opentelemetry/nostd/string_view.h"
 
 // ------------------------- StringUtil class tests ---------------------------------

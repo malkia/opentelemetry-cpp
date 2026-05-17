@@ -8,7 +8,6 @@
 #include <utility>
 
 #include "opentelemetry/version.h"
-#include "opentelemetry/common/key_value_iterable.h"
 #include "opentelemetry/context/context.h"
 #include "opentelemetry/sdk/common/global_log_handler.h"
 #include "opentelemetry/sdk/metrics/instruments.h"
