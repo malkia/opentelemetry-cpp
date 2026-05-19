@@ -16,7 +16,6 @@
 
 #include "foo_library/foo_library.h"
 
-namespace trace_api      = opentelemetry::trace;
 namespace trace_sdk      = opentelemetry::sdk::trace;
 namespace trace_exporter = opentelemetry::exporter::trace;
 

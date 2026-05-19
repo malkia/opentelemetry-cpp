@@ -30,7 +30,6 @@
 
 #include "logs_foo_library/foo_library.h"
 
-namespace trace     = opentelemetry::trace;
 namespace otlp      = opentelemetry::exporter::otlp;
 namespace logs_sdk  = opentelemetry::sdk::logs;
 namespace logs      = opentelemetry::logs;

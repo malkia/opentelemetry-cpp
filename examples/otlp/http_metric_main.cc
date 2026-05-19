@@ -7,7 +7,6 @@
 #include <thread>
 #include <utility>
 
-#include "opentelemetry/common/attribute_value.h"
 #include "opentelemetry/exporters/otlp/otlp_http.h"
 #include "opentelemetry/exporters/otlp/otlp_http_metric_exporter_factory.h"
 #include "opentelemetry/exporters/otlp/otlp_http_metric_exporter_options.h"
@@ -26,7 +25,6 @@
 #include "metrics_foo_library/foo_library.h"
 
 namespace metrics_sdk   = opentelemetry::sdk::metrics;
-namespace common        = opentelemetry::common;
 namespace metrics_api   = opentelemetry::metrics;
 namespace otlp_exporter = opentelemetry::exporter::otlp;
 

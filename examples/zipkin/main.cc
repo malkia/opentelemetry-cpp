@@ -18,7 +18,6 @@
 
 #include "foo_library/foo_library.h"
 
-namespace trace     = opentelemetry::trace;
 namespace trace_sdk = opentelemetry::sdk::trace;
 namespace zipkin    = opentelemetry::exporter::zipkin;
 namespace resource  = opentelemetry::sdk::resource;
