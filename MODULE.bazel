@@ -68,7 +68,7 @@ use_repo(
 )
 
 bazel_dep(name = "cel-spec", version = "0.25.1")
-bazel_dep(name = "envoy_api", version = "0.0.0-20251216-6ef568c")
+bazel_dep(name = "envoy_api", version = "0.0.0-20260130-84e8436")
 
 # This is needed only for most of the `bazel mod xxx` functions to work.
 #
