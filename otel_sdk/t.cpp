@@ -40,7 +40,7 @@ int main(int argc, const char *argv[])
     setvbuf(stdin, nullptr, _IONBF,0);
 
       using namespace opentelemetry::sdk::common::internal_log;
-      GlobalLogHandler::SetLogLevel(LogLevel::Debug);
+//      GlobalLogHandler::SetLogLevel(LogLevel::Debug);
   }
 
   {

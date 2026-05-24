@@ -127,9 +127,9 @@ int main(int argc, char *argv[])
 
   if (absl::GetFlag(FLAGS_generate))
   {
-    while (g_otelcol_proc == nullptr || g_prometheus_proc == nullptr)
+    while (g_otelcol_proc == nullptr || g_prometheus_proc == nullptr || g_dashboard_proc == nullptr)
     {
-      printf("*");  // fflush(stdout);
+      printf("*");
       std::this_thread::sleep_for(std::chrono::seconds(3));
     }
     std::this_thread::sleep_for(std::chrono::seconds(3));
