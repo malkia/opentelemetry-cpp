@@ -62,11 +62,13 @@ cc_test(
     data = [
         "@multitool//tools/otelcol-contrib",
         "@multitool//tools/prometheus",
+        "@multitool//tools/aspire",
         "otelcol.yaml",
         "prometheus.yaml",
         "t",
     ],
     args = [
+       "--aspire_binary=$(rootpath @multitool//tools/aspire)",
        "--otelcol_binary=$(rootpath @multitool//tools/otelcol-contrib)",
        "--otelcol_yaml=$(rootpath otelcol.yaml)",
        "--prometheus_binary=$(rootpath @multitool//tools/prometheus)",
@@ -75,6 +77,10 @@ cc_test(
        "--sleep=10",
        "--generate",
     ],
+    env = {
+        "ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL": "http://127.0.0.1:43170",
+        "ASPIRE_DASHBOARD_OTLP_HTTP_ENDPOINT_URL": "http://127.0.0.1:43171",
+    },
     deps = [
         "@tinyproc", 
         "@abseil-cpp//absl/flags:flag",

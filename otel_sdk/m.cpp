@@ -21,6 +21,7 @@ static std::unique_ptr<TinyProcessLib::Process> g_dashboard_proc;
 static char g_workDir[1024]{};
 static bool g_runPrometheus;
 
+ABSL_FLAG(std::optional<std::string>, aspire_binary, "", "Aspire binary file");
 ABSL_FLAG(std::string, otelcol_binary, "", "Otelcol binary file");
 ABSL_FLAG(std::string, otelcol_yaml, "", "Otelcol yaml file");
 ABSL_FLAG(std::optional<std::string>, prometheus_binary, std::nullopt, "Prometheus binary file");
@@ -28,7 +29,6 @@ ABSL_FLAG(std::string, prometheus_yaml, "", "Prometheus yaml file");
 ABSL_FLAG(std::string, test_binary, "", "Test binary file");
 ABSL_FLAG(int, sleep, 10, "Additional sleep time");
 ABSL_FLAG(bool, generate, false, "Generate metrics");
-ABSL_FLAG(bool, dash, false, "Aspire dashboard");
 
 struct redirect_context
 {
@@ -75,11 +75,15 @@ int main(int argc, char *argv[])
   const auto this_exe_dir{get_dir(argv[0])};
   const auto otelcol_exe{this_exe_dir + absl::GetFlag(FLAGS_otelcol_binary)};
   const auto otelcol_yaml{this_exe_dir + absl::GetFlag(FLAGS_otelcol_yaml)};
+  const auto aspire_exe{absl::GetFlag(FLAGS_aspire_binary).has_value()
+                                ? this_exe_dir + absl::GetFlag(FLAGS_aspire_binary).value()
+                                : ""};
   const auto prometheus_exe{absl::GetFlag(FLAGS_prometheus_binary).has_value()
                                 ? this_exe_dir + absl::GetFlag(FLAGS_prometheus_binary).value()
                                 : ""};
   const auto prometheus_yaml{this_exe_dir + absl::GetFlag(FLAGS_prometheus_yaml)};
 
+  printf("aspire_exe=[%s]\n", aspire_exe.c_str());
   printf("otelcol_exe=[%s]\n", otelcol_exe.c_str());
   printf("otelcol_yaml=[%s]\n", otelcol_yaml.c_str());
   printf("prometheus_exe=[%s]\n", prometheus_exe.c_str());
@@ -101,12 +105,12 @@ int main(int argc, char *argv[])
   }};
 
   int dashboardExitCode{};
-  std::thread prometheus_thread{[&dashboardExitCode]() {
-    if (absl::GetFlag(FLAGS_dash))
+  std::thread aspire_thread{[&aspire_exe, &dashboardExitCode]() {
+    if (!aspire_exe.empty())
     {
       printf("[STARTING] dashboard\n");
       redirect_context ctx{"dash"};
-      g_dashboard_proc = run_proc(ctx, {"aspire.exe", "dashboard", "run"});
+      g_dashboard_proc = run_proc(ctx, {aspire_exe, "dashboard", "run"});
       dashboardExitCode = g_dashboard_proc->get_exit_status();
       printf("[FINISHED] dashboard, exitCode=%d\n", dashboardExitCode );
     }
@@ -166,6 +170,9 @@ int main(int argc, char *argv[])
 
   if (prometheus_thread.joinable())
     prometheus_thread.join();
+
+  if (aspire_thread.joinable())
+    aspire_thread.join();
 
   printf("END!\n");
 

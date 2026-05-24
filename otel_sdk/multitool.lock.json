@@ -1,5 +1,17 @@
 {
   "$schema": "https://raw.githubusercontent.com/theoremlp/rules_multitool/main/lockfile.schema.json",
+  "aspire": {
+    "binaries": [
+      {
+        "kind": "archive",
+        "url": "https://github.com/microsoft/aspire/releases/download/v13.3.1/aspire-cli-win-arm64-13.3.1.zip",
+        "file": "aspire.exe",
+        "sha256": "66b641b98311d95a94e7dd41f59b635d12c00e3aa4cd18549aae670109d2145e",
+        "os": "windows",
+        "cpu": "arm64"
+      }
+    ]
+  },
   "multitool": {
     "binaries": [
       {
