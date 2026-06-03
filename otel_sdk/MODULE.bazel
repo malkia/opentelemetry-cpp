@@ -3,7 +3,7 @@ bazel_dep(name = "platforms", version = "1.1.0")
 bazel_dep(name = "rules_cc", version = "0.2.19")
 bazel_dep(name = "rules_multitool", version = "1.11.1")
 bazel_dep(name = "bazel_lib", version = "3.3.1")
-bazel_dep(name = "abseil-cpp", version = "20260107.1")
+bazel_dep(name = "abseil-cpp", version = "20260526.0")
 
 multitool = use_extension("@rules_multitool//multitool:extension.bzl", "multitool")
 multitool.hub(lockfile = "@otel_sdk//:multitool.lock.json")
