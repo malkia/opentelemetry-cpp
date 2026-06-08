@@ -17,6 +17,7 @@ otel_cc_test(
     deps = dll_deps([
         "//sdk/src/resource",
         "//sdk/src/trace",
+        "//exporters/memory:in_memory_span_exporter",
         "@googletest//:gtest_main",
     ]),
 )
