@@ -36,7 +36,6 @@
 #  include <condition_variable>
 #  include <cstdio>
 #  include <mutex>
-#  include <new>
 #  include <unordered_set>
 
 #  include "opentelemetry/common/timestamp.h"
