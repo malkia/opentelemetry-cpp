@@ -27,7 +27,7 @@ bazel_dep(name = "rules_go", version = "0.61.1")
 bazel_dep(name = "gazelle", version = "0.51.3")
 bazel_dep(name = "stardoc", version = "0.8.1")
 bazel_dep(name = "rules_android", version = "0.7.3")
-bazel_dep(name = "grpc", version = "1.81.0")
+bazel_dep(name = "grpc", version = "1.81.1")
 bazel_dep(name = "rules_swift", version = "4.0.0-rc2")
 single_version_override(
     module_name = "grpc",
@@ -35,7 +35,7 @@ single_version_override(
     patches = [
         "bazel/grpc.patch",
     ],
-    version = "1.81.0",
+    version = "1.81.1",
 )
 bazel_dep(name = "nlohmann_json", version = "3.12.0.bcr.1")
 bazel_dep(name = "rules_cc", version = "0.2.19")
