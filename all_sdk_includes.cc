@@ -4,3 +4,5 @@
 // #endif
 
 #include <opentelemetry/exporters/otlp/otlp_grpc_forward_proxy.h>
+#include <sdk/include/opentelemetry/sdk/trace/samplers/composable_always_on.h>
+#include <sdk/include/opentelemetry/sdk/trace/samplers/composable_always_off.h>

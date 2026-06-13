@@ -67,6 +67,7 @@ otel_cc_test(
         "zipkin",
     ],
     deps = dll_deps([
+        "//test_common/src/http/client/nosend:http_client_nosend",
         ":zipkin_exporter",
         ":zipkin_recordable",
         "@googletest//:gtest_main",
