@@ -29,6 +29,7 @@ otel_cc_test(
     ],
     deps = dll_deps([
         "metrics_common_test_utils",
+        "//test_common:headers",
         "@googletest//:gtest_main",
     ]),
 )
