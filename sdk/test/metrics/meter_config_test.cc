@@ -1,12 +1,13 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-#include "opentelemetry/version.h"
-#include "opentelemetry/sdk/metrics/meter_config.h"
 #include <gtest/gtest.h>
 #include <array>
 #include <string>
 #include <utility>
+
+#include "opentelemetry/version.h"
+#include "opentelemetry/sdk/metrics/meter_config.h"
 #include "opentelemetry/common/attribute_value.h"
 #include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/sdk/instrumentationscope/instrumentation_scope.h"

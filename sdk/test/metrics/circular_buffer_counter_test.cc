@@ -6,6 +6,7 @@
 #include <limits>
 #include <string>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/sdk/metrics/data/circular_buffer.h"
 
 using namespace opentelemetry::sdk::metrics;

@@ -7,6 +7,7 @@
 #include <string>
 #include <utility>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/metrics/observer_result.h"
 #include "opentelemetry/sdk/metrics/async_instruments.h"
 #include "opentelemetry/sdk/metrics/instruments.h"

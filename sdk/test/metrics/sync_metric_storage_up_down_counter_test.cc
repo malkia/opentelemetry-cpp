@@ -12,6 +12,7 @@
 #include <vector>
 #include "common.h"
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/key_value_iterable_view.h"
 #include "opentelemetry/context/context.h"
 #include "opentelemetry/nostd/function_ref.h"

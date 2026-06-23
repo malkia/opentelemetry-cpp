@@ -3,6 +3,7 @@
 // #include <opentelemetry/exporters/etw/etw_tracer.h>
 // #endif
 
+#include <opentelemetry/version.h>
 #include <opentelemetry/exporters/otlp/otlp_grpc_forward_proxy.h>
-#include <sdk/include/opentelemetry/sdk/trace/samplers/composable_always_on.h>
-#include <sdk/include/opentelemetry/sdk/trace/samplers/composable_always_off.h>
+#include <opentelemetry/sdk/trace/samplers/composable_always_on.h>
+#include <opentelemetry/sdk/trace/samplers/composable_always_off.h>

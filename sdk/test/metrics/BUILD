@@ -23,9 +23,6 @@ otel_cc_test_library(
 otel_cc_test(
     name = "all_tests",
     srcs = glob(["*_test.cc"]),
-    copts = [
-        "-DUNIT_TESTING",
-    ],
     tags = [
         "metrics",
         "test",
@@ -40,9 +37,6 @@ otel_cc_test(
     name = "stress_tests",
     timeout = "long",
     srcs = glob(["*_test_stress.cc"]),
-    copts = [
-        "-DUNIT_TESTING",
-    ],
     tags = [
         "metrics",
         "test",

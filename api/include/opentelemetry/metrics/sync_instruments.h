@@ -34,8 +34,8 @@ public:
 // Bound synchronous instrument support intentionally covers Counter and
 // Histogram only. UpDownCounter, Gauge, exemplar parity, and context-bearing
 // bound operations are follow-ups. This API is experimental and is gated
-// behind both ABI v2 and ENABLE_METRICS_BOUND_INSTRUMENTS_PREVIEW
-// (see OPENTELEMETRY_HAVE_METRICS_BOUND_INSTRUMENTS_PREVIEW in version.h).
+// behind both ABI v2 and OPENTELEMETRY_HAVE_METRICS_BOUND_INSTRUMENTS_PREVIEW
+// (see version.h).
 /**
  * @since ABI_VERSION 2
  * A bound counter handle obtained via Counter<T>::Bind(...). The associated

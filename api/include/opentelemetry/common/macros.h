@@ -558,51 +558,54 @@ point.
 #endif
 #define OPENTELEMETRY_ABI_VERSION_NO 2 // Use the new api
 
+#ifdef OPENTELEMETRY_HAVE_METRICS_BOUND_INSTRUMENTS_PREVIEW
+#error OPENTELEMETRY_HAVE_METRICS_BOUND_INSTRUMENTS_PREVIEW must be defined only in this file: opentelemetry/common/macros.h
+#endif
+#undef OPENTELEMETRY_HAVE_METRICS_BOUND_INSTRUMENTS_PREVIEW
+
 #ifdef ENABLE_METRICS_EXEMPLAR_PREVIEW
 #error ENABLE_METRICS_EXEMPLAR_PREVIEW must be defined only in this file: opentelemetry/common/macros.h
 #endif
+#define ENABLE_METRICS_EXEMPLAR_PREVIEW 1
 
 #ifdef ENABLE_ASYNC_EXPORT
 #error ENABLE_ASYNC_EXPORT must be defined only in this file: opentelemetry/common/macros.h
 #endif
+#define ENABLE_ASYNC_EXPORT 1
 
 #ifdef ENABLE_OTLP_GRPC_SSL_MTLS_PREVIEW
 #error ENABLE_OTLP_GRPC_SSL_MTLS_PREVIEW must be defined only in this file: opentelemetry/common/macros.h
 #endif
+#define ENABLE_OTLP_GRPC_SSL_MTLS_PREVIEW 1
 
 #ifdef ENABLE_OTLP_COMPRESSION_PREVIEW
 #error ENABLE_OTLP_COMPRESSION_PREVIEW must be defined only in this file: opentelemetry/common/macros.h
 #endif
+#define ENABLE_OTLP_COMPRESSION_PREVIEW 1
 
 #ifdef ENABLE_OTLP_RETRY_PREVIEW
 #error ENABLE_OTLP_RETRY_PREVIEW must be defined only in this file: opentelemetry/common/macros.h
 #endif
+#define ENABLE_OTLP_RETRY_PREVIEW 1
 
 #ifdef ENABLE_THREAD_INSTRUMENTATION_PREVIEW
 #error ENABLE_THREAD_INSTRUMENTATION_PREVIEW must be defined only in this file: opentelemetry/common/macros.h
 #endif
+#define ENABLE_THREAD_INSTRUMENTATION_PREVIEW 1
 
 #ifdef ENABLE_CURL_LOGGING
 #error ENABLE_CURL_LOGGING must be defined only in this file: opentelemetry/common/macros.h
 #endif
+#define ENABLE_CURL_LOGGING 1
 
 #ifdef ENABLE_HTTP_CLIENT_CURL
 #error ENABLE_HTTP_CLIENT_CURL must be defined only in this file: opentelemetry/common/macros.h
 #endif
+#define ENABLE_HTTP_CLIENT_CURL 1
 
 #ifdef ENABLE_OTLP_GRPC_CREDENTIAL_PREVIEW
 #error ENABLE_OTLP_GRPC_CREDENTIAL_PREVIEW must be defined only in this file: opentelemetry/common/macros.h
 #endif
-
-// Enable specific library features
-#define ENABLE_METRICS_EXEMPLAR_PREVIEW 1
-#define ENABLE_ASYNC_EXPORT 1
-#define ENABLE_OTLP_GRPC_SSL_MTLS_PREVIEW 1
-#define ENABLE_OTLP_COMPRESSION_PREVIEW 1
-#define ENABLE_OTLP_RETRY_PREVIEW 1
-#define ENABLE_THREAD_INSTRUMENTATION_PREVIEW 1
-#define ENABLE_CURL_LOGGING 1
-#define ENABLE_HTTP_CLIENT_CURL 1
 #define ENABLE_OTLP_GRPC_CREDENTIAL_PREVIEW 1
 
 // What follows is specific to the https://github.com/malkia/opentelemetry-cpp windows-dll branch.
@@ -683,6 +686,7 @@ point.
   "+http_client_curl:" OPENTELEMETRY_STR(ENABLE_HTTP_CLIENT_CURL) \
   "+grpc_cred:" OPENTELEMETRY_STR(ENABLE_OTLP_GRPC_CREDENTIAL_PREVIEW) \
   "+have_excpts:" OPENTELEMETRY_STR(OPENTELEMETRY_HAVE_EXCEPTIONS) \
+  "+metric_bounds:" OPENTELEMETRY_STR(OPENTELEMETRY_HAVE_METRICS_BOUND_INSTRUMENTS_PREVIEW) \
 )
 
 #undef OPENTELEMETRY_DLL_STRX

@@ -4,6 +4,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/attribute_value.h"  // IWYU pragma: keep
 #include "opentelemetry/nostd/utility.h"           // IWYU pragma: keep
 #include "opentelemetry/sdk/metrics/instruments.h"

@@ -5,6 +5,7 @@
 #include <string>
 #include <utility>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/macros.h"
 #include "opentelemetry/nostd/function_ref.h"
 #include "opentelemetry/nostd/unique_ptr.h"

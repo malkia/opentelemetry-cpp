@@ -304,7 +304,7 @@ private:
   TemporalMetricStorage temporal_metric_storage_;
   opentelemetry::common::SpinLockMutex attribute_hashmap_lock_;
 #ifdef OPENTELEMETRY_HAVE_METRICS_BOUND_INSTRUMENTS_PREVIEW
-  // NOTE: ENABLE_METRICS_BOUND_INSTRUMENTS_PREVIEW changes the layout and
+  // NOTE: OPENTELEMETRY_HAVE_METRICS_BOUND_INSTRUMENTS_PREVIEW changes the layout and
   // vtable of SyncMetricStorage (these conditional members and the virtual
   // Bind() method on SyncWritableMetricStorage). It MUST be defined
   // consistently across the SDK library build and every consumer translation

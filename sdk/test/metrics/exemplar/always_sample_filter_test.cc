@@ -3,6 +3,7 @@
 
 #include <gtest/gtest.h>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/context/context.h"
 #include "opentelemetry/sdk/metrics/exemplar/filter.h"
 

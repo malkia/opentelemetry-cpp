@@ -173,10 +173,8 @@ public:
    */
   size_t Size() { return hash_map_.size(); }
 
-#ifdef UNIT_TESTING
   size_t BucketCount() { return hash_map_.bucket_count(); }
   size_t BucketSize(size_t n) { return hash_map_.bucket_size(n); }
-#endif
 
 private:
   std::unordered_map<MetricAttributes, std::unique_ptr<Aggregation>, CustomHash> hash_map_;

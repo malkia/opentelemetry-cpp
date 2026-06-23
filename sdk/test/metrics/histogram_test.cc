@@ -9,6 +9,7 @@
 #include <vector>
 #include "common.h"
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/macros.h"
 #include "opentelemetry/context/context.h"  // IWYU pragma: keep
 #include "opentelemetry/metrics/meter.h"

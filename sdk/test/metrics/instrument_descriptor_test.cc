@@ -4,6 +4,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/sdk/metrics/instruments.h"
 
 using namespace opentelemetry::sdk::metrics;
