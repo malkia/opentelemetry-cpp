@@ -4,9 +4,9 @@
     "binaries": [
       {
         "kind": "archive",
-        "url": "https://github.com/microsoft/aspire/releases/download/v13.3.1/aspire-cli-win-arm64-13.3.1.zip",
+        "url": "https://github.com/microsoft/aspire/releases/download/v13.4.6/aspire-cli-win-arm64-13.4.6.zip",
         "file": "aspire.exe",
-        "sha256": "66b641b98311d95a94e7dd41f59b635d12c00e3aa4cd18549aae670109d2145e",
+        "sha256": "e48de26619f10a27fc7899f478f95f6266d35f556a7d6bec100669d247ca0130",
         "os": "windows",
         "cpu": "arm64"
       }
@@ -68,49 +68,49 @@
     "binaries": [
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.152.1/otelcol-contrib_0.152.1_linux_arm64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.154.0/otelcol-contrib_0.154.0_linux_arm64.tar.gz",
         "file": "otelcol-contrib",
-        "sha256": "d427f97da8f4e2a867042dc6016d979b481404c1e5b3446c667c6202b5866f4b",
+        "sha256": "52310bfcb5a952c072e8abff7f0f2940ee38cea36752a4a4e1a4e21c2088c3f9",
         "os": "linux",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.152.1/otelcol-contrib_0.152.1_linux_amd64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.154.0/otelcol-contrib_0.154.0_linux_amd64.tar.gz",
         "file": "otelcol-contrib",
-        "sha256": "2a01ac12b4a16dea39be1cfebd3477a7bc63c5fe6068b6cb8eaf25d1a16be829",
+        "sha256": "f0fe6e7b1d81936d4e5a3aad7a678f3fc2f8ada2a9f8f37f37542813c12ed322",
         "os": "linux",
         "cpu": "x86_64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.152.1/otelcol-contrib_0.152.1_darwin_arm64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.154.0/otelcol-contrib_0.154.0_darwin_arm64.tar.gz",
         "file": "otelcol-contrib",
-        "sha256": "32778c05c60d1387ef90fb0e576d0a27c8197e52a82d57caeacea98c9b532161",
+        "sha256": "de3af70ef0b80af213911cc9ba8daf553348dd22ed1fb15db561d207fc2cb3d9",
         "os": "macos",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.152.1/otelcol-contrib_0.152.1_darwin_amd64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.154.0/otelcol-contrib_0.154.0_darwin_amd64.tar.gz",
         "file": "otelcol-contrib",
-        "sha256": "6e5127fc74c0b4b302c9f1149edcc3a47f6644fe201f8c1d7a8ebeea21525683",
+        "sha256": "14f7f825a7ad7ee0799947ff70a42b9a5528a9c1411ab45f8fcc4caeb9346f7b",
         "os": "macos",
         "cpu": "x86_64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.152.1/otelcol-contrib_0.152.1_windows_arm64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.154.0/otelcol-contrib_0.154.0_windows_arm64.tar.gz",
         "file": "otelcol-contrib.exe",
-        "sha256": "f5ce80c0403b112fa3a79489b52cd0c825d80acbc394a760527c18672f14d786",
+        "sha256": "a4320c1954cde72ce77b8e52f88d89d7ff7fdf2ac2501526ca454c2b8856f687",
         "os": "windows",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.152.1/otelcol-contrib_0.152.1_windows_amd64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.154.0/otelcol-contrib_0.154.0_windows_amd64.tar.gz",
         "file": "otelcol-contrib.exe",
-        "sha256": "b3e879e4d2f8860e3d5dbefb265c46e968c095e31f4f2aabd361ce1c2d839ee9",
+        "sha256": "3f68a2f48da37da37e478b50814f2da408fb66593b288d4bb57bd3d832339e3b",
         "os": "windows",
         "cpu": "x86_64"
       }
@@ -120,17 +120,17 @@
     "binaries": [
       {
         "kind": "archive",
-        "url": "https://github.com/prometheus/prometheus/releases/download/v3.11.3/prometheus-3.11.3.windows-arm64.tar.gz",
-        "file": "prometheus-3.11.3.windows-arm64/prometheus.exe",
-        "sha256": "60565fefd31e4cab68db00820075bff8faf07dad31a95ed8c1b77d7bde3edf26",
+        "url": "https://github.com/prometheus/prometheus/releases/download/v3.12.0/prometheus-3.12.0.windows-arm64.tar.gz",
+        "file": "prometheus-3.12.0.windows-arm64/prometheus.exe",
+        "sha256": "548e3047a8d68ddd0caf454fee0a9ae09d76c2de02dee2fc1a4b6b14a80b7bc5",
         "os": "windows",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/prometheus/prometheus/releases/download/v3.11.3/prometheus-3.11.3.windows-amd64.tar.gz",
-        "file": "prometheus-3.11.3.windows-amd64/prometheus.exe",
-        "sha256": "edd29bea2d0fab32d5ad3fdd64f8d09640bef8854b888cac22b61c009757b0c7",
+        "url": "https://github.com/prometheus/prometheus/releases/download/v3.12.0/prometheus-3.12.0.windows-amd64.tar.gz",
+        "file": "prometheus-3.12.0.windows-amd64/prometheus.exe",
+        "sha256": "9d712b9b055c7b6352c9fbbae44a9d8e725a7e1012f13cad2c077ba4fbf393fa",
         "os": "windows",
         "cpu": "x86_64"
       }
@@ -140,17 +140,17 @@
     "binaries": [
       {
         "kind": "archive",
-        "url": "https://github.com/prometheus/prometheus/releases/download/v3.11.3/prometheus-3.11.3.windows-arm64.tar.gz",
-        "file": "prometheus-3.11.3.windows-arm64/promtool.exe",
-        "sha256": "60565fefd31e4cab68db00820075bff8faf07dad31a95ed8c1b77d7bde3edf26",
+        "url": "https://github.com/prometheus/prometheus/releases/download/v3.12.0/prometheus-3.12.0.windows-arm64.tar.gz",
+        "file": "prometheus-3.12.0.windows-arm64/promtool.exe",
+        "sha256": "548e3047a8d68ddd0caf454fee0a9ae09d76c2de02dee2fc1a4b6b14a80b7bc5",
         "os": "windows",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/prometheus/prometheus/releases/download/v3.11.3/prometheus-3.11.3.windows-amd64.tar.gz",
-        "file": "prometheus-3.11.3.windows-amd64/promtool.exe",
-        "sha256": "edd29bea2d0fab32d5ad3fdd64f8d09640bef8854b888cac22b61c009757b0c7",
+        "url": "https://github.com/prometheus/prometheus/releases/download/v3.12.0/prometheus-3.12.0.windows-amd64.tar.gz",
+        "file": "prometheus-3.12.0.windows-amd64/promtool.exe",
+        "sha256": "9d712b9b055c7b6352c9fbbae44a9d8e725a7e1012f13cad2c077ba4fbf393fa",
         "os": "windows",
         "cpu": "x86_64"
       }
