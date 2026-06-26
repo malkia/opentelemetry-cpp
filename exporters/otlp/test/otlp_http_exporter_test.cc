@@ -168,8 +168,8 @@ public:
     processor_opts.max_queue_size        = 5;
     processor_opts.schedule_delay_millis = std::chrono::milliseconds(256);
 
-    auto processor = std::unique_ptr<sdk::trace::SpanProcessor>(
-        new sdk::trace::BatchSpanProcessor(std::move(exporter), processor_opts));
+    std::unique_ptr<sdk::trace::SpanProcessor> processor =
+        std::make_unique<sdk::trace::BatchSpanProcessor>(std::move(exporter), processor_opts);
     auto provider = nostd::shared_ptr<sdk::trace::TracerProvider>(
         new sdk::trace::TracerProvider(std::move(processor), resource));
 
@@ -280,8 +280,8 @@ public:
     processor_opts.max_queue_size        = 5;
     processor_opts.schedule_delay_millis = std::chrono::milliseconds(256);
 
-    auto processor = std::unique_ptr<sdk::trace::SpanProcessor>(
-        new sdk::trace::BatchSpanProcessor(std::move(exporter), processor_opts));
+    std::unique_ptr<sdk::trace::SpanProcessor> processor =
+        std::make_unique<sdk::trace::BatchSpanProcessor>(std::move(exporter), processor_opts);
     auto provider = nostd::shared_ptr<sdk::trace::TracerProvider>(
         new sdk::trace::TracerProvider(std::move(processor), resource));
 
@@ -396,8 +396,8 @@ public:
     processor_opts.max_queue_size        = 5;
     processor_opts.schedule_delay_millis = std::chrono::milliseconds(256);
 
-    auto processor = std::unique_ptr<sdk::trace::SpanProcessor>(
-        new sdk::trace::BatchSpanProcessor(std::move(exporter), processor_opts));
+    std::unique_ptr<sdk::trace::SpanProcessor> processor =
+        std::make_unique<sdk::trace::BatchSpanProcessor>(std::move(exporter), processor_opts);
     auto provider = nostd::shared_ptr<sdk::trace::TracerProvider>(
         new sdk::trace::TracerProvider(std::move(processor), resource));
 
@@ -493,8 +493,8 @@ public:
     processor_opts.max_queue_size        = 5;
     processor_opts.schedule_delay_millis = std::chrono::milliseconds(256);
 
-    auto processor = std::unique_ptr<sdk::trace::SpanProcessor>(
-        new sdk::trace::BatchSpanProcessor(std::move(exporter), processor_opts));
+    std::unique_ptr<sdk::trace::SpanProcessor> processor =
+        std::make_unique<sdk::trace::BatchSpanProcessor>(std::move(exporter), processor_opts);
     auto provider = nostd::shared_ptr<sdk::trace::TracerProvider>(
         new sdk::trace::TracerProvider(std::move(processor), resource));
 
@@ -567,7 +567,8 @@ public:
 
 TEST(OtlpHttpExporterTest, Shutdown)
 {
-  auto exporter = std::unique_ptr<opentelemetry::sdk::trace::SpanExporter>(new OtlpHttpExporter());
+  std::unique_ptr<opentelemetry::sdk::trace::SpanExporter> exporter =
+      std::make_unique<OtlpHttpExporter>();
   ASSERT_TRUE(exporter->Shutdown());
 
   nostd::span<std::unique_ptr<opentelemetry::sdk::trace::Recordable>> spans = {};
@@ -607,8 +608,8 @@ TEST_F(OtlpHttpExporterTestPeer, ExportBinaryIntegrationTestAsync)
 TEST_F(OtlpHttpExporterTestPeer, ConfigTest)
 {
   OtlpHttpExporterOptions opts;
-  opts.url = "http://localhost:45455/v1/traces";
-  std::unique_ptr<OtlpHttpExporter> exporter(new OtlpHttpExporter(opts));
+  opts.url                                   = "http://localhost:45455/v1/traces";
+  std::unique_ptr<OtlpHttpExporter> exporter = std::make_unique<OtlpHttpExporter>(opts);
   EXPECT_EQ(GetOptions(exporter).url, "http://localhost:45455/v1/traces");
 }
 
@@ -616,8 +617,8 @@ TEST_F(OtlpHttpExporterTestPeer, ConfigTest)
 TEST_F(OtlpHttpExporterTestPeer, ConfigUseJsonNameTest)
 {
   OtlpHttpExporterOptions opts;
-  opts.use_json_name = true;
-  std::unique_ptr<OtlpHttpExporter> exporter(new OtlpHttpExporter(opts));
+  opts.use_json_name                         = true;
+  std::unique_ptr<OtlpHttpExporter> exporter = std::make_unique<OtlpHttpExporter>(opts);
   EXPECT_EQ(GetOptions(exporter).use_json_name, true);
 }
 
@@ -625,8 +626,8 @@ TEST_F(OtlpHttpExporterTestPeer, ConfigUseJsonNameTest)
 TEST_F(OtlpHttpExporterTestPeer, ConfigJsonBytesMappingTest)
 {
   OtlpHttpExporterOptions opts;
-  opts.json_bytes_mapping = JsonBytesMappingKind::kHex;
-  std::unique_ptr<OtlpHttpExporter> exporter(new OtlpHttpExporter(opts));
+  opts.json_bytes_mapping                    = JsonBytesMappingKind::kHex;
+  std::unique_ptr<OtlpHttpExporter> exporter = std::make_unique<OtlpHttpExporter>(opts);
   EXPECT_EQ(GetOptions(exporter).json_bytes_mapping, JsonBytesMappingKind::kHex);
 }
 
@@ -647,7 +648,7 @@ TEST_F(OtlpHttpExporterTestPeer, ConfigFromEnv)
   setenv("OTEL_EXPORTER_OTLP_TRACES_HEADERS", "k1=v3,k1=v4", 1);
   setenv("OTEL_EXPORTER_OTLP_PROTOCOL", "http/json", 1);
 
-  std::unique_ptr<OtlpHttpExporter> exporter(new OtlpHttpExporter());
+  std::unique_ptr<OtlpHttpExporter> exporter = std::make_unique<OtlpHttpExporter>();
   EXPECT_EQ(GetOptions(exporter).url, url);
   EXPECT_EQ(
       GetOptions(exporter).timeout.count(),
@@ -690,7 +691,7 @@ TEST_F(OtlpHttpExporterTestPeer, ConfigFromTracesEnv)
   setenv("OTEL_EXPORTER_OTLP_TRACES_HEADERS", "k1=v3,k1=v4", 1);
   setenv("OTEL_EXPORTER_OTLP_TRACES_PROTOCOL", "http/json", 1);
 
-  std::unique_ptr<OtlpHttpExporter> exporter(new OtlpHttpExporter());
+  std::unique_ptr<OtlpHttpExporter> exporter = std::make_unique<OtlpHttpExporter>();
   EXPECT_EQ(GetOptions(exporter).url, url);
   EXPECT_EQ(
       GetOptions(exporter).timeout.count(),
@@ -726,8 +727,8 @@ TEST_F(OtlpHttpExporterTestPeer, ConfigFromTracesEnv)
 
 TEST_F(OtlpHttpExporterTestPeer, ConfigRetryDefaultValues)
 {
-  std::unique_ptr<OtlpHttpExporter> exporter(new OtlpHttpExporter());
-  const auto options = GetOptions(exporter);
+  std::unique_ptr<OtlpHttpExporter> exporter = std::make_unique<OtlpHttpExporter>();
+  const auto options                         = GetOptions(exporter);
   ASSERT_EQ(options.retry_policy_max_attempts, 5);
   ASSERT_FLOAT_EQ(options.retry_policy_initial_backoff.count(), 1.0f);
   ASSERT_FLOAT_EQ(options.retry_policy_max_backoff.count(), 5.0f);
@@ -741,8 +742,8 @@ TEST_F(OtlpHttpExporterTestPeer, ConfigRetryValuesFromEnv)
   setenv("OTEL_CPP_EXPORTER_OTLP_TRACES_RETRY_MAX_BACKOFF", "6.7", 1);
   setenv("OTEL_CPP_EXPORTER_OTLP_TRACES_RETRY_BACKOFF_MULTIPLIER", "8.9", 1);
 
-  std::unique_ptr<OtlpHttpExporter> exporter(new OtlpHttpExporter());
-  const auto options = GetOptions(exporter);
+  std::unique_ptr<OtlpHttpExporter> exporter = std::make_unique<OtlpHttpExporter>();
+  const auto options                         = GetOptions(exporter);
   ASSERT_EQ(options.retry_policy_max_attempts, 123);
   ASSERT_FLOAT_EQ(options.retry_policy_initial_backoff.count(), 4.5f);
   ASSERT_FLOAT_EQ(options.retry_policy_max_backoff.count(), 6.7f);
@@ -761,8 +762,8 @@ TEST_F(OtlpHttpExporterTestPeer, ConfigRetryGenericValuesFromEnv)
   setenv("OTEL_CPP_EXPORTER_OTLP_RETRY_MAX_BACKOFF", "7.6", 1);
   setenv("OTEL_CPP_EXPORTER_OTLP_RETRY_BACKOFF_MULTIPLIER", "9.8", 1);
 
-  std::unique_ptr<OtlpHttpExporter> exporter(new OtlpHttpExporter());
-  const auto options = GetOptions(exporter);
+  std::unique_ptr<OtlpHttpExporter> exporter = std::make_unique<OtlpHttpExporter>();
+  const auto options                         = GetOptions(exporter);
   ASSERT_EQ(options.retry_policy_max_attempts, 321);
   ASSERT_FLOAT_EQ(options.retry_policy_initial_backoff.count(), 5.4f);
   ASSERT_FLOAT_EQ(options.retry_policy_max_backoff.count(), 7.6f);
