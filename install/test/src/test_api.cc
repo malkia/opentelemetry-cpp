@@ -173,7 +173,7 @@ TEST(ApiInstallTest, ContextPropagationApiCheck)
 
   MapCarrier carrier;
   auto context =
-      opentelemetry::context::RuntimeContext::GetCurrent().SetValue("test-key", "test-value");
+      opentelemetry::context::RuntimeContext::GetCurrent().SetValue("test-key", 12345 /*"test-value"*/);
   propagator->Inject(carrier, context);
   auto extracted = propagator->Extract(carrier, context);
   EXPECT_EQ(extracted, context);
