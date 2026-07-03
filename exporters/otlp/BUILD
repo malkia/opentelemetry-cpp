@@ -700,7 +700,7 @@ otel_cc_test(
     deps = dll_deps([
         ":otlp_recordable",
         "//sdk/src/metrics",
-        "@com_github_opentelemetry_proto//:common_proto_cc",
+        "@opentelemetry-proto//:common_proto_cc",
         "@googletest//:gtest_main",
     ]),
 )
