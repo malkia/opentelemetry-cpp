@@ -415,6 +415,9 @@ TEST(CounterToSumFilterAttributesWithCardinalityLimit, Double)
   }
 }
 
+namespace
+{
+
 class UpDownCounterToSumFixture : public ::testing::TestWithParam<bool>
 {};
 
@@ -472,3 +475,5 @@ INSTANTIATE_TEST_SUITE_P(UpDownCounterToSum,
                          UpDownCounterToSumFixture,
                          ::testing::Values(true, false));
 #endif
+
+}  // namespace

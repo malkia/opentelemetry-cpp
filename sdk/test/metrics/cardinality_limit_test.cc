@@ -102,6 +102,9 @@ TEST(CardinalityLimit, AttributesHashMapBasicTests)
   }
 }
 
+namespace
+{
+
 class WritableMetricStorageCardinalityLimitTestFixture
     : public ::testing::TestWithParam<AggregationTemporality>
 {};
@@ -184,3 +187,5 @@ TEST(CardinalityLimitOverflowAttribute, MatchesSpecLiteral)
   EXPECT_EQ(entry.first, "otel.metric.overflow");
   EXPECT_EQ(nostd::get<bool>(entry.second), true);
 }
+
+}  // namespace

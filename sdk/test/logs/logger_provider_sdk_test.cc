@@ -243,6 +243,7 @@ public:
 
 class DummyProcessor : public LogRecordProcessor
 {
+public:
   std::unique_ptr<Recordable> MakeRecordable() noexcept override
   {
     return std::unique_ptr<Recordable>(new DummyLogRecordable());

@@ -83,6 +83,9 @@ TEST(AttributesHashMap, BasicTests)
   EXPECT_EQ(count, hash_map.Size());
 }
 
+namespace
+{
+
 class MetricAttributeMapHashForCollision
 {
 public:
@@ -224,3 +227,5 @@ TEST(AttributesHashMap, OverflowCardinalityLimitBehavior)
     EXPECT_NE(map_copy.Get(attr), nullptr);
   }
 }
+
+}  // namespace

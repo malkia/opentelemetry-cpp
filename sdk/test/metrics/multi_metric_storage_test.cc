@@ -15,6 +15,9 @@
 using namespace opentelemetry;
 using namespace opentelemetry::sdk::metrics;
 
+namespace
+{
+
 class TestMetricStorage : public SyncWritableMetricStorage
 {
 public:
@@ -63,3 +66,5 @@ TEST(MultiMetricStorageTest, BasicTests)
   EXPECT_EQ(static_cast<TestMetricStorage *>(storage.get())->num_calls_long, 3);
   EXPECT_EQ(static_cast<TestMetricStorage *>(storage.get())->num_calls_double, 1);
 }
+
+}  // namespace

@@ -11,6 +11,9 @@
 #include "opentelemetry/sdk/common/attribute_utils.h"
 #include "opentelemetry/sdk/common/global_log_handler.h"
 
+namespace
+{
+
 class CustomLogHandler : public opentelemetry::sdk::common::internal_log::LogHandler
 {
 public:
@@ -77,3 +80,5 @@ TEST(GlobalLogHandleTest, CustomLogHandler)
   opentelemetry::sdk::common::internal_log::GlobalLogHandler::SetLogHandler(backup_log_handle);
   opentelemetry::sdk::common::internal_log::GlobalLogHandler::SetLogLevel(backup_log_level);
 }
+
+}  // namespace

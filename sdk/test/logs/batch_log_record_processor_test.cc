@@ -37,6 +37,9 @@ using namespace opentelemetry::sdk::common;
 
 namespace nostd = opentelemetry::nostd;
 
+namespace
+{
+
 class MockLogRecordable final : public opentelemetry::sdk::logs::Recordable
 {
 public:
@@ -475,3 +478,5 @@ TEST_F(BatchLogRecordProcessorTest, TestOptionsReadFromMultipleEnvVars)
   unsetenv("OTEL_BLRP_EXPORT_TIMEOUT");
   unsetenv("OTEL_BLRP_MAX_EXPORT_BATCH_SIZE");
 }
+
+}  // namespace

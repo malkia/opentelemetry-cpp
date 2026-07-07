@@ -11,6 +11,9 @@
 
 using namespace opentelemetry::sdk::metrics;
 
+namespace
+{
+
 class AdaptingIntegerArrayTest : public testing::TestWithParam<uint64_t>
 {};
 
@@ -150,3 +153,5 @@ TEST(AdaptingCircularBufferCounterTest, Clear)
   counter.Clear();
   EXPECT_TRUE(counter.Empty());
 }
+
+}  // namespace
