@@ -26,11 +26,9 @@ namespace internal_log = opentelemetry::sdk::common::internal_log;
 
 namespace
 {
-opentelemetry::exporter::otlp::OtlpHttpExporterOptions opts;
-
 std::shared_ptr<opentelemetry::sdk::trace::TracerProvider> provider;
 
-void InitTracer()
+void InitTracer(const otlp::OtlpHttpExporterOptions &opts)
 {
   // Create OTLP exporter instance
   auto exporter  = otlp::OtlpHttpExporterFactory::Create(opts);
@@ -66,6 +64,7 @@ void CleanupTracer()
 */
 int main(int argc, char *argv[])
 {
+  otlp::OtlpHttpExporterOptions opts;
   if (argc > 1)
   {
     opts.url = argv[1];
@@ -91,7 +90,7 @@ int main(int argc, char *argv[])
   }
 
   // Removing this line will leave the default noop TracerProvider in place.
-  InitTracer();
+  InitTracer(opts);
 
   foo_library();
 

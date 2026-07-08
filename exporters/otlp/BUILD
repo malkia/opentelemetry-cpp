@@ -46,6 +46,7 @@ otel_cc_library(
     deps = [
         ":otlp_utf8_validity",
         "//sdk/src/logs",
+        "//sdk/src/metrics",
         "//sdk/src/resource",
         "//sdk/src/trace",
         "@opentelemetry-proto//:logs_service_proto_cc",

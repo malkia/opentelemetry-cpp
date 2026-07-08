@@ -35,13 +35,11 @@ namespace trace_sdk = opentelemetry::sdk::trace;
 
 namespace
 {
-opentelemetry::exporter::otlp::OtlpGrpcExporterOptions opts;
-opentelemetry::exporter::otlp::OtlpGrpcLogRecordExporterOptions log_opts;
-
 std::shared_ptr<opentelemetry::sdk::trace::TracerProvider> tracer_provider;
 std::shared_ptr<opentelemetry::sdk::logs::LoggerProvider> logger_provider;
 
-void InitTracer(const std::shared_ptr<otlp::OtlpGrpcClient> &shared_client)
+void InitTracer(const otlp::OtlpGrpcExporterOptions &opts,
+                const std::shared_ptr<otlp::OtlpGrpcClient> &shared_client)
 {
   // Create OTLP exporter instance
   auto exporter   = otlp::OtlpGrpcExporterFactory::Create(opts, shared_client);
@@ -66,7 +64,8 @@ void CleanupTracer()
   trace_sdk::Provider::SetTracerProvider(none);
 }
 
-void InitLogger(const std::shared_ptr<otlp::OtlpGrpcClient> &shared_client)
+void InitLogger(const otlp::OtlpGrpcLogRecordExporterOptions &log_opts,
+                const std::shared_ptr<otlp::OtlpGrpcClient> &shared_client)
 {
   // Create OTLP exporter instance
   auto exporter   = otlp::OtlpGrpcLogRecordExporterFactory::Create(log_opts, shared_client);
@@ -94,6 +93,8 @@ void CleanupLogger()
 
 int main(int argc, char *argv[])
 {
+  otlp::OtlpGrpcExporterOptions opts;
+  otlp::OtlpGrpcLogRecordExporterOptions log_opts;
   if (argc > 1)
   {
     opts.endpoint     = argv[1];
@@ -109,8 +110,8 @@ int main(int argc, char *argv[])
 
   std::shared_ptr<otlp::OtlpGrpcClient> shared_client = otlp::OtlpGrpcClientFactory::Create(opts);
 
-  InitLogger(shared_client);
-  InitTracer(shared_client);
+  InitLogger(log_opts, shared_client);
+  InitTracer(opts, shared_client);
   foo_library();
   CleanupTracer();
   CleanupLogger();

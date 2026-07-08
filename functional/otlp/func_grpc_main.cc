@@ -52,7 +52,8 @@ static bool opt_list   = false;
 static bool opt_debug  = false;
 static bool opt_secure = false;
 // HTTPS by default
-static std::string opt_endpoint = "https://127.0.0.1:4317";
+constexpr char kDefaultOptEndpoint[] = "https://127.0.0.1:4317";
+static std::string opt_endpoint;
 static std::string opt_cert_dir;
 static std::string opt_test_name;
 static TestMode opt_mode = TestMode::kNone;
@@ -319,7 +320,7 @@ typedef int (*test_func_t)();
 
 struct test_case
 {
-  std::string m_name;
+  nostd::string_view m_name;
   test_func_t m_func;
 };
 
@@ -392,6 +393,8 @@ int main(int argc, char *argv[])
   // Program name
   argc--;
   argv++;
+
+  opt_endpoint = kDefaultOptEndpoint;
 
   int rc = parse_args(argc, argv);
 

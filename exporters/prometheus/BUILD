@@ -58,6 +58,7 @@ otel_cc_library(
     deps = [
         "//api",
         "//sdk:headers",
+        "//sdk/src/metrics",
         "@prometheus-cpp//core",
         "@prometheus-cpp//pull",
     ],
