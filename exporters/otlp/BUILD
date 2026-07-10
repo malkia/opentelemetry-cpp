@@ -1097,6 +1097,7 @@ otel_cc_benchmark(
         "//sdk/src/metrics",
         "//sdk/src/resource",
         "//sdk/src/trace",
+        "//test_common:headers",
         "@opentelemetry-proto//:trace_service_proto_cc",
     ]),
 )
