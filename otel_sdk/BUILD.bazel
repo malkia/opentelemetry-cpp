@@ -90,7 +90,6 @@ cc_test(
         "@tinyproc", 
         "@abseil-cpp//absl/flags:flag",
         "@abseil-cpp//absl/flags:parse",
-        "@bazel_tools//tools/cpp/runfiles",
     ],
 )
 
@@ -109,7 +108,8 @@ cc_test(
     ],
     deps = [
         "@tinyproc", 
-        "@bazel_tools//tools/cpp/runfiles"
+        "@abseil-cpp//absl/flags:flag",
+        "@abseil-cpp//absl/flags:parse",
     ],
 )
 
@@ -128,6 +128,7 @@ cc_test(
     ],
     deps = [
         "@tinyproc", 
-        "@bazel_tools//tools/cpp/runfiles"
+        "@abseil-cpp//absl/flags:flag",
+        "@abseil-cpp//absl/flags:parse",
     ],
 )
