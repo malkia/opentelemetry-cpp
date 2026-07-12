@@ -5,6 +5,26 @@ load("//:dll_deps.bzl", "dll_deps")
 load("//bazel:otel_cc.bzl", "otel_cc_test")
 
 otel_cc_test(
+    name = "sdk_builder_test",
+    srcs = [
+        "sdk_builder_test.cc",
+    ],
+    tags = [
+        "test",
+        "yaml",
+    ],
+    deps = dll_deps([
+        "//sdk:headers",
+        "//sdk/src/configuration",
+        "//sdk/src/logs",
+        "//sdk/src/metrics",
+        "//sdk/src/resource",
+        "//sdk/src/trace",
+        "@googletest//:gtest_main",
+    ]),
+)
+
+otel_cc_test(
     name = "yaml_logs_test",
     srcs = [
         "yaml_logs_test.cc",
