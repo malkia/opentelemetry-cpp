@@ -3,7 +3,7 @@ load("@rules_cc//cc:defs.bzl", "cc_import", "cc_test", "cc_binary")
 
 package(default_visibility = ["//visibility:public"])
 
-VERSION = "1.28.0"
+VERSION = "1.29.0"
 
 config_setting(
     name = "r",
