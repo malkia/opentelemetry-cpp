@@ -1,5 +1,25 @@
 {
   "$schema": "https://raw.githubusercontent.com/theoremlp/rules_multitool/main/lockfile.schema.json",
+  "aspire": {
+    "binaries": [
+      {
+        "kind": "archive",
+        "url": "https://github.com/microsoft/aspire/releases/download/v13.4.6/aspire-cli-win-arm64-13.4.6.zip",
+        "file": "aspire.exe",
+        "sha256": "e48de26619f10a27fc7899f478f95f6266d35f556a7d6bec100669d247ca0130",
+        "os": "windows",
+        "cpu": "arm64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/microsoft/aspire/releases/download/v13.4.6/aspire-cli-win-x64-13.4.6.zip",
+        "file": "aspire.exe",
+        "sha256": "38093dc81daf329b487e259bfc608eef3cb663d4cecf6e2b5f29c8513129cd68",
+        "os": "windows",
+        "cpu": "x86_64"
+      }
+    ]
+  },
   "buildifier": {
     "binaries": [
       {
@@ -277,6 +297,46 @@
         "url": "https://github.com/perses/perses/releases/download/v0.53.1/perses_0.53.1_windows_amd64.tar.gz",
         "file": "perses.exe",
         "sha256": "b7c1d178762d6d6f810d88b20f91c509d113193c29015925552d4d3fe768d7cc",
+        "os": "windows",
+        "cpu": "x86_64"
+      }
+    ]
+  },
+  "prometheus": {
+    "binaries": [
+      {
+        "kind": "archive",
+        "url": "https://github.com/prometheus/prometheus/releases/download/v3.13.1/prometheus-3.13.1.windows-arm64.tar.gz",
+        "file": "prometheus-3.13.1.windows-arm64/prometheus.exe",
+        "sha256": "c4b79bae8c10197cdc786468aa709b88505f4d9329ebdceb699c2f8fd69d93f7",
+        "os": "windows",
+        "cpu": "arm64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/prometheus/prometheus/releases/download/v3.13.1/prometheus-3.13.1.windows-amd64.tar.gz",
+        "file": "prometheus-3.13.1.windows-amd64/prometheus.exe",
+        "sha256": "612dd4729d3b6b851bb240b96955d6c3d652c91833c7f74ecea7b8e834f583a3",
+        "os": "windows",
+        "cpu": "x86_64"
+      }
+    ]
+  },
+  "promtool": {
+    "binaries": [
+      {
+        "kind": "archive",
+        "url": "https://github.com/prometheus/prometheus/releases/download/v3.13.1/prometheus-3.13.1.windows-arm64.tar.gz",
+        "file": "prometheus-3.13.1.windows-arm64/promtool.exe",
+        "sha256": "c4b79bae8c10197cdc786468aa709b88505f4d9329ebdceb699c2f8fd69d93f7",
+        "os": "windows",
+        "cpu": "arm64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/prometheus/prometheus/releases/download/v3.13.1/prometheus-3.13.1.windows-amd64.tar.gz",
+        "file": "prometheus-3.13.1.windows-amd64/promtool.exe",
+        "sha256": "612dd4729d3b6b851bb240b96955d6c3d652c91833c7f74ecea7b8e834f583a3",
         "os": "windows",
         "cpu": "x86_64"
       }
