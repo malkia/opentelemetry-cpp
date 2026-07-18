@@ -20,7 +20,6 @@
 #  include "opentelemetry/sdk/metrics/data/metric_data.h"
 #  include "opentelemetry/sdk/metrics/exemplar/filter_type.h"
 #  include "opentelemetry/trace/context.h"
-#  include "opentelemetry/trace/span.h"
 #  include "opentelemetry/trace/span_context.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
@@ -136,14 +135,10 @@ private:
   {
     attributes_  = attributes;
     record_time_ = opentelemetry::common::SystemTimestamp(std::chrono::system_clock::now());
-    auto span    = opentelemetry::trace::GetSpan(context);
-    if (span)
+    const auto current_ctx = opentelemetry::trace::GetSpanContext(context);
+    if (current_ctx.IsValid())
     {
-      auto current_ctx = span->GetContext();
-      if (current_ctx.IsValid())
-      {
-        context_.reset(new opentelemetry::trace::SpanContext{current_ctx});
-      }
+      context_.reset(new opentelemetry::trace::SpanContext{current_ctx});
     }
   }
 
