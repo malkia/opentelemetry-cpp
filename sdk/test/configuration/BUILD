@@ -24,7 +24,7 @@ otel_cc_test(
     ],
 )
 
-cc_test(
+otel_cc_test(
     name = "configured_sdk_test",
     srcs = [
         "configured_sdk_test.cc",
@@ -44,7 +44,7 @@ cc_test(
     ],
 )
 
-cc_test(
+otel_cc_test(
     name = "programmatic_configuration_test",
     srcs = [
         "programmatic_configuration_test.cc",
