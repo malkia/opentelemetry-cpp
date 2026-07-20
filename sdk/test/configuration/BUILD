@@ -20,7 +20,7 @@ otel_cc_test(
         "//sdk/src/metrics",
         "//sdk/src/resource",
         "//sdk/src/trace",
-        "@com_google_googletest//:gtest_main",
+        "@googletest//:gtest_main",
     ],
 )
 
@@ -40,7 +40,7 @@ otel_cc_test(
         "//sdk/src/metrics",
         "//sdk/src/resource",
         "//sdk/src/trace",
-        "@com_google_googletest//:gtest_main",
+        "@googletest//:gtest_main",
     ],
 )
 
