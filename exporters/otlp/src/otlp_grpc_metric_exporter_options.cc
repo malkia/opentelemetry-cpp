@@ -7,8 +7,6 @@
 #include "opentelemetry/version.h"
 #include "opentelemetry/exporters/otlp/otlp_environment.h"
 #include "opentelemetry/exporters/otlp/otlp_grpc_metric_exporter_options.h"
-#include "opentelemetry/exporters/otlp/otlp_preferred_temporality.h"
-#include "opentelemetry/exporters/otlp/otlp_grpc_metric_exporter_options.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace exporter
@@ -17,7 +15,6 @@ namespace otlp
 {
 
 OtlpGrpcMetricExporterOptions::OtlpGrpcMetricExporterOptions()
-    : aggregation_temporality(PreferredAggregationTemporality::kCumulative)
 {
   endpoint                    = GetOtlpDefaultGrpcMetricsEndpoint();
   use_ssl_credentials         = !GetOtlpDefaultGrpcMetricsIsInsecure(); /* negation intended. */
@@ -49,7 +46,6 @@ OtlpGrpcMetricExporterOptions::OtlpGrpcMetricExporterOptions()
 }
 
 OtlpGrpcMetricExporterOptions::OtlpGrpcMetricExporterOptions(void *)
-    : aggregation_temporality(PreferredAggregationTemporality::kCumulative)
 {
   use_ssl_credentials = true;
   max_threads         = 0;

@@ -5,7 +5,6 @@
 #include "opentelemetry/exporters/otlp/otlp_http_metric_exporter_options.h"
 #include "opentelemetry/exporters/otlp/otlp_environment.h"
 #include "opentelemetry/exporters/otlp/otlp_http.h"
-#include "opentelemetry/exporters/otlp/otlp_preferred_temporality.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace exporter
@@ -16,17 +15,8 @@ namespace otlp
 OtlpHttpMetricExporterOptions::OtlpHttpMetricExporterOptions()
     : url(GetOtlpDefaultMetricsEndpoint()),
       content_type(GetOtlpHttpProtocolFromString(GetOtlpDefaultHttpMetricsProtocol())),
-      json_bytes_mapping(JsonBytesMappingKind::kHexId),
-      use_json_name(false),
-      console_debug(false),
       timeout(GetOtlpDefaultMetricsTimeout()),
       http_headers(GetOtlpDefaultMetricsHeaders()),
-      aggregation_temporality(PreferredAggregationTemporality::kCumulative),
-#ifdef ENABLE_ASYNC_EXPORT
-      max_concurrent_requests{64},
-      max_requests_per_connection{8},
-#endif
-      ssl_insecure_skip_verify(false),
       ssl_ca_cert_path(GetOtlpDefaultMetricsSslCertificatePath()),
       ssl_ca_cert_string(GetOtlpDefaultMetricsSslCertificateString()),
       ssl_client_key_path(GetOtlpDefaultMetricsSslClientKeyPath()),
@@ -44,19 +34,7 @@ OtlpHttpMetricExporterOptions::OtlpHttpMetricExporterOptions()
       retry_policy_backoff_multiplier(GetOtlpDefaultMetricsRetryBackoffMultiplier())
 {}
 
-OtlpHttpMetricExporterOptions::OtlpHttpMetricExporterOptions(void *)
-    : url(),
-      content_type(exporter::otlp::HttpRequestContentType::kBinary),
-      json_bytes_mapping(JsonBytesMappingKind::kHexId),
-      use_json_name(false),
-      console_debug(false),
-      aggregation_temporality(PreferredAggregationTemporality::kCumulative),
-#ifdef ENABLE_ASYNC_EXPORT
-      max_concurrent_requests{64},
-      max_requests_per_connection{8},
-#endif
-      ssl_insecure_skip_verify(false)
-{}
+OtlpHttpMetricExporterOptions::OtlpHttpMetricExporterOptions(void *) {}
 
 OtlpHttpMetricExporterOptions::~OtlpHttpMetricExporterOptions() {}
 
