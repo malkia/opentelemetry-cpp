@@ -7,6 +7,7 @@ load("//bazel:otel_cc.bzl", "otel_cc_test")
 otel_cc_test(
     name = "sdk_builder_test",
     srcs = [
+        "config_test_common.h",
         "sdk_builder_test.cc",
     ],
     tags = [
@@ -27,6 +28,7 @@ otel_cc_test(
 otel_cc_test(
     name = "configured_sdk_test",
     srcs = [
+        "config_test_common.h",
         "configured_sdk_test.cc",
     ],
     tags = [
@@ -47,6 +49,7 @@ otel_cc_test(
 otel_cc_test(
     name = "programmatic_configuration_test",
     srcs = [
+        "config_test_common.h",
         "programmatic_configuration_test.cc",
     ],
     tags = [

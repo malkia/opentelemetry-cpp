@@ -37,14 +37,18 @@
 using namespace opentelemetry::sdk::metrics;
 using namespace opentelemetry::common;
 
-class WritableMetricStorageTestFixture : public ::testing::TestWithParam<AggregationTemporality>
+namespace
+{
+
+class GaugeWritableMetricStorageTestFixture
+    : public ::testing::TestWithParam<AggregationTemporality>
 {};
 
 class WritableMetricStorageDeltaMultiReaderTestFixture
     : public ::testing::TestWithParam<AggregationTemporality>
 {};
 
-TEST_P(WritableMetricStorageTestFixture, LongGaugeLastValueAggregation)
+TEST_P(GaugeWritableMetricStorageTestFixture, LongGaugeLastValueAggregation)
 {
 #if OPENTELEMETRY_ABI_VERSION_NO >= 2
   AggregationTemporality temporality = GetParam();
@@ -125,10 +129,10 @@ TEST_P(WritableMetricStorageTestFixture, LongGaugeLastValueAggregation)
 }
 
 INSTANTIATE_TEST_SUITE_P(WritableMetricStorageTestLong,
-                         WritableMetricStorageTestFixture,
+                         GaugeWritableMetricStorageTestFixture,
                          ::testing::Values(AggregationTemporality::kCumulative));
 
-TEST_P(WritableMetricStorageTestFixture, DoubleGaugeLastValueAggregation)
+TEST_P(GaugeWritableMetricStorageTestFixture, DoubleGaugeLastValueAggregation)
 {
 #if OPENTELEMETRY_ABI_VERSION_NO >= 2
   AggregationTemporality temporality = GetParam();
@@ -209,7 +213,7 @@ TEST_P(WritableMetricStorageTestFixture, DoubleGaugeLastValueAggregation)
 }
 
 INSTANTIATE_TEST_SUITE_P(WritableMetricStorageTestDouble,
-                         WritableMetricStorageTestFixture,
+                         GaugeWritableMetricStorageTestFixture,
                          ::testing::Values(AggregationTemporality::kCumulative));
 
 TEST_P(WritableMetricStorageDeltaMultiReaderTestFixture,
@@ -580,3 +584,5 @@ TEST_P(WritableMetricStorageDeltaMultiReaderTestFixture,
 INSTANTIATE_TEST_SUITE_P(WritableMetricStorageTestDoubleDeltaMultiReader,
                          WritableMetricStorageDeltaMultiReaderTestFixture,
                          ::testing::Values(AggregationTemporality::kDelta));
+
+}  // namespace

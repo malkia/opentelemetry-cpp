@@ -261,6 +261,9 @@ TEST(Logger, EventLogMethodOverloads)
 
 #endif
 
+namespace
+{
+
 // Define a basic Logger class
 class TestLogger : public Logger
 {
@@ -282,9 +285,6 @@ public:
     auto log_record_ptr = std::move(log_record);
   }
 };
-
-namespace
-{
 
 class EnablementAwareTestLogRecord : public opentelemetry::logs::LogRecord
 {
@@ -455,8 +455,6 @@ protected:
 private:
   bool enabled_impl_result_;
 };
-
-}  // namespace
 
 // Define a basic LoggerProvider class that returns an instance of the logger class defined above
 class TestProvider : public LoggerProvider
@@ -679,3 +677,5 @@ TEST(Logger, EmitLogRecordWithTracePartsInArgsRoutesSpanContextVariantToEnabled)
   EXPECT_EQ(logger.last_span_context_.trace_flags(), trace_flags);
 }
 #endif  // OPENTELEMETRY_ABI_VERSION_NO >= 2
+
+}  // namespace

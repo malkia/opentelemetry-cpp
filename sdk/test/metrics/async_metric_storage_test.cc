@@ -38,7 +38,11 @@ using namespace opentelemetry::sdk::instrumentationscope;
 using namespace opentelemetry::sdk::resource;
 using namespace opentelemetry::common;
 
-class WritableMetricStorageTestFixture : public ::testing::TestWithParam<AggregationTemporality>
+namespace
+{
+
+class AsyncWritableMetricStorageTestFixture
+    : public ::testing::TestWithParam<AggregationTemporality>
 {};
 
 class WritableMetricStorageTestUpDownFixture
@@ -49,7 +53,7 @@ class WritableMetricStorageTestObservableGaugeFixture
     : public ::testing::TestWithParam<AggregationTemporality>
 {};
 
-TEST_P(WritableMetricStorageTestFixture, TestAggregation)
+TEST_P(AsyncWritableMetricStorageTestFixture, TestAggregation)
 {
   AggregationTemporality temporality = GetParam();
 
@@ -139,7 +143,7 @@ TEST_P(WritableMetricStorageTestFixture, TestAggregation)
 }
 
 INSTANTIATE_TEST_SUITE_P(WritableMetricStorageTestLong,
-                         WritableMetricStorageTestFixture,
+                         AsyncWritableMetricStorageTestFixture,
                          ::testing::Values(AggregationTemporality::kCumulative,
                                            AggregationTemporality::kDelta));
 
@@ -318,3 +322,5 @@ INSTANTIATE_TEST_SUITE_P(WritableMetricStorageTestObservableGaugeFixtureLong,
                          WritableMetricStorageTestObservableGaugeFixture,
                          ::testing::Values(AggregationTemporality::kCumulative,
                                            AggregationTemporality::kDelta));
+
+}  // namespace

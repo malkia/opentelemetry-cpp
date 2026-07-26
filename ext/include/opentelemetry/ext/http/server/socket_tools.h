@@ -721,6 +721,7 @@ public:
     m_sockets.clear();
   }
 
+protected:
   /// <summary>
   /// Thread Loop for async events processing
   /// </summary>

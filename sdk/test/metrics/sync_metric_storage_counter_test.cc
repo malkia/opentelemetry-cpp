@@ -35,10 +35,14 @@
 using namespace opentelemetry::sdk::metrics;
 using namespace opentelemetry::common;
 
-class WritableMetricStorageTestFixture : public ::testing::TestWithParam<AggregationTemporality>
+namespace
+{
+
+class CounterWritableMetricStorageTestFixture
+    : public ::testing::TestWithParam<AggregationTemporality>
 {};
 
-TEST_P(WritableMetricStorageTestFixture, LongCounterSumAggregation)
+TEST_P(CounterWritableMetricStorageTestFixture, LongCounterSumAggregation)
 {
   AggregationTemporality temporality  = GetParam();
   auto sdk_start_ts                   = std::chrono::system_clock::now();
@@ -174,11 +178,11 @@ TEST_P(WritableMetricStorageTestFixture, LongCounterSumAggregation)
 }
 
 INSTANTIATE_TEST_SUITE_P(WritableMetricStorageTestLong,
-                         WritableMetricStorageTestFixture,
+                         CounterWritableMetricStorageTestFixture,
                          ::testing::Values(AggregationTemporality::kCumulative,
                                            AggregationTemporality::kDelta));
 
-TEST_P(WritableMetricStorageTestFixture, DoubleCounterSumAggregation)
+TEST_P(CounterWritableMetricStorageTestFixture, DoubleCounterSumAggregation)
 {
   AggregationTemporality temporality = GetParam();
   auto sdk_start_ts                  = std::chrono::system_clock::now();
@@ -497,6 +501,8 @@ TEST(SyncMetricStorageTest, DeltaCounterMultiCollectorFirstIntervalUsesInstrumen
   EXPECT_EQ(metric_data.end_ts, collection_ts);
 }
 INSTANTIATE_TEST_SUITE_P(WritableMetricStorageTestDouble,
-                         WritableMetricStorageTestFixture,
+                         CounterWritableMetricStorageTestFixture,
                          ::testing::Values(AggregationTemporality::kCumulative,
                                            AggregationTemporality::kDelta));
+
+}  // namespace

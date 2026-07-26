@@ -25,6 +25,9 @@ namespace sdk
 {
 namespace metrics
 {
+namespace
+{
+
 class AlignedHistogramBucketExemplarReservoirTestPeer : public ::testing::Test
 {
 public:
@@ -60,6 +63,8 @@ TEST_F(AlignedHistogramBucketExemplarReservoirTestPeer, OfferMeasurementWithNonE
   auto exemplar_data = histogram_exemplar_reservoir->CollectAndReset(MetricAttributes{});
   ASSERT_TRUE(!exemplar_data.empty());
 }
+
+}  // namespace
 
 }  // namespace metrics
 }  // namespace sdk

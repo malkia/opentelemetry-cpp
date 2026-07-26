@@ -16,6 +16,9 @@ using opentelemetry::trace::TracerProvider;
 
 namespace nostd = opentelemetry::nostd;
 
+namespace
+{
+
 class TestProvider : public TracerProvider
 {
 public:
@@ -50,3 +53,5 @@ TEST(Provider, SetTracerProvider)
   Provider::SetTracerProvider(tf);
   ASSERT_EQ(tf, Provider::GetTracerProvider());
 }
+
+}  // namespace
