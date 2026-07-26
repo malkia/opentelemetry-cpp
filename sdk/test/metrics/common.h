@@ -4,9 +4,11 @@
 #pragma once
 
 #include <chrono>
+#include <cstddef>
 #include <memory>
 
 #include "opentelemetry/version.h"
+#include "opentelemetry/sdk/metrics/cardinality_limits.h"
 #include "opentelemetry/sdk/metrics/instruments.h"
 #include "opentelemetry/sdk/metrics/metric_reader.h"
 #include "opentelemetry/sdk/metrics/push_metric_exporter.h"
@@ -67,6 +69,12 @@ public:
 
   opentelemetry::sdk::metrics::AggregationTemporality GetAggregationTemporality(
       opentelemetry::sdk::metrics::InstrumentType) noexcept override;
+
+  std::size_t GetCardinalityLimit(
+      opentelemetry::sdk::metrics::InstrumentType) const noexcept override
+  {
+    return opentelemetry::sdk::metrics::kDefaultCardinalityLimit;
+  }
 
 private:
   opentelemetry::sdk::metrics::AggregationTemporality temporality_;
