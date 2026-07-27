@@ -29,6 +29,9 @@ namespace nostd    = opentelemetry::nostd;
 namespace logs_api = opentelemetry::logs;
 namespace logs_sdk = opentelemetry::sdk::logs;
 
+namespace
+{
+
 class TestProvider : public LoggerProvider
 {
 public:
@@ -87,3 +90,5 @@ TEST(Provider, MultipleLoggerProviders)
 
   ASSERT_NE(logs_api::Provider::GetLoggerProvider(), tf);
 }
+
+}  // namespace

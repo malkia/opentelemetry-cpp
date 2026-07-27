@@ -2,10 +2,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_binary")
+load("//bazel:otel_cc.bzl", "otel_cc_test")
 
-otel_cc_binary(
+otel_cc_test(
     name = "example_yaml",
+    size = "medium",
     srcs = glob(["*.cc"]) + glob(["*.h"]),
     defines = [
         "OTEL_HAVE_OTLP_HTTP",

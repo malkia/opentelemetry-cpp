@@ -5,7 +5,7 @@ load("//:dll_deps.bzl", "dll_deps")
 load("//bazel:otel_cc.bzl", "otel_cc_test")
 
 otel_cc_test(
-    name = "example_multithreaded",
+    name = "example_logger_configurator",
     srcs = [
         "main.cc",
     ],
@@ -15,7 +15,7 @@ otel_cc_test(
     ],
     deps = dll_deps([
         "//api",
-        "//exporters/ostream:ostream_span_exporter",
-        "//sdk/src/trace",
+        "//exporters/ostream:ostream_log_record_exporter",
+        "//sdk/src/logs",
     ]),
 )

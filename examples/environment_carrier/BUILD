@@ -5,7 +5,7 @@ load("//:dll_deps.bzl", "dll_deps")
 load("//bazel:otel_cc.bzl", "otel_cc_test")
 
 otel_cc_test(
-    name = "example_multithreaded",
+    name = "example_environment_carrier",
     srcs = [
         "main.cc",
     ],
@@ -13,6 +13,10 @@ otel_cc_test(
         "ostream",
         "tested_example",
     ],
+    target_compatible_with = select({
+        "//bazel:windows": ["@platforms//:incompatible"],
+        "//conditions:default": [],
+    }),
     deps = dll_deps([
         "//api",
         "//exporters/ostream:ostream_span_exporter",
