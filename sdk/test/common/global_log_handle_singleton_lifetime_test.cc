@@ -27,6 +27,8 @@ public:
     // (handle non-null).
     if (!custom_handler_destroyed || handle)
     {
+      printf("destoyed=%d\n", custom_handler_destroyed);
+      printf("handle=%p\n", handle.get());
       OTEL_INTERNAL_LOG_ERROR("GlobalLogHandler must be destroyed before the checker");
       abort();
     }
@@ -46,8 +48,8 @@ bool GlobalLogHandlerChecker::custom_handler_destroyed = false;
 
 static GlobalLogHandlerChecker &ConstructChecker()
 {
-  static GlobalLogHandlerChecker checker;
-  return checker;
+  static GlobalLogHandlerChecker* checker = new GlobalLogHandlerChecker;
+  return *checker;
 }
 
 class CustomLogHandler : public opentelemetry::sdk::common::internal_log::LogHandler
