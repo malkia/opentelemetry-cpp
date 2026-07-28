@@ -1,12 +1,14 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 
+load("//:dll_deps.bzl", "dll_deps")
 load("//bazel:otel_cc.bzl", "otel_cc_library")
 
 package(default_visibility = ["//visibility:public"])
 
 otel_cc_library(
     name = "http_client_nosend",
+    testonly = True,
     srcs = [
         "http_client_nosend.cc",
         "http_client_test_factory.cc",
@@ -15,11 +17,11 @@ otel_cc_library(
     tags = [
         "test",
     ],
-    deps = [
+    deps = dll_deps([
         "//api",
         "//ext:headers",
         "//sdk:headers",
         "//test_common:headers",
         "@googletest//:gtest_main",
-    ],
+    ]),
 )

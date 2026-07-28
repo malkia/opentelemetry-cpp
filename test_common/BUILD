@@ -7,6 +7,7 @@ package(default_visibility = ["//visibility:public"])
 
 otel_cc_library(
     name = "headers",
+    testonly = True,
     hdrs = glob(["include/**/*.h"]),
     strip_include_prefix = "include",
 )

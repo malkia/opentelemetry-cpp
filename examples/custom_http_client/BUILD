@@ -6,17 +6,18 @@ load("//bazel:otel_cc.bzl", "otel_cc_library", "otel_cc_test")
 
 otel_cc_library(
     name = "custom_http_client_stub",
+    testonly = True,
     srcs = [
         "custom_http_client.cc",
     ],
     hdrs = [
         "custom_http_client.h",
     ],
-    deps = [
+    deps = dll_deps([
         "//api",
         "//ext:headers",
         "//sdk:headers",
-    ],
+    ]),
 )
 
 otel_cc_test(
