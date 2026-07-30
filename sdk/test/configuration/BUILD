@@ -16,7 +16,7 @@ otel_cc_test(
     ],
     deps = [
         "//sdk:headers",
-        "//sdk/src/configuration",
+        "//sdk/src/configuration:configuration_core",
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/resource",
@@ -37,7 +37,7 @@ otel_cc_test(
     ],
     deps = [
         "//sdk:headers",
-        "//sdk/src/configuration",
+        "//sdk/src/configuration:configuration_core",
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/resource",
@@ -58,7 +58,7 @@ otel_cc_test(
     ],
     deps = dll_deps([
         "//sdk:headers",
-        "//sdk/src/configuration",
+        "//sdk/src/configuration:configuration_core",
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/resource",
