@@ -62,6 +62,7 @@ DLL_DEPS = set([
     Label("@otel_sdk_dev//sdk/src/common:global_log_handler"),
     Label("@otel_sdk_dev//sdk/src/common:wildcard_match"),
     Label("@otel_sdk_dev//sdk/src/configuration:configuration"),
+    Label("@otel_sdk_dev//sdk/src/configuration:configuration_core"),
     Label("@otel_sdk_dev//sdk/src/logs:logs"),
     Label("@otel_sdk_dev//sdk/src/metrics:metrics"),
     Label("@otel_sdk_dev//sdk/src/resource:resource"),
