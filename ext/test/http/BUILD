@@ -5,6 +5,20 @@ load("//:dll_deps.bzl", "dll_deps")
 load("//bazel:otel_cc.bzl", "otel_cc_test")
 
 otel_cc_test(
+    name = "socket_tools_test",
+    srcs = [
+        "socket_tools_test.cc",
+    ],
+    # ws2_32 is an interface linkopt of //ext:headers, so it is inherited here rather than
+    # relinked, which also lets the test verify the public target's usage requirements.
+    tags = ["test"],
+    deps = dll_deps([
+        "//ext:headers",
+        "@googletest//:gtest_main",
+    ]),
+)
+
+otel_cc_test(
     name = "curl_http_test",
     srcs = [
         "curl_http_test.cc",
