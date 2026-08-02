@@ -236,5 +236,5 @@ otel_cc_benchmark(
         "//sdk/src/resource",
         "//sdk/src/trace",
         "//test_common:headers",
-    ],
+    ]),
 )
