@@ -6,11 +6,11 @@
 #include <stdint.h>
 #include <string>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/sdk/trace/sampler.h"
 #include "opentelemetry/trace/span_metadata.h"
 #include "opentelemetry/trace/trace_id.h"
-#include "opentelemetry/version.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
@@ -22,7 +22,7 @@ namespace trace
  * span's 56-bit randomness value and the configured ratio, following the
  * consistent probability sampling specification.
  */
-class ProbabilitySampler : public Sampler
+class OPENTELEMETRY_EXPORT_TYPE ProbabilitySampler : public Sampler
 {
 public:
   /**
