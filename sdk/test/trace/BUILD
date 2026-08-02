@@ -147,6 +147,22 @@ otel_cc_test(
 )
 
 otel_cc_test(
+    name = "probability_sampler_test",
+    srcs = [
+        "probability_sampler_test.cc",
+    ],
+    tags = [
+        "test",
+        "trace",
+    ],
+    deps = dll_deps([
+        "//sdk/src/common:random",
+        "//sdk/src/trace",
+        "@googletest//:gtest_main",
+    ]),
+)
+
+otel_cc_test(
     name = "trace_id_ratio_sampler_test",
     srcs = [
         "trace_id_ratio_sampler_test.cc",
@@ -215,7 +231,7 @@ otel_cc_benchmark(
         "test",
         "trace",
     ],
-    deps = [
+    deps = dll_deps([
         "//exporters/memory:in_memory_span_exporter",
         "//sdk/src/resource",
         "//sdk/src/trace",
