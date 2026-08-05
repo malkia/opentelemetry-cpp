@@ -10,11 +10,11 @@
 #  include <array>
 #endif  // ENABLE_OTLP_RETRY_PREVIEW
 
-#include <stdint.h>
 #include <algorithm>
 #include <atomic>
 #include <chrono>
 #include <cmath>
+#include <cstdint>
 #include <cstring>
 #include <functional>
 #include <future>
@@ -27,7 +27,6 @@
 #include <vector>
 
 #ifdef _MSC_VER
-#  include <string.h>
 #  define strncasecmp _strnicmp
 #else
 #  include <strings.h>

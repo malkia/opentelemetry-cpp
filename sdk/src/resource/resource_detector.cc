@@ -8,7 +8,7 @@
 #include "opentelemetry/sdk/resource/resource.h"
 #include "opentelemetry/semconv/service_attributes.h"
 
-#include <stddef.h>
+#include <cstddef>
 #include <sstream>
 #include <string>
 

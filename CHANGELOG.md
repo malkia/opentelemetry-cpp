@@ -15,6 +15,10 @@ Increment the:
 
 ## [Unreleased]
 
+* [CODE HEALTH] Enable clang-tidy `modernize-deprecated-headers` and replace
+  deprecated C headers (`stdint.h`, `stddef.h`, `stdlib.h`, `string.h`,
+  `stdio.h`, `ctype.h`, `limits.h`, `assert.h`) with their C++ equivalents
+  ([#4349](https://github.com/open-telemetry/opentelemetry-cpp/pull/4349))
 * [CODE HEALTH] Move remaining `misc-use-internal-linkage` classes/enums into
   anonymous namespaces: `OtlpFileSystemBackend`/`OtlpFileOstreamBackend` in
   the OTLP file exporter, `ResponseHandler`/`AsyncResponseHandler`/
@@ -33,6 +37,9 @@ Increment the:
   [#4334](https://github.com/open-telemetry/opentelemetry-cpp/pull/4334)
 * [BUG] Stop reading past a `nostd::string_view` that is not NUL terminated
   [#4346](https://github.com/open-telemetry/opentelemetry-cpp/pull/4346)
+
+* [OTLP EXPORTERS] add otlp_common target for shared otlp utils
+  [#4333](https://github.com/open-telemetry/opentelemetry-cpp/pull/4333)
 
 * [OTLP/HTTP] Honor `Retry-After` response header when retrying exports,
   supporting both delay-seconds and HTTP-date formats per RFC 7231 §7.1.3.

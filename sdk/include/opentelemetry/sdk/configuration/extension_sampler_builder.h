@@ -7,11 +7,15 @@
 
 #include "opentelemetry/version.h"
 #include "opentelemetry/sdk/configuration/extension_sampler_configuration.h"
-#include "opentelemetry/sdk/trace/sampler.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
 {
+namespace trace
+{
+class Sampler;
+}  // namespace trace
+
 namespace configuration
 {
 

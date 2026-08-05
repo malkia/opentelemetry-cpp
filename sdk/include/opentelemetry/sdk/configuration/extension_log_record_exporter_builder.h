@@ -7,11 +7,15 @@
 
 #include "opentelemetry/version.h"
 #include "opentelemetry/sdk/configuration/extension_log_record_exporter_configuration.h"
-#include "opentelemetry/sdk/logs/exporter.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
 {
+namespace logs
+{
+class LogRecordExporter;
+}  // namespace logs
+
 namespace configuration
 {
 

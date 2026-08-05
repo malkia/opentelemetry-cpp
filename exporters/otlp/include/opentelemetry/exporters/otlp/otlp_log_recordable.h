@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <stdint.h>
+#include <cstdint>
 
 #include "opentelemetry/version.h"
 #include "opentelemetry/common/attribute_value.h"

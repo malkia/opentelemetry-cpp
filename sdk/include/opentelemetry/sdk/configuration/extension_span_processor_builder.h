@@ -7,11 +7,15 @@
 
 #include "opentelemetry/version.h"
 #include "opentelemetry/sdk/configuration/extension_span_processor_configuration.h"
-#include "opentelemetry/sdk/trace/processor.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
 {
+namespace trace
+{
+class SpanProcessor;
+}  // namespace trace
+
 namespace configuration
 {
 

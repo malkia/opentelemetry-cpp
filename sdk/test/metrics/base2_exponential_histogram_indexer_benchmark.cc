@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #include <benchmark/benchmark.h>
-#include <stdint.h>
 #include <array>
+#include <cstdint>
 #include <random>
 
 #include "opentelemetry/version.h"

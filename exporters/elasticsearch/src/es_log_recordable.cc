@@ -15,7 +15,6 @@
 #include "opentelemetry/trace/trace_flags.h"
 #include "opentelemetry/trace/trace_id.h"
 
-#include <stdint.h>
 #include <chrono>
 #include <cstdint>
 #include <cstdio>

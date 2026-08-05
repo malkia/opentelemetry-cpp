@@ -16,7 +16,7 @@
 #include "opentelemetry/sdk/metrics/state/temporal_metric_storage.h"
 
 #ifdef OPENTELEMETRY_HAVE_METRICS_BOUND_INSTRUMENTS_PREVIEW
-#  include <stdint.h>
+#  include <cstdint>
 #  include <functional>
 #  include <unordered_map>
 #  include <unordered_set>
