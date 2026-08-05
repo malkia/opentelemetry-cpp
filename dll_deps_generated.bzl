@@ -19,6 +19,7 @@ DLL_DEPS = set([
     Label("@otel_sdk_dev//exporters/ostream:ostream_span_exporter"),
     Label("@otel_sdk_dev//exporters/ostream:ostream_span_exporter_builder"),
     Label("@otel_sdk_dev//exporters/otlp:otlp_builder_utils"),
+    Label("@otel_sdk_dev//exporters/otlp:otlp_common"),
     Label("@otel_sdk_dev//exporters/otlp:otlp_file_client"),
     Label("@otel_sdk_dev//exporters/otlp:otlp_file_exporter"),
     Label("@otel_sdk_dev//exporters/otlp:otlp_file_log_record_exporter"),
