@@ -6,9 +6,9 @@
 #include <atomic>
 #include <chrono>
 #include <memory>
+#include <mutex>
 
 #include "opentelemetry/version.h"
-#include "opentelemetry/common/spin_lock_mutex.h"
 #include "opentelemetry/sdk/logs/exporter.h"
 #include "opentelemetry/sdk/logs/processor.h"
 #include "opentelemetry/sdk/logs/recordable.h"
@@ -24,7 +24,7 @@ namespace logs
  * LogRecordExporter.
  *
  * All calls to the configured LogRecordExporter are synchronized using a
- * spin-lock on an atomic_flag.
+ * mutex.
  */
 class OPENTELEMETRY_EXPORT_TYPE SimpleLogRecordProcessor : public LogRecordProcessor
 {
@@ -62,7 +62,7 @@ private:
   // The configured exporter
   std::unique_ptr<LogRecordExporter> exporter_;
   // The lock used to ensure the exporter is not called concurrently
-  opentelemetry::common::SpinLockMutex lock_;
+  std::mutex lock_;
   // The atomic boolean to ensure the ShutDown() function is only called once
   std::atomic<bool> is_shutdown_{false};
 };

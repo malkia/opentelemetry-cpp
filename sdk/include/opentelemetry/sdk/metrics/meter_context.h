@@ -6,10 +6,10 @@
 #include <atomic>
 #include <chrono>
 #include <memory>
+#include <mutex>
 #include <vector>
 
 #include "opentelemetry/version.h"
-#include "opentelemetry/common/spin_lock_mutex.h"
 #include "opentelemetry/common/timestamp.h"
 #include "opentelemetry/nostd/function_ref.h"
 #include "opentelemetry/nostd/span.h"
@@ -194,8 +194,8 @@ private:
 #else
   std::atomic_flag shutdown_latch_ = ATOMIC_FLAG_INIT;
 #endif
-  opentelemetry::common::SpinLockMutex forceflush_lock_;
-  opentelemetry::common::SpinLockMutex meter_lock_;
+  std::mutex forceflush_lock_;
+  std::mutex meter_lock_;
 };
 
 }  // namespace metrics

@@ -30,7 +30,7 @@ public:
       printf("destoyed=%d\n", custom_handler_destroyed);
       printf("handle=%p\n", handle.get());
       OTEL_INTERNAL_LOG_ERROR("GlobalLogHandler must be destroyed before the checker");
-      abort();
+      std::abort();
     }
     std::cout << "GlobalLogHandlerChecker destroyed and check pass.\n";
   }

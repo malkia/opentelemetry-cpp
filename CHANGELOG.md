@@ -15,10 +15,18 @@ Increment the:
 
 ## [Unreleased]
 
+* [BUG] Report one outcome per request when a curl session is cancelled after
+  the response arrives
+  ([#4363](https://github.com/open-telemetry/opentelemetry-cpp/pull/4363))
+
 * [CODE HEALTH] Enable clang-tidy `modernize-deprecated-headers` and replace
   deprecated C headers (`stdint.h`, `stddef.h`, `stdlib.h`, `string.h`,
   `stdio.h`, `ctype.h`, `limits.h`, `assert.h`) with their C++ equivalents
   ([#4349](https://github.com/open-telemetry/opentelemetry-cpp/pull/4349))
+
+* [CONFIGURATION] Add SDK component builder interfaces to the registry
+  [#4358](https://github.com/open-telemetry/opentelemetry-cpp/issues/4358)
+
 * [CODE HEALTH] Move remaining `misc-use-internal-linkage` classes/enums into
   anonymous namespaces: `OtlpFileSystemBackend`/`OtlpFileOstreamBackend` in
   the OTLP file exporter, `ResponseHandler`/`AsyncResponseHandler`/
@@ -47,6 +55,11 @@ Increment the:
 
 * [BUILD] Run the ext_http component install test on Windows
   [#4326](https://github.com/open-telemetry/opentelemetry-cpp/pull/4326)
+
+* [SDK] Convert SpinLockMutex to std::mutex part 1
+  Replace SpinLockMutex with std::mutex in SimpleProcessor,
+  SimpleLogRecordProcessor, MeterContext and Meter.
+  [#4323](https://github.com/open-telemetry/opentelemetry-cpp/pull/4323)
 
 * [CONFIGURATION] Decouple config registry and builder headers
   [#4335](https://github.com/open-telemetry/opentelemetry-cpp/pull/4335)
@@ -124,6 +137,9 @@ Increment the:
 
 * [SDK] Downscale base2 exponential histogram buckets in place
   [#4324](https://github.com/open-telemetry/opentelemetry-cpp/pull/4324)
+
+* [CONFIGURATION] file configuration - yaml schema 1.1.0
+  [#4340](https://github.com/open-telemetry/opentelemetry-cpp/pull/4340)
 
 Breaking changes:
 

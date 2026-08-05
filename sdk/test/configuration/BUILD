@@ -5,6 +5,26 @@ load("//:dll_deps.bzl", "dll_deps")
 load("//bazel:otel_cc.bzl", "otel_cc_test")
 
 otel_cc_test(
+    name = "registry_test",
+    srcs = [
+        "registry_test.cc",
+    ],
+    tags = [
+        "config",
+        "test",
+    ],
+    deps = dll_deps([
+        "//sdk:headers",
+        "//sdk/src/configuration:configuration_core",
+        "//sdk/src/logs",
+        "//sdk/src/metrics",
+        "//sdk/src/resource",
+        "//sdk/src/trace",
+        "@googletest//:gtest_main",
+    ]),
+)
+
+otel_cc_test(
     name = "sdk_builder_test",
     srcs = [
         "config_test_common.h",
@@ -14,7 +34,7 @@ otel_cc_test(
         "config",
         "test",
     ],
-    deps = [
+    deps = dll_deps([
         "//sdk:headers",
         "//sdk/src/configuration:configuration_core",
         "//sdk/src/logs",
@@ -22,7 +42,7 @@ otel_cc_test(
         "//sdk/src/resource",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ],
+    ]),
 )
 
 otel_cc_test(

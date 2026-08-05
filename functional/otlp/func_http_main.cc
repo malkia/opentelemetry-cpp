@@ -227,7 +227,7 @@ static void instrumented_payload(const otlp::OtlpHttpExporterOptions &opts)
   cleanup();
 }
 
-static void usage(FILE *out)
+static void usage(std::FILE *out)
 {
   static const char *msg =
       "Usage: func_otlp_http [options] test_name\n"
@@ -240,7 +240,7 @@ static void usage(FILE *out)
       "                      - none: no endpoint\n"
       "                      - http: http endpoint\n"
       "                      - https: https endpoint\n";
-  fprintf(out, "%s", msg);
+  std::fprintf(out, "%s", msg);
 }
 
 static int parse_args(int argc, char *argv[])
@@ -250,19 +250,19 @@ static int parse_args(int argc, char *argv[])
 
   while (remaining_argc > 0)
   {
-    if (strcmp(*remaining_argv, "--help") == 0)
+    if (std::strcmp(*remaining_argv, "--help") == 0)
     {
       opt_help = true;
       return 0;
     }
 
-    if (strcmp(*remaining_argv, "--list") == 0)
+    if (std::strcmp(*remaining_argv, "--list") == 0)
     {
       opt_list = true;
       return 0;
     }
 
-    if (strcmp(*remaining_argv, "--debug") == 0)
+    if (std::strcmp(*remaining_argv, "--debug") == 0)
     {
       opt_debug = true;
       remaining_argc--;
@@ -272,7 +272,7 @@ static int parse_args(int argc, char *argv[])
 
     if (remaining_argc >= 2)
     {
-      if (strcmp(*remaining_argv, "--cert-dir") == 0)
+      if (std::strcmp(*remaining_argv, "--cert-dir") == 0)
       {
         remaining_argc--;
         remaining_argv++;
@@ -282,7 +282,7 @@ static int parse_args(int argc, char *argv[])
         continue;
       }
 
-      if (strcmp(*remaining_argv, "--endpoint") == 0)
+      if (std::strcmp(*remaining_argv, "--endpoint") == 0)
       {
         remaining_argc--;
         remaining_argv++;
@@ -292,7 +292,7 @@ static int parse_args(int argc, char *argv[])
         continue;
       }
 
-      if (strcmp(*remaining_argv, "--mode") == 0)
+      if (std::strcmp(*remaining_argv, "--mode") == 0)
       {
         remaining_argc--;
         remaining_argv++;
