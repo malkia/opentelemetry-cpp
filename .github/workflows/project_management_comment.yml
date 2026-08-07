@@ -20,7 +20,7 @@ jobs:
           egress-policy: audit
 
       - name: Add comment
-        uses: peter-evans/create-or-update-comment@c80bdd7594e70f60f96c792b127584e6b37fb63a
+        uses: peter-evans/create-or-update-comment@b78cb5fdafdce7a955b9f391405deae19e32386d
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
