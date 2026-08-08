@@ -6,10 +6,10 @@
 #include <string>
 #include <vector>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/sdk/trace/samplers/predicate.h"
 #include "opentelemetry/trace/span_context.h"
 #include "opentelemetry/trace/span_metadata.h"
-#include "opentelemetry/version.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
@@ -54,7 +54,7 @@ struct RuleBasedPredicateOptions
  * representation; doubles are formatted with %g at double_precision significant
  * digits, so 404.0 matches "404".
  */
-class RuleBasedPredicate : public Predicate
+class OPENTELEMETRY_EXPORT_TYPE RuleBasedPredicate : public Predicate
 {
 public:
   explicit RuleBasedPredicate(RuleBasedPredicateOptions options);
