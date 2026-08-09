@@ -674,7 +674,7 @@ meter_provider:
             port: 1234
             without_scope_info: true
             without_target_info: true
-            translation_strategy: NoUTF8EscapingWithSuffixes
+            translation_strategy: no_utf8_escaping_with_suffixes/development
             with_resource_constant_labels:
               included:
                 - "foo.in"
@@ -725,7 +725,7 @@ meter_provider:
             port: 1234
             scope_info_enabled: false
             target_info_enabled/development: false
-            translation_strategy: NoUTF8EscapingWithSuffixes
+            translation_strategy: no_utf8_escaping_with_suffixes/development
             resource_constant_labels:
               included:
                 - "foo.in"
