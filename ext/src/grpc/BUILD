@@ -12,6 +12,5 @@ otel_cc_library(
         "//api",
         "//ext:headers",
         "@grpc//:config_vars",
-        #"@grpc//:grpc++",
     ],
 )

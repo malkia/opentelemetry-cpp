@@ -15,6 +15,10 @@ Increment the:
 
 ## [Unreleased]
 
+* [CONFIGURATION] Apply metric view `attribute_keys` include and exclude patterns
+  when building the SDK, with exclude patterns taking precedence.
+  [#3546](https://github.com/open-telemetry/opentelemetry-cpp/issues/3546)
+
 * [CONFIGURATION] Add support for the composite sampler configuration
   (programmatic and from yaml)
   ([#4366](https://github.com/open-telemetry/opentelemetry-cpp/pull/4366))
@@ -30,6 +34,9 @@ Increment the:
 * [BUG] Draw the curl retry jitter from a per thread generator instead of one
   shared across HTTP client threads
   ([#4399](https://github.com/open-telemetry/opentelemetry-cpp/pull/4399))
+* [BUG] Stop the curl IO thread deadlocking on itself while recovering from a
+  multi handle error
+  ([#4394](https://github.com/open-telemetry/opentelemetry-cpp/pull/4394))
 * [CODE HEALTH] Enable clang-tidy `modernize-deprecated-headers` and replace
   deprecated C headers (`stdint.h`, `stddef.h`, `stdlib.h`, `string.h`,
   `stdio.h`, `ctype.h`, `limits.h`, `assert.h`) with their C++ equivalents

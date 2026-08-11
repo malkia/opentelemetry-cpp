@@ -105,9 +105,9 @@ otel_cc_benchmark(
         "metrics",
         "test",
     ],
-    deps = [
+    deps = dll_deps([
         "//sdk/src/metrics",
-    ],
+    ]),
 )
 
 otel_cc_benchmark(

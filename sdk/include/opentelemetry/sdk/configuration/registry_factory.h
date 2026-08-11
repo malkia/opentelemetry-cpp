@@ -5,8 +5,8 @@
 
 #include <memory>
 
-#include "opentelemetry/sdk/configuration/registry.h"
 #include "opentelemetry/version.h"
+#include "opentelemetry/sdk/configuration/registry.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
@@ -14,7 +14,7 @@ namespace sdk
 namespace configuration
 {
 
-class RegistryFactory
+class OPENTELEMETRY_EXPORT_TYPE RegistryFactory
 {
 public:
   // Returns a Registry pre-populated with all default signal builders.
