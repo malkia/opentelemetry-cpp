@@ -78,11 +78,11 @@ otel_cc_test(
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
-        "@com_google_googletest//:gtest_main",
-    ],
+        "@googletest//:gtest_main",
+    ]),
 )
 
-cc_test(
+otel_cc_test(
     name = "example_yaml_sdk_default",
     size = "medium",
     srcs = glob(["*.cc"]) + glob(["*.h"]),
@@ -96,7 +96,7 @@ cc_test(
         "test",
         "yaml",
     ],
-    deps = [
+    deps = dll_deps([
         "//api",
         "//examples/common/logs_foo_library:common_logs_foo_library",
         "//examples/common/metrics_foo_library:common_metrics_foo_library",

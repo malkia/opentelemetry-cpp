@@ -118,7 +118,7 @@ otel_cc_test(
         "//sdk/src/configuration:configuration_logs_builders",
         "//sdk/src/logs",
         "@googletest//:gtest_main",
-    ],
+    ]),
 )
 
 otel_cc_test(

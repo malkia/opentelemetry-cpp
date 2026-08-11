@@ -29,7 +29,7 @@ otel_cc_library(
     ],
 )
 
-cc_library(
+otel_cc_library(
     name = "configuration_trace_builders",
     srcs = ["trace_builders.cc"],
     include_prefix = "src/configuration",
@@ -41,7 +41,7 @@ cc_library(
     ],
 )
 
-cc_library(
+otel_cc_library(
     name = "configuration_logs_builders",
     srcs = ["logs_builders.cc"],
     include_prefix = "src/configuration",
@@ -53,7 +53,7 @@ cc_library(
     ],
 )
 
-cc_library(
+otel_cc_library(
     name = "configuration_metrics_builders",
     srcs = ["metrics_builders.cc"],
     include_prefix = "src/configuration",
@@ -66,7 +66,7 @@ cc_library(
     ],
 )
 
-cc_library(
+otel_cc_library(
     name = "configuration_registry_factory",
     srcs = ["registry_factory.cc"],
     include_prefix = "src/configuration",
