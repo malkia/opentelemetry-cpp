@@ -16,7 +16,7 @@ class OPENTELEMETRY_EXPORT_TYPE ComposableAlwaysOffSamplerConfiguration : public
 {
 public:
   ComposableAlwaysOffSamplerConfiguration() = default;
-  void Accept(SamplerConfigurationVisitor *visitor) const override;
+  void Accept(ComposableSamplerConfigurationVisitor *visitor) const override;
 };
 
 }  // namespace configuration

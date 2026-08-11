@@ -28,7 +28,7 @@ public:
   ComposableRuleBasedSamplerConfiguration& operator=(const ComposableRuleBasedSamplerConfiguration&) = delete;
 
   std::vector<std::unique_ptr<ComposableRuleBasedSamplerRuleConfiguration>> rules;
-  void Accept(SamplerConfigurationVisitor *visitor) const override;
+  void Accept(ComposableSamplerConfigurationVisitor *visitor) const override;
 };
 
 }  // namespace configuration
