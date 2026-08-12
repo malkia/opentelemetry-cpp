@@ -19,6 +19,7 @@ otel_cc_test(
         "OTEL_HAVE_OTLP_GRPC",
         "OTEL_HAVE_OTLP_FILE",
         "OTEL_HAVE_PROMETHEUS",
+        "OTEL_HAVE_RESOURCE_DETECTORS",
     ],
     tags = [
         "test",
@@ -41,6 +42,7 @@ otel_cc_test(
         "//exporters/otlp:otlp_http_metric_exporter_builder",
         "//exporters/otlp:otlp_http_span_exporter_builder",
         "//exporters/prometheus:prometheus_exporter_builder",
+        "//resource_detectors:resource_detectors_builders",
         "//sdk:headers",
         "//sdk/src/configuration",
         "//sdk/src/configuration:configuration_registry_factory",

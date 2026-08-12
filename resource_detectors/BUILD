@@ -29,6 +29,17 @@ otel_cc_library(
     ],
 )
 
+otel_cc_library(
+    name = "resource_detectors_builders",
+    srcs = [
+        "src/container_detector_builder.cc",
+        "src/process_detector_builder.cc",
+    ],
+    deps = [
+        ":resource_detectors",
+    ],
+)
+
 filegroup(
     name = "header_files",
     srcs = glob(["include/**/*.h"]),

@@ -55,7 +55,7 @@ otel_cc_test(
     ]),
 )
 
-cc_test(
+otel_cc_test(
     name = "filter_predicate_test",
     srcs = [
         "filter_predicate_test.cc",
@@ -64,10 +64,10 @@ cc_test(
         "metrics",
         "test",
     ],
-    deps = [
+    deps = dll_deps([
         "//api",
         "//sdk:headers",
         "//sdk/src/metrics",
-        "@com_google_googletest//:gtest_main",
-    ],
+        "@googletest//:gtest_main",
+    ]),
 )
