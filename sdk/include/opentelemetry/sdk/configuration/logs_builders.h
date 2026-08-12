@@ -12,7 +12,7 @@ namespace sdk
 namespace configuration
 {
 
-void RegisterDefaultLogsBuilders(Registry *registry);
+void OPENTELEMETRY_EXPORT RegisterDefaultLogsBuilders(Registry *registry);
 
 }  // namespace configuration
 }  // namespace sdk
