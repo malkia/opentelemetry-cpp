@@ -108,6 +108,7 @@ otel_cc_library(
         "@otel_sdk_dev//exporters/zipkin:zipkin_exporter",
         "@otel_sdk_dev//resource_detectors",
         "@otel_sdk_dev//sdk/src/configuration",
+        "@otel_sdk_dev//sdk/src/configuration:configuration_registry_factory",
     ] + select({
         "@platforms//os:windows": ["@otel_sdk_dev//exporters/etw:etw_exporter"],
         "//conditions:default": [],
