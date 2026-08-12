@@ -47,7 +47,6 @@ otel_cc_test(
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
-        "@googletest//:gtest_main",
     ]),
 )
 
@@ -78,7 +77,6 @@ otel_cc_test(
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
-        "@googletest//:gtest_main",
     ]),
 )
 
@@ -109,6 +107,5 @@ otel_cc_test(
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
-        "@googletest//:gtest_main",
     ]),
 )

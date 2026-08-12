@@ -3,8 +3,6 @@
 
 #pragma once
 
-#include <memory>
-
 #include "opentelemetry/version.h"
 #include "opentelemetry/common/timestamp.h"
 #include "opentelemetry/sdk/metrics/data/metric_data.h"
@@ -23,10 +21,10 @@ using MetricAttributes = opentelemetry::sdk::metrics::FilteredOrderedAttributeMa
  * Exemplars also hold information about the environment when the measurement was recorded, for
  * example the span and trace ID of the active span when the exemplar was recorded.
  */
-class OPENTELEMETRY_EXPORT_TYPE ExemplarData
+class ExemplarData
 {
 public:
-  static ExemplarData Create(const std::shared_ptr<opentelemetry::trace::SpanContext> &context,
+  static ExemplarData Create(const opentelemetry::trace::SpanContext &context,
                              const opentelemetry::common::SystemTimestamp &timestamp,
                              const PointDataAttributes &point_data_attr)
   {
@@ -68,10 +66,10 @@ public:
   static PointType CreateDropPointData() { return DropPointData{}; }
 
 private:
-  ExemplarData(const std::shared_ptr<opentelemetry::trace::SpanContext> &context,
+  ExemplarData(const opentelemetry::trace::SpanContext &context,
                opentelemetry::common::SystemTimestamp timestamp,
                const PointDataAttributes &point_data_attr)
-      : context_(*context.get()), timestamp_(timestamp), point_data_attr_(point_data_attr)
+      : context_(context), timestamp_(timestamp), point_data_attr_(point_data_attr)
   {}
 
   opentelemetry::trace::SpanContext context_;

@@ -10,7 +10,6 @@
 #  include <memory>
 #  include <vector>
 
-#  include "opentelemetry/sdk/metrics/exemplar/filter_type.h"
 #  include "opentelemetry/sdk/metrics/exemplar/reservoir_cell_selector.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
@@ -48,18 +47,14 @@ public:
   virtual ~ExemplarReservoir() = default;
 
   /** Offers a long measurement to be sampled. */
-  virtual void OfferMeasurement(
-      int64_t value,
-      const MetricAttributes &attributes,
-      const opentelemetry::context::Context &context,
-      const opentelemetry::common::SystemTimestamp &timestamp) noexcept = 0;
+  virtual void OfferMeasurement(int64_t value,
+                                const MetricAttributes &attributes,
+                                const opentelemetry::context::Context &context) noexcept = 0;
 
   /** Offers a double measurement to be sampled. */
-  virtual void OfferMeasurement(
-      double value,
-      const MetricAttributes &attributes,
-      const opentelemetry::context::Context &context,
-      const opentelemetry::common::SystemTimestamp &timestamp) noexcept = 0;
+  virtual void OfferMeasurement(double value,
+                                const MetricAttributes &attributes,
+                                const opentelemetry::context::Context &context) noexcept = 0;
 
   /**
    * Builds vector of Exemplars for exporting from the current reservoir.
@@ -73,10 +68,6 @@ public:
    */
   virtual std::vector<std::shared_ptr<ExemplarData>> CollectAndReset(
       const MetricAttributes &pointAttributes) noexcept = 0;
-
-  static nostd::shared_ptr<ExemplarReservoir> GetSimpleFilteredExemplarReservoir(
-      ExemplarFilterType filter_type,
-      std::shared_ptr<ExemplarReservoir> reservoir);
 
   static nostd::shared_ptr<ExemplarReservoir> GetSimpleFixedSizeExemplarReservoir(
       size_t size,
