@@ -85,6 +85,19 @@ otel_cc_test(
 )
 
 otel_cc_test(
+    name = "batch_span_processor_test_stress",
+    srcs = glob(["*_test_stress.cc"]),
+    tags = [
+        "test",
+        "trace",
+    ],
+    deps = dll_deps([
+        "//sdk/src/trace",
+        "@googletest//:gtest_main",
+    ]),
+)
+
+otel_cc_test(
     name = "tracer_test",
     srcs = [
         "tracer_test.cc",
