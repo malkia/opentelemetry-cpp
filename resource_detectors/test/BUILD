@@ -43,5 +43,5 @@ otel_cc_test(
         "//sdk/src/configuration:configuration_core",
         "//sdk/src/resource",
         "@googletest//:gtest_main",
-    ],
+    ]),
 )
