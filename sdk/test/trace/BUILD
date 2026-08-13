@@ -251,3 +251,19 @@ otel_cc_benchmark(
         "//test_common:headers",
     ]),
 )
+
+otel_cc_benchmark(
+    name = "tracer_benchmark",
+    srcs = ["tracer_benchmark.cc"],
+    tags = [
+        "benchmark",
+        "test",
+        "trace",
+    ],
+    deps = dll_deps([
+        "//exporters/memory:in_memory_span_exporter",
+        "//sdk/src/resource",
+        "//sdk/src/trace",
+        "//test_common:headers",
+    ]),
+)
