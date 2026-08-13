@@ -20,14 +20,14 @@ namespace detail
  *   - Linux/MacOS: Uses gethostname().
  * @return the hostname or an empty string on error
  */
-std::string GetHostName();
+std::string OPENTELEMETRY_EXPORT GetHostName();
 
 /**
  * Returns the host.arch semantic convention value for the architecture this
  * binary was compiled for, or an empty string when the architecture is not one
  * of the values the semantic conventions enumerate.
  */
-std::string GetHostArch();
+std::string OPENTELEMETRY_EXPORT GetHostArch();
 
 /**
  * Retrieves a unique identifier for the host.
@@ -39,7 +39,7 @@ std::string GetHostArch();
  *     /var/lib/dbus/machine-id.
  * @return the host id or an empty string when no source is available
  */
-std::string GetHostId();
+std::string OPENTELEMETRY_EXPORT GetHostId();
 
 /**
  * Reads a machine id from the first line of the given file, trimmed of
@@ -48,7 +48,7 @@ std::string GetHostId();
  * @param file_path path of the machine id file
  * @return the machine id or an empty string on error
  */
-std::string GetHostIdFromFile(const char *file_path);
+std::string OPENTELEMETRY_EXPORT GetHostIdFromFile(const char *file_path);
 
 }  // namespace detail
 }  // namespace resource_detector

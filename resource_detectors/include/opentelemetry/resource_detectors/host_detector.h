@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "opentelemetry/sdk/resource/resource_detector.h"
 #include "opentelemetry/version.h"
+#include "opentelemetry/sdk/resource/resource_detector.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace resource_detector
@@ -27,7 +27,7 @@ namespace resource_detector
  *   for and is omitted when that architecture has no host.arch value in the
  *   semantic conventions.
  */
-class HostResourceDetector : public opentelemetry::sdk::resource::ResourceDetector
+class OPENTELEMETRY_EXPORT_TYPE HostResourceDetector : public opentelemetry::sdk::resource::ResourceDetector
 {
 public:
   opentelemetry::sdk::resource::Resource Detect() noexcept override;
