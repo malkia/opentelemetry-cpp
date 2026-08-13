@@ -5,10 +5,10 @@
 
 #include <memory>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/sdk/configuration/process_resource_detector_builder.h"
 #include "opentelemetry/sdk/configuration/process_resource_detector_configuration.h"
 #include "opentelemetry/sdk/resource/resource_detector.h"
-#include "opentelemetry/version.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
@@ -22,7 +22,7 @@ class Registry;
 namespace resource_detector
 {
 
-class ProcessDetectorBuilder
+class OPENTELEMETRY_EXPORT_TYPE ProcessDetectorBuilder
     : public opentelemetry::sdk::configuration::ProcessResourceDetectorBuilder
 {
 public:
