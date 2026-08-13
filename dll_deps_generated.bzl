@@ -55,6 +55,7 @@ DLL_DEPS = set([
     Label("@otel_sdk_dev//ext/src/http/client/curl:http_client_curl"),
     Label("@otel_sdk_dev//resource_detectors:headers"),
     Label("@otel_sdk_dev//resource_detectors:resource_detectors"),
+    Label("@otel_sdk_dev//resource_detectors:resource_detectors_builders"),
     Label("@otel_sdk_dev//sdk:headers"),
     Label("@otel_sdk_dev//sdk/src/common:base64"),
     Label("@otel_sdk_dev//sdk/src/common:disabled"),

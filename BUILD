@@ -107,6 +107,7 @@ otel_cc_library(
         "@otel_sdk_dev//exporters/prometheus:prometheus_push_exporter",
         "@otel_sdk_dev//exporters/zipkin:zipkin_exporter",
         "@otel_sdk_dev//resource_detectors",
+        "@otel_sdk_dev//resource_detectors:resource_detectors_builders",
         "@otel_sdk_dev//sdk/src/configuration",
         "@otel_sdk_dev//sdk/src/configuration:configuration_registry_factory",
     ] + select({
