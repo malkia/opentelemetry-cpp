@@ -19,7 +19,7 @@ otel_cc_test(
     ]),
 )
 
-cc_test(
+otel_cc_test(
     name = "global_propagator_test",
     srcs = [
         "global_propagator_test.cc",
@@ -28,8 +28,8 @@ cc_test(
         "api",
         "test",
     ],
-    deps = [
+    deps = dll_deps([
         "//api",
-        "@com_google_googletest//:gtest_main",
-    ],
+        "@googletest//:gtest_main",
+    ]),
 )
