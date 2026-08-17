@@ -5,42 +5,67 @@ load("//:dll_deps.bzl", "dll_deps")
 load("//bazel:otel_cc.bzl", "otel_cc_test")
 
 otel_cc_test(
-    name = "resource_detector_test",
-    srcs = [
-        "container_detector_test.cc",
-        "env_entity_detector_test.cc",
-        "host_detector_test.cc",
-        "process_detector_test.cc",
-    ],
-    linkopts = select({
-        "//bazel:windows": [
-            "-DEFAULTLIB:shell32.lib",
-        ],
-        "//conditions:default": [],
-    }),
+    name = "container_resource_detector_test",
+    srcs = ["container_detector_test.cc"],
     tags = ["test"],
     deps = dll_deps([
-        "//api",
-        "//resource_detectors",
+        "//resource_detectors:container_resource_detector",
         "//sdk/src/resource",
         "@googletest//:gtest_main",
     ]),
 )
 
-# Kept separate from resource_detector_test: linking configuration_core pulls in
-# sdk_builder.cc, which requires exception support, so this target is excluded
-# from the bazel.noexcept build in ci/do_ci.sh.
 otel_cc_test(
-    name = "resource_detector_builder_test",
-    srcs = [
-        "container_detector_builder_test.cc",
-        "process_detector_builder_test.cc",
-    ],
+    name = "env_entity_resource_detector_test",
+    srcs = ["env_entity_detector_test.cc"],
     tags = ["test"],
     deps = dll_deps([
-        "//api",
-        "//resource_detectors",
-        "//resource_detectors:resource_detectors_builders",
+        "//resource_detectors:env_entity_resource_detector",
+        "//sdk/src/resource",
+        "@googletest//:gtest_main",
+    ]),
+)
+
+otel_cc_test(
+    name = "host_resource_detector_test",
+    srcs = ["host_detector_test.cc"],
+    tags = ["test"],
+    deps = dll_deps([
+        "//resource_detectors:host_resource_detector",
+        "//sdk/src/resource",
+        "@googletest//:gtest_main",
+    ]),
+)
+
+otel_cc_test(
+    name = "process_resource_detector_test",
+    srcs = ["process_detector_test.cc"],
+    tags = ["test"],
+    deps = dll_deps([
+        "//resource_detectors:process_resource_detector",
+        "//sdk/src/resource",
+        "@googletest//:gtest_main",
+    ]),
+)
+
+cc_test(
+    name = "container_resource_detector_builder_test",
+    srcs = ["container_detector_builder_test.cc"],
+    tags = ["test"],
+    deps = dll_deps([
+        "//resource_detectors:container_resource_detector_builder",
+        "//sdk/src/configuration:configuration_core",
+        "//sdk/src/resource",
+        "@googletest//:gtest_main",
+    ]),
+)
+
+otel_cc_test(
+    name = "process_resource_detector_builder_test",
+    srcs = ["process_detector_builder_test.cc"],
+    tags = ["test"],
+    deps = dll_deps([
+        "//resource_detectors:process_resource_detector_builder",
         "//sdk/src/configuration:configuration_core",
         "//sdk/src/resource",
         "@googletest//:gtest_main",
