@@ -48,7 +48,7 @@ otel_cc_test(
     ]),
 )
 
-cc_test(
+otel_cc_test(
     name = "container_resource_detector_builder_test",
     srcs = ["container_detector_builder_test.cc"],
     tags = ["test"],
