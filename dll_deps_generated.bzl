@@ -58,6 +58,7 @@ DLL_DEPS = set([
     Label("@otel_sdk_dev//resource_detectors:env_entity_resource_detector"),
     Label("@otel_sdk_dev//resource_detectors:headers"),
     Label("@otel_sdk_dev//resource_detectors:host_resource_detector"),
+    Label("@otel_sdk_dev//resource_detectors:host_resource_detector_builder"),
     Label("@otel_sdk_dev//resource_detectors:process_resource_detector"),
     Label("@otel_sdk_dev//resource_detectors:process_resource_detector_builder"),
     Label("@otel_sdk_dev//resource_detectors:resource_detectors"),
