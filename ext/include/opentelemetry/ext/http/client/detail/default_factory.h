@@ -18,7 +18,21 @@ namespace client
 namespace detail
 {
 
-std::shared_ptr<HttpClientFactory> OPENTELEMETRY_EXPORT GetDefaultHttpClientFactory();
+// Internal helper — not public API. Returns the built-in curl factory when
+// ENABLE_HTTP_CLIENT_CURL is defined; terminates with an error otherwise.
+inline std::shared_ptr<HttpClientFactory> GetDefaultHttpClientFactory()
+{
+#ifdef ENABLE_HTTP_CLIENT_CURL
+  static auto instance = std::make_shared<curl::HttpCurlClientFactory>();
+  return instance;
+#else
+  OTEL_INTERNAL_LOG_ERROR(
+      "No default HTTP client backend is compiled in. "
+      "Use the HttpClientFactory or HttpClient constructor overloads, "
+      "or enable curl support (OTELCPP_WITH_HTTP_CLIENT_CURL=ON).");
+  std::terminate();
+#endif
+}
 
 }  // namespace detail
 }  // namespace client
