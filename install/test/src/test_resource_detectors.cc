@@ -3,6 +3,7 @@
 
 #include <gtest/gtest.h>
 
+#include <opentelemetry/version.h>
 #include <opentelemetry/nostd/variant.h>
 #include <opentelemetry/resource_detectors/container_detector.h>
 #include <opentelemetry/resource_detectors/container_detector_builder.h>

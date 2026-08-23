@@ -23,6 +23,7 @@
 #  endif
 #endif
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/resource_detectors/detail/process_detector_utils.h"
 
 TEST(ProcessDetectorUtilsTest, FormFilePath)

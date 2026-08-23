@@ -1,6 +1,7 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 
+load("//:dll_deps.bzl", "dll_deps")
 load("//bazel:otel_cc.bzl", "otel_cc_library")
 
 package(default_visibility = ["//visibility:public"])
@@ -95,11 +96,11 @@ otel_cc_library(
     ],
 )
 
-cc_library(
+otel_cc_library(
     name = "service_resource_detector_utils",
     srcs = ["src/service_detector_utils.cc"],
     copts = ["-fexceptions"],
-    deps = [
+    deps = dll_deps([
         ":process_resource_detector",
         "//api",
         "//resource_detectors:headers",
@@ -107,29 +108,29 @@ cc_library(
         "//sdk/src/common:env_variables",
         "//sdk/src/common:random",
         "//sdk/src/resource",
-    ],
+    ]),
 )
 
-cc_library(
+otel_cc_library(
     name = "service_resource_detector",
     srcs = ["src/service_detector.cc"],
     copts = ["-fexceptions"],
-    deps = [
+    deps = dll_deps([
         ":service_resource_detector_utils",
         "//api",
         "//resource_detectors:headers",
         "//sdk:headers",
         "//sdk/src/resource",
-    ],
+    ]),
 )
 
-cc_library(
+otel_cc_library(
     name = "service_resource_detector_builder",
     srcs = ["src/service_detector_builder.cc"],
-    deps = [
+    deps = dll_deps([
         ":service_resource_detector",
         "//sdk/src/configuration:configuration_core",
-    ],
+    ]),
 )
 
 # Convenience target linking all resource detectors.

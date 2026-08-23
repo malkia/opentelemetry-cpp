@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "opentelemetry/sdk/resource/resource_detector.h"
 #include "opentelemetry/version.h"
+#include "opentelemetry/sdk/resource/resource_detector.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace resource_detector
@@ -23,7 +23,7 @@ namespace resource_detector
  * - service.instance.id is a stable RFC 4122 UUID version 4 value for the
  *   current process.
  */
-class ServiceResourceDetector : public opentelemetry::sdk::resource::ResourceDetector
+class OPENTELEMETRY_EXPORT_TYPE ServiceResourceDetector : public opentelemetry::sdk::resource::ResourceDetector
 {
 public:
   opentelemetry::sdk::resource::Resource Detect() noexcept override;

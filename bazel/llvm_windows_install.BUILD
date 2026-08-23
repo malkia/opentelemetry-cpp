@@ -1,3 +1,5 @@
+load("@rules_cc//cc:defs.bzl", "cc_import", "cc_library")
+
 LIBCLANG_DIR = "lib/clang/20/"
 WIN_DIR = LIBCLANG_DIR + "lib/windows/"
 # SHARE_DIR = LIBCLANG_DIR + "share/"

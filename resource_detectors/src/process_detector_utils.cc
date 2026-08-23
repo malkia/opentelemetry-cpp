@@ -1,6 +1,7 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/resource_detectors/detail/process_detector_utils.h"
 
 #include <fstream>
@@ -24,7 +25,6 @@
 #  include <cstdio>
 #endif
 
-#include "opentelemetry/version.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace resource_detector

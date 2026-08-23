@@ -21,13 +21,13 @@ namespace detail
  *     executable name is available for the current process.
  *   - Otherwise returns unknown_service.
  */
-std::string GetServiceName();
+std::string OPENTELEMETRY_EXPORT GetServiceName();
 
 /**
  * Returns a stable service.instance.id for the current process.
  * A new RFC 4122 UUID version 4 value is generated when the process ID changes.
  */
-std::string GenerateServiceInstanceId() noexcept;
+std::string OPENTELEMETRY_EXPORT GenerateServiceInstanceId() noexcept;
 
 }  // namespace detail
 }  // namespace resource_detector

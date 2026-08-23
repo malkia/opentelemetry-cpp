@@ -4,12 +4,12 @@
 #include <memory>
 #include <utility>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/resource_detectors/service_detector.h"
 #include "opentelemetry/resource_detectors/service_detector_builder.h"
 #include "opentelemetry/sdk/configuration/registry.h"
 #include "opentelemetry/sdk/configuration/service_resource_detector_builder.h"
 #include "opentelemetry/sdk/resource/resource_detector.h"
-#include "opentelemetry/version.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace resource_detector

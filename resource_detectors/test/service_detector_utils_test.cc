@@ -5,6 +5,8 @@
 #include <regex>
 #include <string>
 
+#include "opentelemetry/version.h"
+
 #ifdef _MSC_VER
 #  include "opentelemetry/sdk/common/env_variables.h"
 using opentelemetry::sdk::common::setenv;

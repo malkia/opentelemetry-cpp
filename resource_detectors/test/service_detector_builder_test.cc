@@ -4,6 +4,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/resource_detectors/service_detector_builder.h"
 #include "opentelemetry/sdk/configuration/registry.h"
 #include "opentelemetry/sdk/configuration/service_resource_detector_configuration.h"

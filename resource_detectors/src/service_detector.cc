@@ -1,6 +1,7 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/resource_detectors/service_detector.h"
 #include "opentelemetry/nostd/variant.h"
 #include "opentelemetry/resource_detectors/detail/service_detector_utils.h"
@@ -8,7 +9,6 @@
 #include "opentelemetry/sdk/resource/resource_detector.h"
 #include "opentelemetry/semconv/schema_url.h"
 #include "opentelemetry/semconv/service_attributes.h"
-#include "opentelemetry/version.h"
 
 #include <string>
 

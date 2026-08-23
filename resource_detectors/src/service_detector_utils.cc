@@ -1,6 +1,7 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/resource_detectors/detail/service_detector_utils.h"
 
 #include <cstdint>
@@ -17,7 +18,6 @@
 
 #include "opentelemetry/resource_detectors/detail/process_detector_utils.h"
 #include "opentelemetry/sdk/common/env_variables.h"
-#include "opentelemetry/version.h"
 #include "src/common/random.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
