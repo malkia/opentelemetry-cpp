@@ -16,3 +16,9 @@ otel_cc_library(
         "//sdk/src/common:env_variables",
     ],
 )
+
+otel_cc_library(
+    name = "percent_decode",
+    hdrs = ["detail/percent_decode.h"],
+    include_prefix = "src/resource",
+)

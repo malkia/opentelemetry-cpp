@@ -17,7 +17,7 @@ namespace detail
 
 // Decodes valid percent-encoded sequences in value.
 // Invalid or incomplete percent-encoded sequences are left unchanged.
-std::string PercentDecode(const std::string &value);
+std::string OPENTELEMETRY_EXPORT PercentDecode(const std::string &value);
 
 }  // namespace detail
 }  // namespace resource

@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <utility>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/nostd/variant.h"
 #include "opentelemetry/sdk/common/attribute_utils.h"
 #include "opentelemetry/sdk/resource/resource.h"

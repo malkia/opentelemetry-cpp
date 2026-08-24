@@ -13,6 +13,7 @@ otel_cc_test(
     deps = dll_deps([
         "//api",
         "//sdk/src/resource",
+        "//sdk/src/resource:percent_decode",
         "@googletest//:gtest_main",
     ]),
 )

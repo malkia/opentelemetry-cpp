@@ -502,3 +502,12 @@ platform(
         "@rules_cc//cc/private/toolchain:clang-cl",
     ],
 )
+
+platform(
+    name = "arm64_windows-clang-cl",
+    constraint_values = [
+        "@platforms//cpu:arm64",
+        "@platforms//os:windows",
+        "@rules_cc//cc/private/toolchain:clang-cl",
+    ],
+)
