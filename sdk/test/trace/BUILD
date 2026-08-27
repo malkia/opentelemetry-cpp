@@ -70,6 +70,21 @@ otel_cc_test(
 )
 
 otel_cc_test(
+    name = "multi_span_processor_test",
+    srcs = [
+        "multi_span_processor_test.cc",
+    ],
+    tags = [
+        "test",
+        "trace",
+    ],
+    deps = dll_deps([
+        "//sdk/src/trace",
+        "@googletest//:gtest_main",
+    ]),
+)
+
+otel_cc_test(
     name = "batch_span_processor_test",
     srcs = [
         "batch_span_processor_test.cc",

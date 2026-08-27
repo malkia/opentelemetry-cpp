@@ -68,6 +68,21 @@ otel_cc_test(
 )
 
 otel_cc_test(
+    name = "multi_log_record_processor_test",
+    srcs = [
+        "multi_log_record_processor_test.cc",
+    ],
+    tags = [
+        "logs",
+        "test",
+    ],
+    deps = dll_deps([
+        "//sdk/src/logs",
+        "@googletest//:gtest_main",
+    ]),
+)
+
+otel_cc_test(
     name = "log_record_test",
     srcs = [
         "log_record_test.cc",
