@@ -18,7 +18,7 @@ namespace sdk
 namespace trace
 {
 
-class MultiRecordable : public Recordable
+class OPENTELEMETRY_EXPORT_TYPE MultiRecordable : public Recordable
 {
   static std::size_t MakeKey(const SpanProcessor &processor) noexcept;
 
