@@ -13,6 +13,8 @@ otel_cc_test(
     deps = dll_deps([
         "//api",
         "//sdk:headers",
+        "//sdk/src/common:env_variables",
+        "//sdk/src/instrumentationscope",
         "@googletest//:gtest_main",
     ]),
 )
