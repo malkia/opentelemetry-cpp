@@ -1407,8 +1407,11 @@ meter_provider:
   ASSERT_EQ(view->stream->attribute_keys->excluded->string_array[1], "bar.ex");
 }
 
+namespace
+{
 class YamlMetricsEmptyIncluded : public ::testing::TestWithParam<const char *>
 {};
+}  // namespace
 
 TEST_P(YamlMetricsEmptyIncluded, RetainsAllAttributes)
 {
