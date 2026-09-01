@@ -79,6 +79,7 @@ DLL_DEPS = set([
     Label("@otel_sdk_dev//sdk/src/configuration:configuration_metrics_builders"),
     Label("@otel_sdk_dev//sdk/src/configuration:configuration_registry_factory"),
     Label("@otel_sdk_dev//sdk/src/configuration:configuration_trace_builders"),
+    Label("@otel_sdk_dev//sdk/src/configuration:configuration_yaml"),
     Label("@otel_sdk_dev//sdk/src/instrumentationscope:instrumentationscope"),
     Label("@otel_sdk_dev//sdk/src/logs:logs"),
     Label("@otel_sdk_dev//sdk/src/metrics:metrics"),
