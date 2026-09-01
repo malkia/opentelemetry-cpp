@@ -722,7 +722,7 @@ const char *HttpOperation::GetCurlErrorMessage(CURLcode code)
   return message;
 }
 
-CURLcode HttpOperation::SetCurlPtrOption(CURLoption option, void *value)
+CURLcode HttpOperation::SetCurlPtrOption(CURLoption option, const void *value)
 {
   /*
     curl_easy_setopt() is a macro with variadic arguments, type unsafe.
@@ -913,6 +913,7 @@ CURLcode HttpOperation::Setup()
 
       struct curl_blob stblob
       {};
+      // NOLINTNEXTLINE(cppcoreguidelines-pro-type-const-cast)
       stblob.data  = const_cast<char *>(data);
       stblob.len   = data_len;
       stblob.flags = CURL_BLOB_COPY;
@@ -955,6 +956,7 @@ CURLcode HttpOperation::Setup()
 
       struct curl_blob stblob
       {};
+      // NOLINTNEXTLINE(cppcoreguidelines-pro-type-const-cast)
       stblob.data  = const_cast<char *>(data);
       stblob.len   = data_len;
       stblob.flags = CURL_BLOB_COPY;
@@ -1003,6 +1005,7 @@ CURLcode HttpOperation::Setup()
 
       struct curl_blob stblob
       {};
+      // NOLINTNEXTLINE(cppcoreguidelines-pro-type-const-cast)
       stblob.data  = const_cast<char *>(data);
       stblob.len   = data_len;
       stblob.flags = CURL_BLOB_COPY;

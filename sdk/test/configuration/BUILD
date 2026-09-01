@@ -151,7 +151,7 @@ otel_cc_test(
     deps = dll_deps([
         "//api",
         "//sdk:headers",
-        "//sdk/src/configuration",
+        "//sdk/src/configuration:configuration_yaml",
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
@@ -171,7 +171,7 @@ otel_cc_test(
     deps = dll_deps([
         "//api",
         "//sdk:headers",
-        "//sdk/src/configuration",
+        "//sdk/src/configuration:configuration_yaml",
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
@@ -191,7 +191,7 @@ otel_cc_test(
     deps = dll_deps([
         "//api",
         "//sdk:headers",
-        "//sdk/src/configuration",
+        "//sdk/src/configuration:configuration_yaml",
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
@@ -211,7 +211,7 @@ otel_cc_test(
     deps = dll_deps([
         "//api",
         "//sdk:headers",
-        "//sdk/src/configuration",
+        "//sdk/src/configuration:configuration_yaml",
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
@@ -231,7 +231,7 @@ otel_cc_test(
     deps = dll_deps([
         "//api",
         "//sdk:headers",
-        "//sdk/src/configuration",
+        "//sdk/src/configuration:configuration_yaml",
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
@@ -251,7 +251,7 @@ otel_cc_test(
     deps = dll_deps([
         "//api",
         "//sdk:headers",
-        "//sdk/src/configuration",
+        "//sdk/src/configuration:configuration_yaml",
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
@@ -271,7 +271,7 @@ otel_cc_test(
     deps = dll_deps([
         "//api",
         "//sdk:headers",
-        "//sdk/src/configuration",
+        "//sdk/src/configuration:configuration_yaml",
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
