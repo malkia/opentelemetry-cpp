@@ -20,7 +20,7 @@
 // Local debug, do not use in production
 // #define WITH_DEBUG_NODE
 
-#ifdef WITH_DEBUG_NODE || defined(_DEBUG) || !defined(NDEBUG)
+#if defined(WITH_DEBUG_NODE) || defined(_DEBUG) || !defined(NDEBUG)
 #  include <ostream>
 #  include "opentelemetry/sdk/common/global_log_handler.h"
 

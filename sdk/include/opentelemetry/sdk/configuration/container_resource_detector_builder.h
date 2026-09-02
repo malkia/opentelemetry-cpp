@@ -5,8 +5,8 @@
 
 #include <memory>
 
-#include "opentelemetry/sdk/configuration/container_resource_detector_configuration.h"
 #include "opentelemetry/version.h"
+#include "opentelemetry/sdk/configuration/container_resource_detector_configuration.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
