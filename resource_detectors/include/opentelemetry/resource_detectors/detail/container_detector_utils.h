@@ -36,7 +36,7 @@ std::string OPENTELEMETRY_EXPORT ExtractContainerIDFromLine(nostd::string_view l
  * @param file_path file path of mountinfo
  * @return container.id as string or an empty string if not found on error
  */
-std::string GetContainerIDFromMountInfo(const char *file_path);
+std::string OPENTELEMETRY_EXPORT GetContainerIDFromMountInfo(const char *file_path);
 
 /**
  * Extracts container.id from a mountinfo line whose mount root contains "/containers/"
@@ -44,7 +44,7 @@ std::string GetContainerIDFromMountInfo(const char *file_path);
  * @param line a single line of text, typically from the /proc/self/mountinfo file
  * @return matched id or empty string
  */
-std::string ExtractContainerIDFromMountInfoLine(nostd::string_view line);
+std::string OPENTELEMETRY_EXPORT ExtractContainerIDFromMountInfoLine(nostd::string_view line);
 
 }  // namespace detail
 }  // namespace resource_detector
