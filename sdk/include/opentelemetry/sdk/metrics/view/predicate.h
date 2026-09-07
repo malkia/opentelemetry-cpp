@@ -6,8 +6,8 @@
 #include <memory>
 #include <string>
 
-#include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/version.h"
+#include "opentelemetry/nostd/string_view.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
@@ -29,7 +29,7 @@ public:
   virtual bool Match(opentelemetry::nostd::string_view string) const noexcept = 0;
 };
 
-class PatternPredicate : public Predicate
+class OPENTELEMETRY_EXPORT_TYPE PatternPredicate : public Predicate
 {
 public:
   explicit PatternPredicate(opentelemetry::nostd::string_view pattern);
@@ -48,7 +48,7 @@ private:
   std::unique_ptr<Impl> impl_;
 };
 
-class WildcardPredicate : public Predicate
+class OPENTELEMETRY_EXPORT_TYPE WildcardPredicate : public Predicate
 {
 public:
   explicit WildcardPredicate(opentelemetry::nostd::string_view pattern);
@@ -59,7 +59,7 @@ private:
   std::string pattern_;
 };
 
-class ExactPredicate : public Predicate
+class OPENTELEMETRY_EXPORT_TYPE ExactPredicate : public Predicate
 {
 public:
   explicit ExactPredicate(opentelemetry::nostd::string_view pattern);
@@ -70,13 +70,13 @@ private:
   std::string pattern_;
 };
 
-class MatchEverythingPattern : public Predicate
+class OPENTELEMETRY_EXPORT_TYPE MatchEverythingPattern : public Predicate
 {
 public:
   bool Match(opentelemetry::nostd::string_view str) const noexcept override;
 };
 
-class MatchNothingPattern : public Predicate
+class OPENTELEMETRY_EXPORT_TYPE MatchNothingPattern : public Predicate
 {
 public:
   bool Match(opentelemetry::nostd::string_view str) const noexcept override;

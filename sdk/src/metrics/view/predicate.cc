@@ -1,9 +1,10 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-#include "opentelemetry/sdk/metrics/view/predicate.h"
-
 #include <string>
+
+#include "opentelemetry/version.h"
+#include "opentelemetry/sdk/metrics/view/predicate.h"
 
 #if OPENTELEMETRY_HAVE_WORKING_REGEX
 #  include <regex>
