@@ -1,10 +1,9 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 
-load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_test_combo")
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "timestamp_test",
     srcs = [
         "timestamp_test.cc",
@@ -13,13 +12,13 @@ otel_cc_test(
         "api",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "version_test",
     srcs = [
         "version_test.cc",
@@ -28,8 +27,8 @@ otel_cc_test(
         "api",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )

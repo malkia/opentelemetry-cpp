@@ -1,6 +1,7 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 
+load("//:dll_deps.bzl", "dll_deps", "dll_deps_forced")
 load("@rules_cc//cc:cc_shared_library.bzl", "cc_shared_library")
 load(
     "@rules_cc//cc:defs.bzl",
@@ -36,6 +37,28 @@ def otel_cc_test(**kwargs):
     kwargs["deps"] = kwargs.get("deps", []) + if_asanwin(["@llvm_windows_install//:asan"])
     rules_cc_test(**kwargs)
 
+def otel_cc_test_combo(name,deps,**kwargs):
+    rules_cc_test(
+        # link to the static opentelemetry lib
+        name = name + ".a",    
+        target_compatible_with = select({
+            "@otel_sdk_dev//:with_dll_enabled": ["@platforms//:incompatible"],
+            "//conditions:default": None,
+        }),
+        deps = deps,
+        **kwargs
+    )
+    rules_cc_test(
+        # link to the dynamic opentelemetry shared lib
+        name = name + ".d",    
+        target_compatible_with = select({
+            "@otel_sdk_dev//:with_dll_enabled": None, 
+            "//conditions:default": ["@platforms//:incompatible"],
+        }),
+        deps = dll_deps_forced(deps),
+        **kwargs
+    )
+    
 def otel_cc_import(**kwargs):
     rules_cc_import(**kwargs)
 

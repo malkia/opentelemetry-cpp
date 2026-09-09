@@ -13,10 +13,14 @@ def _filter_libs(deps):
 def dll_deps(deps):
     """ When building with --//:with_dll=true replaces the references to the api/sdk/exporters/ext static libraries with the single //:dll shared library """
     p = select({
-        "@otel_sdk_dev//:with_dll_enabled": ["@otel_sdk_dev//:dll"] + _filter_libs(deps),
+        "@otel_sdk_dev//:with_dll_enabled": dll_deps_forced(deps),
         "//conditions:default": deps,
     })
     return p
+
+def dll_deps_forced(deps):
+    """ When building with --//:with_dll=true replaces the references to the api/sdk/exporters/ext static libraries with the single //:dll shared library """
+    return ["@otel_sdk_dev//:dll"] + _filter_libs(deps)
 
 force_compilation_mode = rule(
     implementation = lambda ctx: DefaultInfo(files = depset(
