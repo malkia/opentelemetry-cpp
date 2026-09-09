@@ -123,16 +123,16 @@ otel_cc_test_combo(
     ],
 )
 
-# otel_cc_test(
-#     name = "baseline_circular_buffer",
-#     hdrs = [
-#         "baseline_circular_buffer.h",
-#     ],
-#     include_prefix = "test/common",
-#     deps = dll_deps([
-#         "//api",
-#     ]),
-# )
+otel_cc_test_library(
+    name = "baseline_circular_buffer",
+    hdrs = [
+        "baseline_circular_buffer.h",
+    ],
+    include_prefix = "test/common",
+    deps = dll_deps([
+        "//api",
+    ]),
+)
 
 otel_cc_benchmark(
     name = "circular_buffer_benchmark",
