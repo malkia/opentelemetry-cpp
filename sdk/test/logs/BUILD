@@ -129,6 +129,19 @@ otel_cc_test(
 )
 
 otel_cc_test(
+    name = "batch_log_record_processor_test_stress",
+    srcs = glob(["*_test_stress.cc"]),
+    tags = [
+        "logs",
+        "test",
+    ],
+    deps = dll_deps([
+        "//sdk/src/logs",
+        "@googletest//:gtest_main",
+    ]),
+)
+
+otel_cc_test(
     name = "logger_config_test",
     srcs = [
         "logger_config_test.cc",
