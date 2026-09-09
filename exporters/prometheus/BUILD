@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_library", "otel_cc_test", "otel_cc_test_library")
+load("//bazel:otel_cc.bzl", "otel_cc_library", "otel_cc_test_combo", "otel_cc_test_library")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -96,7 +96,7 @@ otel_cc_test_library(
     ]),
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "prometheus_exporter_test",
     srcs = [
         "test/exporter_test.cc",
@@ -106,17 +106,17 @@ otel_cc_test(
         "prometheus",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":prometheus_exporter",
         ":prometheus_test_helper",
         "//sdk/src/metrics",
         "@googletest//:gtest_main",
         "@prometheus-cpp//core",
         "@prometheus-cpp//pull",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "prometheus_collector_test",
     srcs = [
         "test/collector_test.cc",
@@ -125,17 +125,17 @@ otel_cc_test(
         "prometheus",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":prometheus_collector",
         ":prometheus_test_helper",
         "//sdk/src/metrics",
         "@googletest//:gtest_main",
         "@prometheus-cpp//core",
         "@prometheus-cpp//pull",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "prometheus_exporter_utils_test",
     srcs = [
         "test/exporter_utils_test.cc",
@@ -144,13 +144,13 @@ otel_cc_test(
         "prometheus",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":prometheus_exporter_utils",
         ":prometheus_test_helper",
         "@googletest//:gtest_main",
         "@prometheus-cpp//core",
         "@prometheus-cpp//pull",
-    ]),
+    ],
 )
 
 otel_cc_library(
@@ -190,7 +190,7 @@ otel_cc_test_library(
     ]),
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "prometheus_push_exporter_test",
     srcs = [
         "test/push_exporter_test.cc",
@@ -200,7 +200,7 @@ otel_cc_test(
         "prometheus",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":prometheus_push_exporter",
         ":prometheus_push_test_helper",
         "@googletest//:gtest_main",
@@ -209,7 +209,7 @@ otel_cc_test(
         "//exporters/prometheus:prometheus_collector",
         "//exporters/prometheus:prometheus_exporter_utils",
         "//sdk:headers",
-    ]),
+    ],
 )
 
 filegroup(

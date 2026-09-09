@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_test_combo")
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "socket_tools_test",
     srcs = [
         "socket_tools_test.cc",
@@ -12,13 +12,13 @@ otel_cc_test(
     # ws2_32 is an interface linkopt of //ext:headers, so it is inherited here rather than
     # relinked, which also lets the test verify the public target's usage requirements.
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//ext:headers",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "curl_http_test",
     srcs = [
         "curl_http_test.cc",
@@ -26,24 +26,24 @@ otel_cc_test(
     # It hits the CI sometimes, so mark it as flaky
     flaky = True,
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//ext:headers",
         "//ext/src/http/client/curl:http_client_curl",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
         "@curl",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "url_parser_test",
     srcs = [
         "url_parser_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//ext:headers",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )

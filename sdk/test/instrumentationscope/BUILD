@@ -1,20 +1,19 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 
-load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_test_combo")
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "instrumentationscope_test",
     srcs = [
         "instrumentationscope_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "//sdk/src/common:env_variables",
         "//sdk/src/instrumentationscope",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )

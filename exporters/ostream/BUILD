@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_library", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_library", "otel_cc_test_combo")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -39,17 +39,17 @@ otel_cc_library(
     ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "ostream_log_test",
     srcs = ["test/ostream_log_test.cc"],
     tags = [
         "ostream",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":ostream_log_record_exporter",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
 otel_cc_library(
@@ -91,17 +91,17 @@ otel_cc_library(
     ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "ostream_metric_test",
     srcs = ["test/ostream_metric_test.cc"],
     tags = [
         "ostream",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":ostream_metric_exporter",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
 otel_cc_library(
@@ -148,18 +148,18 @@ otel_cc_library(
     ]),
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "ostream_span_test",
     srcs = ["test/ostream_span_test.cc"],
     tags = [
         "ostream",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":ostream_capture",
         ":ostream_span_exporter",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
 filegroup(

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_library", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_library", "otel_cc_test_combo")
 load("//bazel:otel_cc_benchmark.bzl", "otel_cc_benchmark")
 
 package(default_visibility = ["//visibility:public"])
@@ -22,7 +22,7 @@ otel_cc_library(
     ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "etw_provider_test",
     srcs = ["test/etw_provider_test.cc"],
     local_defines = [
@@ -32,15 +32,15 @@ otel_cc_test(
         "etw",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":etw_exporter",
         "@googletest//:gtest_main",
         "@nlohmann_json//:json",
         "//:windows_only",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "etw_tracer_test",
     srcs = ["test/etw_tracer_test.cc"],
     local_defines = [
@@ -50,15 +50,15 @@ otel_cc_test(
         "etw",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":etw_exporter",
         "@googletest//:gtest_main",
         "@nlohmann_json//:json",
         "//:windows_only",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "etw_logger_test",
     srcs = ["test/etw_logger_test.cc"],
     local_defines = [
@@ -68,12 +68,12 @@ otel_cc_test(
         "etw",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":etw_exporter",
         "@googletest//:gtest_main",
         "@nlohmann_json//:json",
         "//:windows_only",
-    ]),
+    ],
 )
 
 otel_cc_benchmark(

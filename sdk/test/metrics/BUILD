@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_test", "otel_cc_test_library")
+load("//bazel:otel_cc.bzl", "otel_cc_test_combo", "otel_cc_test_library")
 load("//bazel:otel_cc_benchmark.bzl", "otel_cc_benchmark")
 
 otel_cc_test_library(
@@ -20,22 +20,22 @@ otel_cc_test_library(
     ]),
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "all_tests",
     srcs = glob(["*_test.cc"]),
     tags = [
         "metrics",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         "metrics_common_test_utils",
         "//sdk/src/metrics",
         "//test_common:headers",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "stress_tests",
     timeout = "long",
     srcs = glob(["*_test_stress.cc"]),
@@ -43,10 +43,10 @@ otel_cc_test(
         "metrics",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         "metrics_common_test_utils",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
 otel_cc_benchmark(

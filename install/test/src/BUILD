@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_test_combo")
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "all_tests",
     srcs = glob(
         ["*.cc"],
@@ -15,7 +15,7 @@ otel_cc_test(
     tags = [
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//exporters/elasticsearch:es_log_record_exporter",
         "//exporters/etw:etw_exporter",
@@ -57,5 +57,5 @@ otel_cc_test(
         "@opentelemetry-proto//:logs_service_grpc_cc",
         "@opentelemetry-proto//:metrics_service_grpc_cc",
         "@opentelemetry-proto//:trace_service_grpc_cc",
-    ]),
+    ],
 )

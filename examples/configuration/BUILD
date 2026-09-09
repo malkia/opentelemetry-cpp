@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_test_combo")
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "example_yaml_kitchen_sink",
     size = "medium",
     srcs = glob(["*.cc"]) + glob(["*.h"]),
@@ -25,7 +25,7 @@ otel_cc_test(
         "test",
         "yaml",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//examples/common/logs_foo_library:common_logs_foo_library",
         "//examples/common/metrics_foo_library:common_metrics_foo_library",
@@ -48,10 +48,10 @@ otel_cc_test(
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "example_yaml_extensions",
     size = "medium",
     srcs = glob(["*.cc"]) + glob(["*.h"]),
@@ -65,7 +65,7 @@ otel_cc_test(
         "test",
         "yaml",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//examples/common/logs_foo_library:common_logs_foo_library",
         "//examples/common/metrics_foo_library:common_metrics_foo_library",
@@ -77,10 +77,10 @@ otel_cc_test(
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "example_yaml_sdk_default",
     size = "medium",
     srcs = glob(["*.cc"]) + glob(["*.h"]),
@@ -94,7 +94,7 @@ otel_cc_test(
         "test",
         "yaml",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//examples/common/logs_foo_library:common_logs_foo_library",
         "//examples/common/metrics_foo_library:common_metrics_foo_library",
@@ -106,5 +106,5 @@ otel_cc_test(
         "//sdk/src/logs",
         "//sdk/src/metrics",
         "//sdk/src/trace",
-    ]),
+    ],
 )

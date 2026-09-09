@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_library", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_library", "otel_cc_test_combo")
 
 otel_cc_library(
     name = "custom_http_client_stub",
@@ -20,7 +20,7 @@ otel_cc_library(
     ]),
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "example_custom_http_client",
     srcs = [
         "main.cc",
@@ -30,11 +30,11 @@ otel_cc_test(
         "otlp_http",
         "tested_example",
     ],
-    deps = dll_deps([
+    deps = [
         ":custom_http_client_stub",
         "//api",
         "//exporters/otlp:otlp_http_exporter",
         "//sdk/src/metrics",
         "//sdk/src/trace",
-    ]),
+    ],
 )

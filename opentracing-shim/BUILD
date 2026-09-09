@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_library", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_library", "otel_cc_test_combo")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -29,7 +29,7 @@ otel_cc_library(
     ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "propagation_test",
     srcs = [
         "test/propagation_test.cc",
@@ -39,13 +39,13 @@ otel_cc_test(
         "opentracing_shim",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":opentracing_shim",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "shim_utils_test",
     srcs = [
         "test/shim_mocks.h",
@@ -55,13 +55,13 @@ otel_cc_test(
         "opentracing_shim",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":opentracing_shim",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "span_shim_test",
     srcs = [
         "test/shim_mocks.h",
@@ -71,13 +71,13 @@ otel_cc_test(
         "opentracing_shim",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":opentracing_shim",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "span_context_shim_test",
     srcs = [
         "test/span_context_shim_test.cc",
@@ -86,13 +86,13 @@ otel_cc_test(
         "opentracing_shim",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":opentracing_shim",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "tracer_shim_test",
     srcs = [
         "test/shim_mocks.h",
@@ -102,8 +102,8 @@ otel_cc_test(
         "opentracing_shim",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":opentracing_shim",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )

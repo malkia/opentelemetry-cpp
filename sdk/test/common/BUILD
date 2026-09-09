@@ -2,55 +2,55 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_test", "otel_cc_test_library")
+load("//bazel:otel_cc.bzl", "otel_cc_test", "otel_cc_test_combo", "otel_cc_test_library")
 load("//bazel:otel_cc_benchmark.bzl", "otel_cc_benchmark")
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "wildcard_match_test",
     srcs = [
         "wildcard_match_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/common:wildcard_match",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "random_test",
     srcs = [
         "random_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/common:random",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "base64_test",
     srcs = [
         "base64_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/common:base64",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "fast_random_number_generator_test",
     srcs = [
         "fast_random_number_generator_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/common:random",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
 otel_cc_benchmark(
@@ -73,66 +73,66 @@ otel_cc_benchmark(
     deps = dll_deps(["//sdk/src/common:random"]),
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "atomic_unique_ptr_test",
     srcs = [
         "atomic_unique_ptr_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "circular_buffer_range_test",
     srcs = [
         "circular_buffer_range_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "circular_buffer_test",
     srcs = [
         "circular_buffer_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "random_fork_test",
     srcs = [
         "random_fork_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/common:random",
-    ]),
+    ],
 )
 
-otel_cc_test_library(
-    name = "baseline_circular_buffer",
-    hdrs = [
-        "baseline_circular_buffer.h",
-    ],
-    include_prefix = "test/common",
-    deps = dll_deps([
-        "//api",
-    ]),
-)
+# otel_cc_test(
+#     name = "baseline_circular_buffer",
+#     hdrs = [
+#         "baseline_circular_buffer.h",
+#     ],
+#     include_prefix = "test/common",
+#     deps = dll_deps([
+#         "//api",
+#     ]),
+# )
 
 otel_cc_benchmark(
     name = "circular_buffer_benchmark",
@@ -147,72 +147,72 @@ otel_cc_benchmark(
     ]),
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "empty_attributes_test",
     srcs = [
         "empty_attributes_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "//sdk/src/common:empty_attributes",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "attribute_utils_test",
     srcs = [
         "attribute_utils_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "global_log_handle_test",
     srcs = [
         "global_log_handle_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "//sdk/src/common:global_log_handler",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "global_log_handle_singleton_lifetime_test",
     srcs = [
         "global_log_handle_singleton_lifetime_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "//sdk/src/common:global_log_handler",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "attributemap_hash_test",
     srcs = [
         "attributemap_hash_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
 otel_cc_benchmark(
@@ -228,14 +228,14 @@ otel_cc_benchmark(
     ]),
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "env_var_test",
     srcs = [
         "env_var_test.cc",
     ],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/common:env_variables",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )

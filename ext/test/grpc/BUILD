@@ -1,10 +1,9 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 
-load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_test_combo")
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "grpc_config_test",
     srcs = ["grpc_config_test.cc"],
     env = {
@@ -15,9 +14,9 @@ otel_cc_test(
             "-event_engine_dns,",
         ]),
     },
-    deps = dll_deps([
+    deps = [
         "//ext/src/grpc:grpc_config",
         "@googletest//:gtest_main",
         "@grpc//:grpc++",
-    ]),
+    ],
 )

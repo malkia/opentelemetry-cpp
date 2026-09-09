@@ -2,119 +2,119 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_test_combo")
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "container_resource_detector_test",
     srcs = ["container_detector_test.cc"],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//resource_detectors:container_resource_detector",
         "//sdk/src/resource",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "env_entity_resource_detector_test",
     srcs = ["env_entity_detector_test.cc"],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//resource_detectors:env_entity_resource_detector",
         "//sdk/src/resource",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "host_resource_detector_test",
     srcs = ["host_detector_test.cc"],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//resource_detectors:host_resource_detector",
         "//sdk/src/resource",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "process_resource_detector_test",
     srcs = ["process_detector_test.cc"],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//resource_detectors:process_resource_detector",
         "//sdk/src/resource",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "container_resource_detector_builder_test",
     srcs = ["container_detector_builder_test.cc"],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//resource_detectors:container_resource_detector_builder",
         "//sdk/src/configuration:configuration_core",
         "//sdk/src/resource",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "host_resource_detector_builder_test",
     srcs = ["host_detector_builder_test.cc"],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//resource_detectors:host_resource_detector_builder",
         "//sdk/src/configuration:configuration_core",
         "//sdk/src/resource",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "process_resource_detector_builder_test",
     srcs = ["process_detector_builder_test.cc"],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//resource_detectors:process_resource_detector_builder",
         "//sdk/src/configuration:configuration_core",
         "//sdk/src/resource",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "service_resource_detector_utils_test",
     srcs = ["service_detector_utils_test.cc"],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//resource_detectors:process_resource_detector",
         "//resource_detectors:service_resource_detector_utils",
         "//sdk/src/resource",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "service_resource_detector_test",
     srcs = ["service_detector_test.cc"],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//resource_detectors:service_resource_detector",
         "//sdk/src/resource",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "service_resource_detector_builder_test",
     srcs = ["service_detector_builder_test.cc"],
     tags = ["test"],
-    deps = dll_deps([
+    deps = [
         "//resource_detectors:service_resource_detector_builder",
         "//sdk/src/configuration:configuration_core",
         "//sdk/src/resource",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )

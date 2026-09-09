@@ -2,10 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_test_combo")
 load("//bazel:otel_cc_benchmark.bzl", "otel_cc_benchmark")
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "default_span_test",
     srcs = [
         "default_span_test.cc",
@@ -15,13 +15,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "context_test",
     srcs = [
         "context_test.cc",
@@ -31,13 +31,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "noop_test",
     srcs = [
         "noop_test.cc",
@@ -47,13 +47,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "key_value_iterable_view_test",
     srcs = [
         "key_value_iterable_view_test.cc",
@@ -63,10 +63,10 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
 otel_cc_benchmark(
@@ -78,9 +78,9 @@ otel_cc_benchmark(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
-    ]),
+    ],
 )
 
 otel_cc_benchmark(
@@ -92,12 +92,12 @@ otel_cc_benchmark(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "provider_test",
     srcs = [
         "provider_test.cc",
@@ -107,13 +107,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "span_id_test",
     srcs = [
         "span_id_test.cc",
@@ -123,13 +123,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "trace_flags_test",
     srcs = [
         "trace_flags_test.cc",
@@ -139,13 +139,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "trace_id_test",
     srcs = [
         "trace_id_test.cc",
@@ -155,13 +155,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "span_context_test",
     srcs = [
         "span_context_test.cc",
@@ -171,13 +171,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "trace_state_test",
     srcs = [
         "trace_state_test.cc",
@@ -187,13 +187,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "scope_test",
     srcs = [
         "scope_test.cc",
@@ -203,13 +203,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "tracer_test",
     srcs = [
         "tracer_test.cc",
@@ -219,8 +219,8 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )

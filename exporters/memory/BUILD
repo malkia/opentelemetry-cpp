@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_library", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_library", "otel_cc_test_combo")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -25,17 +25,17 @@ otel_cc_library(
     ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "in_memory_metric_data_test",
     srcs = ["test/in_memory_metric_data_test.cc"],
     tags = [
         "memory",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":in_memory_metric_data",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
 otel_cc_library(
@@ -57,17 +57,17 @@ otel_cc_library(
     ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "in_memory_metric_exporter_test",
     srcs = ["test/in_memory_metric_exporter_test.cc"],
     tags = [
         "memory",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":in_memory_metric_exporter_factory",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
 otel_cc_library(
@@ -97,18 +97,18 @@ otel_cc_library(
     ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "in_memory_span_data_test",
     srcs = ["test/in_memory_span_data_test.cc"],
     tags = [
         "memory",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":in_memory_span_data",
         ":in_memory_data",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
 otel_cc_library(
@@ -132,17 +132,17 @@ otel_cc_library(
     ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "in_memory_span_exporter_test",
     srcs = ["test/in_memory_span_exporter_test.cc"],
     tags = [
         "memory",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         ":in_memory_span_exporter",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
 filegroup(

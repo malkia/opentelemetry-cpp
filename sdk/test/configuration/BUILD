@@ -1,10 +1,9 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 
-load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_test_combo")
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "registry_test",
     srcs = [
         "registry_test.cc",
@@ -13,7 +12,7 @@ otel_cc_test(
         "config",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk:headers",
         "//sdk/src/configuration:configuration_core",
         "//sdk/src/logs",
@@ -21,10 +20,10 @@ otel_cc_test(
         "//sdk/src/resource",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "sdk_builder_test",
     srcs = [
         "config_test_common.h",
@@ -34,7 +33,7 @@ otel_cc_test(
         "config",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk:headers",
         "//sdk/src/configuration:configuration_registry_factory",
         "//sdk/src/logs",
@@ -43,10 +42,10 @@ otel_cc_test(
         "//sdk/src/trace",
         "//test_common:headers",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "configured_sdk_test",
     srcs = [
         "config_test_common.h",
@@ -56,7 +55,7 @@ otel_cc_test(
         "config",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk:headers",
         "//sdk/src/configuration:configuration_registry_factory",
         "//sdk/src/logs",
@@ -64,10 +63,10 @@ otel_cc_test(
         "//sdk/src/resource",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "programmatic_configuration_test",
     srcs = [
         "config_test_common.h",
@@ -77,7 +76,7 @@ otel_cc_test(
         "config",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk:headers",
         "//sdk/src/configuration:configuration_registry_factory",
         "//sdk/src/logs",
@@ -85,10 +84,10 @@ otel_cc_test(
         "//sdk/src/resource",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "trace_builders_test",
     srcs = [
         "trace_builders_test.cc",
@@ -97,15 +96,15 @@ otel_cc_test(
         "config",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk:headers",
         "//sdk/src/configuration:configuration_trace_builders",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "logs_builders_test",
     srcs = [
         "logs_builders_test.cc",
@@ -114,15 +113,15 @@ otel_cc_test(
         "config",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk:headers",
         "//sdk/src/configuration:configuration_logs_builders",
         "//sdk/src/logs",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "metrics_builders_test",
     srcs = [
         "metrics_builders_test.cc",
@@ -131,15 +130,15 @@ otel_cc_test(
         "config",
         "test",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk:headers",
         "//sdk/src/configuration:configuration_metrics_builders",
         "//sdk/src/metrics",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "yaml_logs_test",
     srcs = [
         "yaml_logs_test.cc",
@@ -148,7 +147,7 @@ otel_cc_test(
         "test",
         "yaml",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "//sdk/src/configuration:configuration_yaml",
@@ -156,10 +155,10 @@ otel_cc_test(
         "//sdk/src/metrics",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "yaml_metrics_test",
     srcs = [
         "yaml_metrics_test.cc",
@@ -168,7 +167,7 @@ otel_cc_test(
         "test",
         "yaml",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "//sdk/src/configuration:configuration_yaml",
@@ -176,10 +175,10 @@ otel_cc_test(
         "//sdk/src/metrics",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "yaml_propagator_test",
     srcs = [
         "yaml_propagator_test.cc",
@@ -188,7 +187,7 @@ otel_cc_test(
         "test",
         "yaml",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "//sdk/src/configuration:configuration_yaml",
@@ -196,10 +195,10 @@ otel_cc_test(
         "//sdk/src/metrics",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "yaml_resource_test",
     srcs = [
         "yaml_resource_test.cc",
@@ -208,7 +207,7 @@ otel_cc_test(
         "test",
         "yaml",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "//sdk/src/configuration:configuration_yaml",
@@ -216,10 +215,10 @@ otel_cc_test(
         "//sdk/src/metrics",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "yaml_test",
     srcs = [
         "yaml_test.cc",
@@ -228,7 +227,7 @@ otel_cc_test(
         "test",
         "yaml",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "//sdk/src/configuration:configuration_yaml",
@@ -236,10 +235,10 @@ otel_cc_test(
         "//sdk/src/metrics",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "yaml_trace_test",
     srcs = [
         "yaml_trace_test.cc",
@@ -248,7 +247,7 @@ otel_cc_test(
         "test",
         "yaml",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "//sdk/src/configuration:configuration_yaml",
@@ -256,10 +255,10 @@ otel_cc_test(
         "//sdk/src/metrics",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "yaml_distribution_test",
     srcs = [
         "yaml_distribution_test.cc",
@@ -268,7 +267,7 @@ otel_cc_test(
         "test",
         "yaml",
     ],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//sdk:headers",
         "//sdk/src/configuration:configuration_yaml",
@@ -276,5 +275,5 @@ otel_cc_test(
         "//sdk/src/metrics",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )

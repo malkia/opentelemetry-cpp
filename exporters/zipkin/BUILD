@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_library", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_library", "otel_cc_test_combo")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -42,33 +42,33 @@ otel_cc_library(
     ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "zipkin_recordable_test",
     srcs = ["test/zipkin_recordable_test.cc"],
     tags = [
         "test",
         "zipkin",
     ],
-    deps = dll_deps([
+    deps = [
         ":zipkin_recordable",
         "@googletest//:gtest_main",
         "@nlohmann_json//:json",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "zipkin_exporter_test",
     srcs = ["test/zipkin_exporter_test.cc"],
     tags = [
         "test",
         "zipkin",
     ],
-    deps = dll_deps([
+    deps = [
         "//test_common/src/http/client/nosend:http_client_nosend",
         ":zipkin_exporter",
         ":zipkin_recordable",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
 filegroup(

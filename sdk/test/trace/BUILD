@@ -2,10 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_test")
+load("//bazel:otel_cc.bzl", "otel_cc_test_combo")
 load("//bazel:otel_cc_benchmark.bzl", "otel_cc_benchmark")
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "tracer_provider_test",
     srcs = [
         "tracer_provider_test.cc",
@@ -14,15 +14,15 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/resource",
         "//sdk/src/trace",
         "//exporters/memory:in_memory_span_exporter",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "tracer_provider_set_test",
     srcs = [
         "tracer_provider_set_test.cc",
@@ -31,14 +31,14 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/resource",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "span_data_test",
     srcs = [
         "span_data_test.cc",
@@ -47,13 +47,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "simple_processor_test",
     srcs = [
         "simple_processor_test.cc",
@@ -62,14 +62,14 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//exporters/memory:in_memory_span_exporter",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "multi_span_processor_test",
     srcs = [
         "multi_span_processor_test.cc",
@@ -78,13 +78,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "batch_span_processor_test",
     srcs = [
         "batch_span_processor_test.cc",
@@ -93,26 +93,26 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "batch_span_processor_test_stress",
     srcs = glob(["*_test_stress.cc"]),
     tags = [
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "tracer_test",
     srcs = [
         "tracer_test.cc",
@@ -121,15 +121,15 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//exporters/memory:in_memory_span_exporter",
         "//sdk/src/resource",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "always_on_sampler_test",
     srcs = [
         "always_on_sampler_test.cc",
@@ -138,13 +138,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "always_off_sampler_test",
     srcs = [
         "always_off_sampler_test.cc",
@@ -153,13 +153,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "parent_sampler_test",
     srcs = [
         "parent_sampler_test.cc",
@@ -168,13 +168,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "probability_sampler_test",
     srcs = [
         "probability_sampler_test.cc",
@@ -183,14 +183,14 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/common:random",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "trace_id_ratio_sampler_test",
     srcs = [
         "trace_id_ratio_sampler_test.cc",
@@ -199,14 +199,14 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/common:random",
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "composable_sampler_test",
     srcs = [
         "composable_sampler_test.cc",
@@ -215,13 +215,13 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
-otel_cc_test(
+otel_cc_test_combo(
     name = "tracer_config_test",
     srcs = [
         "tracer_config_test.cc",
@@ -230,10 +230,10 @@ otel_cc_test(
         "test",
         "trace",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/trace",
         "@googletest//:gtest_main",
-    ]),
+    ],
 )
 
 otel_cc_benchmark(
