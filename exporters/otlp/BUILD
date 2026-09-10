@@ -755,6 +755,7 @@ otel_cc_test_combo(
         "otlp",
         "otlp_grpc",
         "test",
+        "exclusive", # binds to localhost:4317 and others
     ],
     deps = [
         ":otlp_grpc_exporter",
