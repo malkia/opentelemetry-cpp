@@ -1,6 +1,7 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/sdk/configuration/metrics_builders.h"
 
 #include <chrono>
@@ -38,7 +39,6 @@
 #include "opentelemetry/sdk/metrics/push_metric_exporter.h"
 #include "opentelemetry/sdk/metrics/view/view_registry.h"
 #include "opentelemetry/sdk/metrics/view/view_registry_factory.h"
-#include "opentelemetry/version.h"
 #include "src/common/wildcard_match.h"
 
 #ifdef ENABLE_METRICS_EXEMPLAR_PREVIEW

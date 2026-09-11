@@ -33,6 +33,35 @@ def otel_cc_binary(**kwargs):
     kwargs["deps"] = kwargs.get("deps", []) + if_asanwin(["@llvm_windows_install//:asan"])
     rules_cc_binary(**kwargs)
 
+def otel_cc_binary_combo(name,deps,**kwargs):
+    otel_cc_binary(
+        # link to the static opentelemetry lib
+        name = name + ".a",
+        target_compatible_with = select({
+            "@otel_sdk_dev//:with_dll_enabled": ["@platforms//:incompatible"],
+            "//conditions:default": None,
+        }),
+        deps = deps,
+        **kwargs
+    )
+    otel_cc_binary(
+        # link to the dynamic opentelemetry shared lib
+        name = name + ".d",    
+        target_compatible_with = select({
+            "@otel_sdk_dev//:with_dll_enabled": None, 
+            "//conditions:default": ["@platforms//:incompatible"],
+        }),
+        deps = dll_deps_forced(deps),
+        **kwargs
+    )
+    native.alias(
+        name = name,
+        actual = select({
+            "@otel_sdk_dev//:with_dll_enabled": name + ".d",
+            "//conditions:default": name + ".a",
+        }),
+    )
+
 def otel_cc_test(**kwargs):
     kwargs["deps"] = kwargs.get("deps", []) + if_asanwin(["@llvm_windows_install//:asan"])
     rules_cc_test(**kwargs)
@@ -58,6 +87,13 @@ def otel_cc_test_combo(name,deps,**kwargs):
         deps = dll_deps_forced(deps),
         **kwargs
     )
+    # native.alias(
+    #     name = name,
+    #     actual = select({
+    #         "@otel_sdk_dev//:with_dll_enabled": name + ".d",
+    #         "//conditions:default": name + ".a",
+    #     }),
+    # )
     
 def otel_cc_import(**kwargs):
     rules_cc_import(**kwargs)

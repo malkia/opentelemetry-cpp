@@ -1,12 +1,11 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 
-load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_binary")
+load("//bazel:otel_cc.bzl", "otel_cc_binary_combo")
 
 package(default_visibility = ["//visibility:public"])
 
-otel_cc_binary(
+otel_cc_binary_combo(
     name = "func_otlp_http",
     srcs = [
         "func_http_main.cc",
@@ -18,13 +17,13 @@ otel_cc_binary(
         "otlp",
         "otlp_http",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/metrics",
         "//exporters/otlp:otlp_http_exporter",
-    ]),
+    ],
 )
 
-otel_cc_binary(
+otel_cc_binary_combo(
     name = "func_otlp_grpc",
     srcs = [
         "func_grpc_main.cc",
@@ -36,8 +35,8 @@ otel_cc_binary(
         "otlp",
         "otlp_grpc",
     ],
-    deps = dll_deps([
+    deps = [
         "//sdk/src/metrics",
         "//exporters/otlp:otlp_grpc_exporter",
-    ]),
+    ],
 )

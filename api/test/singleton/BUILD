@@ -130,6 +130,10 @@ otel_cc_binary(
         "//bazel:windows": DEFAULT_WIN_COPTS,
         "//conditions:default": DEFAULT_NOWIN_COPTS,
     }),
+    target_compatible_with = select({
+        "//:with_dll_enabled": None,
+        "//conditions:default": ["@platforms//:incompatible"],
+    }),
     linkshared = True,
     deps = dll_deps([
         "//api",
@@ -145,6 +149,10 @@ otel_cc_binary(
     copts = select({
         "//bazel:windows": HIDDEN_WIN_COPTS,
         "//conditions:default": HIDDEN_NOWIN_COPTS,
+    }),
+    target_compatible_with = select({
+        "//:with_dll_enabled": None,
+        "//conditions:default": ["@platforms//:incompatible"],
     }),
     linkshared = True,
     deps = dll_deps([

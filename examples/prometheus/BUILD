@@ -1,10 +1,9 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 
-load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_binary")
+load("//bazel:otel_cc.bzl", "otel_cc_binary_combo")
 
-otel_cc_binary(
+otel_cc_binary_combo(
     name = "prometheus_example",
     srcs = [
         "main.cc",
@@ -14,7 +13,7 @@ otel_cc_binary(
         "//conditions:default": ["-pthread"],
     }),
     tags = ["prometheus"],
-    deps = dll_deps([
+    deps = [
         "//api",
         "//examples/common/metrics_foo_library:common_metrics_foo_library",
         "//exporters/prometheus:prometheus_exporter",
@@ -23,5 +22,5 @@ otel_cc_binary(
         # In the non-dll version, these are just duplicate deps, and would be ignored
         "@prometheus-cpp//core",
         "@prometheus-cpp//pull",
-    ]),
+    ],
 )

@@ -42,6 +42,7 @@ otel_cc_library(
     tags = ["prometheus"],
     deps = [
         ":prometheus_exporter",
+        "//sdk/src/configuration:configuration_core",
     ],
 )
 

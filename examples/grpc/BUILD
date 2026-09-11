@@ -5,7 +5,7 @@ load("@grpc//bazel:cc_grpc_library.bzl", "cc_grpc_library")
 load("@protobuf//bazel:cc_proto_library.bzl", "cc_proto_library")
 load("@rules_proto//proto:defs.bzl", "proto_library")
 load("//:dll_deps.bzl", "dll_deps")
-load("//bazel:otel_cc.bzl", "otel_cc_binary", "otel_cc_library")
+load("//bazel:otel_cc.bzl", "otel_cc_binary_combo", "otel_cc_library")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -44,32 +44,32 @@ otel_cc_library(
     ]),
 )
 
-otel_cc_binary(
+otel_cc_binary_combo(
     name = "client_grpc",
     srcs = [
         "client.cc",
     ],
     tags = ["ostream"],
-    deps = dll_deps([
-        "messages_cc_grpc",
+    deps = [
+        ":messages_cc_grpc",
         ":tracer_common",
         "//api",
         "//sdk/src/trace",
         "@grpc//:grpc++",
-    ]),
+    ],
 )
 
-otel_cc_binary(
+otel_cc_binary_combo(
     name = "server_grpc",
     srcs = [
         "server.cc",
     ],
     tags = ["ostream"],
-    deps = dll_deps([
-        "messages_cc_grpc",
+    deps = [
+        ":messages_cc_grpc",
         ":tracer_common",
         "//api",
         "//sdk/src/trace",
         "@grpc//:grpc++",
-    ]),
+    ],
 )

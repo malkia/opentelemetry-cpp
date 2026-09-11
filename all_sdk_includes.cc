@@ -20,3 +20,5 @@
 #include <opentelemetry/resource_detectors/process_detector.h>
 #include <opentelemetry/resource_detectors/service_detector_builder.h>
 #include <opentelemetry/resource_detectors/service_detector.h>
+
+#include <opentelemetry/exporters/etw/etw_logger.h>
