@@ -9,9 +9,9 @@
 #include <thread>
 #include <utility>
 #include <vector>
-#include "common.h"
 
 #include "opentelemetry/version.h"
+#include "common.h"
 #include "opentelemetry/sdk/instrumentationscope/instrumentation_scope.h"
 #include "opentelemetry/sdk/metrics/cardinality_limits.h"
 #include "opentelemetry/sdk/metrics/export/metric_producer.h"

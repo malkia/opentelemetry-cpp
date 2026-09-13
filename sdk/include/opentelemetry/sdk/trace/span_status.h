@@ -3,9 +3,9 @@
 
 #pragma once
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/trace/span_metadata.h"
-#include "opentelemetry/version.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk

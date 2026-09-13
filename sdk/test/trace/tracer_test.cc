@@ -13,6 +13,7 @@
 #include <utility>
 #include <vector>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/common/attribute_value.h"
 #include "opentelemetry/common/macros.h"
 #include "opentelemetry/common/timestamp.h"

@@ -5,6 +5,7 @@
 
 #include <string>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/sdk/trace/span_status.h"
 #include "opentelemetry/trace/span_metadata.h"
