@@ -15,10 +15,27 @@ Increment the:
 
 ## [Unreleased]
 
+* [METRICS] `PeriodicExportingMetricReader::Shutdown` now performs one final
+  flush (reusing the same timeout-bounded machinery as `ForceFlush`) before
+  shutting down the underlying exporter, so metrics recorded since the last
+  periodic tick are no longer silently dropped on shutdown, per the metrics
+  SDK spec. `Shutdown` reports failure if either that final flush or the
+  exporter shutdown fails, and the exporter is given what remains of the
+  caller's timeout rather than a second full budget.
+  [#2983](https://github.com/open-telemetry/opentelemetry-specification/issues/2983)
+
 * [BUG] Install a curl seek callback so an OTLP/HTTP export body can be rewound
   when libcurl restarts an upload, instead of failing with
   `CURLE_SEND_FAIL_REWIND` and dropping the batch
   ([#4549](https://github.com/open-telemetry/opentelemetry-cpp/issues/4549))
+
+* [SDK] Fix `MetricReader::ForceFlush()` invoking `OnForceFlush()` on a
+  shutdown reader.
+  [#4548](https://github.com/open-telemetry/opentelemetry-cpp/pull/4548)
+
+* [SDK] Fix `MetricReader::Shutdown()` invoking `OnShutDown()` multiple times.
+  Concurrent calls now block until the first call's shutdown has completed.
+  [#4536](https://github.com/open-telemetry/opentelemetry-cpp/issues/4536)
 
 * [DOC] Fix and clarify the `StartSpanOptions` documentation
   [#4526](https://github.com/open-telemetry/opentelemetry-cpp/pull/4526)
@@ -324,6 +341,18 @@ Increment the:
 * [BUG] Prevent lost condition-variable wakeups in OTLP file exporter and periodic
   metric exporter
   [#4365](https://github.com/open-telemetry/opentelemetry-cpp/pull/4365)
+
+* [SDK] Enforce span status transition rules defined in the OpenTelemetry
+  specification in `Span::SetStatus`.
+  [#4546](https://github.com/open-telemetry/opentelemetry-cpp/issues/4546)
+  * Previously every `SetStatus` call overwrote the recorded status. It now
+    follows the specification, which changes behavior for users in three ways:
+    * A call with `StatusCode::kUnset` is ignored.
+    * Once the status is `kOk`, it is final. So a later call can no longer
+      change an explicit `kOk`.
+    * The description is kept only for `kError`; it is dropped for `kOk` and
+      `kUnset`.
+  * `ETWSpan::SetStatus` in the ETW exporter follows the same rules.
 
 Important changes:
 

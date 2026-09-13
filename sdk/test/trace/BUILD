@@ -54,6 +54,21 @@ otel_cc_test_combo(
 )
 
 otel_cc_test_combo(
+    name = "span_status_test",
+    srcs = [
+        "span_status_test.cc",
+    ],
+    tags = [
+        "test",
+        "trace",
+    ],
+    deps = [
+        "//sdk/src/trace",
+        "@googletest//:gtest_main",
+    ],
+)
+
+otel_cc_test_combo(
     name = "simple_processor_test",
     srcs = [
         "simple_processor_test.cc",
