@@ -4,17 +4,17 @@
     "binaries": [
       {
         "kind": "archive",
-        "url": "https://github.com/microsoft/aspire/releases/download/v13.4.6/aspire-cli-win-arm64-13.4.6.zip",
+        "url": "https://github.com/microsoft/aspire/releases/download/v13.5.3/aspire-cli-win-arm64-13.5.3.zip",
         "file": "aspire.exe",
-        "sha256": "e48de26619f10a27fc7899f478f95f6266d35f556a7d6bec100669d247ca0130",
+        "sha256": "d3621c188443df0c8c756850633ed77f560b7181a8b65b4d26c69bf9bf2e6dc1",
         "os": "windows",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/microsoft/aspire/releases/download/v13.4.6/aspire-cli-win-x64-13.4.6.zip",
+        "url": "https://github.com/microsoft/aspire/releases/download/v13.5.3/aspire-cli-win-x64-13.5.3.zip",
         "file": "aspire.exe",
-        "sha256": "38093dc81daf329b487e259bfc608eef3cb663d4cecf6e2b5f29c8513129cd68",
+        "sha256": "8e6372c0f856b937c081a46e009b8b2d6e6d77617c8b0241bb8b5de08ca3285c",
         "os": "windows",
         "cpu": "x86_64"
       }
@@ -24,36 +24,36 @@
     "binaries": [
       {
         "kind": "file",
-        "url": "https://github.com/bazelbuild/buildtools/releases/download/v8.5.1/buildifier-linux-arm64",
-        "sha256": "947bf6700d708026b2057b09bea09abbc3cafc15d9ecea35bb3885c4b09ccd04",
+        "url": "https://github.com/bazelbuild/buildtools/releases/download/v10.0.1/buildifier-linux-arm64",
+        "sha256": "6d7aebd23aa85847a66d517bb6220d95f24a2752e62cce0f089145b680b539c7",
         "os": "linux",
         "cpu": "arm64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/bazelbuild/buildtools/releases/download/v8.5.1/buildifier-linux-amd64",
-        "sha256": "887377fc64d23a850f4d18a077b5db05b19913f4b99b270d193f3c7334b5a9a7",
+        "url": "https://github.com/bazelbuild/buildtools/releases/download/v10.0.1/buildifier-linux-amd64",
+        "sha256": "e0ea28e2d639347724435ebafe0531fd764fbf20eec6a23000c81edd0d58e51d",
         "os": "linux",
         "cpu": "x86_64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/bazelbuild/buildtools/releases/download/v8.5.1/buildifier-darwin-arm64",
-        "sha256": "62836a9667fa0db309b0d91e840f0a3f2813a9c8ea3e44b9cd58187c90bc88ba",
+        "url": "https://github.com/bazelbuild/buildtools/releases/download/v10.0.1/buildifier-darwin-arm64",
+        "sha256": "afb78f350319b59cc51d6add3a5f3ba68e63e5d88f68c5a9ea6328a07084d319",
         "os": "macos",
         "cpu": "arm64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/bazelbuild/buildtools/releases/download/v8.5.1/buildifier-darwin-amd64",
-        "sha256": "31de189e1a3fe53aa9e8c8f74a0309c325274ad19793393919e1ca65163ca1a4",
+        "url": "https://github.com/bazelbuild/buildtools/releases/download/v10.0.1/buildifier-darwin-amd64",
+        "sha256": "1d02bb9148cadf2cbee330f9bd657352c765b52b68a03d970e10e47706bdc436",
         "os": "macos",
         "cpu": "x86_64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/bazelbuild/buildtools/releases/download/v8.5.1/buildifier-windows-amd64.exe",
-        "sha256": "f4ecb9c73de2bc38b845d4ee27668f6248c4813a6647db4b4931a7556052e4e1",
+        "url": "https://github.com/bazelbuild/buildtools/releases/download/v10.0.1/buildifier-windows-amd64.exe",
+        "sha256": "ac33edf5da6137ec816f14d7a07889c96c45d669a8d58c864e9c3d0a62063fcd",
         "os": "windows",
         "cpu": "x86_64"
       }
@@ -63,36 +63,36 @@
     "binaries": [
       {
         "kind": "file",
-        "url": "https://github.com/bazelbuild/buildtools/releases/download/v8.5.1/buildozer-linux-arm64",
-        "sha256": "87ee1d2d81d08ccae8f9147fc58503967c85878279e892f2990912412feef1a1",
+        "url": "https://github.com/bazelbuild/buildtools/releases/download/v10.0.1/buildozer-linux-arm64",
+        "sha256": "a93fb409201b42e58074e192a0bc7e73787fb7d914bd8ad986f0f10b4f4ee3af",
         "os": "linux",
         "cpu": "arm64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/bazelbuild/buildtools/releases/download/v8.5.1/buildozer-linux-amd64",
-        "sha256": "2b745ca2ad41f1e01673fb59ac50af6b45ca26105c1d20fad64c3d05a95522f5",
+        "url": "https://github.com/bazelbuild/buildtools/releases/download/v10.0.1/buildozer-linux-amd64",
+        "sha256": "1dcd81b6e6d6fe2124f6196cd8d4288a1c12dda50fad7f1a01131c25498dac33",
         "os": "linux",
         "cpu": "x86_64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/bazelbuild/buildtools/releases/download/v8.5.1/buildozer-darwin-arm64",
-        "sha256": "d0cf2f6e11031d62bfd4584e46eb6bb708a883ff948be76538b34b83de833262",
+        "url": "https://github.com/bazelbuild/buildtools/releases/download/v10.0.1/buildozer-darwin-arm64",
+        "sha256": "b5c89fd313d537157c03608addcd1ed72d6ba3ae0af6ab55e3a4c132386b4d22",
         "os": "macos",
         "cpu": "arm64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/bazelbuild/buildtools/releases/download/v8.5.1/buildozer-darwin-amd64",
-        "sha256": "b85b9ad59c1543999a5d8bc8bee6e42b9f025be3ff520bc2d090213698850b43",
+        "url": "https://github.com/bazelbuild/buildtools/releases/download/v10.0.1/buildozer-darwin-amd64",
+        "sha256": "ed5e9acbd551aaa0d153c97999925f99e2310904f73bf01170f58813bf94a915",
         "os": "macos",
         "cpu": "x86_64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/bazelbuild/buildtools/releases/download/v8.5.1/buildozer-windows-amd64.exe",
-        "sha256": "e177155c2c8ef41569791de34f13077cefe3e5623f9f02e099347232bc028901",
+        "url": "https://github.com/bazelbuild/buildtools/releases/download/v10.0.1/buildozer-windows-amd64.exe",
+        "sha256": "999efbec1657c5f802512731e4e02413790cf36afc9911299e7f54dccbf0be2c",
         "os": "windows",
         "cpu": "x86_64"
       }
@@ -166,49 +166,49 @@
     "binaries": [
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.156.0/otelcol-contrib_0.156.0_linux_arm64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.160.0/otelcol-contrib_0.160.0_linux_arm64.tar.gz",
         "file": "otelcol-contrib",
-        "sha256": "1f9afe1d245b4babbb4bcb7d6b57ba2836b3b23c5f61b38abc00ab461f049288",
+        "sha256": "bff414e6a287309dfd0c51350c1e13c96c4ab807127b4320bd684f605e781326",
         "os": "linux",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.156.0/otelcol-contrib_0.156.0_linux_amd64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.160.0/otelcol-contrib_0.160.0_linux_amd64.tar.gz",
         "file": "otelcol-contrib",
-        "sha256": "ee70d7b1221be8a9cc4700f48bf985c04b1ab8aaeef24409fe79623849e2f9f2",
+        "sha256": "7bb60c584c241c86261c2b8697cd3725dd8c56691f5ad5d98454eaa005b47b0c",
         "os": "linux",
         "cpu": "x86_64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.156.0/otelcol-contrib_0.156.0_darwin_arm64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.160.0/otelcol-contrib_0.160.0_darwin_arm64.tar.gz",
         "file": "otelcol-contrib",
-        "sha256": "f5e3a6fbc8cca5e9fc9ce642c5ca16da084b4b6fea3f38a8ad29eea69ddf8e0f",
+        "sha256": "ceb5309ba16f2587dbef765d54e15c803354d038b0495b0b691e1eb9876d17c9",
         "os": "macos",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.156.0/otelcol-contrib_0.156.0_darwin_amd64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.160.0/otelcol-contrib_0.160.0_darwin_amd64.tar.gz",
         "file": "otelcol-contrib",
-        "sha256": "f463ace0f14f76607adc68cb265c2235e33db636ed99f7934b9699e462007d5e",
+        "sha256": "1576c3049c1fd4e8172d9817313a0129f4d2a1004aa653987d765df048e1e959",
         "os": "macos",
         "cpu": "x86_64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.156.0/otelcol-contrib_0.156.0_windows_arm64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.160.0/otelcol-contrib_0.160.0_windows_arm64.tar.gz",
         "file": "otelcol-contrib.exe",
-        "sha256": "1775ef4290d82be7ff2af7570b67b363b1b82dfb74e9ec10e683ae65f4b1d308",
+        "sha256": "654c0047fed5d8cd3075d10bb92ad5ac9a9264d995452280fefea13d15fef913",
         "os": "windows",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.156.0/otelcol-contrib_0.156.0_windows_amd64.tar.gz",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.160.0/otelcol-contrib_0.160.0_windows_amd64.tar.gz",
         "file": "otelcol-contrib.exe",
-        "sha256": "85e9f2763cfc671da2f580393040f282f9539a052bd141cb8a6a2b7be77bc2da",
+        "sha256": "d8de67cf9dc3ffe928610d52b192cb029365bb42dc79a23e0586c040c83293cf",
         "os": "windows",
         "cpu": "x86_64"
       }
@@ -218,41 +218,41 @@
     "binaries": [
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.53.1/perses_0.53.1_linux_arm64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.54.0/perses_0.54.0_linux_arm64.tar.gz",
         "file": "percli",
-        "sha256": "b962955dde928613506a12b0c2ea21be25fd868bf2e1cacba5bc24e5e7e00bfa",
+        "sha256": "51e7f66e6e5af4d70d3ab92da6b5ef757368d620ba718e934a4fec225112a353",
         "os": "linux",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.53.1/perses_0.53.1_linux_amd64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.54.0/perses_0.54.0_linux_amd64.tar.gz",
         "file": "percli",
-        "sha256": "126aec7cad521abf1536d125790e0542f5a4fbc3770b5de6f1c32e922cec1456",
+        "sha256": "450a387501162fec8e36f0f2628be02ad994fefa989ad1e72a8889ce5eb12a4c",
         "os": "linux",
         "cpu": "x86_64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.53.1/perses_0.53.1_darwin_arm64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.54.0/perses_0.54.0_darwin_arm64.tar.gz",
         "file": "percli",
-        "sha256": "f748a8466a01f3f5964f20b3de6e3b124288d8d703945975518e0dccd36a1eb9",
+        "sha256": "6afacd914b5cc4aa42838007d894bf1aac9839b00e0b17e14d1ba986802ae01e",
         "os": "macos",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.53.1/perses_0.53.1_darwin_amd64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.54.0/perses_0.54.0_darwin_amd64.tar.gz",
         "file": "percli",
-        "sha256": "816a3ad724591c9fb946445587f637a287aabb17196a5caeb9779e1b90c81c09",
+        "sha256": "afab7440088d6f805b38579b21de5661d531f4c2312ca3b555630eaeecd93f9a",
         "os": "macos",
         "cpu": "x86_64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.53.1/perses_0.53.1_windows_amd64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.54.0/perses_0.54.0_windows_amd64.tar.gz",
         "file": "percli.exe",
-        "sha256": "b7c1d178762d6d6f810d88b20f91c509d113193c29015925552d4d3fe768d7cc",
+        "sha256": "5affb6f6970dcc248597b004881ebe7668bdc34e65f6e2bedfc23d1e130bef28",
         "os": "windows",
         "cpu": "x86_64"
       }
@@ -262,41 +262,41 @@
     "binaries": [
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.53.1/perses_0.53.1_linux_arm64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.54.0/perses_0.54.0_linux_arm64.tar.gz",
         "file": "perses",
-        "sha256": "b962955dde928613506a12b0c2ea21be25fd868bf2e1cacba5bc24e5e7e00bfa",
+        "sha256": "51e7f66e6e5af4d70d3ab92da6b5ef757368d620ba718e934a4fec225112a353",
         "os": "linux",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.53.1/perses_0.53.1_linux_amd64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.54.0/perses_0.54.0_linux_amd64.tar.gz",
         "file": "perses",
-        "sha256": "126aec7cad521abf1536d125790e0542f5a4fbc3770b5de6f1c32e922cec1456",
+        "sha256": "450a387501162fec8e36f0f2628be02ad994fefa989ad1e72a8889ce5eb12a4c",
         "os": "linux",
         "cpu": "x86_64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.53.1/perses_0.53.1_darwin_arm64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.54.0/perses_0.54.0_darwin_arm64.tar.gz",
         "file": "perses",
-        "sha256": "f748a8466a01f3f5964f20b3de6e3b124288d8d703945975518e0dccd36a1eb9",
+        "sha256": "6afacd914b5cc4aa42838007d894bf1aac9839b00e0b17e14d1ba986802ae01e",
         "os": "macos",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.53.1/perses_0.53.1_darwin_amd64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.54.0/perses_0.54.0_darwin_amd64.tar.gz",
         "file": "perses",
-        "sha256": "816a3ad724591c9fb946445587f637a287aabb17196a5caeb9779e1b90c81c09",
+        "sha256": "afab7440088d6f805b38579b21de5661d531f4c2312ca3b555630eaeecd93f9a",
         "os": "macos",
         "cpu": "x86_64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/perses/perses/releases/download/v0.53.1/perses_0.53.1_windows_amd64.tar.gz",
+        "url": "https://github.com/perses/perses/releases/download/v0.54.0/perses_0.54.0_windows_amd64.tar.gz",
         "file": "perses.exe",
-        "sha256": "b7c1d178762d6d6f810d88b20f91c509d113193c29015925552d4d3fe768d7cc",
+        "sha256": "5affb6f6970dcc248597b004881ebe7668bdc34e65f6e2bedfc23d1e130bef28",
         "os": "windows",
         "cpu": "x86_64"
       }
@@ -306,17 +306,17 @@
     "binaries": [
       {
         "kind": "archive",
-        "url": "https://github.com/prometheus/prometheus/releases/download/v3.13.1/prometheus-3.13.1.windows-arm64.tar.gz",
-        "file": "prometheus-3.13.1.windows-arm64/prometheus.exe",
-        "sha256": "c4b79bae8c10197cdc786468aa709b88505f4d9329ebdceb699c2f8fd69d93f7",
+        "url": "https://github.com/prometheus/prometheus/releases/download/v3.14.0/prometheus-3.14.0.windows-arm64.tar.gz",
+        "file": "prometheus-3.14.0.windows-arm64/prometheus.exe",
+        "sha256": "0dfa09dfb43670ea325b7cfb835395104435c03a5302f6b88e1e122195f1580f",
         "os": "windows",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/prometheus/prometheus/releases/download/v3.13.1/prometheus-3.13.1.windows-amd64.tar.gz",
-        "file": "prometheus-3.13.1.windows-amd64/prometheus.exe",
-        "sha256": "612dd4729d3b6b851bb240b96955d6c3d652c91833c7f74ecea7b8e834f583a3",
+        "url": "https://github.com/prometheus/prometheus/releases/download/v3.14.0/prometheus-3.14.0.windows-amd64.tar.gz",
+        "file": "prometheus-3.14.0.windows-amd64/prometheus.exe",
+        "sha256": "272bcdd15d9327c7b1e08fe916ea48633819f82f2ea0bf354e6b8c0350c156ba",
         "os": "windows",
         "cpu": "x86_64"
       }
@@ -326,17 +326,17 @@
     "binaries": [
       {
         "kind": "archive",
-        "url": "https://github.com/prometheus/prometheus/releases/download/v3.13.1/prometheus-3.13.1.windows-arm64.tar.gz",
-        "file": "prometheus-3.13.1.windows-arm64/promtool.exe",
-        "sha256": "c4b79bae8c10197cdc786468aa709b88505f4d9329ebdceb699c2f8fd69d93f7",
+        "url": "https://github.com/prometheus/prometheus/releases/download/v3.14.0/prometheus-3.14.0.windows-arm64.tar.gz",
+        "file": "prometheus-3.14.0.windows-arm64/promtool.exe",
+        "sha256": "0dfa09dfb43670ea325b7cfb835395104435c03a5302f6b88e1e122195f1580f",
         "os": "windows",
         "cpu": "arm64"
       },
       {
         "kind": "archive",
-        "url": "https://github.com/prometheus/prometheus/releases/download/v3.13.1/prometheus-3.13.1.windows-amd64.tar.gz",
-        "file": "prometheus-3.13.1.windows-amd64/promtool.exe",
-        "sha256": "612dd4729d3b6b851bb240b96955d6c3d652c91833c7f74ecea7b8e834f583a3",
+        "url": "https://github.com/prometheus/prometheus/releases/download/v3.14.0/prometheus-3.14.0.windows-amd64.tar.gz",
+        "file": "prometheus-3.14.0.windows-amd64/promtool.exe",
+        "sha256": "272bcdd15d9327c7b1e08fe916ea48633819f82f2ea0bf354e6b8c0350c156ba",
         "os": "windows",
         "cpu": "x86_64"
       }
@@ -346,43 +346,43 @@
     "binaries": [
       {
         "kind": "file",
-        "url": "https://github.com/getsentry/sentry-cli/releases/download/3.6.0/sentry-cli-Linux-aarch64",
-        "sha256": "987ab96a45610f00659a0ee633e64343495312e8c39250242dab12aa296240a2",
+        "url": "https://github.com/getsentry/sentry-cli/releases/download/3.7.0/sentry-cli-Linux-aarch64",
+        "sha256": "69cc0e951f663a332fd3bb3069e443cb3748abbfce497ae2caac6d5a9ec7ae65",
         "os": "linux",
         "cpu": "arm64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/getsentry/sentry-cli/releases/download/3.6.0/sentry-cli-Linux-x86_64",
-        "sha256": "e2bff5d8b546f3fb72c616da656ecb347c7c144f36a5294b0749dcc2001f68d5",
+        "url": "https://github.com/getsentry/sentry-cli/releases/download/3.7.0/sentry-cli-Linux-x86_64",
+        "sha256": "cec71d46a7cc394c94b6e75f1601985c710d457376c546ef3975567b3671563b",
         "os": "linux",
         "cpu": "x86_64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/getsentry/sentry-cli/releases/download/3.6.0/sentry-cli-Darwin-arm64",
-        "sha256": "912252729231a1e35dcbd948a5ea23ef5f163e59c4f183d7847fb22d1aedbd49",
+        "url": "https://github.com/getsentry/sentry-cli/releases/download/3.7.0/sentry-cli-Darwin-arm64",
+        "sha256": "c66564094fbe56ee3b359f7574541f858b8d1df0328a0a759da972fbf1886048",
         "os": "macos",
         "cpu": "arm64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/getsentry/sentry-cli/releases/download/3.6.0/sentry-cli-Darwin-x86_64",
-        "sha256": "8c2470b92ae409d42f1d6697774457bbfa0222049b527b907a2f8a26e5b4e98e",
+        "url": "https://github.com/getsentry/sentry-cli/releases/download/3.7.0/sentry-cli-Darwin-x86_64",
+        "sha256": "fcd74786b4d95c6b7531662607897aadd5ab5d64c5d0468a6f4bd97ad04bedb8",
         "os": "macos",
         "cpu": "x86_64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/getsentry/sentry-cli/releases/download/3.6.0/sentry-cli-Windows-aarch64.exe",
-        "sha256": "e6c355e99781e5480ee7dcc11b75e27fe92a43e7490af0fe299100163a03b1ca",
+        "url": "https://github.com/getsentry/sentry-cli/releases/download/3.7.0/sentry-cli-Windows-aarch64.exe",
+        "sha256": "170b971f2596b612ed207823aa86bc251f9adfb687a476c9e8021339288b0747",
         "os": "windows",
         "cpu": "arm64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/getsentry/sentry-cli/releases/download/3.6.0/sentry-cli-Windows-x86_64.exe",
-        "sha256": "8a617dff234dcda4ce600cef3b14874454dd907f63395a9c470c5a7120c867f6",
+        "url": "https://github.com/getsentry/sentry-cli/releases/download/3.7.0/sentry-cli-Windows-x86_64.exe",
+        "sha256": "8643986aec8d8cf8d69cd476d67427578e5dbbda378eba506d199681082abe5a",
         "os": "windows",
         "cpu": "x86_64"
       }
@@ -392,36 +392,36 @@
     "binaries": [
       {
         "kind": "file",
-        "url": "https://github.com/bazelbuild/buildtools/releases/download/v8.5.1/unused-deps-linux-arm64",
-        "sha256": "7948f63fb2dcb5b9868dc67cf8b53ebefa11d09bfdb94cc8162449810c551998",
+        "url": "https://github.com/bazelbuild/buildtools/releases/download/v10.0.1/unused-deps-linux-arm64",
+        "sha256": "889a82f1566fb2350f811203a575f34a735984856c23a66bab0a439f561adeaa",
         "os": "linux",
         "cpu": "arm64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/bazelbuild/buildtools/releases/download/v8.5.1/unused-deps-linux-amd64",
-        "sha256": "84e3cbfd61d816392456368d3d9148f3730003cfad6229a97f155d2e082d1560",
+        "url": "https://github.com/bazelbuild/buildtools/releases/download/v10.0.1/unused-deps-linux-amd64",
+        "sha256": "3ffeeeb0afecacf09d1dd866237e0df492451f8fc4079894d5f6973733162239",
         "os": "linux",
         "cpu": "x86_64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/bazelbuild/buildtools/releases/download/v8.5.1/unused-deps-darwin-arm64",
-        "sha256": "74297c6c105dae843703b5d3824bbed3e63a23db9a10d22d1d4114792a70c8c6",
+        "url": "https://github.com/bazelbuild/buildtools/releases/download/v10.0.1/unused-deps-darwin-arm64",
+        "sha256": "da60231c7be511f7477c4e1d5699a76ecac64191061ed9723f6cb3f2ac2f770d",
         "os": "macos",
         "cpu": "arm64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/bazelbuild/buildtools/releases/download/v8.5.1/unused-deps-darwin-amd64",
-        "sha256": "8b4686c2e6c3a08f27084d6faa1e3dc0a111aec1dcc0df8b4497f6f83aa17613",
+        "url": "https://github.com/bazelbuild/buildtools/releases/download/v10.0.1/unused-deps-darwin-amd64",
+        "sha256": "68b7412448313469fa8758930935aa5be5363f833e902ed349dfd56268c479d4",
         "os": "macos",
         "cpu": "x86_64"
       },
       {
         "kind": "file",
-        "url": "https://github.com/bazelbuild/buildtools/releases/download/v8.5.1/unused-deps-windows-amd64.exe",
-        "sha256": "4fcf034d416cf98c3d09fd325209f716fc393db963851742afd1a6d8d204f3bf",
+        "url": "https://github.com/bazelbuild/buildtools/releases/download/v10.0.1/unused-deps-windows-amd64.exe",
+        "sha256": "4aca363c5cc0d6cc2cee7111e810caf63b999f747af955aa5d211a2a563e8fda",
         "os": "windows",
         "cpu": "x86_64"
       }
