@@ -1295,7 +1295,7 @@ jobs:
         OTELCPP_CMAKE_BUILD_ARGS: "--parallel 2" # Limit parallelism to avoid hitting runner limits
       run: ./ci/do_ci.sh code.coverage
     - name: upload report
-      uses: codecov/codecov-action@0b35c9ecc4f0529d0eb674914510c22f85b196b4 # v7.1.0
+      uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
       with:
         files: /home/runner/build/coverage.info
 
