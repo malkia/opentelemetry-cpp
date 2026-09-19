@@ -62,7 +62,7 @@ jobs:
 
   ubuntu_2404_system_packages:
     name: Ubuntu 24.04 apt packages cxx17 (static libs - shared libs)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     env:
       INSTALL_TEST_DIR: '/home/runner/install_test'
       # cxx17 is the default for Ubuntu 24.04
@@ -98,7 +98,7 @@ jobs:
 
   ubuntu_2404_latest:
     name: Ubuntu 24.04 latest versions cxx20 (static libs - shared libs)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     env:
       INSTALL_TEST_DIR: '/home/runner/install_test'
       CXX_STANDARD: '20'
@@ -131,7 +131,7 @@ jobs:
 
   ubuntu_2204_stable:
     name: Ubuntu 22.04 stable versions cxx17 (static libs - shared libs)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     env:
       INSTALL_TEST_DIR: '/home/runner/install_test'
       CXX_STANDARD: '17'
@@ -164,7 +164,7 @@ jobs:
 
   ubuntu_2204_minimum:
     name: Ubuntu 22.04 minimum versions cxx14 (static libs - shared libs)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     env:
       INSTALL_TEST_DIR: '/home/runner/install_test'
       # Set to the current minimum version of cmake
@@ -201,7 +201,7 @@ jobs:
 
   ubuntu_2404_conan_stable:
     name: Ubuntu 24.04 conan stable versions cxx17 (static libs - opentracing shim)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     env:
       INSTALL_TEST_DIR: '/home/runner/install_test'
       CXX_STANDARD: '17'
@@ -243,7 +243,7 @@ jobs:
 
   ubuntu_2404_conan_latest:
     name: Ubuntu 24.04 conan latest versions cxx17 (static libs - opentracing shim)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     env:
       INSTALL_TEST_DIR: '/home/runner/install_test'
       CXX_STANDARD: '17'
