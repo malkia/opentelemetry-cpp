@@ -97,6 +97,19 @@ jobs:
       - run: winget list --accept-source-agreements --disable-interactivity 
       - run: cmd /c "dir c:\ || echo swallowing errors"
       - run: cmd /c "dir d:\ || echo swallowing errors"
+      #
+      # Newer SDK is needed in order to fix this:
+      #
+      # C:\Program Files\LLVM\lib\clang\20\include\prfchwintrin.h(52,1): error: declaration of '_m_prefetchw' has a different language linkage
+      #    52 | _m_prefetchw(volatile const void *__P)
+      #       | ^
+      # C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\winnt.h(3639,1): note: previous declaration is here
+      #  3639 | _m_prefetchw (
+      #       | ^
+      #
+      - run: winget uninstall Microsoft.WindowsSDK.10.0.26100 --all --purge --force --verbose --disable-interactivity --silent
+      - run: winget install Microsoft.WindowsSDK.10.0.28000 --accept-package-agreements --disable-interactivity --silent
+      #
       - run: winget install bazelisk -r bazel --accept-package-agreements --disable-interactivity --silent
       - name: Install LLVM with winget (ignore if already installed)
         shell: pwsh
