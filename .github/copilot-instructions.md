@@ -1,300 +1,157 @@
 # OpenTelemetry C++
 
 OpenTelemetry C++ is a comprehensive telemetry SDK providing APIs and
-implementations for traces, metrics, and logs. It supports both CMake and Bazel
-build systems and runs on Linux, macOS, and Windows with modern C++ compilers
-(C++14/17/20).
+implementations for traces, metrics, and logs.
 
-Always reference these instructions first and fallback to search or bash
-commands only when you encounter unexpected information that does not match the
-info here.
+**This fork (`malkia/opentelemetry-cpp`) is an experimental Windows-only branch
+(see [dll.md](../dll.md)) that builds a single combined `otel_sdk_r.dll`,
+instead of upstream's separate api/sdk static libraries.** This fork:
+
+- **Only uses Bazel.** There is no supported CMake workflow here (unlike
+  upstream `open-telemetry/opentelemetry-cpp`); ignore `CMakeLists.txt`,
+  `cmake/`, and any CMake instructions found elsewhere (including upstream
+  docs and stale content in this fork).
+- **Does not use the `ci/` folder.** `ci/do_ci.sh`, `ci/do_ci.ps1`, and
+  everything else under `ci/` are unused leftovers from upstream. The only
+  CI workflow that matters is
+  [`.github/workflows/otel_sdk.yml`](workflows/otel_sdk.yml), which drives
+  builds through **`otel_sdk_build.cmd`** at the repo root.
+
+Always reference these instructions first and fall back to search only when
+you encounter something that doesn't match the info here.
 
 ## Working Effectively
 
-### Bootstrap, Build, and Test the Repository
+### Build, Test, and Package (`otel_sdk_build.cmd`)
 
-**CRITICAL: NEVER CANCEL builds or long-running commands. Set appropriate
-timeouts.**
+`otel_sdk_build.cmd` (Windows `cmd.exe` batch script) is the single entry
+point used by CI and should be used for local development too. It wraps
+`bazel`/`bazelisk` (auto-detected from winget install paths, or falls back to
+`bazel` on PATH). Run from the repo root:
 
-#### CMake Build (Recommended for Development)
+```bat
+:: Minimal sanity build: builds the DLL variants and runs the //install/... tests
+:: with_dll both true and false. Fastest way to check a change builds.
+otel_sdk_build.cmd minimal
 
-```bash
-# Install basic dependencies (Ubuntu/Debian)
-sudo apt-get update
-sudo apt-get install -y build-essential cmake git pkg-config
+:: Full test matrix: builds "..." (all targets) with --//:with_dll=true, then
+:: runs bazel test in dbg, fastbuild, and opt compilation modes.
+otel_sdk_build.cmd test
 
-# Configure CMake build
-mkdir -p build && cd build
-cmake ..
-# Takes ~12 seconds. Always completes quickly.
+:: Packages otel_sdk.zip (include/, lib/, bin/ per config) via the
+:: make_otel_sdk bazel run target.
+otel_sdk_build.cmd zip
 
-# Build the project
-make -j$(nproc)
-# Takes ~3 minutes. NEVER CANCEL. Set timeout to 15+ minutes.
+:: Runs everything: test-with-dll=false, then test, then zip, then shutdown.
+otel_sdk_build.cmd
 
-# Run all tests
-ctest --output-on-failure
-# Takes ~24 seconds. Set timeout to 5+ minutes.
+:: Stops the Bazel server (frees disk cache locks, useful between runs).
+otel_sdk_build.cmd shutdown
 ```
 
-#### CI Build (Full Validation)
+Each step is a thin wrapper around plain Bazel invocations, e.g.:
 
-```bash
-# Run the full CI validation (includes additional exporters)
-./ci/do_ci.sh cmake.test
-# Takes ~5.2 minutes. NEVER CANCEL. Set timeout to 20+ minutes.
+```bat
+bazel build --//:with_dll=true otel_sdk_d otel_sdk_rd otel_sdk_r
+bazel test --//:with_dll=true -c dbg -- ... -otel_sdk_zip
+bazel run --//:with_dll=true make_otel_sdk
 ```
 
-#### Bazel Build (Alternative)
+The `--//:with_dll` flag (defined in the root `BUILD` file) toggles between
+the combined-DLL build (`true`, this fork's main scenario) and a
+static/no-DLL build (`false`, closer to upstream behavior) — pass whichever
+matches the scenario you're validating. `-c dbg|fastbuild|opt` selects the
+Bazel compilation mode.
 
-```bash
-# Install bazelisk (managed Bazel)
-sudo ./ci/install_bazelisk.sh
+**NEVER CANCEL** Bazel builds/tests; the first run in particular can take a
+long time as it downloads and compiles dependencies. Set generous timeouts
+(15+ minutes) instead of assuming a hang.
 
-# Build simple example
-bazel build //examples/simple:example_simple
-# Time varies. NEVER CANCEL. Set timeout to 15+ minutes.
+### Ad-hoc Bazel Commands
 
-# Run simple example
-bazel-bin/examples/simple/example_simple
+For iterating on a single target instead of the full `otel_sdk_build.cmd`
+matrix:
+
+```bat
+:: Build/run a single example
+bazel build --//:with_dll=true //examples/simple:example_simple
+bazel-bin\examples\simple\example_simple.exe
+
+:: Run a subset of tests
+bazel test --//:with_dll=true -- //api/... //sdk/...
+bazel test --//:with_dll=true //sdk/test/trace:some_specific_test
 ```
 
-**Note**: Bazel may have network connectivity issues in some environments when
-downloading the required Bazel version (7.1.1).
-
-### Validation
-
-Always validate your changes using these steps after making code modifications:
-
-#### Core Validation Scenario
-
-```bash
-# 1. Build and test successfully
-cd build && make -j$(nproc) && ctest --output-on-failure
-
-# 2. Run a simple example to verify functionality
-./examples/simple/example_simple
-# Should output telemetry spans with service.name, trace_id, span_id
-
-# 3. Format code properly
-./tools/format.sh
-# Takes ~30 seconds. Must complete without errors.
-
-# 4. Validate with maintainer mode (CRITICAL for warnings)
-./ci/do_ci.sh cmake.maintainer.sync.test
-# Takes ~4-6 minutes. NEVER CANCEL. Ensures all warnings are resolved.
-```
-
-#### Required Tools for Formatting
-
-```bash
-# Install formatting dependencies
-pip install cmake_format                    # For CMake files
-go install github.com/bazelbuild/buildtools/buildifier@latest  # For Bazel files
-# clang-format should already be available on most systems
-```
-
-### Maintainer Mode Validation
-
-**CRITICAL**: Always run maintainer mode builds to ensure warning-free code:
-
-```bash
-# Run maintainer mode validation
-./ci/do_ci.sh cmake.maintainer.sync.test
-
-# What this does:
-# - Enables -Wall -Werror -Wextra compiler flags
-# - Treats all warnings as errors
-# - Ensures strict code quality standards
-# - Required for all contributions
-```
-
-Maintainer mode (`-DOTELCPP_MAINTAINER_MODE=ON`) is essential for catching potential issues that would cause CI failures. It enables the strictest warning levels and treats warnings as compilation errors.
-
-### CI Integration
-
-Always run these before committing to ensure CI will pass:
-
-```bash
-# Format all code
-./tools/format.sh
-
-# Run linting (if shellcheck available for shell scripts)
-shellcheck --severity=error ci/*.sh
-
-# CRITICAL: Validate with maintainer mode to catch all warnings
-./ci/do_ci.sh cmake.maintainer.sync.test
-# Takes ~4-6 minutes. Enables -Wall -Werror -Wextra for strict validation.
-
-# Validate build with additional exporters
-./ci/do_ci.sh cmake.test
-```
-
-## Common Tasks
-
-### Building and Running Examples
-
-Examples demonstrate OpenTelemetry functionality and validate your environment:
-
-```bash
-# Build and run simple tracing example
-cd build
-make example_simple
-./examples/simple/example_simple
-
-# Build and run logs example
-make logs_simple_example
-./examples/logs_simple/logs_simple_example
-
-# Build and run batch processing example
-make batch_example
-./examples/batch/batch_example
-```
-
-### Testing Changes
-
-```bash
-# Run specific test groups
-ctest -R trace                    # Run only trace tests
-ctest -R metrics                  # Run only metrics tests
-ctest -R logs                     # Run only logs tests
-
-# Run tests with verbose output for debugging
-ctest --verbose --output-on-failure
-
-# Run a specific test by name
-ctest -R "trace.SystemTimestampTest.Construction" --verbose
-```
-
-### Key Directories and Navigation
-
-```text
-api/                  - Public OpenTelemetry API headers
-sdk/                  - SDK implementation (most business logic)
-exporters/            - Output plugins (ostream, memory, etc.)
-examples/             - Sample applications demonstrating usage
-  ├── simple/         - Basic tracing example (start here)
-  ├── logs_simple/    - Basic logging example
-  ├── metrics_simple/ - Basic metrics example (may be disabled)
-  └── batch/          - Batch processing example
-ci/                   - CI scripts and build automation
-tools/                - Development tools (formatting, etc.)
-test_common/          - Shared test utilities
-third_party/          - External dependencies
-```
-
-### Important Files
-
-- `CMakeLists.txt` - Main CMake configuration
-- `WORKSPACE` - Bazel workspace configuration
-- `third_party_release` - Dependency version specifications
-- `ci/do_ci.sh` - Main CI script with build targets
-- `tools/format.sh` - Code formatting script
-- `.github/workflows/ci.yml` - GitHub Actions CI configuration
-
-## Build Targets and Options
-
-### CI Script Targets (./ci/do_ci.sh)
-
-```bash
-cmake.test                       # Standard CMake build with exporters (~5.2 min)
-cmake.maintainer.sync.test       # Maintainer mode: -Wall -Werror -Wextra (~4-6 min)
-cmake.maintainer.async.test      # Maintainer mode with async export enabled
-cmake.maintainer.abiv2.test      # Maintainer mode with ABI v2
-cmake.c++20.test                # C++20 standard testing
-bazel.test                      # Standard Bazel build and test
-format                          # Run formatting tools
-code.coverage                   # Build with coverage analysis
-```
-
-### CMake Configuration Options
-
-Key options you can pass to `cmake ..`:
-
-```bash
--DOTELCPP_WITH_EXAMPLES=ON       # Build examples (default ON)
--DOTELCPP_WITH_PROMETHEUS=ON     # Enable Prometheus exporter
--DOTELCPP_WITH_ZIPKIN=ON         # Enable Zipkin exporter
--DOTELCPP_WITH_OTLP_GRPC=ON      # Enable OTLP gRPC exporter
--DOTELCPP_WITH_OTLP_HTTP=ON      # Enable OTLP HTTP exporter
--DOTELCPP_BUILD_TESTING=ON       # Build tests (default ON)
--DCMAKE_BUILD_TYPE=Debug         # Debug build
-```
-
-## Timing Expectations
-
-**CRITICAL**: These are measured times. Always set longer timeouts to prevent
-premature cancellation.
-
-| Operation | Measured Time | Recommended Timeout |
-|-----------|---------------|-------------------|
-| CMake configure | 12 seconds | 2 minutes |
-| CMake build (parallel) | 3 minutes | 15 minutes |
-| Test execution (ctest) | 24 seconds | 5 minutes |
-| CI cmake.test | 5.2 minutes | 20 minutes |
-| CI cmake.maintainer.sync.test | 4-6 minutes | 20 minutes |
-| Format script | 17 seconds | 2 minutes |
-| Bazel build | Varies | 15+ minutes |
-
-**NEVER CANCEL** any build or test operation. Build systems may appear to hang
-but are typically downloading dependencies or performing intensive compilation.
-
-## Troubleshooting
-
-### Common Issues
-
-**Build Fails**:
-
-- Ensure all dependencies installed:
-  `sudo apt-get install build-essential cmake git pkg-config`
-- Clean build directory: `rm -rf build && mkdir build`
-
-**Tests Fail**:
-
-- Set `CTEST_OUTPUT_ON_FAILURE=1` for detailed test output
-- Run specific failing test: `ctest -R <test_name> --verbose`
-
-**Format Script Fails**:
-
-- Install missing tools: `pip install cmake_format` and buildifier via Go
-- Check clang-format version: should be 14+ (18+ preferred)
-
-**Bazel Issues**:
-
-- Network connectivity may prevent Bazel version download
-- Use CMake as primary build system for development
-- Check `.bazelversion` file for required version (7.1.1)
-
-### Network/Connectivity Issues
-
-Some tools require internet access:
-
-- Bazel downloading specific version
-- Third-party dependencies during first build
-- CI scripts pulling Docker images for benchmarks
-
-For offline development, use CMake with pre-installed dependencies.
-
-## Repository Structure Summary
-
-**Core Components**:
-
-- **API**: Header-only library in `api/` for instrumentation
-- **SDK**: Implementation in `sdk/` with resource detection, processors, exporters
-- **Exporters**: Output backends in `exporters/` (console, memory, Prometheus, etc.)
-
-**Development Workflow**:
-
-1. Make changes to relevant component
-2. Build and test: `cd build && make -j$(nproc) && ctest`
-3. Run example: `./examples/simple/example_simple`
-4. Format code: `./tools/format.sh`
-5. Validate warnings: `./ci/do_ci.sh cmake.maintainer.sync.test`
-6. Final validation: `./ci/do_ci.sh cmake.test`
-
-**Key Standards**:
-
-- C++14 minimum, C++17/20 supported
-- Google C++ Style Guide for naming
-- Automatic formatting via clang-format
-- Comprehensive test coverage with GoogleTest
+### CI Workflow Reference
+
+`.github/workflows/otel_sdk.yml` runs on `windows-2025-vs2026` runners and:
+
+1. Installs/updates `bazelisk` and LLVM via `winget`/`choco`.
+2. Mounts a ReFS-formatted VHDX disk cache (`d:/d.vhdx`) used for Bazel's
+   `--disk_cache` and `--repository_cache`.
+3. Appends build flags to `../top.bazelrc` (a file *outside* the repo, which
+   `.bazelrc` `try-import`s) — e.g. `--disk_cache`, `--repository_cache`,
+   `--output_user_root`.
+4. Runs `otel_sdk_build.cmd minimal`, then `shutdown`, then `test`, then
+   `zip`, then `shutdown` again.
+5. Uploads `otel_sdk.zip` and `*.tracing.json` Bazel profiles as artifacts,
+   and attaches them to GitHub Releases when the trigger is a tag push.
+
+If you need to reproduce CI locally, replicate the `top.bazelrc` disk/repo
+cache lines (or omit them for a plain local build) and run the same
+`otel_sdk_build.cmd` steps.
+
+## Architecture
+
+- **Header-only API, compiled SDK**: `api/` is a header-only library
+  (`opentelemetry::trace`, `opentelemetry::metrics`, `opentelemetry::logs`,
+  `opentelemetry::context`, `opentelemetry::nostd`) that instrumented
+  libraries depend on with minimal footprint. `sdk/` provides the actual
+  implementation (processors, providers, resource detection). In this fork,
+  api + sdk (+ exporters, ext) are linked into one `otel_sdk_r.dll` instead
+  of separate libraries — see `dll.md` for the rationale and limitations.
+- **ABI/namespace versioning**: every public header wraps its contents in
+  `OPENTELEMETRY_BEGIN_NAMESPACE` / `OPENTELEMETRY_END_NAMESPACE`
+  (`api/include/opentelemetry/version.h`), which expands to
+  `opentelemetry::v1` (an inline namespace) based on
+  `OPENTELEMETRY_ABI_VERSION_NO`. Do not hardcode `opentelemetry::v1::...`;
+  always go through these macros or plain `opentelemetry::...`.
+- **Exporter factory pattern**: each exporter under `exporters/<name>/` (e.g.
+  `exporters/otlp`, `exporters/ostream`, `exporters/prometheus`) exposes a
+  `*Factory::Create(...)` static class (see
+  `exporters/ostream/include/.../span_exporter_factory.h`) returning a
+  `std::unique_ptr` to the SDK interface type. New exporters should follow
+  this same Factory + interface split rather than exposing constructors
+  directly, so the SDK core doesn't need exporter-specific headers.
+- **DLL export macros**: symbols crossing shared-library boundaries use
+  `OPENTELEMETRY_EXPORT` / `OPENTELEMETRY_EXPORT_TYPE` /
+  `OPENTELEMETRY_API_SINGLETON`, which become `__declspec(dllexport)` /
+  `dllimport` only when `OPENTELEMETRY_DLL` is defined (see `dll.md`).
+  Consumers must `#define OPENTELEMETRY_DLL 1` and include
+  `<opentelemetry/version.h>` before any other OpenTelemetry header. When
+  adding new public classes/static members, check whether similar existing
+  classes annotate them, especially anything holding process-wide singleton
+  state.
+- Each buildable unit (api, sdk, each exporter, each example) has its own
+  Bazel `BUILD` file; a change to public headers or dependencies usually
+  needs a corresponding `deps`/`srcs` update there, plus `MODULE.bazel` /
+  `MODULE.bazel.lock` if an external dependency version changes.
+- `dll_deps.bzl` / `dll_deps_generated.bzl` (regenerated via
+  `dll_deps_update.cc`) enumerate the symbols/objects folded into the
+  combined DLL — touch these if you add a new top-level library that must be
+  bundled into `otel_sdk_r.dll`.
+
+## Key Conventions
+
+- Naming follows the [Google C++ Style
+  Guide](https://google.github.io/styleguide/cppguide.html#Naming).
+- All source files carry the `// Copyright The OpenTelemetry Authors` /
+  `// SPDX-License-Identifier: Apache-2.0` header — copy it from a sibling
+  file when creating new files.
+- Formatting is enforced by `tools/format.sh` (clang-format for C++,
+  buildifier for Bazel `BUILD`/`.bzl` files); run it before committing.
+- Bazel `BUILD` files use the fork's own `otel_cc_binary` / `otel_cc_library`
+  / `otel_cc_shared_library` / `otel_cc_test` macros (from
+  `@otel_sdk_dev//bazel:otel_cc.bzl`) rather than native `cc_*` rules, so the
+  `with_dll` config setting is applied consistently.
+- Non-trivial PRs should update `CHANGELOG.md`.

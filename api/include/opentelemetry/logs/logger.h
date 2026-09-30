@@ -6,6 +6,7 @@
 #include <cstdint>
 #include <type_traits>
 #include <utility>
+#include <atomic>
 
 #include "opentelemetry/version.h"
 #include "opentelemetry/context/context.h"
