@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <utility>
 
+#include "opentelemetry/version.h"
 #include "opentelemetry/nostd/shared_ptr.h"
 #include "opentelemetry/sdk/common/attributemap_hash.h"
 #include "opentelemetry/sdk/metrics/aggregation/aggregation.h"
