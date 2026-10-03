@@ -1,0 +1,12 @@
+diff --git a/include/openssl/base.h b/include/openssl/base.h
+index 83cc91b72..badbc9493 100644
+--- a/include/openssl/base.h
++++ b/include/openssl/base.h
+@@ -400,6 +400,6 @@ typedef void *OPENSSL_BLOCK;
+                                             move_func)
+ 
+ #else
+-
++#include <memory>
+ // Work around consumers including our headers under extern "C".
+ extern "C++" {
