@@ -1,16 +1,9 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-#include <curl/curl.h>
-#include <curl/curlver.h>
-
-#include "opentelemetry/version.h"
-
-#ifdef ENABLE_OTLP_RETRY_PREVIEW
-#  include <array>
-#endif  // ENABLE_OTLP_RETRY_PREVIEW
-
+#include <array>
 #include <algorithm>
+#include <array>
 #include <atomic>
 #include <chrono>
 #include <cmath>
@@ -26,6 +19,11 @@
 #include <thread>
 #include <utility>
 #include <vector>
+
+#include <curl/curl.h>
+#include <curl/curlver.h>
+
+#include "opentelemetry/version.h"
 
 #ifdef _MSC_VER
 #  define strncasecmp _strnicmp
@@ -612,7 +610,6 @@ void HttpOperation::Cleanup()
 
 bool HttpOperation::IsRetryable()
 {
-#ifdef ENABLE_OTLP_RETRY_PREVIEW
   static constexpr auto kRetryableStatusCodes = std::array<decltype(response_code_), 4>{
       429,  // Too Many Requests
       502,  // Bad Gateway
@@ -625,9 +622,6 @@ bool HttpOperation::IsRetryable()
 
   return is_retryable && (last_curl_result_ == CURLE_OK) &&
          (retry_attempts_ < retry_policy_.max_attempts);
-#else
-  return false;
-#endif  // ENABLE_OTLP_RETRY_PREVIEW
 }
 
 std::chrono::system_clock::time_point HttpOperation::NextRetryTime()
