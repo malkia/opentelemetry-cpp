@@ -4,6 +4,8 @@
 #pragma once
 
 #include "opentelemetry/version.h"
+#include "opentelemetry/common/string_util.h"
+#include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/nostd/string_view.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
@@ -39,7 +41,7 @@ inline size_t SplitString(nostd::string_view s,
       continue;
     }
 
-    results[filled++] = s.substr(token_start, i - token_start);
+    results[filled++] = common::StringUtil::Substr(s, token_start, i - token_start);
 
     if (filled == count)
     {
@@ -51,7 +53,7 @@ inline size_t SplitString(nostd::string_view s,
 
   if (filled < count)
   {
-    results[filled++] = s.substr(token_start);
+    results[filled++] = common::StringUtil::Substr(s, token_start);
   }
 
   return filled;
