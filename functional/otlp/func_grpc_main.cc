@@ -335,7 +335,6 @@ static int test_basic();
 static int test_cert_invalid();
 static int test_cert_unreadable();
 
-#ifdef ENABLE_OTLP_GRPC_SSL_MTLS_PREVIEW
 static int test_client_cert_not_found();
 static int test_client_cert_invalid();
 static int test_client_cert_unreadable();
@@ -344,7 +343,6 @@ static int test_client_key_not_found();
 static int test_client_key_invalid();
 static int test_client_key_unreadable();
 static int test_mtls_ok();
-#endif  // ENABLE_OTLP_GRPC_SSL_MTLS_PREVIEW
 
 // TODO: re-enable "cert-not-found" once gRPC releases grpc/grpc#42608 (OpenSSL NO_ATEXIT fix for
 // grpc/grpc#38539).
@@ -352,7 +350,6 @@ static const test_case all_tests[] = {{"basic", test_basic},
                                       // {"cert-not-found", test_cert_not_found},
                                       {"cert-invalid", test_cert_invalid},
                                       {"cert-unreadable", test_cert_unreadable},
-#ifdef ENABLE_OTLP_GRPC_SSL_MTLS_PREVIEW
                                       {"client-cert-not-found", test_client_cert_not_found},
                                       {"client-cert-invalid", test_client_cert_invalid},
                                       {"client-cert-unreadable", test_client_cert_unreadable},
@@ -361,7 +358,6 @@ static const test_case all_tests[] = {{"basic", test_basic},
                                       {"client-key-invalid", test_client_key_invalid},
                                       {"client-key-unreadable", test_client_key_unreadable},
                                       {"mtls-ok", test_mtls_ok},
-#endif  // ENABLE_OTLP_GRPC_SSL_MTLS_PREVIEW
                                       {"", nullptr}};
 
 static void list_test_cases()
@@ -602,7 +598,6 @@ static int test_cert_unreadable()
   return expect_connection_failed();
 }
 
-#ifdef ENABLE_OTLP_GRPC_SSL_MTLS_PREVIEW
 static int test_client_cert_not_found()
 {
   otlp::OtlpGrpcExporterOptions opts;
@@ -835,4 +830,3 @@ static int test_mtls_ok()
 
   return expect_success();
 }
-#endif  // ENABLE_OTLP_GRPC_SSL_MTLS_PREVIEW
