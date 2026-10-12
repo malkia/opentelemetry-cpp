@@ -23,7 +23,7 @@ enum class PredicateType : uint8_t
   kWildcard
 };
 
-class PredicateFactory
+class OPENTELEMETRY_EXPORT_TYPE PredicateFactory
 {
 public:
   static std::unique_ptr<Predicate> GetPredicate(opentelemetry::nostd::string_view pattern,
