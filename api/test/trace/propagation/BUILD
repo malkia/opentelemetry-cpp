@@ -1,7 +1,20 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 
+load("//:dll_deps.bzl", "dll_deps")
 load("//bazel:otel_cc.bzl", "otel_cc_test_combo")
+load("//bazel:otel_cc_benchmark.bzl", "otel_cc_benchmark")
+
+otel_cc_benchmark(
+    name = "propagator_benchmark",
+    srcs = ["propagator_benchmark.cc"],
+    tags = [
+        "api",
+        "benchmark",
+        "propagation",
+    ],
+    deps = dll_deps(["//api"]),
+)
 
 otel_cc_test_combo(
     name = "http_text_format_test",
