@@ -239,3 +239,18 @@ otel_cc_test_combo(
         "@googletest//:gtest_main",
     ],
 )
+
+otel_cc_test_combo(
+    name = "provider_initialization_test",
+    srcs = ["provider_initialization_test.cc"],
+    # Preserve the test's new/delete overrides; libc malloc/free are still checked.
+    env = {"VALGRIND_OPTS": "--soname-synonyms=somalloc=nouserintercepts"},
+    tags = ["test"],
+    deps = [
+        "//sdk/src/logs",
+        "//sdk/src/metrics",
+        "//sdk/src/resource",
+        "//sdk/src/trace",
+        "@googletest//:gtest_main",
+    ],
+)

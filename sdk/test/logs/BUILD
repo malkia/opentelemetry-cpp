@@ -15,6 +15,7 @@ otel_cc_test_combo(
     deps = [
         "//api",
         "//sdk/src/logs",
+        "//test_common:headers",
         "@googletest//:gtest_main",
     ],
 )

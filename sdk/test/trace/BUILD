@@ -18,6 +18,7 @@ otel_cc_test_combo(
         "//sdk/src/resource",
         "//sdk/src/trace",
         "//exporters/memory:in_memory_span_exporter",
+        "//test_common:headers",
         "@googletest//:gtest_main",
     ],
 )
