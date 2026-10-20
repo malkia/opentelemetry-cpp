@@ -1,10 +1,14 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 <<<<<<< HEAD
+<<<<<<< HEAD
 FROM ubuntu:26.04@sha256:f144425ff09be612d6d9ad965196e9cdc23dae1f42110a8a11a3e9a8198759f7
 =======
 FROM ubuntu:24.04@sha256:68ee22004a9109b44973313b02ff7b1de250f1de0f5ecb628d73f579aaff33ac
 >>>>>>> bcacfecaa3718498d27465671ff50a87e7194386
+=======
+FROM ubuntu:26.04@sha256:c098726dd9b9733f3e885f8de0ef375206a311b0a317eadc40d347b1115fb944
+>>>>>>> 748ce422e1821fb4458550c0474267f88744ceb9
 
 RUN apt update && apt install -y \
 	build-essential \
