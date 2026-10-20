@@ -20,6 +20,12 @@ Increment the:
   from the same provider without deadlocking.
   [#4693](https://github.com/open-telemetry/opentelemetry-cpp/issues/4693)
 
+* [SDK] Fix disabled Tracer StartSpan noop behavior
+  [#4710](https://github.com/open-telemetry/opentelemetry-cpp/pull/4710)
+
+* [API] Preserve a valid parent SpanContext in spans returned by the no-op tracer.
+  [#4711](https://github.com/open-telemetry/opentelemetry-cpp/issues/4711)
+
 * [SDK] Preserve the default unlimited timeout when batch span and log record
   processors shut down their exporters.
   [#4686](https://github.com/open-telemetry/opentelemetry-cpp/pull/4686)
@@ -31,6 +37,9 @@ Increment the:
   `Base2ExponentialHistogramAggregation`, so a recording that spans the full
   double range no longer downscales without end.
   [#4353](https://github.com/open-telemetry/opentelemetry-cpp/pull/4353)
+
+* [SDK] Remove TracerConfig copy from Tracer
+  [#4712](https://github.com/open-telemetry/opentelemetry-cpp/pull/4712)
 
 * [LOGS] Fix undefined behavior in `Logger::EmitLogRecord()` when a logger is
   enabled (e.g. via `LoggerProvider::UpdateLoggerConfigurator()`) after
@@ -114,6 +123,14 @@ Increment the:
 
 * [BUG] Keep the curl retry deadline stable within each attempt
   [#4452](https://github.com/open-telemetry/opentelemetry-cpp/pull/4452)
+
+* [SDK] `BatchSpanProcessor` now waits for a full batch
+  (`max_export_batch_size`) before exporting, instead of draining the buffer
+  whenever it is non-empty. This reduces gRPC request count and CPU usage
+  under steady load while preserving `ForceFlush`/`Shutdown` drain semantics.
+  Force-flush exports also respect `max_export_batch_size`, splitting buffered
+  spans into multiple batches when needed.
+  [#4466](https://github.com/open-telemetry/opentelemetry-cpp/pull/4466)
 
 Breaking changes:
 
