@@ -28,8 +28,8 @@
 #include <thread>
 #include <utility>
 
-#include <string>
-#include <vector>
+#include "opentelemetry/version.h"
+
 #include "opentelemetry/sdk/logs/exporter.h"
 #include "opentelemetry/sdk/logs/processor.h"
 

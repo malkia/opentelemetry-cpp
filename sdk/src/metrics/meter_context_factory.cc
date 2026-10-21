@@ -4,7 +4,6 @@
 #include "opentelemetry/sdk/metrics/meter_context_factory.h"
 #include <memory>
 #include <utility>
-#include <vector>
 
 #include "opentelemetry/version.h"
 #include "opentelemetry/sdk/instrumentationscope/scope_configurator.h"

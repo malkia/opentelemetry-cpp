@@ -6,13 +6,15 @@
 #include <memory>
 #include <mutex>
 #include <ostream>
-#ifdef ENABLE_METRICS_EXEMPLAR_PREVIEW
-#  include <string>
-#endif
 #include <utility>
 #include <vector>
 
 #include "opentelemetry/version.h"
+
+#ifdef ENABLE_METRICS_EXEMPLAR_PREVIEW
+#  include <string>
+#endif
+
 #include "opentelemetry/common/timestamp.h"
 #include "opentelemetry/nostd/function_ref.h"
 #include "opentelemetry/nostd/span.h"
@@ -119,6 +121,19 @@ const instrumentationscope::ScopeConfigurator<MeterConfig> &MeterContext::GetMet
     const noexcept
 {
   return *meter_configurator_;
+}
+
+void MeterContext::SetMeterConfigurator(
+    std::unique_ptr<instrumentationscope::ScopeConfigurator<MeterConfig>>
+        meter_configurator) noexcept
+{
+  if (!meter_configurator)
+  {
+    OTEL_INTERNAL_LOG_ERROR(
+        "[MeterContext::SetMeterConfigurator] meter_configurator must not be null, ignoring.");
+    return;
+  }
+  meter_configurator_ = std::move(meter_configurator);
 }
 
 bool MeterContext::ForEachMeter(

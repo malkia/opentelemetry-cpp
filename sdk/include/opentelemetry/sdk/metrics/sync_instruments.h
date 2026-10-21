@@ -12,6 +12,7 @@
 #include "opentelemetry/context/context.h"
 #include "opentelemetry/metrics/sync_instruments.h"
 #include "opentelemetry/sdk/metrics/instruments.h"
+#include "opentelemetry/sdk/metrics/meter_enabled_state.h"
 #include "opentelemetry/sdk/metrics/state/metric_storage.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
@@ -24,20 +25,28 @@ class Synchronous
 {
 public:
   Synchronous(const InstrumentDescriptor &instrument_descriptor,
-              std::unique_ptr<SyncWritableMetricStorage> storage)
-      : instrument_descriptor_(instrument_descriptor), storage_(std::move(storage))
+              std::unique_ptr<SyncWritableMetricStorage> storage,
+              std::shared_ptr<MeterEnabledState> meter_enabled_state)
+      : instrument_descriptor_(instrument_descriptor),
+        storage_(std::move(storage)),
+        meter_enabled_state_(std::move(meter_enabled_state))
   {}
+
+  /** True while the Meter that created this instrument is enabled. */
+  bool IsEnabled() const noexcept { return meter_enabled_state_->IsEnabled(); }
 
 protected:
   InstrumentDescriptor instrument_descriptor_;
   std::unique_ptr<SyncWritableMetricStorage> storage_;
+  std::shared_ptr<MeterEnabledState> meter_enabled_state_;
 };
 
 class OPENTELEMETRY_EXPORT_TYPE LongCounter : public Synchronous, public opentelemetry::metrics::Counter<uint64_t>
 {
 public:
   LongCounter(const InstrumentDescriptor &instrument_descriptor,
-              std::unique_ptr<SyncWritableMetricStorage> storage);
+              std::unique_ptr<SyncWritableMetricStorage> storage,
+              std::shared_ptr<MeterEnabledState> meter_enabled_state);
 
   void Add(uint64_t value,
            const opentelemetry::common::KeyValueIterable &attributes) noexcept override;
@@ -61,7 +70,8 @@ class OPENTELEMETRY_EXPORT_TYPE DoubleCounter : public Synchronous, public opent
 
 public:
   DoubleCounter(const InstrumentDescriptor &instrument_descriptor,
-                std::unique_ptr<SyncWritableMetricStorage> storage);
+                std::unique_ptr<SyncWritableMetricStorage> storage,
+                std::shared_ptr<MeterEnabledState> meter_enabled_state);
 
   void Add(double value,
            const opentelemetry::common::KeyValueIterable &attributes) noexcept override;
@@ -82,7 +92,8 @@ class OPENTELEMETRY_EXPORT_TYPE LongUpDownCounter : public Synchronous, public o
 {
 public:
   LongUpDownCounter(const InstrumentDescriptor &instrument_descriptor,
-                    std::unique_ptr<SyncWritableMetricStorage> storage);
+                    std::unique_ptr<SyncWritableMetricStorage> storage,
+                    std::shared_ptr<MeterEnabledState> meter_enabled_state);
 
   void Add(int64_t value,
            const opentelemetry::common::KeyValueIterable &attributes) noexcept override;
@@ -98,7 +109,8 @@ class OPENTELEMETRY_EXPORT_TYPE DoubleUpDownCounter : public Synchronous, public
 {
 public:
   DoubleUpDownCounter(const InstrumentDescriptor &instrument_descriptor,
-                      std::unique_ptr<SyncWritableMetricStorage> storage);
+                      std::unique_ptr<SyncWritableMetricStorage> storage,
+                      std::shared_ptr<MeterEnabledState> meter_enabled_state);
 
   void Add(double value,
            const opentelemetry::common::KeyValueIterable &attributes) noexcept override;
@@ -115,7 +127,8 @@ class OPENTELEMETRY_EXPORT_TYPE LongGauge : public Synchronous, public opentelem
 {
 public:
   LongGauge(const InstrumentDescriptor &instrument_descriptor,
-            std::unique_ptr<SyncWritableMetricStorage> storage);
+            std::unique_ptr<SyncWritableMetricStorage> storage,
+            std::shared_ptr<MeterEnabledState> meter_enabled_state);
 
   void Record(int64_t value,
               const opentelemetry::common::KeyValueIterable &attributes) noexcept override;
@@ -131,7 +144,8 @@ class OPENTELEMETRY_EXPORT_TYPE DoubleGauge : public Synchronous, public opentel
 {
 public:
   DoubleGauge(const InstrumentDescriptor &instrument_descriptor,
-              std::unique_ptr<SyncWritableMetricStorage> storage);
+              std::unique_ptr<SyncWritableMetricStorage> storage,
+              std::shared_ptr<MeterEnabledState> meter_enabled_state);
 
   void Record(double value,
               const opentelemetry::common::KeyValueIterable &attributes) noexcept override;
@@ -148,7 +162,8 @@ class OPENTELEMETRY_EXPORT_TYPE LongHistogram : public Synchronous, public opent
 {
 public:
   LongHistogram(const InstrumentDescriptor &instrument_descriptor,
-                std::unique_ptr<SyncWritableMetricStorage> storage);
+                std::unique_ptr<SyncWritableMetricStorage> storage,
+                std::shared_ptr<MeterEnabledState> meter_enabled_state);
 
 #if OPENTELEMETRY_ABI_VERSION_NO >= 2
   void Record(uint64_t value,
@@ -173,7 +188,8 @@ class OPENTELEMETRY_EXPORT_TYPE DoubleHistogram : public Synchronous, public ope
 {
 public:
   DoubleHistogram(const InstrumentDescriptor &instrument_descriptor,
-                  std::unique_ptr<SyncWritableMetricStorage> storage);
+                  std::unique_ptr<SyncWritableMetricStorage> storage,
+                  std::shared_ptr<MeterEnabledState> meter_enabled_state);
 
 #if OPENTELEMETRY_ABI_VERSION_NO >= 2
   void Record(double value,
