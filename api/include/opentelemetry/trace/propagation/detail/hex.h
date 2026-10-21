@@ -8,6 +8,8 @@
 #include <cstring>
 
 #include "opentelemetry/version.h"
+#include "opentelemetry/common/detail/ascii.h"
+#include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/nostd/string_view.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
@@ -20,28 +22,9 @@ namespace propagation
 namespace detail
 {
 
-constexpr int8_t kHexDigits[256] = {
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  -1, -1, -1, -1, -1, -1, -1, 10, 11, 12, 13, 14, 15, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, 10, 11, 12, 13, 14, 15, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-};
-
-inline int8_t HexToInt(char c)
-{
-  return kHexDigits[static_cast<uint8_t>(c)];
-}
-
 inline bool IsValidHex(nostd::string_view s)
 {
-  return std::all_of(s.begin(), s.end(), [](char c) { return HexToInt(c) != -1; });
+  return std::all_of(s.begin(), s.end(), [](char c) { return common::detail::IsAsciiHexDigit(c); });
 }
 
 /**
@@ -66,12 +49,13 @@ inline bool HexToBinary(nostd::string_view hex, uint8_t *buffer, size_t buffer_s
 
   if (is_hex_size_odd)
   {
-    buffer[buffer_pos++] = HexToInt(hex[i++]);
+    buffer[buffer_pos++] = static_cast<uint8_t>(common::detail::HexDigitValue(hex[i++]));
   }
 
   for (; i < last_hex_pos; i += 2)
   {
-    buffer[buffer_pos++] = (HexToInt(hex[i]) << 4) | HexToInt(hex[i + 1]);
+    buffer[buffer_pos++] = static_cast<uint8_t>((common::detail::HexDigitValue(hex[i]) << 4) |
+                                                common::detail::HexDigitValue(hex[i + 1]));
   }
 
   return true;

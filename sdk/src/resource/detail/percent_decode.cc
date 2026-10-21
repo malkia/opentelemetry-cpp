@@ -1,10 +1,12 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
+#include "opentelemetry/version.h"
 #include "percent_decode.h"
 
-#include <cctype>
 #include <cstddef>
+
+#include "opentelemetry/common/detail/ascii.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
@@ -13,16 +15,6 @@ namespace resource
 {
 namespace detail
 {
-namespace
-{
-
-unsigned char HexDigitValue(unsigned char c) noexcept
-{
-  return static_cast<unsigned char>(std::isdigit(c) ? c - '0' : std::toupper(c) - 'A' + 10);
-}
-
-}  // namespace
-
 std::string PercentDecode(const std::string &value)
 {
   std::string decoded;
@@ -32,15 +24,12 @@ std::string PercentDecode(const std::string &value)
   {
     if (value[i] == '%' && i + 2 < value.size())
     {
-      unsigned char high = static_cast<unsigned char>(value[i + 1]);
-      unsigned char low  = static_cast<unsigned char>(value[i + 2]);
+      const int high = opentelemetry::common::detail::HexDigitValue(value[i + 1]);
+      const int low  = opentelemetry::common::detail::HexDigitValue(value[i + 2]);
 
-      if (std::isxdigit(high) && std::isxdigit(low))
+      if (high >= 0 && low >= 0)
       {
-        unsigned char unescaped_value =
-            static_cast<unsigned char>((HexDigitValue(high) << 4) | HexDigitValue(low));
-
-        decoded.push_back(static_cast<char>(unescaped_value));
+        decoded.push_back(static_cast<char>((high << 4) | low));
         i += 2;
         continue;
       }

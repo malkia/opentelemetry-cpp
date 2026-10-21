@@ -4,12 +4,13 @@
 #pragma once
 
 #include <algorithm>
-#include <cctype>
 #include <cstdint>
 #include <functional>
 #include <string>
 
 #include "opentelemetry/version.h"
+#include "opentelemetry/common/detail/ascii.h"
+#include "opentelemetry/sdk/metrics/state/filtered_ordered_attribute_map.h"
 #include "opentelemetry/sdk/metrics/state/filtered_ordered_attribute_map.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
@@ -75,8 +76,8 @@ struct InstrumentDescriptorUtil
   {
     return lhs.size() == rhs.size() &&
            std::equal(lhs.begin(), lhs.end(), rhs.begin(), [](char a, char b) {
-             return std::tolower(static_cast<unsigned char>(a)) ==
-                    std::tolower(static_cast<unsigned char>(b));
+             return opentelemetry::common::detail::ToAsciiLower(a) ==
+                    opentelemetry::common::detail::ToAsciiLower(b);
            });
   }
 
@@ -227,8 +228,7 @@ struct InstrumentDescriptorHash
 
     for (char c : instrument_descriptor.name_)
     {
-      sdk::common::GetHash(hashcode,
-                           static_cast<char>(std::tolower(static_cast<unsigned char>(c))));
+      sdk::common::GetHash(hashcode, opentelemetry::common::detail::ToAsciiLower(c));
     }
 
     sdk::common::GetHash(hashcode, instrument_descriptor.description_);

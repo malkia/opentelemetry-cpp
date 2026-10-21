@@ -6,6 +6,8 @@
 #include <cstdint>
 
 #include "opentelemetry/version.h"
+#include "opentelemetry/common/detail/ascii.h"
+#include "opentelemetry/nostd/span.h"
 #include "opentelemetry/nostd/span.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
@@ -44,9 +46,8 @@ public:
   // Populates the buffer with the lowercase base16 representation of the flags.
   void ToLowerBase16(nostd::span<char, 2> buffer) const noexcept
   {
-    constexpr char kHex[] = "0123456789ABCDEF";
-    buffer[0]             = kHex[(rep_ >> 4) & 0xF];
-    buffer[1]             = kHex[(rep_ >> 0) & 0xF];
+    buffer[0] = common::detail::UpperHexDigit(rep_ >> 4);
+    buffer[1] = common::detail::UpperHexDigit(rep_);
   }
 
   uint8_t flags() const noexcept { return rep_; }

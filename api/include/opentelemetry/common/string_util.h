@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include <cctype>
-
+#include "opentelemetry/version.h"
+#include "opentelemetry/common/detail/ascii.h"
 #include "opentelemetry/common/macros.h"
 
 #if OPENTELEMETRY_HAVE_EXCEPTIONS
@@ -30,11 +30,11 @@ public:
     {
       return nostd::string_view();
     }
-    while (left <= right && std::isspace(str[left]))
+    while (left <= right && detail::IsAsciiSpace(str[left]))
     {
       left++;
     }
-    while (left <= right && std::isspace(str[right]))
+    while (left <= right && detail::IsAsciiSpace(str[right]))
     {
       right--;
     }

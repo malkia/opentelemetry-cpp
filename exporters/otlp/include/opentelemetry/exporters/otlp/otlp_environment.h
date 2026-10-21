@@ -4,12 +4,13 @@
 #pragma once
 
 #include <algorithm>
-#include <cctype>
 #include <chrono>
 #include <map>
 #include <string>
 
 #include "opentelemetry/version.h"
+#include "opentelemetry/common/detail/ascii.h"
+#include "opentelemetry/sdk/version/version.h"
 #include "opentelemetry/sdk/version/version.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
@@ -131,9 +132,11 @@ struct cmp_ic
 {
   bool operator()(const std::string &s1, const std::string &s2) const
   {
-    return std::lexicographical_compare(
-        s1.begin(), s1.end(), s2.begin(), s2.end(),
-        [](char c1, char c2) { return ::tolower(c1) < ::tolower(c2); });
+    return std::lexicographical_compare(s1.begin(), s1.end(), s2.begin(), s2.end(),
+                                        [](char c1, char c2) {
+                                          return opentelemetry::common::detail::ToAsciiLower(c1) <
+                                                 opentelemetry::common::detail::ToAsciiLower(c2);
+                                        });
   }
 };
 using OtlpHeaders = std::multimap<std::string, std::string, cmp_ic>;
