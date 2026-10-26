@@ -985,6 +985,7 @@ otel_cc_test_combo(
         "//test_common:headers",
         "@googletest//:gtest_main",
         "@opentelemetry-proto//:logs_service_grpc_cc",
+        "@opentelemetry-proto//:metrics_service_grpc_cc",
         "@grpc",
     ]
 )
