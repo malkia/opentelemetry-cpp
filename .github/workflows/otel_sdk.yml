@@ -118,7 +118,7 @@ jobs:
           # Uninstall first, then install. There is also --uninstall-previous in `winget upgrade` too, but this would be more explicit.
           choco uninstall --yes llvm
           winget uninstall -e LLVM.LLVM --all --purge --force --verbose --disable-interactivity --silent
-          winget install -e LLVM.LLVM -v 23.1.2 --accept-package-agreements --disable-interactivity --silent
+          winget install -e LLVM.LLVM -v 23.1.4 --accept-package-agreements --disable-interactivity --silent
           if ($LASTEXITCODE -ne 0) {
             Write-Host "Winget install failed or not needed (already installed)"
             exit 0
