@@ -111,6 +111,7 @@ otel_cc_test_combo(
     ],
     deps = [
         "//sdk/src/trace",
+        "//test_common:headers",
         "@googletest//:gtest_main",
     ],
 )
