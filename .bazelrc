@@ -206,7 +206,7 @@ common --incompatible_check_testonly_for_output_files
 common --incompatible_disable_non_executable_java_binary
 common --modify_execution_info=CppCompile=+supports-path-mapping
 common --skip_incompatible_explicit_targets
-common --incompatible_default_to_explicit_init_py
+#common --incompatible_default_to_explicit_init_py
 
 # build --experimental_save_feature_state
 # saves .s and .ii files but tends to be super slow
@@ -246,7 +246,7 @@ build --host_copt="-DGRPC_NO_ABSL_SYNC"
 
 common:devenv --run_under='"c:/windows/system32/cmd.exe" /C start "bazel debug exe" /wait devenv /debugexe '
 
-common --incompatible_autoload_externally=+cc_library,+cc_binary,+cc_test,+JavaInfo
+#common --incompatible_autoload_externally=+cc_library,+cc_binary,+cc_test,+JavaInfo
 
 common --nocheck_bzl_visibility
 

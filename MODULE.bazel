@@ -78,8 +78,10 @@ bazel_dep(name = "envoy_api", version = "0.0.0-20260901-005c18a.bcr.1")
 #
 bazel_dep(name = "grpc-java", version = "1.84.0")
 
-new_local_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:local.bzl", "new_local_repository")
+rules_python_config = use_extension("@rules_python//python/extensions:config.bzl", "config")
+rules_python_config.explicit_init_py(default = True)
 
+new_local_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:local.bzl", "new_local_repository")
 new_local_repository(
     name = "llvm_windows_install",
     build_file = "@otel_sdk_dev//bazel:llvm_windows_install.BUILD",
