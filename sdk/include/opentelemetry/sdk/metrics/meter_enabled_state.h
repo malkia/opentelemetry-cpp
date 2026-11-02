@@ -6,6 +6,7 @@
 #include <atomic>
 
 #include "opentelemetry/version.h"
+#include "opentelemetry/common/macros.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
@@ -16,11 +17,12 @@ namespace metrics
 /**
  * A Meter's enabled flag, shared with every instrument it creates so a configurator update
  * reaches instruments that already exist. Relaxed ordering: no dependent data, only visibility.
+ * A plain bool, not std::atomic, because API instruments read it through Flag().
  */
 class MeterEnabledState
 {
 public:
-  explicit MeterEnabledState(bool enabled = true) noexcept : enabled_(enabled) {}
+  explicit MeterEnabledState(bool enabled = true) noexcept : enabled_(enabled) { }
 
   ~MeterEnabledState()                                    = default;
   MeterEnabledState(const MeterEnabledState &)            = delete;
@@ -28,9 +30,15 @@ public:
   MeterEnabledState &operator=(const MeterEnabledState &) = delete;
   MeterEnabledState &operator=(MeterEnabledState &&)      = delete;
 
-  bool IsEnabled() const noexcept { return enabled_.load(std::memory_order_relaxed); }
+  bool IsEnabled() const noexcept
+  {
+    return enabled_;
+  }
 
-  void SetEnabled(bool enabled) noexcept { enabled_.store(enabled, std::memory_order_relaxed); }
+  void SetEnabled(bool enabled) noexcept { enabled_ = enabled; }
+
+  /** The flag itself, valid for the lifetime of this object. */
+  const std::atomic<bool> *Flag() const noexcept { return &enabled_; }
 
 private:
   std::atomic<bool> enabled_;
