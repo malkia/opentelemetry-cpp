@@ -31,7 +31,7 @@ platform(
 
 [cc_import(
     name = "otel_sdk_{}".format(opt),
-    hdrs = glob(["{}/include/**".format(VERSION)]),
+    hdrs = glob(["{}/include/**".format(VERSION)], allow_empty = True),
     interface_library = "{}/{}lib/otel_sdk_{}.if.lib".format(VERSION,dir,opt),
     strip_include_prefix = "{}/include".format(VERSION),
     data = ["{}/{}bin/otel_sdk_{}.pdb".format(VERSION,dir,opt)],

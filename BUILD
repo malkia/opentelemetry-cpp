@@ -1,10 +1,8 @@
 # NOTE: This below code is Windows specific
 
-#load("@bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("@bazel_lib//lib:write_source_files.bzl", "write_source_file")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
 
-#load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 load("@bazel_skylib//rules:native_binary.bzl", "native_binary")
 load("@bazel_skylib//rules:run_binary.bzl", "run_binary")
 load("@otel_sdk_dev//bazel:otel_cc.bzl", "otel_cc_binary", "otel_cc_import", "otel_cc_library", "otel_cc_shared_library", "otel_cc_test")
@@ -140,17 +138,6 @@ genquery(
     ("otel_sdk_rd", ":reldeb"),
 ]]
 
-# otel_cc_library(
-#     name = "api_sdk_includes",
-#     srcs = [
-#         "all_api_includes.cc",
-#         "all_sdk_includes.cc",
-#     ],
-#     # Almost all headers are included here, such that the compiler can notice the __declspec(dllexport) members.
-#     visibility = ["//visibility:private"],
-#     deps = ["otel_sdk_deps"],
-# )
-
 # Conveniently place all Open Telemetry C++ dependencies required to build otel_sdk
 [otel_cc_shared_library(
     name = otel_sdk_binary,
@@ -167,7 +154,6 @@ genquery(
     visibility = ["//visibility:private"],
     deps = [
         otel_sdk_binary + "_restrict_compilation_mode",
-#        "api_sdk_includes",
         "otel_sdk_deps",
     ],
 ) for otel_sdk_binary in [
