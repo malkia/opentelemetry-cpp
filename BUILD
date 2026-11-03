@@ -140,16 +140,16 @@ genquery(
     ("otel_sdk_rd", ":reldeb"),
 ]]
 
-otel_cc_library(
-    name = "api_sdk_includes",
-    srcs = [
-        "all_api_includes.cc",
-        "all_sdk_includes.cc",
-    ],
-    # Almost all headers are included here, such that the compiler can notice the __declspec(dllexport) members.
-    visibility = ["//visibility:private"],
-    deps = ["otel_sdk_deps"],
-)
+# otel_cc_library(
+#     name = "api_sdk_includes",
+#     srcs = [
+#         "all_api_includes.cc",
+#         "all_sdk_includes.cc",
+#     ],
+#     # Almost all headers are included here, such that the compiler can notice the __declspec(dllexport) members.
+#     visibility = ["//visibility:private"],
+#     deps = ["otel_sdk_deps"],
+# )
 
 # Conveniently place all Open Telemetry C++ dependencies required to build otel_sdk
 [otel_cc_shared_library(
@@ -167,7 +167,7 @@ otel_cc_library(
     visibility = ["//visibility:private"],
     deps = [
         otel_sdk_binary + "_restrict_compilation_mode",
-        "api_sdk_includes",
+#        "api_sdk_includes",
         "otel_sdk_deps",
     ],
 ) for otel_sdk_binary in [
