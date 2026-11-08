@@ -62,7 +62,7 @@ build:windows      --linkopt=-MANIFEST:EMBED
 build:windows --host_linkopt=-MANIFEST:EMBED
 
 build:windows --repo_env=BAZEL_VC_FULL_VERSION=14.29.30133
-build:windows --repo_env=BAZEL_WINSDK_FULL_VERSION=10.0.28000.0
+#build:windows --repo_env=BAZEL_WINSDK_FULL_VERSION=10.0.28000.0
 build:clang-cl --repo_env=USE_CLANG_CL=1
 
 build:windows --features=shorten_virtual_includes
