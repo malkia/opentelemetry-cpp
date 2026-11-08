@@ -15,14 +15,14 @@ bazel_dep(name = "bazel_skylib", version = "1.9.2")
 bazel_dep(name = "platforms", version = "1.1.0")
 bazel_dep(name = "rapidyaml", version = "0.15.2")
 bazel_dep(name = "boringssl", version = "0.20261020.0")
-bazel_dep(name = "curl", version = "8.21.0.bcr.2")
+bazel_dep(name = "curl", version = "8.22.0.bcr.3")
 single_version_override(
     module_name = "curl",
     patch_strip = 1,
     patches = [
         "bazel/curl.patch",
     ],
-    version = "8.21.0.bcr.2",
+    version = "8.22.0.bcr.3",
 )
 
 bazel_dep(name = "depend_on_what_you_use", version = "1.2.0")
@@ -34,14 +34,14 @@ bazel_dep(name = "gazelle", version = "0.54.0")
 bazel_dep(name = "stardoc", version = "0.8.1")
 bazel_dep(name = "rules_android", version = "0.8.1")
 bazel_dep(name = "rules_swift", version = "4.2.2")
-bazel_dep(name = "grpc", version = "1.84.0")
+bazel_dep(name = "grpc", version = "1.84.2")
 single_version_override(
     module_name = "grpc",
     patch_strip = 1,
     patches = [
         "bazel/grpc.patch",
     ],
-    version = "1.84.0",
+    version = "1.84.2",
 )
 bazel_dep(name = "nlohmann_json", version = "3.12.0.bcr.2")
 bazel_dep(name = "rules_cc", version = "0.2.28")
