@@ -19,7 +19,7 @@ endlocal
 goto:eof
 
 :all
-"%__BAZEL__%" test --profile=0.nodll.tracing.json -k --//:with_dll=false -- ... || goto:error
+"%__BAZEL__%" test --profile=01.tracing.json -k --//:with_dll=false -- ... || goto:error
 call:test
 call:zip
 call:shutdown
@@ -29,21 +29,21 @@ goto:eof
 goto:eof
 
 :test
-"%__BAZEL__%" run --profile=5.pkgk.tracing.json -k --//:with_dll=true make_otel_sdk || goto:error
-"%__BAZEL__%" build --profile=1.all.tracing.json --//:with_dll=true -- ... -otel_sdk_zip || goto:error
-"%__BAZEL__%" test --profile=2.dbg.tracing.json --//:with_dll=true -c dbg -- ... -otel_sdk_zip || goto:error
-"%__BAZEL__%" test --profile=3.fastbuild.tracing.json --//:with_dll=true -c fastbuild -- ... -otel_sdk_zip || goto:error
-"%__BAZEL__%" test --profile=4.opt.tracing.json --//:with_dll=true -c opt -- ... -otel_sdk_zip || goto:error
+"%__BAZEL__%" run --profile=02.tracing.json -k --//:with_dll=true make_otel_sdk || goto:error
+"%__BAZEL__%" build --profile=03.tracing.json --//:with_dll=true -- ... -otel_sdk_zip || goto:error
+"%__BAZEL__%" test --profile=04.tracing.json --//:with_dll=true -c dbg -- ... -otel_sdk_zip || goto:error
+"%__BAZEL__%" test --profile=05.tracing.json --//:with_dll=true -c fastbuild -- ... -otel_sdk_zip || goto:error
+"%__BAZEL__%" test --profile=6.tracing.json --//:with_dll=true -c opt -- ... -otel_sdk_zip || goto:error
 goto:eof
 
 :minimal
-"%__BAZEL__%" build --profile=min.dll.tracing.json --//:with_dll=true otel_sdk_d otel_sdk_rd otel_sdk_r || goto:error
-"%__BAZEL__%" test --profile=min.nodll.tracing.json --//:with_dll=true //install/... || goto:error
-"%__BAZEL__%" test --profile=min.nodll.tracing.json --//:with_dll=false //install/... || goto:error
+"%__BAZEL__%" build --profile=07.tracing.json --//:with_dll=true otel_sdk_d otel_sdk_rd otel_sdk_r || goto:error
+"%__BAZEL__%" test --profile=08.tracing.json --//:with_dll=true //install/... || goto:error
+"%__BAZEL__%" test --profile=09.tracing.json --//:with_dll=false //install/... || goto:error
 goto:eof
 
 :zip
-"%__BAZEL__%" run --profile=5.pkg.tracing.json --//:with_dll=true make_otel_sdk || goto:error
+"%__BAZEL__%" run --profile=10.tracing.json --//:with_dll=true make_otel_sdk || goto:error
 goto:eof
 
 :shutdown

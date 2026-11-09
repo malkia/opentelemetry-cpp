@@ -4,6 +4,8 @@
 # Track changes in folders referenced by copy_directory
 startup --host_jvm_args=-DBAZEL_TRACK_SOURCE_DIRECTORIES=1
 
+common --record_full_profiler_data
+
 # Disable ANDROID detection, as it breaks with github actions on the Windows image
 # ERROR: D:/a/opentelemetry-cpp/opentelemetry-cpp/BUILD:141:24: While resolving toolchains for target 
 #                                 error loading package 'build:dwyu @rules_android++android_sdk_repository_extension+androidsdk//': 
