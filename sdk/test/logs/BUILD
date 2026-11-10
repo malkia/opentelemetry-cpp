@@ -124,6 +124,7 @@ otel_cc_test_combo(
     ],
     deps = [
         "//sdk/src/logs",
+        "//test_common:headers",
         "@googletest//:gtest_main",
     ],
 )
