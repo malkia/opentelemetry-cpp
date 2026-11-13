@@ -94,6 +94,8 @@ otel_cc_test_library(
         "//api",
         "//sdk:headers",
         "//sdk/src/trace",
+        "@googletest//:gtest_main",
+        "@prometheus-cpp//core",
     ]),
 )
 
@@ -122,6 +124,7 @@ otel_cc_test_combo(
     srcs = [
         "test/collector_test.cc",
     ],
+    data = glob(["test/testdata/*.txt"]),
     tags = [
         "prometheus",
         "test",
@@ -141,6 +144,7 @@ otel_cc_test_combo(
     srcs = [
         "test/exporter_utils_test.cc",
     ],
+    data = glob(["test/testdata/*.txt"]),
     tags = [
         "prometheus",
         "test",
