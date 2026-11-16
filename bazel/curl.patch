@@ -1,5 +1,5 @@
 diff --git a/lib/libcurl.vers.in b/lib/libcurl.vers.in
-index 821966999..00c432c5d 100644
+index 8219669993..00c432c5d4 100644
 --- a/lib/libcurl.vers.in
 +++ b/lib/libcurl.vers.in
 @@ -1,5 +1,7 @@
@@ -10,3 +10,23 @@ index 821966999..00c432c5d 100644
    local: *;
  };
 +*/
+diff --git a/lib/vtls/openssl.c b/lib/vtls/openssl.c
+index 7bb7a8c50e..82e4c1afc9 100644
+--- a/lib/vtls/openssl.c
++++ b/lib/vtls/openssl.c
+@@ -172,13 +172,13 @@ typedef unsigned long sslerr_t;
+ #endif
+ #define ossl_valsize_t numcert_t
+ 
+-#if OPENSSL_VERSION_NUMBER < 0x40100000L
++/*#if OPENSSL_VERSION_NUMBER < 0x40100000L
+ static size_t ASN1_STRING_get_length(const ASN1_STRING *str)
+ {
+    const int length = ASN1_STRING_length(str);
+    return length >= 0 ? (size_t)length : 0;
+ }
+-#endif
++#endif*/
+ 
+ static CURLcode push_certinfo(struct Curl_easy *data,
+                               BIO *mem, const char *label, int num)
