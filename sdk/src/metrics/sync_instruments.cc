@@ -1,6 +1,7 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
+#include <cmath>
 #include <cstdint>
 #include <limits>
 #include <memory>  // IWYU pragma: keep
@@ -699,6 +700,13 @@ void DoubleHistogram::Record(double value,
         << instrument_descriptor_.name_);
     return;
   }
+  if (!std::isfinite(value))
+  {
+    OTEL_INTERNAL_LOG_WARN(
+        "[DoubleHistogram::Record(V,A,C)] Value not recorded - non-finite value for: "
+        << instrument_descriptor_.name_);
+    return;
+  }
   if (!storage_)
   {
     OTEL_INTERNAL_LOG_WARN(
@@ -719,6 +727,13 @@ void DoubleHistogram::Record(double value, const opentelemetry::context::Context
   {
     OTEL_INTERNAL_LOG_WARN(
         "[DoubleHistogram::Record(V,C)] Value not recorded - negative value for: "
+        << instrument_descriptor_.name_);
+    return;
+  }
+  if (!std::isfinite(value))
+  {
+    OTEL_INTERNAL_LOG_WARN(
+        "[DoubleHistogram::Record(V,C)] Value not recorded - non-finite value for: "
         << instrument_descriptor_.name_);
     return;
   }
@@ -747,6 +762,13 @@ void DoubleHistogram::Record(double value,
         << instrument_descriptor_.name_);
     return;
   }
+  if (!std::isfinite(value))
+  {
+    OTEL_INTERNAL_LOG_WARN(
+        "[DoubleHistogram::Record(V,A)] Value not recorded - non-finite value for: "
+        << instrument_descriptor_.name_);
+    return;
+  }
   if (!storage_)
   {
     OTEL_INTERNAL_LOG_WARN(
@@ -768,6 +790,13 @@ void DoubleHistogram::Record(double value) noexcept
   {
     OTEL_INTERNAL_LOG_WARN("[DoubleHistogram::Record(V)] Value not recorded - negative value for: "
                            << instrument_descriptor_.name_);
+    return;
+  }
+  if (!std::isfinite(value))
+  {
+    OTEL_INTERNAL_LOG_WARN(
+        "[DoubleHistogram::Record(V)] Value not recorded - non-finite value for: "
+        << instrument_descriptor_.name_);
     return;
   }
   if (!storage_)
@@ -887,6 +916,12 @@ public:
     {
       OTEL_INTERNAL_LOG_WARN(
           "[BoundDoubleHistogram::Record(V)] Value not recorded - negative value");
+      return;
+    }
+    if (!std::isfinite(value))
+    {
+      OTEL_INTERNAL_LOG_WARN(
+          "[BoundDoubleHistogram::Record(V)] Value not recorded - non-finite value");
       return;
     }
     if (storage_)
