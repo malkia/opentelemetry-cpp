@@ -981,12 +981,9 @@ otel_cc_test_combo(
         ":otlp_grpc_log_record_exporter",
         "//api",
         "//sdk/src/logs",
-        "//sdk/src/metrics",
         "//test_common:headers",
         "@googletest//:gtest_main",
         "@opentelemetry-proto//:logs_service_grpc_cc",
-        "@opentelemetry-proto//:metrics_service_proto_cc",
-        "@grpc",
     ]
 )
 
