@@ -1022,7 +1022,9 @@ otel_cc_test_combo(
         "//sdk/src/metrics",
         "//test_common:headers",
         "@googletest//:gtest_main",
+        "@opentelemetry-proto//:logs_service_grpc_cc",
         "@opentelemetry-proto//:metrics_service_grpc_cc",
+        "@opentelemetry-proto//:trace_service_grpc_cc",
         "@grpc//:grpc++",
     ],
 )
